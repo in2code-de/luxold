@@ -1,0 +1,13 @@
+plugin.tx_lux {
+	view {
+		templateRootPaths {
+			0 = EXT:lux/Resources/Private/Templates/
+			1 = EXT:lux/Resources/Private/Templates/
+		}
+	}
+	features.requireCHashArgumentForActionArguments = 0
+}
+
+page {
+	includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux.min.js
+}
