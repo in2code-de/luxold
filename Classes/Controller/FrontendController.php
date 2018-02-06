@@ -19,7 +19,7 @@ class FrontendController extends ActionController
      */
     public function pageRequestAction(string $idCookie, int $languageUid, int $pageUid)
     {
-        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $pageUid);
         $visitor = $visitorFactory->getVisitor();
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($visitor, 'in2code: ' . __CLASS__ . ':' . __LINE__);
         die('hard');

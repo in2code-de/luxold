@@ -7,9 +7,38 @@
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.crdate">
+				<source>First visit</source>
+				<target state="translated">Erster Besuch</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tstamp">
+				<source>Last visit</source>
+				<target state="translated">Letzter Besuch</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.id_cookie">
 				<source>Cookie ID</source>
 				<target state="translated">Cookie ID</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.pagevisits">
+				<source>Page visits</source>
+				<target state="translated">Seitenbesuche</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_pagevisit">
+				<source>Pagevisit</source>
+				<target state="translated">Seitenbesuch</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.crdate">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.page">
+				<source>Page</source>
+				<target state="translated">Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
 			</trans-unit>
 		</body>
 	</file>

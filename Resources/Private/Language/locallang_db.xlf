@@ -6,8 +6,30 @@
 			<trans-unit id="tx_lux_domain_model_visitor">
 				<source>Lead</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.crdate">
+				<source>First visit</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tstamp">
+				<source>Last visit</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.id_cookie">
 				<source>Cookie ID</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.pagevisits">
+				<source>Page visits</source>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_pagevisit">
+				<source>Pagevisit</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.crdate">
+				<source>Time</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.visitor">
+				<source>Lead</source>
 			</trans-unit>
 		</body>
 	</file>

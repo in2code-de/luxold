@@ -2,7 +2,10 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Factory;
 
+use In2code\Lux\Domain\Model\Page;
+use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,6 +22,11 @@ class VisitorFactory
     protected $idCookie = '';
 
     /**
+     * @var int
+     */
+    protected $pageUid = 0;
+
+    /**
      * @var VisitorRepository|null
      */
     protected $visitorRepository = null;
@@ -27,10 +35,12 @@ class VisitorFactory
      * VisitorFactory constructor.
      *
      * @param string $idCookie
+     * @param int $pageUid
      */
-    public function __construct(string $idCookie)
+    public function __construct(string $idCookie, int $pageUid = 0)
     {
         $this->idCookie = $idCookie;
+        $this->pageUid = $pageUid;
         $this->visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
     }
 
@@ -42,9 +52,12 @@ class VisitorFactory
         $visitor = $this->getVisitoryFromDatabase();
         if ($visitor === null) {
             $visitor = $this->createNewVisitor();
-            $this->visitorRepository->add($visitor);
-            $this->visitorRepository->persistAll();
         }
+        if ($this->pageUid > 0) {
+            $visitor->addPagevisit($this->getPageVisit());
+        }
+        $this->visitorRepository->add($visitor);
+        $this->visitorRepository->persistAll();
         return $visitor;
     }
 
@@ -64,5 +77,18 @@ class VisitorFactory
         $visitor = GeneralUtility::makeInstance(Visitor::class);
         $visitor->setIdCookie($this->idCookie);
         return $visitor;
+    }
+
+    /**
+     * @return Pagevisit
+     */
+    protected function getPageVisit(): Pagevisit
+    {
+        $pageVisit = ObjectUtility::getObjectManager()->get(Pagevisit::class);
+        $pageRepository = ObjectUtility::getObjectManager()->get(PageRepository::class);
+        /** @var Page $page */
+        $page = $pageRepository->findByUid($this->pageUid);
+        $pageVisit->setPage($page);
+        return $pageVisit;
     }
 }

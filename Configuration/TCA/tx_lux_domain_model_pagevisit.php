@@ -1,30 +1,31 @@
 <?php
-use In2code\Lux\Domain\Model\Visitor;
+
+use In2code\Lux\Domain\Model\Pagevisit;
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME,
-        'label' => 'id_cookie',
+        'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Pagevisit::TABLE_NAME,
+        'label' => 'page',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
-        'default_sortby' => 'ORDER BY tstamp DESC',
+        'default_sortby' => 'ORDER BY crdate DESC',
         'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Pagevisit::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'crdate,tstamp,id_cookie,pagevisits',
+        'showRecordFieldList' => 'page,crdate,visitor',
     ],
     'types' => [
-        '1' => ['showitem' => 'crdate,tstamp,id_cookie,pagevisits'],
+        '1' => ['showitem' => 'page,crdate,visitor'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -40,7 +41,7 @@ return [
                     ['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
                     ['LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0]
                 ]
-            ],
+            ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -52,23 +53,23 @@ return [
                 'items' => [
                     ['', 0],
                 ],
-                'foreign_table' => Visitor::TABLE_NAME,
-                'foreign_table_where' => 'AND ' . Visitor::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
-                    Visitor::TABLE_NAME . '.sys_language_uid IN (-1,0)',
+                'foreign_table' => Pagevisit::TABLE_NAME,
+                'foreign_table_where' => 'AND ' . Pagevisit::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
+                    Pagevisit::TABLE_NAME . '.sys_language_uid IN (-1,0)',
                 'default' => 0
-            ],
+            ]
         ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-            ],
+            ]
         ],
         'hidden' => [
             'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-            ],
+            ]
         ],
         'starttime' => [
             'exclude' => true,
@@ -83,8 +84,8 @@ return [
                 'default' => 0,
                 'range' => [
                     'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-                ],
-            ],
+                ]
+            ]
         ],
         'endtime' => [
             'exclude' => true,
@@ -99,13 +100,13 @@ return [
                 'default' => 0,
                 'range' => [
                     'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-                ],
-            ],
+                ]
+            ]
         ],
 
         'crdate' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.crdate',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Pagevisit::TABLE_NAME . '.crdate',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -113,39 +114,30 @@ return [
                 'readOnly' => true
             ]
         ],
-        'tstamp' => [
+        'page' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.tstamp',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Pagevisit::TABLE_NAME . '.page',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'datetime',
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'pages',
+                'foreign_table_where' => 'ORDER BY pages.title',
+                'default' => 0,
                 'readOnly' => true
-            ]
+            ],
         ],
-        'id_cookie' => [
+        'visitor' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.id_cookie',
+            'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Pagevisit::TABLE_NAME . '.visitor',
             'config' => [
-                'type' => 'input',
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => \In2code\Lux\Domain\Model\Visitor::TABLE_NAME,
+                'size' => 1,
+                'maxitems' => 1,
+                'multiple' => 0,
+                'default' => 0,
                 'readOnly' => true
-            ]
-        ],
-        'pagevisits' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.pagevisits',
-            'config' => [
-                'type' => 'inline',
-                'foreign_table' => \In2code\Lux\Domain\Model\Pagevisit::TABLE_NAME,
-                'foreign_field' => 'visitor',
-                'maxitems' => 100000,
-                'appearance' => [
-                    'collapse' => 1,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ]
             ]
         ]
     ]
