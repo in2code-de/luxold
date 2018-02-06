@@ -24,8 +24,61 @@ function LuxMain() {
 	 * @returns {void}
 	 */
 	this.initialize = function() {
-		idCookie = getIdCookie();
-		setIdCookieIfNotSet();
+		if (isLuxActivated()) {
+			idCookie = getIdCookie();
+			setIdCookieIfNotSet();
+			pageRequest();
+		}
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var pageRequest = function() {
+		ajaxConnection(getAjaxUri(), getParametersForAjaxCall());
+	};
+
+	/**
+	 * Get parameters for ajax call
+	 *
+	 * @returns {object}
+	 */
+	var getParametersForAjaxCall = function() {
+		return {
+			'tx_lux_fe[idCookie]': getIdCookie(),
+			'tx_lux_fe[pageUid]': getPageUid(),
+			'tx_lux_fe[languageUid]': getLanguageUid()
+		};
+	};
+
+	/**
+	 * @returns {int}
+	 */
+	var getPageUid = function() {
+		var uid = 0;
+		var container = getContainer();
+		if (container !== null) {
+			if (container.hasAttribute('data-lux-pageuid')) {
+				var uidContainer = container.getAttribute('data-lux-pageuid');
+				uid = parseInt(uidContainer);
+			}
+		}
+		return uid;
+	};
+
+	/**
+	 * @returns {int}
+	 */
+	var getLanguageUid = function() {
+		var uid = 0;
+		var container = getContainer();
+		if (container !== null) {
+			if (container.hasAttribute('data-lux-languageuid')) {
+				var uidContainer = container.getAttribute('data-lux-languageuid');
+				uid = parseInt(uidContainer);
+			}
+		}
+		return uid;
 	};
 
 	/**
@@ -36,6 +89,81 @@ function LuxMain() {
 			idCookie = getRandomString(32);
 			setCookie(cookieName, idCookie);
 		}
+	};
+
+	/**
+	 * @returns {string}
+	 */
+	var getAjaxUri = function() {
+		var container = getContainer();
+		if (container !== null) {
+			return container.getAttribute('data-lux-ajaxuri');
+		}
+		return '';
+	};
+
+	/**
+	 * @params {string} uri
+	 * @params {object} parameters
+	 * @returns void
+	 */
+	var ajaxConnection = function(uri, parameters) {
+		if (uri) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState === 4 && this.status === 200) {
+					var jsonObject = JSON.parse(this.responseText);
+					doAction(jsonObject);
+				}
+			};
+			xhttp.open('POST', mergeUriWithParameters(uri, parameters), true);
+			xhttp.send();
+		} else {
+			console.log('No ajax URI given!');
+		}
+	};
+
+	/**
+	 * Build an uri string for an ajax call together with params from an object
+	 * 		{
+	 * 			'x': 123,
+	 * 			'y': 'abc'
+	 * 		}
+	 *
+	 * 		=>
+	 *
+	 * 		"?x=123&y=abc"
+	 *
+	 * @params {string} uri
+	 * @params {object} parameters
+	 * @returns {string} e.g. "index.php?id=123&type=123&x=123&y=abc"
+	 */
+	var mergeUriWithParameters = function(uri, parameters) {
+		for (var key in parameters) {
+			if (parameters.hasOwnProperty(key)) {
+				if (uri.indexOf('?') !== -1) {
+					uri += '&';
+				} else {
+					uri += '?';
+				}
+				uri += key + '=' + parameters[key];
+			}
+		}
+		return uri;
+	};
+
+	/**
+	 * @returns {boolean}
+	 */
+	var isLuxActivated = function() {
+		return getContainer() !== null;
+	};
+
+	/**
+	 * @returns {object}
+	 */
+	var getContainer = function() {
+		return document.getElementById('lux_container');
 	};
 
 	/**
@@ -66,7 +194,7 @@ function LuxMain() {
 	var setCookie = function(name, value) {
 		var now = new Date();
 		var time = now.getTime();
-		time += 3600 * 24 * 365 * 5000; // 5 years from now
+		time += 3600 * 24 * 365 * 10000; // 10 years from now
 		now.setTime(time);
 		document.cookie = name + '=' + value + '; expires=' + now.toUTCString() + '; path=/';
 	};

@@ -1,13 +1,77 @@
-plugin.tx_lux {
-	view {
-		templateRootPaths {
-			0 = EXT:lux/Resources/Private/Templates/
-			1 = EXT:lux/Resources/Private/Templates/
+plugin {
+	tx_lux {
+		view {
+			templateRootPaths {
+				0 = EXT:lux/Resources/Private/Templates/
+				1 = EXT:lux/Resources/Private/Templates/
+			}
 		}
 	}
-	features.requireCHashArgumentForActionArguments = 0
+	tx_lux_fe {
+		features.requireCHashArgumentForActionArguments = 0
+	}
 }
 
 page {
 	includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux.min.js
+
+	# Container for informations that will be send via AJAX
+	1517942451 = COA
+	1517942451 {
+		wrap = <script id="lux_container"|></script>
+
+		# Uri to send AJAX request to
+		10 = TEXT
+		10 {
+			noTrimWrap = | data-lux-ajaxuri="|"|
+			typolink {
+				parameter.data = TSFE:id
+				additionalParams = &type=1517942451
+				returnLast = url
+				forceAbsoluteUrl = 1
+			}
+		}
+
+		# FE language
+		20 = TEXT
+		20 {
+			noTrimWrap = | data-lux-languageuid="|"|
+			data = GP:L
+			intval = 1
+		}
+
+		# Current page uid
+		30 = TEXT
+		30 {
+			noTrimWrap = | data-lux-pageuid="|"|
+			data = TSFE:id
+		}
+	}
+}
+
+# AJAX types
+redirectAjax = PAGE
+redirectAjax {
+	typeNum = 1517942451
+	config {
+		additionalHeaders = Content-Type: application/json
+		additionalHeaders.10.header = Content-Type: application/json
+		no_cache = 1
+		disableAllHeaderCode = 1
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+	}
+
+	10  = USER
+	10 {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		extensionName = Lux
+		pluginName = Fe
+		vendorName = In2code
+		controller = Frontend
+		action = pageRequest
+		switchableControllerActions.Frontend.1 = pageRequest
+	}
 }

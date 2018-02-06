@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-02-16T12:00:00Z" product-name="lux">
+		<header/>
+		<body>
+			<trans-unit id="tx_lux_domain_model_visitor">
+				<source>Lead</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.id_cookie">
+				<source>Cookie ID</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
