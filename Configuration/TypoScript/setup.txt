@@ -6,10 +6,44 @@ plugin {
 			}
 		}
 		settings {
+			# All tracking settings
 			tracking {
 				# Toggle pagevisit tracking (on/off).
 				# Switching this feature on will flood table tx_lux_domain_model_pagevisit but allow you to see a full pagefunnel of all of your visitors
 				pagevisits = 1
+			}
+
+			# All identification settings
+			identification {
+				# Auto identify with EVERY input field of your website
+				fieldMapping {
+					# email is the key-field for visitor identification and merging. Every other field is just for your information
+					email {
+						0 = *[email]
+						1 = *[e-mail]
+						2 = *[e_mail]
+					}
+					firstname {
+						0 = *[firstname]
+						1 = *[first-name]
+						2 = *[first_name]
+						3 = *[vorname]
+					}
+					lastname {
+						0 = *[lastname]
+						1 = *[last-name]
+						2 = *[last_name]
+						3 = *[surname]
+						4 = *[sur-name]
+						5 = *[sur_name]
+						6 = *[name]
+						7 = *[nachname]
+					}
+					company {
+						0 = *[company]
+						1 = *[firma]
+					}
+				}
 			}
 		}
 		features.requireCHashArgumentForActionArguments = 0
@@ -17,6 +51,17 @@ plugin {
 }
 
 page {
+	# Add JavaScript for field mapping configuration
+	1517985223 = TEXT
+	1517985223 {
+		typolink {
+			parameter.data = TSFE:id
+			additionalParams = &type=1517985223
+			returnLast = url
+		}
+		wrap = <script type="text/javascript" src="|"></script>
+	}
+	# Add main JavaScript for lux
 	includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux.min.js
 
 	# Container for informations that will be send via AJAX
@@ -54,11 +99,10 @@ page {
 }
 
 # AJAX types
-redirectAjax = PAGE
-redirectAjax {
+luxAjax = PAGE
+luxAjax {
 	typeNum = 1517942451
 	config {
-		additionalHeaders = Content-Type: application/json
 		additionalHeaders.10.header = Content-Type: application/json
 		no_cache = 1
 		disableAllHeaderCode = 1
@@ -68,7 +112,7 @@ redirectAjax {
 		debug = 0
 	}
 
-	10  = USER
+	10 = USER
 	10 {
 		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 		extensionName = Lux
@@ -80,7 +124,30 @@ redirectAjax {
 	}
 }
 
-# Mapping
+# Typenum to get field mapping configuration in a dynamic JS file
+luxConfiguration = PAGE
+luxConfiguration {
+	typeNum = 1517985223
+	config {
+		additionalHeaders.10.header = Content-Type: application/javascript
+		disableAllHeaderCode = 1
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+	}
+
+	10 = FLUIDTEMPLATE
+	10 {
+		file = EXT:lux/Resources/Private/Templates/Configuration/JavaScriptConfiguration.js
+		settings < plugin.tx_lux_fe.settings
+		dataProcessing {
+			10 = In2code\Lux\DataProcessing\FieldMappingProcessor
+		}
+	}
+}
+
+# Table Mapping
 config.tx_extbase {
 	persistence {
 		classes {

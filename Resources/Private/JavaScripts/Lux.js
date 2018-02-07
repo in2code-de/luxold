@@ -28,6 +28,7 @@ function LuxMain() {
 			idCookie = getIdCookie();
 			setIdCookieIfNotSet();
 			pageRequest();
+			addFieldListener();
 		}
 	};
 
@@ -36,6 +37,87 @@ function LuxMain() {
 	 */
 	var pageRequest = function() {
 		ajaxConnection(getAjaxUri(), getParametersForAjaxCall());
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var addFieldListener = function() {
+		getAllMappedFields();
+		// var mapping = getFieldMapping();
+		// console.log(mapping);
+
+
+
+		// var element = '';
+		// element.onblur = function() {
+		// 	alert('click')
+		// }
+	};
+
+	/**
+	 * @returns {NodeList}
+	 */
+	var getAllMappedFields = function() {
+		var elements = document.querySelectorAll('input, textarea, select, radio, check');
+		for (var i = 0; i < elements.length; i++) {
+			var element = elements[i];
+			// Skip every password field and check if this field is configured for listening in TypoScript
+			if (element.type !== 'password' && isFieldConfiguredInFieldMapping(element)) {
+				element.addEventListener('change blur', listener, false);
+			}
+		}
+	};
+
+	var listener = function() {
+		alert('clicked!');
+	};
+
+	/**
+	 * @param field
+	 * @returns {boolean}
+	 */
+	var isFieldConfiguredInFieldMapping = function(field) {
+		return getKeyOfFieldConfigurationToGivenField(field) !== '';
+	};
+
+	/**
+	 * Pass a field element and check if this field is configured in TypoScript in field mapping. If found get key of
+	 * the configuration. Oherwise return an empty string.
+	 *
+	 * @param field
+	 * @returns {string}
+	 */
+	var getKeyOfFieldConfigurationToGivenField = function(field) {
+		var keyConfiguration = '';
+		var fieldName = field.name;
+		var fieldMapping = getFieldMapping();
+		for (var key in fieldMapping) {
+			// iterate through fieldtypes
+			if (fieldMapping.hasOwnProperty(key)) {
+				// iterate through every fieldtype definition
+				for (var i = 0; i < fieldMapping[key].length; i++) {
+					var fieldNameMapping = fieldMapping[key][i].replace('*', '');
+					if (fieldName.indexOf(fieldNameMapping) !== -1) {
+						keyConfiguration = key;
+					}
+				}
+			}
+		}
+		return keyConfiguration;
+	};
+
+	/**
+	 * @returns {object}
+	 */
+	var getFieldMapping = function() {
+		var json = {};
+		try {
+			json = JSON.parse(window.luxFieldMappingConfiguration);
+		} catch(err) {
+			console.log('Lux: No fieldmapping configuration given.');
+		}
+		return json;
 	};
 
 	/**
@@ -113,7 +195,7 @@ function LuxMain() {
 			xhttp.onreadystatechange = function() {
 				if (this.readyState === 4 && this.status === 200) {
 					var jsonObject = JSON.parse(this.responseText);
-					doAction(jsonObject);
+					// doAction(jsonObject);
 				}
 			};
 			xhttp.open('POST', mergeUriWithParameters(uri, parameters), true);
