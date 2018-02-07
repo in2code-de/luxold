@@ -2,9 +2,8 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
-use In2code\Lux\Utility\ObjectUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Class VisitorRepository
@@ -13,21 +12,14 @@ class VisitorRepository extends AbstractRepository
 {
 
     /**
-     * @return void
+     * @param string $email
+     * @return QueryResultInterface
      */
-    public function initializeObject()
+    public function findDuplicatesByEmail(string $email)
     {
-        $defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
-        $defaultQuerySettings->setRespectStoragePage(false);
-        $this->setDefaultQuerySettings($defaultQuerySettings);
-    }
-
-    /**
-     * @return void
-     */
-    public function persistAll()
-    {
-        $persistanceManager = ObjectUtility::getObjectManager()->get(PersistenceManager::class);
-        $persistanceManager->persistAll();
+        $query = $this->createQuery();
+        $query->matching($query->equals('email', $email));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_ASCENDING]);
+        return $query->execute();
     }
 }

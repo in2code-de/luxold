@@ -6,6 +6,7 @@ use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\AttributeRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Domain\Service\VisitorMergeService;
 use In2code\Lux\Utility\ObjectUtility;
 
 /**
@@ -64,6 +65,7 @@ class AttributeFactory
             $this->visitorRepository->update($visitor);
             $this->visitorRepository->persistAll();
         }
+        $this->mergeVisitorsOnGivenEmail($key, $value);
         return $visitor;
     }
 
@@ -101,5 +103,21 @@ class AttributeFactory
         $attribute->setName($key);
         $attribute->setValue($value);
         return $attribute;
+    }
+
+    /**
+     * If email is given and there is already an email stored but with a different idCookie, merge everything to the
+     * oldest visitor
+     *
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
+    protected function mergeVisitorsOnGivenEmail(string $key, string $value)
+    {
+        if ($key === Attribute::KEY_NAME) {
+            $mergeService = ObjectUtility::getObjectManager()->get(VisitorMergeService::class, $value);
+            $mergeService->merge();
+        }
     }
 }

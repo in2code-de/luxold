@@ -10,6 +10,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Attribute extends AbstractEntity
 {
     const TABLE_NAME = 'tx_lux_domain_model_attribute';
+    const KEY_NAME = 'email';
 
     /**
      * @var \In2code\Lux\Domain\Model\Visitor
@@ -87,6 +88,6 @@ class Attribute extends AbstractEntity
      */
     public function isEmail(): bool
     {
-        return $this->getName() === 'email';
+        return $this->getName() === self::KEY_NAME;
     }
 }
