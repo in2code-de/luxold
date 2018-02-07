@@ -7,6 +7,14 @@
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.identified">
+				<source>Is identified lead?</source>
+				<target state="translated">Lead bereits identifiziert?</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.email">
+				<source>Email</source>
+				<target state="translated">E-Mail</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.crdate">
 				<source>First visit</source>
 				<target state="translated">Erster Besuch</target>
@@ -22,6 +30,10 @@
 			<trans-unit id="tx_lux_domain_model_visitor.pagevisits">
 				<source>Page visits</source>
 				<target state="translated">Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.attributes">
+				<source>Lead attributes</source>
+				<target state="translated">Eigenschaften des Leads</target>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">
@@ -39,6 +51,23 @@
 			<trans-unit id="tx_lux_domain_model_pagevisit.visitor">
 				<source>Lead</source>
 				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_attribute">
+				<source>Attribute</source>
+				<target state="translated">Eigenschaft</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.crdate">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.name">
+				<source>Name</source>
+				<target state="translated">Name</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.value">
+				<source>Value</source>
+				<target state="translated">Wert</target>
 			</trans-unit>
 		</body>
 	</file>

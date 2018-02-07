@@ -28,7 +28,7 @@ function LuxMain() {
 			idCookie = getIdCookie();
 			setIdCookieIfNotSet();
 			pageRequest();
-			addFieldListener();
+			addFieldListeners();
 		}
 	};
 
@@ -36,41 +36,35 @@ function LuxMain() {
 	 * @returns {void}
 	 */
 	var pageRequest = function() {
-		ajaxConnection(getAjaxUri(), getParametersForAjaxCall());
+		ajaxConnection(getPageRequestUri(), getParametersForAjaxCall());
 	};
 
 	/**
 	 * @returns {void}
 	 */
-	var addFieldListener = function() {
-		getAllMappedFields();
-		// var mapping = getFieldMapping();
-		// console.log(mapping);
-
-
-
-		// var element = '';
-		// element.onblur = function() {
-		// 	alert('click')
-		// }
-	};
-
-	/**
-	 * @returns {NodeList}
-	 */
-	var getAllMappedFields = function() {
+	var addFieldListeners = function() {
 		var elements = document.querySelectorAll('input, textarea, select, radio, check');
 		for (var i = 0; i < elements.length; i++) {
 			var element = elements[i];
 			// Skip every password field and check if this field is configured for listening in TypoScript
 			if (element.type !== 'password' && isFieldConfiguredInFieldMapping(element)) {
-				element.addEventListener('change blur', listener, false);
+				element.addEventListener('change', function() {
+					listener(this);
+				});
 			}
 		}
 	};
 
-	var listener = function() {
-		alert('clicked!');
+	/**
+	 * @param {Node} field
+	 */
+	var listener = function(field) {
+		var key = getKeyOfFieldConfigurationToGivenField(field);
+		var value = field.value;
+		ajaxConnection(
+			getFieldListeningRequestUri(),
+			{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[key]': key, 'tx_lux_fe[value]': value}
+			);
 	};
 
 	/**
@@ -176,10 +170,21 @@ function LuxMain() {
 	/**
 	 * @returns {string}
 	 */
-	var getAjaxUri = function() {
+	var getPageRequestUri = function() {
 		var container = getContainer();
 		if (container !== null) {
-			return container.getAttribute('data-lux-ajaxuri');
+			return container.getAttribute('data-lux-pagerequesturi');
+		}
+		return '';
+	};
+
+	/**
+	 * @returns {string}
+	 */
+	var getFieldListeningRequestUri = function() {
+		var container = getContainer();
+		if (container !== null) {
+			return container.getAttribute('data-lux-fieldlisteninguri');
 		}
 		return '';
 	};

@@ -17,7 +17,7 @@ plugin {
 			identification {
 				# Auto identify with EVERY input field of your website
 				fieldMapping {
-					# email is the key-field for visitor identification and merging. Every other field is just for your information
+					# "email" is the key-field for visitor identification and merging. Every other field is just for your information
 					email {
 						0 = *[email]
 						1 = *[e-mail]
@@ -27,17 +27,19 @@ plugin {
 						0 = *[firstname]
 						1 = *[first-name]
 						2 = *[first_name]
-						3 = *[vorname]
+						3 = *[firstName]
+						4 = *[vorname]
 					}
 					lastname {
 						0 = *[lastname]
 						1 = *[last-name]
 						2 = *[last_name]
-						3 = *[surname]
-						4 = *[sur-name]
-						5 = *[sur_name]
-						6 = *[name]
-						7 = *[nachname]
+						3 = *[lastName]
+						4 = *[surname]
+						5 = *[sur-name]
+						6 = *[sur_name]
+						7 = *[name]
+						8 = *[nachname]
 					}
 					company {
 						0 = *[company]
@@ -69,10 +71,10 @@ page {
 	1517942451 {
 		wrap = <script id="lux_container"|></script>
 
-		# Uri to send AJAX request to
+		# Uri to send AJAX page request to
 		10 = TEXT
 		10 {
-			noTrimWrap = | data-lux-ajaxuri="|"|
+			noTrimWrap = | data-lux-pagerequesturi="|"|
 			typolink {
 				parameter.data = TSFE:id
 				additionalParams = &type=1517942451
@@ -81,17 +83,29 @@ page {
 			}
 		}
 
-		# FE language
+		# Uri to send AJAX fieldlistening request to
 		20 = TEXT
 		20 {
+			noTrimWrap = | data-lux-fieldlisteninguri="|"|
+			typolink {
+				parameter.data = TSFE:id
+				additionalParams = &type=1518001045
+				returnLast = url
+				forceAbsoluteUrl = 1
+			}
+		}
+
+		# FE language
+		30 = TEXT
+		30 {
 			noTrimWrap = | data-lux-languageuid="|"|
 			data = GP:L
 			intval = 1
 		}
 
 		# Current page uid
-		30 = TEXT
-		30 {
+		40 = TEXT
+		40 {
 			noTrimWrap = | data-lux-pageuid="|"|
 			data = TSFE:id
 		}
@@ -99,8 +113,8 @@ page {
 }
 
 # AJAX types
-luxAjax = PAGE
-luxAjax {
+luxPageRequestAjax = PAGE
+luxPageRequestAjax {
 	typeNum = 1517942451
 	config {
 		additionalHeaders.10.header = Content-Type: application/json
@@ -122,6 +136,12 @@ luxAjax {
 		action = pageRequest
 		switchableControllerActions.Frontend.1 = pageRequest
 	}
+}
+luxFieldListeningRequestAjax < luxPageRequestAjax
+luxFieldListeningRequestAjax {
+	typeNum = 1518001045
+	10.action = fieldListeningRequest
+	10.switchableControllerActions.Frontend.1 = fieldListeningRequest
 }
 
 # Typenum to get field mapping configuration in a dynamic JS file

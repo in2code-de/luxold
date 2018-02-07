@@ -9,11 +9,7 @@ call_user_func(
         /**
          * Include Plugins
          */
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'lux',
-            'Fe',
-            'Lux'
-        );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('lux', 'Fe', 'Lux');
 
         /**
          * Add TypoScript Static Template

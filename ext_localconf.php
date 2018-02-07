@@ -13,10 +13,10 @@ call_user_func(
             'In2code.lux',
             'Fe',
             [
-                'Frontend' => 'pageRequest'
+                'Frontend' => 'pageRequest,fieldListeningRequest'
             ],
             [
-                'Frontend' => 'pageRequest'
+                'Frontend' => 'pageRequest,fieldListeningRequest'
             ]
         );
     }

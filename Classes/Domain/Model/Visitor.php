@@ -36,11 +36,17 @@ class Visitor extends AbstractEntity
     protected $pagevisits = null;
 
     /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Attribute>
+     */
+    protected $attributes = null;
+
+    /**
      * Visitor constructor.
      */
     public function __construct()
     {
         $this->pagevisits = new ObjectStorage();
+        $this->attributes = new ObjectStorage();
     }
 
     /**
@@ -132,6 +138,44 @@ class Visitor extends AbstractEntity
     public function removePagevisit(Pagevisit $pagevisit)
     {
         $this->pagevisits->detach($pagevisit);
+        return $this;
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getAttributes(): ObjectStorage
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @var ObjectStorage $attributes
+     * @return Visitor
+     */
+    public function setAttributes(ObjectStorage $attributes)
+    {
+        $this->attributes = $attributes;
+        return $this;
+    }
+
+    /**
+     * @param Attribute $attribute
+     * @return $this
+     */
+    public function addAttribute(Attribute $attribute)
+    {
+        $this->attributes->attach($attribute);
+        return $this;
+    }
+
+    /**
+     * @param Attribute $attribute
+     * @return $this
+     */
+    public function removeAttribute(Attribute $attribute)
+    {
+        $this->attributes->detach($attribute);
         return $this;
     }
 }

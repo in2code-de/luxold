@@ -8,7 +8,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
- * Class ConfigurationService to get the typoscript configuration from powermail and cache it for multiple calls
+ * Class ConfigurationService to get the typoscript configuration from extension and cache it for multiple calls
  */
 class ConfigurationService implements SingletonInterface
 {

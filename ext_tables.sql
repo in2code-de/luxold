@@ -3,6 +3,7 @@ CREATE TABLE tx_lux_domain_model_visitor (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	pagevisits int(11) DEFAULT '0' NOT NULL,
+	attributes int(11) DEFAULT '0' NOT NULL,
 
 	id_cookie varchar(255) DEFAULT '' NOT NULL,
 	email varchar(255) DEFAULT '' NOT NULL,

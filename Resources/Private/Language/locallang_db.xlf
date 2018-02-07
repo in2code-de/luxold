@@ -6,6 +6,12 @@
 			<trans-unit id="tx_lux_domain_model_visitor">
 				<source>Lead</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.identified">
+				<source>Is identified lead?</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.email">
+				<source>Email</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.crdate">
 				<source>First visit</source>
 			</trans-unit>
@@ -17,6 +23,9 @@
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.pagevisits">
 				<source>Page visits</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.attributes">
+				<source>Lead attributes</source>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">
@@ -30,6 +39,19 @@
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_pagevisit.visitor">
 				<source>Lead</source>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_attribute">
+				<source>Attribute</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.crdate">
+				<source>Time</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.value">
+				<source>Value</source>
 			</trans-unit>
 		</body>
 	</file>

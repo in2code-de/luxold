@@ -1,10 +1,11 @@
 <?php
-use In2code\Lux\Domain\Model\Visitor;
+
+use In2code\Lux\Domain\Model\Attribute;
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME,
-        'label' => 'id_cookie',
+        'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Attribute::TABLE_NAME,
+        'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -18,13 +19,13 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Attribute::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits',
+        'showRecordFieldList' => 'crdate,name,value',
     ],
     'types' => [
-        '1' => ['showitem' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits'],
+        '1' => ['showitem' => 'crdate,name,value'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -52,9 +53,9 @@ return [
                 'items' => [
                     ['', 0],
                 ],
-                'foreign_table' => Visitor::TABLE_NAME,
-                'foreign_table_where' => 'AND ' . Visitor::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
-                    Visitor::TABLE_NAME . '.sys_language_uid IN (-1,0)',
+                'foreign_table' => Attribute::TABLE_NAME,
+                'foreign_table_where' => 'AND ' . Attribute::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
+                    Attribute::TABLE_NAME . '.sys_language_uid IN (-1,0)',
                 'default' => 0
             ],
         ],
@@ -105,7 +106,7 @@ return [
 
         'crdate' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.crdate',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Attribute::TABLE_NAME . '.crdate',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -113,72 +114,34 @@ return [
                 'readOnly' => true
             ]
         ],
-        'tstamp' => [
+        'name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.tstamp',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'datetime',
-                'readOnly' => true
-            ]
-        ],
-        'identified' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.identified',
-            'config' => [
-                'type' => 'check',
-                'readOnly' => true
-            ]
-        ],
-        'email' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.email',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Attribute::TABLE_NAME . '.name',
             'config' => [
                 'type' => 'input',
                 'readOnly' => true
             ]
         ],
-        'id_cookie' => [
+        'value' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.id_cookie',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Attribute::TABLE_NAME . '.value',
             'config' => [
                 'type' => 'input',
                 'readOnly' => true
             ]
         ],
-        'pagevisits' => [
+        'visitor' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.pagevisits',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Attribute::TABLE_NAME . '.visitor',
             'config' => [
-                'type' => 'inline',
-                'foreign_table' => \In2code\Lux\Domain\Model\Pagevisit::TABLE_NAME,
-                'foreign_field' => 'visitor',
-                'maxitems' => 100000,
-                'appearance' => [
-                    'collapse' => 1,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ]
-            ]
-        ],
-        'attributes' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.attributes',
-            'config' => [
-                'type' => 'inline',
-                'foreign_table' => \In2code\Lux\Domain\Model\Attribute::TABLE_NAME,
-                'foreign_field' => 'visitor',
-                'maxitems' => 1000,
-                'appearance' => [
-                    'collapse' => 1,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ]
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => \In2code\Lux\Domain\Model\Visitor::TABLE_NAME,
+                'size' => 1,
+                'maxitems' => 1,
+                'multiple' => 0,
+                'default' => 0,
+                'readOnly' => true
             ]
         ]
     ]

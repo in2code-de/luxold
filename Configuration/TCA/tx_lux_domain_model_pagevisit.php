@@ -128,7 +128,7 @@ return [
         ],
         'visitor' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Pagevisit::TABLE_NAME . '.visitor',
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Pagevisit::TABLE_NAME . '.visitor',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',

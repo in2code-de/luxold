@@ -12,7 +12,7 @@ use In2code\Lux\Domain\Service\ConfigurationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class Visitor
+ * Class VisitorFactory
  */
 class VisitorFactory
 {
@@ -50,7 +50,7 @@ class VisitorFactory
      */
     public function getVisitor(): Visitor
     {
-        $visitor = $this->getVisitoryFromDatabase();
+        $visitor = $this->getVisitorFromDatabase();
         if ($visitor === null) {
             $visitor = $this->createNewVisitor();
         }
@@ -63,7 +63,7 @@ class VisitorFactory
     /**
      * @return Visitor|null
      */
-    protected function getVisitoryFromDatabase()
+    protected function getVisitorFromDatabase()
     {
         return $this->visitorRepository->findOneByIdCookie($this->idCookie);
     }
