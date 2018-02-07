@@ -5,6 +5,7 @@ return [
     'ctrl' => [
         'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME,
         'label' => 'id_cookie',
+        'label_userFunc' => \In2code\Lux\TCA\VisitorTitle::class . '->getContactTitle',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
