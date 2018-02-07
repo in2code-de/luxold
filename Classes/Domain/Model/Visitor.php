@@ -178,4 +178,45 @@ class Visitor extends AbstractEntity
         $this->attributes->detach($attribute);
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getReadableName(): string
+    {
+        if ($this->isIdentified() === false) {
+            $name = 'Unknown';
+        } else {
+            $name = '';
+            $firstname = $this->getPropertyFromAttributes('firstname');
+            $lastname = $this->getPropertyFromAttributes('lastname');
+            $company = $this->getPropertyFromAttributes('company');
+            if ($lastname !== '') {
+                $name .= $lastname . ', ';
+            }
+            if ($firstname !== '') {
+                $name .= $firstname . ' ';
+            }
+            if ($company !== '') {
+                $name .= '(' . $company . ')';
+            }
+        }
+        return $name;
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getPropertyFromAttributes(string $key): string
+    {
+        $attributes = $this->getAttributes();
+        /** @var Attribute $attribute */
+        foreach ($attributes as $attribute) {
+            if ($attribute->getName() === $key) {
+                return $attribute->getValue();
+            }
+        }
+        return '';
+    }
 }

@@ -22,6 +22,11 @@ class Pagevisit extends AbstractEntity
     protected $page = null;
 
     /**
+     * @var \DateTime
+     */
+    protected $crdate = null;
+
+    /**
      * @return Visitor
      */
     public function getVisitor(): Visitor
@@ -54,6 +59,24 @@ class Pagevisit extends AbstractEntity
     public function setPage(Page $page)
     {
         $this->page = $page;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCrdate(): \DateTime
+    {
+        return $this->crdate;
+    }
+
+    /**
+     * @param \DateTime $crdate
+     * @return Pagevisit
+     */
+    public function setCrdate(\DateTime $crdate)
+    {
+        $this->crdate = $crdate;
         return $this;
     }
 }

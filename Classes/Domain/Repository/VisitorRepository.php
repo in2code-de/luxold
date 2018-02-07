@@ -22,4 +22,19 @@ class VisitorRepository extends AbstractRepository
         $query->setOrderings(['crdate' => QueryInterface::ORDER_ASCENDING]);
         return $query->execute();
     }
+
+    /**
+     * Show the last three visitors of a visited page
+     *
+     * @param int $pageIdentifier
+     * @return QueryResultInterface
+     */
+    public function findByVisitedPageIdentifier(int $pageIdentifier)
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('pagevisits.page', $pageIdentifier));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        $query->setLimit(3);
+        return $query->execute();
+    }
 }

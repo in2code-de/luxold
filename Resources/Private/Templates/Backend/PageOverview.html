@@ -1,0 +1,22 @@
+{namespace lux=In2code\Lux\ViewHelpers}
+<f:if condition="{visitors}">
+    <div class="callout callout-info">
+        <div class="media">
+            <div class="media-body">
+                <h4 class="callout-title">Last visitors</h4>
+                <div class="callout-body">
+                    <ul class="list-unstyled">
+                        <f:for each="{visitors}" as="visitor">
+                            <li>
+                                {visitor.readableName}
+                                <f:alias map="{pagevisit:'{lux:getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
+                                    <f:format.date format="%Y-%m-%d %H:%M">{pagevisit.crdate}</f:format.date>
+                                </f:alias>
+                            </li>
+                        </f:for>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:if>

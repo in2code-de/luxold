@@ -19,5 +19,11 @@ call_user_func(
                 'Frontend' => 'pageRequest,fieldListeningRequest'
             ]
         );
+
+        /**
+         * Hooks
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/db_layout.php']['drawHeaderHook'][]
+            = \In2code\Lux\Hooks\PageLayoutHeader::class . '->render';
     }
 );
