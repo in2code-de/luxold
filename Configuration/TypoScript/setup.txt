@@ -1,13 +1,17 @@
 plugin {
-	tx_lux {
+	tx_lux_fe {
 		view {
 			templateRootPaths {
 				0 = EXT:lux/Resources/Private/Templates/
-				1 = EXT:lux/Resources/Private/Templates/
 			}
 		}
-	}
-	tx_lux_fe {
+		settings {
+			tracking {
+				# Toggle pagevisit tracking (on/off).
+				# Switching this feature on will flood table tx_lux_domain_model_pagevisit but allow you to see a full pagefunnel of all of your visitors
+				pagevisits = 1
+			}
+		}
 		features.requireCHashArgumentForActionArguments = 0
 	}
 }

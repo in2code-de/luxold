@@ -8,6 +8,7 @@ use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ObjectUtility;
+use In2code\Lux\Domain\Service\ConfigurationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -53,9 +54,7 @@ class VisitorFactory
         if ($visitor === null) {
             $visitor = $this->createNewVisitor();
         }
-        if ($this->pageUid > 0) {
-            $visitor->addPagevisit($this->getPageVisit());
-        }
+        $this->trackPagevisit($visitor);
         $this->visitorRepository->add($visitor);
         $this->visitorRepository->persistAll();
         return $visitor;
@@ -90,5 +89,28 @@ class VisitorFactory
         $page = $pageRepository->findByUid($this->pageUid);
         $pageVisit->setPage($page);
         return $pageVisit;
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @return void
+     */
+    protected function trackPagevisit(Visitor $visitor)
+    {
+        if ($this->pageUid > 0 && $this->shouldTrackPagevisits()) {
+            $visitor->addPagevisit($this->getPageVisit());
+        }
+    }
+
+    /**
+     * Check if tracking of pagevisits is turned on via TypoScript
+     *
+     * @return bool
+     */
+    protected function shouldTrackPagevisits(): bool
+    {
+        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $settings = $configurationService->getTypoScriptSettings();
+        return !empty($settings['tracking']['pagevisits']) && $settings['tracking']['pagevisits'] === '1';
     }
 }
