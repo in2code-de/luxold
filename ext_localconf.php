@@ -21,6 +21,13 @@ call_user_func(
         );
 
         /**
+         * Add page TSConfig
+         */
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+            '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:lux/Configuration/TSConfig/Lux.typoscript">'
+        );
+
+        /**
          * Hooks
          */
         if (\In2code\Lux\Utility\ConfigurationUtility::isLastLeadsBoxInPageDisabled() === false) {
