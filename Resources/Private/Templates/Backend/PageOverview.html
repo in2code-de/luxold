@@ -8,7 +8,7 @@
     <div class="callout-body">
         <ul class="list-group">
             <f:for each="{visitors}" as="visitor">
-                <li class="list-group-item clearfix{f:if(condition:visitor.identified,then:' list-group-item-success')}">
+                <li class="list-group-item clearfix {f:if(condition:visitor.identified,then:' list-group-item-info')}">
                     <h4 class="list-group-item-heading">
                         <strong>{visitor.fullName}</strong>
                         <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
