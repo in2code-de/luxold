@@ -23,7 +23,9 @@ call_user_func(
         /**
          * Hooks
          */
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/db_layout.php']['drawHeaderHook'][]
-            = \In2code\Lux\Hooks\PageLayoutHeader::class . '->render';
+        if (\In2code\Lux\Utility\ConfigurationUtility::isLastLeadsBoxInPageDisabled() === false) {
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/db_layout.php']['drawHeaderHook'][]
+                = \In2code\Lux\Hooks\PageLayoutHeader::class . '->render';
+        }
     }
 );
