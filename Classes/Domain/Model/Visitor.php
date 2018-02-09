@@ -104,11 +104,18 @@ class Visitor extends AbstractEntity
     }
 
     /**
-     * @return ObjectStorage
+     * @return array
      */
-    public function getPagevisits(): ObjectStorage
+    public function getPagevisits(): array
     {
-        return $this->pagevisits;
+        $pagevisits = $this->pagevisits;
+        $pagevisitsArray = [];
+        /** @var Pagevisit $pagevisit */
+        foreach ($pagevisits as $pagevisit) {
+            $pagevisitsArray[$pagevisit->getCrdate()->getTimestamp()] = $pagevisit;
+        }
+        krsort($pagevisitsArray);
+        return $pagevisitsArray;
     }
 
     /**
@@ -139,6 +146,30 @@ class Visitor extends AbstractEntity
     {
         $this->pagevisits->detach($pagevisit);
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfUniquePagevisits(): int
+    {
+        $pagevisits = $this->pagevisits;
+        $number = 1;
+        if (count($pagevisits) > 1) {
+            $lastVisit = null;
+            foreach ($pagevisits as $pagevisit) {
+                if ($lastVisit !== null) {
+                    /** @var Pagevisit $pagevisit */
+                    $interval = $lastVisit->diff($pagevisit->getCrdate());
+                    // if difference is greater then one hour
+                    if ($interval->h > 0) {
+                        $number++;
+                    }
+                }
+                $lastVisit = $pagevisit->getCrdate();
+            }
+        }
+        return $number;
     }
 
     /**
@@ -180,28 +211,37 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * "Lastname, Firstname"
+     *
      * @return string
      */
-    public function getReadableName(): string
+    public function getFullName(): string
     {
-        if ($this->isIdentified() === false) {
-            $name = 'Unknown';
-        } else {
+        if ($this->isIdentified()) {
             $name = '';
             $firstname = $this->getPropertyFromAttributes('firstname');
             $lastname = $this->getPropertyFromAttributes('lastname');
-            $company = $this->getPropertyFromAttributes('company');
-            if ($lastname !== '') {
-                $name .= $lastname . ', ';
+            if (!empty($lastname)) {
+                $name .= $lastname;
+                if (!empty($firstname)) {
+                    $name .= ', ';
+                }
             }
-            if ($firstname !== '') {
-                $name .= $firstname . ' ';
+            if (!empty($firstname)) {
+                $name .= $firstname;
             }
-            if ($company !== '') {
-                $name .= '(' . $company . ')';
-            }
+        } else {
+            $name = 'Unknown';
         }
         return $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompany(): string
+    {
+        return $this->getPropertyFromAttributes('company');
     }
 
     /**

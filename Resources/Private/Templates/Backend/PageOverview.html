@@ -1,22 +1,37 @@
 {namespace lux=In2code\Lux\ViewHelpers}
 <f:if condition="{visitors}">
-    <div class="callout callout-info">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="callout-title">Last visitors</h4>
-                <div class="callout-body">
-                    <ul class="list-unstyled">
-                        <f:for each="{visitors}" as="visitor">
-                            <li>
-                                {visitor.readableName}
-                                <f:alias map="{pagevisit:'{lux:getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
-                                    <f:format.date format="%Y-%m-%d %H:%M">{pagevisit.crdate}</f:format.date>
-                                </f:alias>
-                            </li>
-                        </f:for>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <h4 class="callout-title">
+        <img src="{f:uri.resource(path:'Icons/lux.svg',extensionName:'lux')}" height="30" />
+        <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pageoverview">Last visitors</f:translate>
+    </h4>
+
+    <div class="callout-body">
+        <ul class="list-group">
+            <f:for each="{visitors}" as="visitor">
+                <li class="list-group-item clearfix{f:if(condition:visitor.identified,then:' list-group-item-success')}">
+                    <h4 class="list-group-item-heading">
+                        <strong>{visitor.fullName}</strong>
+                        <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
+                            <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}" style="font-size: 0.75em; float: right;">
+                                <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
+                            </span>
+                        </f:alias>
+                    </h4>
+
+                    <span class="badge badge-primary badge-pill" title="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pageoverview.recurringvisits')}">{visitor.numberOfUniquePagevisits}</span>
+
+                    <f:if condition="{visitor.identified}">
+                        <p class="list-group-item-text">
+                            <f:if condition="{visitor.company}">
+                                <strong>Firma:</strong> {visitor.company}<f:if condition="{visitor.email}">,</f:if>
+                            </f:if>
+                            <f:if condition="{visitor.email}">
+                                <strong>E-Mail:</strong> {visitor.email}
+                            </f:if>
+                        </p>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
     </div>
 </f:if>

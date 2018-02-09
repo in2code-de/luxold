@@ -69,6 +69,35 @@
 				<source>Value</source>
 				<target state="translated">Wert</target>
 			</trans-unit>
+
+			<trans-unit id="readabledate.minutes">
+				<source>%s minutes ago</source>
+				<target state="translated">vor %s Minuten</target>
+			</trans-unit>
+			<trans-unit id="readabledate.hours">
+				<source>%s hours ago</source>
+				<target state="translated">vor %s Stunden</target>
+			</trans-unit>
+			<trans-unit id="readabledate.days">
+				<source>%s days ago</source>
+				<target state="translated">vor %s Tagen</target>
+			</trans-unit>
+			<trans-unit id="readabledate.date">
+				<source>Y-m-d</source>
+				<target state="translated">m.d.Y</target>
+			</trans-unit>
+			<trans-unit id="date">
+				<source>%Y-%m-%d, %H:%M</source>
+				<target state="translated">%e. %B %Y, %H:%M Uhr</target>
+			</trans-unit>
+			<trans-unit id="pageoverview">
+				<source>Last leads</source>
+				<target state="translated">Letzte Leads</target>
+			</trans-unit>
+			<trans-unit id="pageoverview.recurringvisits">
+				<source>Recurring visits</source>
+				<target state="translated">Wiederkehrende Besuche</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

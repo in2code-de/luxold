@@ -14,3 +14,4 @@
 - Anzahl der Besuche
 - Finisher (Neulead, Identifikation, X Besuche, X Seiten, Seite mit Kategorie X)
 - Analyse mit Dashboard (% Identifikation)
+- Bild anzeigen (E-Mail => Gravatar)
