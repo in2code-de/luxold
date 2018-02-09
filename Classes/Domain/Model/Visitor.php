@@ -47,12 +47,18 @@ class Visitor extends AbstractEntity
     protected $ipAddress = '';
 
     /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Ipinformation>
+     */
+    protected $ipinformations = null;
+
+    /**
      * Visitor constructor.
      */
     public function __construct()
     {
         $this->pagevisits = new ObjectStorage();
         $this->attributes = new ObjectStorage();
+        $this->ipinformations = new ObjectStorage();
     }
 
     /**
@@ -222,6 +228,44 @@ class Visitor extends AbstractEntity
     public function getIpAddress(): string
     {
         return $this->ipAddress;
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getIpinformations(): ObjectStorage
+    {
+        return $this->ipinformations;
+    }
+
+    /**
+     * @var ObjectStorage $ipinformations
+     * @return Visitor
+     */
+    public function setIpinformations(ObjectStorage $ipinformations)
+    {
+        $this->ipinformations = $ipinformations;
+        return $this;
+    }
+
+    /**
+     * @param Ipinformation $ipinformation
+     * @return $this
+     */
+    public function addIpinformation(Ipinformation $ipinformation)
+    {
+        $this->ipinformations->attach($ipinformation);
+        return $this;
+    }
+
+    /**
+     * @param Ipinformation $ipinformation
+     * @return $this
+     */
+    public function removeIpinformation(Ipinformation $ipinformation)
+    {
+        $this->ipinformations->detach($ipinformation);
+        return $this;
     }
 
     /**

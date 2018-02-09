@@ -22,10 +22,15 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,ip_address',
+        'showRecordFieldList' =>
+            'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,ip_address,ip_informations',
     ],
     'types' => [
-        '1' => ['showitem' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,ip_address'],
+        '1' => [
+            'showitem' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,' .
+            '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+            'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ip_informations'
+        ],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -188,6 +193,24 @@ return [
             'config' => [
                 'type' => 'input',
                 'readOnly' => true
+            ]
+        ],
+        'ip_informations' => [
+            'exclude' => true,
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.ip_informations',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => \In2code\Lux\Domain\Model\Ipinformation::TABLE_NAME,
+                'foreign_field' => 'visitor',
+                'maxitems' => 20,
+                'appearance' => [
+                    'collapse' => 1,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ]
             ]
         ]
     ]

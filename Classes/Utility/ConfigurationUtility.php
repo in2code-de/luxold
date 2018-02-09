@@ -32,6 +32,15 @@ class ConfigurationUtility
     /**
      * @return bool
      */
+    public static function isIpInformationDisabled(): bool
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return $extensionConfig['disableIpInformation'] === '1';
+    }
+
+    /**
+     * @return bool
+     */
     public static function isTypo3OlderThen9(): bool
     {
         return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 9000000;

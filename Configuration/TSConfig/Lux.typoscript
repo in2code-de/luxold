@@ -2,4 +2,5 @@
 mod.web_list.table {
     tx_lux_domain_model_attribute.hideTable = 1
     tx_lux_domain_model_pagevisit.hideTable = 1
+    tx_lux_domain_model_ipinformation.hideTable = 1
 }

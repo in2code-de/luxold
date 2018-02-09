@@ -2,9 +2,11 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Factory;
 
+use In2code\Lux\Domain\Model\Ipinformation;
 use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ConfigurationUtility;
@@ -55,9 +57,12 @@ class VisitorFactory
         $visitor = $this->getVisitorFromDatabase();
         if ($visitor === null) {
             $visitor = $this->createNewVisitor();
+            $this->trackPagevisit($visitor);
+            $this->visitorRepository->add($visitor);
+        } else {
+            $this->trackPagevisit($visitor);
+            $this->visitorRepository->update($visitor);
         }
-        $this->trackPagevisit($visitor);
-        $this->visitorRepository->add($visitor);
         $this->visitorRepository->persistAll();
         return $visitor;
     }
@@ -79,6 +84,17 @@ class VisitorFactory
         $visitor->setIdCookie($this->idCookie);
         if (ConfigurationUtility::isIpLoggingDisabled() === false) {
             $visitor->setIpAddress(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
+            if (ConfigurationUtility::isIpInformationDisabled() === false) {
+                $ipInformationFactory = ObjectUtility::getObjectManager()->get(IpinformationFactory::class);
+                $objectStorage = $ipInformationFactory->getObjectStorageWithIpinformation();
+                /** @var Ipinformation $ipinformation */
+                foreach ($objectStorage as $ipinformation) {
+                    $visitor->addIpinformation($ipinformation);
+                    $ipinformation->setVisitor($visitor);
+                    $ipinformationRepo = ObjectUtility::getObjectManager()->get(IpinformationRepository::class);
+                    $ipinformationRepo->update($ipinformation);
+                }
+            }
         }
         return $visitor;
     }

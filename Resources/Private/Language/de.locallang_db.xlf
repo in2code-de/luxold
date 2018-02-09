@@ -7,6 +7,10 @@
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
+				<source>Enrichments</source>
+				<target state="translated">Angereicherte Informationen</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
 				<source>Is identified lead?</source>
 				<target state="translated">Lead bereits identifiziert?</target>
@@ -37,7 +41,11 @@
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.ip_address">
 				<source>IP address</source>
-				<target state="translated">IP Adresse</target>
+				<target state="translated">IP-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.ip_informations">
+				<source>Information from IP address</source>
+				<target state="translated">Informationen über IP-Adresse</target>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">
@@ -72,6 +80,23 @@
 			<trans-unit id="tx_lux_domain_model_attribute.value">
 				<source>Value</source>
 				<target state="translated">Wert</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_ipinformation">
+				<source>IP-Informations</source>
+				<target state="translated">IP-Informationen</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_ipinformation.name">
+				<source>Name</source>
+				<target state="translated">Name</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_ipinformation.value">
+				<source>Value</source>
+				<target state="translated">Value</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_ipinformation.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
 			</trans-unit>
 
 			<trans-unit id="anonym">
