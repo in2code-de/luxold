@@ -45,6 +45,12 @@ plugin {
 						0 = *[company]
 						1 = *[firma]
 					}
+					username {
+						0 = username
+						1 = user
+						2 = benutzername
+						3 = benutze
+					}
 				}
 			}
 		}

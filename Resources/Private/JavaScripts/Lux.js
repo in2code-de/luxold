@@ -25,11 +25,18 @@ function LuxMain() {
 	 */
 	this.initialize = function() {
 		if (isLuxActivated()) {
-			idCookie = getIdCookie();
-			setIdCookieIfNotSet();
+			setIdCookie();
+			generateNewIdCookieIfNoCookieFound();
 			pageRequest();
 			addFieldListeners();
 		}
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var setIdCookie = function() {
+		idCookie = getIdCookie();
 	};
 
 	/**
@@ -160,7 +167,7 @@ function LuxMain() {
 	/**
 	 * @returns {void}
 	 */
-	var setIdCookieIfNotSet = function() {
+	var generateNewIdCookieIfNoCookieFound = function() {
 		if (idCookie === '') {
 			idCookie = getRandomString(32);
 			setCookie(cookieName, idCookie);

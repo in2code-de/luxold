@@ -30,8 +30,8 @@ gulp.task('css', function() {
 
 gulp.task('js', function() {
 	gulp.src([__dirname + '/../JavaScripts/*.js'])
-		// .pipe(plumber())
-		// .pipe(uglify())
+		.pipe(plumber())
+		.pipe(uglify())
 		.pipe(rename({
 			suffix: '.min'
 		}))
