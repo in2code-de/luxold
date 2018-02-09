@@ -54,6 +54,9 @@
 				<source>Value</source>
 			</trans-unit>
 
+			<trans-unit id="anonym">
+				<source>Anonym</source>
+			</trans-unit>
 			<trans-unit id="readabledate.minutes">
 				<source>%s minutes ago</source>
 			</trans-unit>

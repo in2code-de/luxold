@@ -70,6 +70,10 @@
 				<target state="translated">Wert</target>
 			</trans-unit>
 
+			<trans-unit id="anonym">
+				<source>Anonym</source>
+				<target state="translated">Anonym</target>
+			</trans-unit>
 			<trans-unit id="readabledate.minutes">
 				<source>%s minutes ago</source>
 				<target state="translated">vor %s Minuten</target>
