@@ -43,7 +43,9 @@ function LuxMain() {
 	 * @returns {void}
 	 */
 	var pageRequest = function() {
-		ajaxConnection(getPageRequestUri(), getParametersForAjaxCall());
+		if (isPageTrackingEnabled()) {
+			ajaxConnection(getPageRequestUri(), getParametersForAjaxCall());
+		}
 	};
 
 	/**
@@ -71,7 +73,7 @@ function LuxMain() {
 		ajaxConnection(
 			getFieldListeningRequestUri(),
 			{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[key]': key, 'tx_lux_fe[value]': value}
-			);
+		);
 	};
 
 	/**
@@ -132,6 +134,21 @@ function LuxMain() {
 			'tx_lux_fe[pageUid]': getPageUid(),
 			'tx_lux_fe[languageUid]': getLanguageUid()
 		};
+	};
+
+	/**
+	 * @returns {boolean}
+	 */
+	var isPageTrackingEnabled = function() {
+		var enabled = false;
+		var container = getContainer();
+		if (container !== null) {
+			if (container.hasAttribute('data-lux-pagetracking')) {
+				var pageTrackingEnabled = container.getAttribute('data-lux-pagetracking');
+				enabled = pageTrackingEnabled === '1';
+			}
+		}
+		return enabled;
 	};
 
 	/**

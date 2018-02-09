@@ -1,0 +1,7 @@
+plugin.tx_lux.settings {
+    # cat=lux//0010; type=boolean; label= Activate page tracking: (De)Activate tracking of the users pagefunnel.
+    pagetracking = 1
+
+    # cat=lux//0020; type=boolean; label= Activate field identification: (De)Activate identification by filling out web forms.
+    fieldidentification = 1
+}

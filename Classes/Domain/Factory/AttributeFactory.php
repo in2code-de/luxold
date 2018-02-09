@@ -6,11 +6,12 @@ use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\AttributeRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Domain\Service\VisitorMergeService;
 use In2code\Lux\Utility\ObjectUtility;
 
 /**
- * Class AttributeFactory
+ * Class AttributeFactory to add an attribute key/value pair to a visitor
  */
 class AttributeFactory
 {
@@ -52,7 +53,7 @@ class AttributeFactory
     public function getVisitorAndAddAttribute(string $key, string $value): Visitor
     {
         $visitor = $this->getVisitorFromDatabase();
-        if (!empty($value)) {
+        if (!empty($value) && $this->isEnabledIdentification()) {
             $attribute = $this->getAndUpdateAttributeFromDatabase($key, $value);
             if ($attribute === null) {
                 $attribute = $this->createNewAttribute($key, $value);
@@ -64,8 +65,9 @@ class AttributeFactory
             }
             $this->visitorRepository->update($visitor);
             $this->visitorRepository->persistAll();
+
+            $this->mergeVisitorsOnGivenEmail($key, $value);
         }
-        $this->mergeVisitorsOnGivenEmail($key, $value);
         return $visitor;
     }
 
@@ -119,5 +121,15 @@ class AttributeFactory
             $mergeService = ObjectUtility::getObjectManager()->get(VisitorMergeService::class, $value);
             $mergeService->merge();
         }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isEnabledIdentification(): bool
+    {
+        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $settings = $configurationService->getTypoScriptSettings();
+        return !empty($settings['identification']['_enable']) && $settings['identification']['_enable'] === '1';
     }
 }

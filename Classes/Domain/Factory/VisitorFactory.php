@@ -12,7 +12,8 @@ use In2code\Lux\Domain\Service\ConfigurationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class VisitorFactory
+ * Class VisitorFactory to add a new visitor to database (if not yet stored).
+ * In addition: track a new pagerequest of this visitor if pageUid>0 in constructor.
  */
 class VisitorFactory
 {
@@ -111,6 +112,7 @@ class VisitorFactory
     {
         $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
         $settings = $configurationService->getTypoScriptSettings();
-        return !empty($settings['tracking']['pagevisits']) && $settings['tracking']['pagevisits'] === '1';
+        return !empty($settings['tracking']['pagevisits']['_enable'])
+            && $settings['tracking']['pagevisits']['_enable'] === '1';
     }
 }

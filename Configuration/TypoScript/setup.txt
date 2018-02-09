@@ -9,12 +9,17 @@ plugin {
 			# All tracking settings
 			tracking {
 				# Toggle pagevisit tracking (on/off).
-				# Switching this feature on will flood table tx_lux_domain_model_pagevisit but allow you to see a full pagefunnel of all of your visitors
-				pagevisits = 1
+				# Switching this feature on will flood table tx_lux_domain_model_pagevisit but allow you to see a full pagefunnel of all of your visitors. Your decision :)
+				pagevisits {
+					_enable = {$plugin.tx_lux.settings.pagetracking}
+				}
 			}
 
 			# All identification settings
 			identification {
+				# En- or Disable field identification
+				_enable = {$plugin.tx_lux.settings.fieldidentification}
+
 				# Auto identify with EVERY input field of your website
 				fieldMapping {
 					# "email" is the key-field for visitor identification and merging. Every other field is just for your information
@@ -101,19 +106,26 @@ page {
 			}
 		}
 
-		# FE language
+		# Current page uid
 		30 = TEXT
 		30 {
+			noTrimWrap = | data-lux-pageuid="|"|
+			data = TSFE:id
+		}
+
+		# FE language
+		40 = TEXT
+		40 {
 			noTrimWrap = | data-lux-languageuid="|"|
 			data = GP:L
 			intval = 1
 		}
 
-		# Current page uid
-		40 = TEXT
-		40 {
-			noTrimWrap = | data-lux-pageuid="|"|
-			data = TSFE:id
+		# Activate page tracking
+		100 = TEXT
+		100 {
+			value = data-lux-pagetracking="{$plugin.tx_lux.settings.pagetracking}"
+			noTrimWrap = | ||
 		}
 	}
 }
@@ -151,6 +163,7 @@ luxFieldListeningRequestAjax {
 }
 
 # Typenum to get field mapping configuration in a dynamic JS file
+[globalVar = LIT:0 < {$plugin.tx_lux.settings.fieldidentification}]
 luxConfiguration = PAGE
 luxConfiguration {
 	typeNum = 1517985223
@@ -172,6 +185,10 @@ luxConfiguration {
 		}
 	}
 }
+[else]
+	page.1517985223 >
+[end]
+
 
 # Table Mapping
 config.tx_extbase {
