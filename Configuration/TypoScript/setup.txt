@@ -20,9 +20,10 @@ plugin {
 				# En- or Disable field identification
 				_enable = {$plugin.tx_lux.settings.fieldidentification}
 
-				# Auto identify with EVERY input field of your website
+				# Auto identify with EVERY input field of your website.
+				# Using a * as wildcard will search for a string in a string while using a key without * will search for the exact match.
 				fieldMapping {
-					# "email" is the key-field for visitor identification and merging. Every other field is just for your information
+					# "email" is the key-field for visitor identification and merging.
 					email {
 						0 = *[email]
 						1 = *[e-mail]

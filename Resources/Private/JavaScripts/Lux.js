@@ -100,14 +100,31 @@ function LuxMain() {
 			if (fieldMapping.hasOwnProperty(key)) {
 				// iterate through every fieldtype definition
 				for (var i = 0; i < fieldMapping[key].length; i++) {
-					var fieldNameMapping = fieldMapping[key][i].replace('*', '');
-					if (fieldName.indexOf(fieldNameMapping) !== -1) {
+					if (matchStringInString(fieldName, fieldMapping[key][i])) {
 						keyConfiguration = key;
 					}
 				}
 			}
 		}
 		return keyConfiguration;
+	};
+
+	/**
+	 * Check if string is identically to another string. But if there is a "*", check if the string is part of another
+	 * string
+	 *
+	 * @param haystack
+	 * @param needle
+	 * @returns {boolean}
+	 */
+	var matchStringInString = function(haystack, needle) {
+		if (needle.indexOf('*') !== -1) {
+			needle = needle.replace('*', '');
+			var found = haystack.indexOf(needle) !== -1;
+		} else {
+			found = haystack === needle;
+		}
+		return found;
 	};
 
 	/**
