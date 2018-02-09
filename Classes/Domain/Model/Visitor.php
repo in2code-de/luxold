@@ -42,6 +42,11 @@ class Visitor extends AbstractEntity
     protected $attributes = null;
 
     /**
+     * @var string
+     */
+    protected $ipAddress = '';
+
+    /**
      * Visitor constructor.
      */
     public function __construct()
@@ -208,6 +213,24 @@ class Visitor extends AbstractEntity
     public function removeAttribute(Attribute $attribute)
     {
         $this->attributes->detach($attribute);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIpAddress(): string
+    {
+        return $this->ipAddress;
+    }
+
+    /**
+     * @param string $ipAddress
+     * @return Visitor
+     */
+    public function setIpAddress(string $ipAddress)
+    {
+        $this->ipAddress = $ipAddress;
         return $this;
     }
 

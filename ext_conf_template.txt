@@ -1,2 +1,5 @@
 # cat=basic/enable/010; type=boolean; label= Disable box with latest leads: If you don't want to show the latest leads box in a page view, choose this settings.
 disableLastLeadsBoxInPage = 0
+
+# cat=basic/enable/020; type=boolean; label= Disable ip logging: Disable the logging of the visitors IP-address.
+disableIpLogging = 0

@@ -12,8 +12,6 @@ class ConfigurationUtility
 {
 
     /**
-     * Check if disableLastLeadsBoxInPage is active
-     *
      * @return bool
      */
     public static function isLastLeadsBoxInPageDisabled(): bool
@@ -23,8 +21,15 @@ class ConfigurationUtility
     }
 
     /**
-     * Decide if TYPO3 8.7 is used or newer
-     *
+     * @return bool
+     */
+    public static function isIpLoggingDisabled(): bool
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return $extensionConfig['disableIpLogging'] === '1';
+    }
+
+    /**
      * @return bool
      */
     public static function isTypo3OlderThen9(): bool
@@ -33,8 +38,6 @@ class ConfigurationUtility
     }
 
     /**
-     * Get extension configuration from LocalConfiguration.php
-     *
      * @return array
      * @SuppressWarnings(PHPMD.Superglobals)
      */

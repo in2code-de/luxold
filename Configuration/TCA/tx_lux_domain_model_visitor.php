@@ -22,10 +22,10 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits',
+        'showRecordFieldList' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,ip_address',
     ],
     'types' => [
-        '1' => ['showitem' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits'],
+        '1' => ['showitem' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,ip_address'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -180,6 +180,14 @@ return [
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1
                 ]
+            ]
+        ],
+        'ip_address' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.ip_address',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true
             ]
         ]
     ]

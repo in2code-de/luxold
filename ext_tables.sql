@@ -5,9 +5,10 @@ CREATE TABLE tx_lux_domain_model_visitor (
 	pagevisits int(11) DEFAULT '0' NOT NULL,
 	attributes int(11) DEFAULT '0' NOT NULL,
 
-	id_cookie varchar(255) DEFAULT '' NOT NULL,
-	email varchar(255) DEFAULT '' NOT NULL,
 	identified tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	email varchar(255) DEFAULT '' NOT NULL,
+	id_cookie varchar(255) DEFAULT '' NOT NULL,
+	ip_address varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

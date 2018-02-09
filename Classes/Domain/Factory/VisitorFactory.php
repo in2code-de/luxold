@@ -7,6 +7,7 @@ use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Utility\ConfigurationUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use In2code\Lux\Domain\Service\ConfigurationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -76,6 +77,9 @@ class VisitorFactory
     {
         $visitor = GeneralUtility::makeInstance(Visitor::class);
         $visitor->setIdCookie($this->idCookie);
+        if (ConfigurationUtility::isIpLoggingDisabled() === false) {
+            $visitor->setIpAddress(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
+        }
         return $visitor;
     }
 
