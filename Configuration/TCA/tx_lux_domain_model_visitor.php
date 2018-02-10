@@ -23,7 +23,7 @@ return [
     ],
     'interface' => [
         'showRecordFieldList' => 'identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
-            'referrer,user_agent,ip_address,ipinformations',
+            'referrer,user_agent,ip_address,ipinformations,logs',
     ],
     'types' => [
         '1' => [
@@ -31,7 +31,9 @@ return [
                 '--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
                 'attributes,pagevisits,--palette--;Lead;referrer,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
-                'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations'
+                'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations,' .
+                '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+                'tx_lux_domain_model_visitor.tab.logs,logs'
         ],
     ],
     'palettes' => [
@@ -246,6 +248,23 @@ return [
                 'foreign_table' => \In2code\Lux\Domain\Model\Ipinformation::TABLE_NAME,
                 'foreign_field' => 'visitor',
                 'maxitems' => 20,
+                'appearance' => [
+                    'collapse' => 1,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ]
+            ]
+        ],
+        'logs' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.logs',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => \In2code\Lux\Domain\Model\Log::TABLE_NAME,
+                'foreign_field' => 'visitor',
+                'maxitems' => 1000,
                 'appearance' => [
                     'collapse' => 1,
                     'levelLinksPosition' => 'top',

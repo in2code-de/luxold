@@ -9,6 +9,9 @@
 			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
 				<source>Enrichments</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.logs">
+				<source>Log</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
 				<source>Is identified lead?</source>
 			</trans-unit>
@@ -44,6 +47,9 @@
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
 				<source>Information from IP address</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.logs">
+				<source>Log</source>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">
@@ -82,6 +88,19 @@
 				<source>Value</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_ipinformation.visitor">
+				<source>Lead</source>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_log">
+				<source>Lead log</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.crdate">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.status">
+				<source>Status</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.visitor">
 				<source>Lead</source>
 			</trans-unit>
 

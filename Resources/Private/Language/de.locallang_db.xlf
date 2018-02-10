@@ -11,6 +11,10 @@
 				<source>Enrichments</source>
 				<target state="translated">Angereicherte Informationen</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.logs">
+				<source>Log</source>
+				<target state="translated">Log</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
 				<source>Is identified lead?</source>
 				<target state="translated">Lead bereits identifiziert?</target>
@@ -58,6 +62,10 @@
 			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
 				<source>Information from IP address</source>
 				<target state="translated">Informationen über IP-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.logs">
+				<source>Log</source>
+				<target state="translated">Log</target>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">
@@ -107,6 +115,23 @@
 				<target state="translated">Value</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_ipinformation.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_log">
+				<source>Lead log</source>
+				<target state="translated">Lead Log</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.crdate">
+				<source>Date</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.status">
+				<source>Status</source>
+				<target state="translated">Status</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.visitor">
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
