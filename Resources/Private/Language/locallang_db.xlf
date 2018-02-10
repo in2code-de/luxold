@@ -30,6 +30,12 @@
 			<trans-unit id="tx_lux_domain_model_visitor.attributes">
 				<source>Lead attributes</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.referrer">
+				<source>External referrer</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.user_agent">
+				<source>User agent</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.ip_address">
 				<source>IP address</source>
 			</trans-unit>

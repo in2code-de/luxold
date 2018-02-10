@@ -39,6 +39,14 @@
 				<source>Lead attributes</source>
 				<target state="translated">Eigenschaften des Leads</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.referrer">
+				<source>External referrer</source>
+				<target state="translated">Ursprung</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.user_agent">
+				<source>User agent</source>
+				<target state="translated">User agent</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.ip_address">
 				<source>IP address</source>
 				<target state="translated">IP-Adresse</target>

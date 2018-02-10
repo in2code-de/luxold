@@ -10,6 +10,8 @@ CREATE TABLE tx_lux_domain_model_visitor (
 	email varchar(255) DEFAULT '' NOT NULL,
 	id_cookie varchar(255) DEFAULT '' NOT NULL,
 	ip_address varchar(255) DEFAULT '' NOT NULL,
+	referrer varchar(255) DEFAULT '' NOT NULL,
+	user_agent varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

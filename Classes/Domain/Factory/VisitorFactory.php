@@ -82,20 +82,8 @@ class VisitorFactory
     {
         $visitor = GeneralUtility::makeInstance(Visitor::class);
         $visitor->setIdCookie($this->idCookie);
-        if (ConfigurationUtility::isIpLoggingDisabled() === false) {
-            $visitor->setIpAddress(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
-            if (ConfigurationUtility::isIpInformationDisabled() === false) {
-                $ipInformationFactory = ObjectUtility::getObjectManager()->get(IpinformationFactory::class);
-                $objectStorage = $ipInformationFactory->getObjectStorageWithIpinformation();
-                /** @var Ipinformation $ipinformation */
-                foreach ($objectStorage as $ipinformation) {
-                    $visitor->addIpinformation($ipinformation);
-                    $ipinformation->setVisitor($visitor);
-                    $ipinformationRepo = ObjectUtility::getObjectManager()->get(IpinformationRepository::class);
-                    $ipinformationRepo->update($ipinformation);
-                }
-            }
-        }
+        $visitor->setUserAgent(GeneralUtility::getIndpEnv('HTTP_USER_AGENT'));
+        $this->enrichtNewVisitorWithIpInformation($visitor);
         return $visitor;
     }
 
@@ -134,5 +122,27 @@ class VisitorFactory
         $settings = $configurationService->getTypoScriptSettings();
         return !empty($settings['tracking']['pagevisits']['_enable'])
             && $settings['tracking']['pagevisits']['_enable'] === '1';
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @return void
+     */
+    protected function enrichtNewVisitorWithIpInformation(Visitor $visitor)
+    {
+        if (ConfigurationUtility::isIpLoggingDisabled() === false) {
+            $visitor->setIpAddress(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
+            if (ConfigurationUtility::isIpInformationDisabled() === false) {
+                $ipInformationFactory = ObjectUtility::getObjectManager()->get(IpinformationFactory::class);
+                $objectStorage = $ipInformationFactory->getObjectStorageWithIpinformation();
+                /** @var Ipinformation $ipinformation */
+                foreach ($objectStorage as $ipinformation) {
+                    $visitor->addIpinformation($ipinformation);
+                    $ipinformation->setVisitor($visitor);
+                    $ipinformationRepo = ObjectUtility::getObjectManager()->get(IpinformationRepository::class);
+                    $ipinformationRepo->update($ipinformation);
+                }
+            }
+        }
     }
 }

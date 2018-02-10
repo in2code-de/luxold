@@ -22,15 +22,26 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' =>
-            'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,ip_address,ip_informations',
+        'showRecordFieldList' => 'identified,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
+            'referrer,user_agent,ip_address,ip_informations',
     ],
     'types' => [
         '1' => [
-            'showitem' => 'identified,email,crdate,tstamp,id_cookie,attributes,pagevisits,' .
-            '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+            'showitem' => 'identified,--palette--;Lead;mail,--palette--;Lead;visits,attributes,pagevisits,' .
+            '--palette--;Lead;referrer,--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
             'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ip_informations'
         ],
+    ],
+    'palettes' => [
+        'mail' => [
+            'showitem' => 'email,id_cookie'
+        ],
+        'visits' => [
+            'showitem' => 'crdate,tstamp'
+        ],
+        'referrer' => [
+            'showitem' => 'referrer,user_agent'
+        ]
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -185,6 +196,22 @@ return [
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1
                 ]
+            ]
+        ],
+        'referrer' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.referrer',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true
+            ]
+        ],
+        'user_agent' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.user_agent',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true
             ]
         ],
         'ip_address' => [

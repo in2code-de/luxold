@@ -44,6 +44,16 @@ class Visitor extends AbstractEntity
     /**
      * @var string
      */
+    protected $referrer = '';
+
+    /**
+     * @var string
+     */
+    protected $userAgent = '';
+
+    /**
+     * @var string
+     */
     protected $ipAddress = '';
 
     /**
@@ -225,9 +235,55 @@ class Visitor extends AbstractEntity
     /**
      * @return string
      */
+    public function getReferrer(): string
+    {
+        return $this->referrer;
+    }
+
+    /**
+     * @param string $referrer
+     * @return Visitor
+     */
+    public function setReferrer(string $referrer)
+    {
+        $this->referrer = $referrer;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserAgent(): string
+    {
+        return $this->userAgent;
+    }
+
+    /**
+     * @param string $userAgent
+     * @return Visitor
+     */
+    public function setUserAgent(string $userAgent)
+    {
+        $this->userAgent = $userAgent;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getIpAddress(): string
     {
         return $this->ipAddress;
+    }
+
+    /**
+     * @param string $ipAddress
+     * @return Visitor
+     */
+    public function setIpAddress(string $ipAddress)
+    {
+        $this->ipAddress = $ipAddress;
+        return $this;
     }
 
     /**
@@ -265,16 +321,6 @@ class Visitor extends AbstractEntity
     public function removeIpinformation(Ipinformation $ipinformation)
     {
         $this->ipinformations->detach($ipinformation);
-        return $this;
-    }
-
-    /**
-     * @param string $ipAddress
-     * @return Visitor
-     */
-    public function setIpAddress(string $ipAddress)
-    {
-        $this->ipAddress = $ipAddress;
         return $this;
     }
 
