@@ -22,17 +22,22 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identified,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
+        'showRecordFieldList' => 'identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
             'referrer,user_agent,ip_address,ipinformations',
     ],
     'types' => [
         '1' => [
-            'showitem' => 'identified,--palette--;Lead;mail,--palette--;Lead;visits,attributes,pagevisits,' .
-            '--palette--;Lead;referrer,--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
-            'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations'
+            'showitem' =>
+                '--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
+                'attributes,pagevisits,--palette--;Lead;referrer,' .
+                '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+                'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations'
         ],
     ],
     'palettes' => [
+        'identified' => [
+            'showitem' => 'identified,visits'
+        ],
         'mail' => [
             'showitem' => 'email,id_cookie'
         ],
@@ -145,7 +150,17 @@ return [
             'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.identified',
             'config' => [
                 'type' => 'check',
-                'readOnly' => true
+                'readOnly' => true,
+                'default' => 0
+            ]
+        ],
+        'visits' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.visits',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
+                'default' => 0
             ]
         ],
         'email' => [

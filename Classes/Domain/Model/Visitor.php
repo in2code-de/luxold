@@ -29,6 +29,11 @@ class Visitor extends AbstractEntity
     protected $identified = false;
 
     /**
+     * @var int
+     */
+    protected $visits = 0;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Pagevisit>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      * @extensionScannerIgnoreLine Still needed for TYPO3 8.7
@@ -126,6 +131,24 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @return int
+     */
+    public function getVisits(): int
+    {
+        return $this->visits;
+    }
+
+    /**
+     * @param int $visits
+     * @return Visitor
+     */
+    public function setVisits(int $visits)
+    {
+        $this->visits = $visits;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getPagevisits(): array
@@ -171,6 +194,7 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * Calculate number of unique page visits. If user show a reaction after min. 1h we define it as new pagevisit.
      * @return int
      */
     public function getNumberOfUniquePagevisits(): int

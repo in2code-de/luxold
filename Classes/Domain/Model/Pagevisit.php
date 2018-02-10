@@ -67,7 +67,11 @@ class Pagevisit extends AbstractEntity
      */
     public function getCrdate(): \DateTime
     {
-        return $this->crdate;
+        $crdate = $this->crdate;
+        if ($crdate === null) {
+            $crdate = new \DateTime();
+        }
+        return $crdate;
     }
 
     /**

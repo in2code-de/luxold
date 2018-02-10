@@ -2,11 +2,9 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Factory;
 
-use In2code\Lux\Domain\Model\Ipinformation;
 use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
-use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ConfigurationUtility;
@@ -71,6 +69,7 @@ class VisitorFactory
             $this->trackPagevisit($visitor);
             $this->visitorRepository->update($visitor);
         }
+        $visitor->setVisits($visitor->getNumberOfUniquePagevisits());
         $this->visitorRepository->persistAll();
         return $visitor;
     }
@@ -92,7 +91,7 @@ class VisitorFactory
         $visitor->setIdCookie($this->idCookie);
         $visitor->setUserAgent(GeneralUtility::getIndpEnv('HTTP_USER_AGENT'));
         $visitor->setReferrer($this->referrer);
-        $this->enrichtNewVisitorWithIpInformation($visitor);
+        $this->enrichNewVisitorWithIpInformation($visitor);
         return $visitor;
     }
 
@@ -137,7 +136,7 @@ class VisitorFactory
      * @param Visitor $visitor
      * @return void
      */
-    protected function enrichtNewVisitorWithIpInformation(Visitor $visitor)
+    protected function enrichNewVisitorWithIpInformation(Visitor $visitor)
     {
         if (ConfigurationUtility::isIpLoggingDisabled() === false) {
             $visitor->setIpAddress(IpUtility::getIpAddress());

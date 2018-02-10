@@ -12,6 +12,9 @@
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
 				<source>Is identified lead?</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.visits">
+				<source>Number of visits</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.email">
 				<source>Email</source>
 			</trans-unit>

@@ -15,6 +15,10 @@
 				<source>Is identified lead?</source>
 				<target state="translated">Lead bereits identifiziert?</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.visits">
+				<source>Number of visits</source>
+				<target state="translated">Anzahl Besuche</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.email">
 				<source>Email</source>
 				<target state="translated">E-Mail</target>
