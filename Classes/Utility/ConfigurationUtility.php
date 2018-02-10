@@ -41,6 +41,15 @@ class ConfigurationUtility
     /**
      * @return bool
      */
+    public static function isAnalysisModuleDisabled(): bool
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return $extensionConfig['disableAnalysisModule'] === '1';
+    }
+
+    /**
+     * @return bool
+     */
     public static function isTypo3OlderThen9(): bool
     {
         return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 9000000;

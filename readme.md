@@ -18,10 +18,14 @@
 
 ##Ideen
 
-- Mehr Infos tracken (External Referer, Useragent)
 - Email4Link
 - Email4Download
 - Anzahl der Besuche (Speicherung)
 - Finisher (Neulead, Identifikation, X Besuche, X Seiten, Seite mit Kategorie X)
 - Analyse mit Dashboard (% Identifikation)
 - Bild anzeigen (E-Mail => Gravatar)
+
+## Style
+
+- Hauptfarbe: #4DE7FF / 77 231 255
+- Sekundärfarbe: #dddddd / 221 221 221

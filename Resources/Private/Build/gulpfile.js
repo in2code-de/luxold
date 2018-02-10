@@ -29,7 +29,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-	gulp.src([__dirname + '/../JavaScripts/*.js'])
+	gulp.src([__dirname + '/../JavaScripts/Lux/*.js'])
 		.pipe(plumber())
 		.pipe(uglify())
 		.pipe(rename({

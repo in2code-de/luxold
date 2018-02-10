@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Recurring Users</h3>
+    </div>
+    <div class="panel-body">
+        <canvas id="extension-lux-analysis-recurring" width="750" height="350"></canvas>
+        <script>
+			require(['/typo3conf/ext/lux/Resources/Public/JavaScripts/Vendor/Chart.min.js'], function (Chart) {
+				var ctx = document.getElementById('extension-lux-analysis-recurring').getContext('2d');
+				var data = {
+					datasets: [{
+						data: [10, 20],
+						backgroundColor: [
+							'rgba(77, 231, 255, 1)',
+							'rgba(221, 221, 221, 1)'
+						]
+					}],
+
+					// These labels appear in the legend and in the tooltips when hovering different arcs
+					labels: [
+						'Identified',
+						'Unknown'
+					]
+				};
+				var options = {
+					legend: {
+						display: true,
+						position: 'right',
+						labels: {
+							fontSize: 18
+						}
+					}
+				};
+				new Chart(ctx, {
+					type: 'doughnut',
+					data: data,
+					options: options
+				});
+			});
+        </script>
+    </div>
+</div>
