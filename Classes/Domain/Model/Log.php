@@ -20,6 +20,11 @@ class Log extends AbstractEntity
     const STATUS_PAGEVISIT5 = 43;
 
     /**
+     * @var \In2code\Lux\Domain\Model\Visitor
+     */
+    protected $visitor = null;
+
+    /**
      * @var int
      */
     protected $status = 0;
@@ -28,6 +33,24 @@ class Log extends AbstractEntity
      * @var \DateTime|null
      */
     protected $crdate = null;
+
+    /**
+     * @return Visitor
+     */
+    public function getVisitor(): Visitor
+    {
+        return $this->visitor;
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @return Log
+     */
+    public function setVisitor(Visitor $visitor): Log
+    {
+        $this->visitor = $visitor;
+        return $this;
+    }
 
     /**
      * @return int
@@ -41,7 +64,7 @@ class Log extends AbstractEntity
      * @param int $status
      * @return Log
      */
-    public function setStatus(int $status)
+    public function setStatus(int $status): Log
     {
         $this->status = $status;
         return $this;
@@ -59,7 +82,7 @@ class Log extends AbstractEntity
      * @param \DateTime $crdate
      * @return Log
      */
-    public function setCrdate(\DateTime $crdate)
+    public function setCrdate(\DateTime $crdate): Log
     {
         $this->crdate = $crdate;
         return $this;

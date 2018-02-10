@@ -33,7 +33,6 @@ class VisitorRepository extends AbstractRepository
     {
         $query = $this->createQuery();
         $query->matching($query->equals('pagevisits.page', $pageIdentifier));
-        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         $query->setLimit(3);
         return $query->execute();
     }
@@ -45,7 +44,6 @@ class VisitorRepository extends AbstractRepository
     {
         $query = $this->createQuery();
         $query->matching($query->equals('visits', 1));
-        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         return $query->execute();
     }
 
@@ -56,7 +54,6 @@ class VisitorRepository extends AbstractRepository
     {
         $query = $this->createQuery();
         $query->matching($query->greaterThan('visits', 1));
-        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         return $query->execute();
     }
 
@@ -67,7 +64,6 @@ class VisitorRepository extends AbstractRepository
     {
         $query = $this->createQuery();
         $query->matching($query->equals('identified', true));
-        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         return $query->execute();
     }
 
@@ -78,7 +74,6 @@ class VisitorRepository extends AbstractRepository
     {
         $query = $this->createQuery();
         $query->matching($query->equals('identified', false));
-        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         return $query->execute();
     }
 }

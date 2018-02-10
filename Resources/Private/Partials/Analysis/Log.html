@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+    <f:if condition="{interestingLogs}">
+        <f:then>
+            <div class="panel-heading">
+                <h3 class="panel-title">Protokoll</h3>
+            </div>
+            <div class="panel-body">
+                <div style="height: 600px;">
+                    <ul>
+                        <f:for each="{interestingLogs}" as="log">
+                            <li>
+                                <f:render section="status{log.status}" arguments="{_all}" />
+                            </li>
+                        </f:for>
+                    </ul>
+                </div>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="panel-heading">
+                <h3 class="panel-title">No logs yet</h3>
+            </div>
+        </f:else>
+    </f:if>
+</div>
+
+
+
+<f:section name="status1">
+    Lux has tracked a new lead
+</f:section>
+
+
+
+<f:section name="status2">
+    Lux has identified a new lead
+</f:section>
