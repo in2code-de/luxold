@@ -16,11 +16,12 @@ class FrontendController extends ActionController
      * @param string $idCookie
      * @param int $languageUid
      * @param int $pageUid
+     * @param string $referrer
      * @return string
      */
-    public function pageRequestAction(string $idCookie, int $languageUid, int $pageUid): string
+    public function pageRequestAction(string $idCookie, int $languageUid, int $pageUid, string $referrer = ''): string
     {
-        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $pageUid);
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $pageUid, $referrer);
         $visitor = $visitorFactory->getVisitor();
         return json_encode([]);
     }

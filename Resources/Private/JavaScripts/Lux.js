@@ -149,6 +149,7 @@ function LuxMain() {
 		return {
 			'tx_lux_fe[idCookie]': getIdCookie(),
 			'tx_lux_fe[pageUid]': getPageUid(),
+			'tx_lux_fe[referrer]': getReferrer(),
 			'tx_lux_fe[languageUid]': getLanguageUid()
 		};
 	};
@@ -181,6 +182,13 @@ function LuxMain() {
 			}
 		}
 		return uid;
+	};
+
+	/**
+	 * @returns {string}
+	 */
+	var getReferrer = function() {
+		return encodeURIComponent(document.referrer);
 	};
 
 	/**

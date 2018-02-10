@@ -32,6 +32,11 @@ class VisitorFactory
     protected $pageUid = 0;
 
     /**
+     * @var string
+     */
+    protected $referrer = '';
+
+    /**
      * @var VisitorRepository|null
      */
     protected $visitorRepository = null;
@@ -41,11 +46,13 @@ class VisitorFactory
      *
      * @param string $idCookie
      * @param int $pageUid
+     * @param string $referrer
      */
-    public function __construct(string $idCookie, int $pageUid = 0)
+    public function __construct(string $idCookie, int $pageUid = 0, string $referrer = '')
     {
         $this->idCookie = $idCookie;
         $this->pageUid = $pageUid;
+        $this->referrer = $referrer;
         $this->visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
     }
 
@@ -83,6 +90,7 @@ class VisitorFactory
         $visitor = GeneralUtility::makeInstance(Visitor::class);
         $visitor->setIdCookie($this->idCookie);
         $visitor->setUserAgent(GeneralUtility::getIndpEnv('HTTP_USER_AGENT'));
+        $visitor->setReferrer($this->referrer);
         $this->enrichtNewVisitorWithIpInformation($visitor);
         return $visitor;
     }
