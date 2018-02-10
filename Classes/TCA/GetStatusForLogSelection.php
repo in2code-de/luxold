@@ -15,7 +15,7 @@ class GetStatusForLogSelection
      */
     public function addOptions(array &$params)
     {
-        $params['items'] = $params['items'] + $this->getStatusItemsFromLogModel();
+        $params['items'] = $this->getStatusItemsFromLogModel();
     }
 
     /**

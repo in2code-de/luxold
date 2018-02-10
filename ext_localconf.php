@@ -34,5 +34,28 @@ call_user_func(
             $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/db_layout.php']['drawHeaderHook'][]
                 = \In2code\Lux\Hooks\PageLayoutHeader::class . '->render';
         }
+
+        /**
+         * Register Slots
+         */
+        $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+            \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+        );
+        // Log: New visitor
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Domain\Factory\VisitorFactory::class,
+            'newVisitor',
+            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            'logNewVisitor',
+            false
+        );
+        // Log: Identified visitor
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Domain\Factory\AttributeFactory::class,
+            'isIdentified',
+            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            'logIdentifiedVisitor',
+            false
+        );
     }
 );

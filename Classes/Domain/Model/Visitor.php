@@ -63,8 +63,19 @@ class Visitor extends AbstractEntity
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Ipinformation>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @extensionScannerIgnoreLine Still needed for TYPO3 8.7
+     * @lazy
      */
     protected $ipinformations = null;
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Log>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @extensionScannerIgnoreLine Still needed for TYPO3 8.7
+     * @lazy
+     */
+    protected $logs = null;
 
     /**
      * Visitor constructor.
@@ -74,6 +85,7 @@ class Visitor extends AbstractEntity
         $this->pagevisits = new ObjectStorage();
         $this->attributes = new ObjectStorage();
         $this->ipinformations = new ObjectStorage();
+        $this->logs = new ObjectStorage();
     }
 
     /**
@@ -345,6 +357,44 @@ class Visitor extends AbstractEntity
     public function removeIpinformation(Ipinformation $ipinformation)
     {
         $this->ipinformations->detach($ipinformation);
+        return $this;
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getLogs(): ObjectStorage
+    {
+        return $this->logs;
+    }
+
+    /**
+     * @var ObjectStorage $logs
+     * @return Visitor
+     */
+    public function setLogs(ObjectStorage $logs)
+    {
+        $this->logs = $logs;
+        return $this;
+    }
+
+    /**
+     * @param Log $log
+     * @return $this
+     */
+    public function addLog(Log $log)
+    {
+        $this->logs->attach($log);
+        return $this;
+    }
+
+    /**
+     * @param Log $log
+     * @return $this
+     */
+    public function removeLog(Log $log)
+    {
+        $this->logs->detach($log);
         return $this;
     }
 
