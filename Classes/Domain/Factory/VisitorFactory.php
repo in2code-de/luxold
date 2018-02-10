@@ -10,6 +10,7 @@ use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ConfigurationUtility;
+use In2code\Lux\Utility\IpUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use In2code\Lux\Domain\Service\ConfigurationService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -139,7 +140,7 @@ class VisitorFactory
     protected function enrichtNewVisitorWithIpInformation(Visitor $visitor)
     {
         if (ConfigurationUtility::isIpLoggingDisabled() === false) {
-            $visitor->setIpAddress(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
+            $visitor->setIpAddress(IpUtility::getIpAddress());
             if (ConfigurationUtility::isIpInformationDisabled() === false) {
                 $ipInformationFactory = ObjectUtility::getObjectManager()->get(IpinformationFactory::class);
                 $objectStorage = $ipInformationFactory->getObjectStorageWithIpinformation();

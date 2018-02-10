@@ -5,6 +5,7 @@ namespace In2code\Lux\Domain\Factory;
 use Doctrine\Common\Proxy\Exception\UnexpectedValueException;
 use In2code\Lux\Domain\Model\Ipinformation;
 use In2code\Lux\Domain\Repository\IpinformationRepository;
+use In2code\Lux\Utility\IpUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -36,14 +37,11 @@ class IpinformationFactory
     /**
      * Get information out of an IP address
      *
-     * @param string $ipAddress
      * @return array
      */
-    protected function getInformationFromIp($ipAddress = null): array
+    protected function getInformationFromIp(): array
     {
-        if ($ipAddress === null) {
-            $ipAddress = GeneralUtility::getIndpEnv('REMOTE_ADDR');
-        }
+        $ipAddress = IpUtility::getIpAddress();
         $properties = [];
         $json = GeneralUtility::getUrl('http://ip-api.com/json/' . $ipAddress);
         if ($json === false) {
