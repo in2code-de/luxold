@@ -144,13 +144,7 @@ class VisitorFactory
             if (ConfigurationUtility::isIpInformationDisabled() === false) {
                 $ipInformationFactory = ObjectUtility::getObjectManager()->get(IpinformationFactory::class);
                 $objectStorage = $ipInformationFactory->getObjectStorageWithIpinformation();
-                /** @var Ipinformation $ipinformation */
-                foreach ($objectStorage as $ipinformation) {
-                    $visitor->addIpinformation($ipinformation);
-                    $ipinformation->setVisitor($visitor);
-                    $ipinformationRepo = ObjectUtility::getObjectManager()->get(IpinformationRepository::class);
-                    $ipinformationRepo->update($ipinformation);
-                }
+                $visitor->setIpinformations($objectStorage);
             }
         }
     }

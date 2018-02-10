@@ -29,7 +29,6 @@ class IpinformationFactory
             $ipinformation->setName($key)->setValue((string)$value);
             $ipinformationRepo->add($ipinformation);
             $objectStorage->attach($ipinformation);
-            $ipinformationRepo->persistAll();
         }
         return $objectStorage;
     }

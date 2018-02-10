@@ -39,7 +39,7 @@
 			<trans-unit id="tx_lux_domain_model_visitor.ip_address">
 				<source>IP address</source>
 			</trans-unit>
-			<trans-unit id="tx_lux_domain_model_visitor.ip_informations">
+			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
 				<source>Information from IP address</source>
 			</trans-unit>
 

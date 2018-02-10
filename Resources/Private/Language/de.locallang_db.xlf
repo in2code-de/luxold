@@ -51,7 +51,7 @@
 				<source>IP address</source>
 				<target state="translated">IP-Adresse</target>
 			</trans-unit>
-			<trans-unit id="tx_lux_domain_model_visitor.ip_informations">
+			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
 				<source>Information from IP address</source>
 				<target state="translated">Informationen über IP-Adresse</target>
 			</trans-unit>

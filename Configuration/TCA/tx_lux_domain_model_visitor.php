@@ -23,13 +23,13 @@ return [
     ],
     'interface' => [
         'showRecordFieldList' => 'identified,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
-            'referrer,user_agent,ip_address,ip_informations',
+            'referrer,user_agent,ip_address,ipinformations',
     ],
     'types' => [
         '1' => [
             'showitem' => 'identified,--palette--;Lead;mail,--palette--;Lead;visits,attributes,pagevisits,' .
             '--palette--;Lead;referrer,--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
-            'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ip_informations'
+            'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations'
         ],
     ],
     'palettes' => [
@@ -222,10 +222,10 @@ return [
                 'readOnly' => true
             ]
         ],
-        'ip_informations' => [
+        'ipinformations' => [
             'exclude' => true,
             'label' =>
-                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.ip_informations',
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.ipinformations',
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => \In2code\Lux\Domain\Model\Ipinformation::TABLE_NAME,
