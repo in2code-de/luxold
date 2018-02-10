@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -18,6 +19,11 @@ class AnalysisController extends ActionController
     protected $visitorRepository = null;
 
     /**
+     * @var IpinformationRepository|null
+     */
+    protected $ipinformationRepository = null;
+
+    /**
      * @var LogRepository|null
      */
     protected $logRepository = null;
@@ -32,12 +38,14 @@ class AnalysisController extends ActionController
         $identifiedVisits = $this->visitorRepository->findIdentified()->count();
         $unknownVisits = $this->visitorRepository->findUnknown()->count();
         $interestingLogs = $this->logRepository->findInterestingLogs();
+        $countries = $this->ipinformationRepository->findAllCountryCodesGrouped();
         $this->view->assignMultiple([
             'numberOfUniqueSiteVisitors' => $uniqueVisits,
             'numberOfRecurringSiteVisitors' => $recurringVisits,
             'numberOfIdentifiedVisitors' => $identifiedVisits,
             'numberOfUnknownVisitors' => $unknownVisits,
-            'interestingLogs' => $interestingLogs
+            'interestingLogs' => $interestingLogs,
+            'countries' => $countries
         ]);
     }
 
@@ -48,6 +56,15 @@ class AnalysisController extends ActionController
     public function injectFormRepository(VisitorRepository $visitorRepository)
     {
         $this->visitorRepository = $visitorRepository;
+    }
+
+    /**
+     * @param IpinformationRepository $ipinformationRepository
+     * @return void
+     */
+    public function injectIpinformationRepository(IpinformationRepository $ipinformationRepository)
+    {
+        $this->ipinformationRepository = $ipinformationRepository;
     }
 
     /**
