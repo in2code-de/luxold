@@ -403,7 +403,9 @@ class Visitor extends AbstractEntity
      */
 
     /**
-     * "Lastname, Firstname"
+     * Default: "Lastname, Firstname"
+     * If empty, use: "email@company.org"
+     * If still empty: "unknown"
      *
      * @return string
      */
@@ -421,6 +423,9 @@ class Visitor extends AbstractEntity
             }
             if (!empty($firstname)) {
                 $name .= $firstname;
+            }
+            if (empty($name)) {
+                $name .= $this->getEmail();
             }
         } else {
             $name = LocalizationUtility::translate('LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:anonym');

@@ -1,3 +1,4 @@
+{namespace lux=In2code\Lux\ViewHelpers}
 <div class="panel panel-default">
     <f:if condition="{interestingLogs}">
         <f:then>
@@ -6,9 +7,12 @@
             </div>
             <div class="panel-body">
                 <div style="height: 600px;">
-                    <ul>
+                    <ul class="list-group">
                         <f:for each="{interestingLogs}" as="log">
-                            <li>
+                            <li class="list-group-item">
+                                <span class="badge" title="{f:format.date(date:log.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                                    <lux:format.readableDate>{log.crdate}</lux:format.readableDate>
+                                </span>
                                 <f:render section="status{log.status}" arguments="{_all}" />
                             </li>
                         </f:for>
@@ -27,11 +31,15 @@
 
 
 <f:section name="status1">
-    Lux has tracked a new lead
+    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.1">New lead:</f:translate><br />
+    <strong title="IdCookie: {log.visitor.idCookie}">{log.visitor.fullName}</strong>
+    <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>
 
 
 
 <f:section name="status2">
-    Lux has identified a new lead
+    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.2">Identified lead:</f:translate><br />
+    <strong title="IdCookie: {log.visitor.idCookie}">{log.visitor.fullName}</strong>
+    <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>
