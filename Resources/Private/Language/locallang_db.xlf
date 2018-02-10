@@ -150,6 +150,9 @@
 			<trans-unit id="module.analysis.log.status.2">
 				<source>lux has identified a new lead:</source>
 			</trans-unit>
+			<trans-unit id="module.analysis.map">
+				<source>Lead source</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

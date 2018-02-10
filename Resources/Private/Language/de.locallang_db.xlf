@@ -197,6 +197,10 @@
 				<source>lux has identified a new lead:</source>
 				<target state="translated">lux hat einen neuen Lead identifiziert:</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.map">
+				<source>Lead source</source>
+				<target state="translated">Lead Ursprung</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
