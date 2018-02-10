@@ -7,6 +7,7 @@ use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ConfigurationUtility;
 use In2code\Lux\Utility\IpUtility;
 use In2code\Lux\Utility\ObjectUtility;
@@ -19,6 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class VisitorFactory
 {
+    use SignalTrait;
 
     /**
      * @var string
@@ -69,7 +71,7 @@ class VisitorFactory
             $this->trackPagevisit($visitor);
             $this->visitorRepository->update($visitor);
         }
-        $visitor->setVisits($visitor->getNumberOfUniquePagevisits());
+        $this->setVisits($visitor);
         $this->visitorRepository->persistAll();
         return $visitor;
     }
@@ -92,6 +94,7 @@ class VisitorFactory
         $visitor->setUserAgent(GeneralUtility::getIndpEnv('HTTP_USER_AGENT'));
         $visitor->setReferrer($this->referrer);
         $this->enrichNewVisitorWithIpInformation($visitor);
+        $this->signalDispatch(__CLASS__, 'newVisitor', [$visitor]);
         return $visitor;
     }
 
@@ -116,6 +119,7 @@ class VisitorFactory
     {
         if ($this->pageUid > 0 && $this->shouldTrackPagevisits()) {
             $visitor->addPagevisit($this->getPageVisit());
+            $this->signalDispatch(__CLASS__, 'trackPagevisit', [$visitor]);
         }
     }
 
@@ -146,5 +150,15 @@ class VisitorFactory
                 $visitor->setIpinformations($objectStorage);
             }
         }
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @return void
+     */
+    protected function setVisits(Visitor $visitor)
+    {
+        $visitor->setVisits($visitor->getNumberOfUniquePagevisits());
+        $this->signalDispatch(__CLASS__, 'setVisits', [$visitor]);
     }
 }

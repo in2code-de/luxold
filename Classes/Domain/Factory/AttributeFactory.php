@@ -8,6 +8,7 @@ use In2code\Lux\Domain\Repository\AttributeRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Domain\Service\VisitorMergeService;
+use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ObjectUtility;
 
 /**
@@ -15,6 +16,7 @@ use In2code\Lux\Utility\ObjectUtility;
  */
 class AttributeFactory
 {
+    use SignalTrait;
 
     /**
      * @var string
@@ -58,10 +60,12 @@ class AttributeFactory
             if ($attribute === null) {
                 $attribute = $this->createNewAttribute($key, $value);
                 $visitor->addAttribute($attribute);
+                $this->signalDispatch(__CLASS__, 'createNewAttribute', [$attribute, $visitor]);
             }
             if ($attribute->isEmail()) {
                 $visitor->setIdentified(true);
                 $visitor->setEmail($value);
+                $this->signalDispatch(__CLASS__, 'isIdentified', [$attribute, $visitor]);
             }
             $this->visitorRepository->update($visitor);
             $this->visitorRepository->persistAll();
@@ -83,6 +87,7 @@ class AttributeFactory
             $attribute->setValue($value);
             $this->attributeRepository->update($attribute);
         }
+        $this->signalDispatch(__CLASS__, __FUNCTION__, [$attribute]);
         return $attribute;
     }
 

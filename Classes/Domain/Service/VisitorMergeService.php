@@ -7,6 +7,7 @@ use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\AttributeRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\DatabaseUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -19,6 +20,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  */
 class VisitorMergeService
 {
+    use SignalTrait;
 
     /**
      * @var string
@@ -69,6 +71,7 @@ class VisitorMergeService
                     $this->removeVisitor($visitor);
                 }
             }
+            $this->signalDispatch(__CLASS__, 'mergeVisitors', [$visitors]);
         }
     }
 
