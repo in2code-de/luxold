@@ -10,12 +10,9 @@
             <f:for each="{visitors}" as="visitor">
                 <li class="list-group-item clearfix {f:if(condition:visitor.identified,then:' list-group-item-info')}">
                     <h4 class="list-group-item-heading">
-                        <strong>{visitor.fullName}</strong>
-                        <f:if condition="{visitor.identified}">
-                            <f:else>
-                                ({visitor.idCookie})
-                            </f:else>
-                        </f:if>
+                        <strong title="IdCookie: {visitor.idCookie}">{visitor.fullName}</strong>
+                        <f:if condition="{visitor.location}">({visitor.location})</f:if>
+
                         <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
                             <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}" style="font-size: 0.75em; float: right;">
                                 <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>

@@ -325,6 +325,10 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * Calculated properties
+     */
+
+    /**
      * "Lastname, Firstname"
      *
      * @return string
@@ -353,9 +357,45 @@ class Visitor extends AbstractEntity
     /**
      * @return string
      */
+    public function getLocation(): string
+    {
+        $country = $this->getCountry();
+        $city = $this->getCity();
+        $location = '';
+        if (!empty($city)) {
+            $location .= $city;
+        }
+        if (!empty($country)) {
+            if (!empty($city)) {
+                $location .= ' / ';
+            }
+            $location .= $country;
+        }
+        return $location;
+    }
+
+    /**
+     * @return string
+     */
     public function getCompany(): string
     {
         return $this->getPropertyFromAttributes('company');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->getPropertyFromIpinformations('country');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->getPropertyFromIpinformations('city');
     }
 
     /**
@@ -369,6 +409,24 @@ class Visitor extends AbstractEntity
         foreach ($attributes as $attribute) {
             if ($attribute->getName() === $key) {
                 return $attribute->getValue();
+            }
+        }
+        return '';
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getPropertyFromIpinformations(string $key): string
+    {
+        $ipinformations = $this->getIpinformations();
+        if ($ipinformations->count() > 0) {
+            /** @var Ipinformation $ipinformation */
+            foreach ($ipinformations as $ipinformation) {
+                if ($ipinformation->getName() === $key) {
+                    return $ipinformation->getValue();
+                }
             }
         }
         return '';
