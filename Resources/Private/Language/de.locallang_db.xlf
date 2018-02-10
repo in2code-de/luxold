@@ -143,6 +143,27 @@
 				<source>Recurring visits</source>
 				<target state="translated">Wiederkehrende Besuche</target>
 			</trans-unit>
+
+			<trans-unit id="module.analysis">
+				<source>Analysis</source>
+				<target state="translated">Analyse</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.recurring.0">
+				<source>Recurring leads</source>
+				<target state="translated">Wiederkehrende Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.recurring.1">
+				<source>Unique leads</source>
+				<target state="translated">Leads mit einem Besuch</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.identified.0">
+				<source>Identified leads</source>
+				<target state="translated">Identifizierte Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.identified.1">
+				<source>Unknown leads</source>
+				<target state="translated">Unbekannte Leads</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -4,14 +4,7 @@
     <div class="row">
         <div class="col-md-6">
             <f:render partial="Analysis/Recurring" arguments="{_all}" />
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Identified Users</h3>
-                </div>
-                <div class="panel-body">
-                    Identified/Unknown
-                </div>
-            </div>
+            <f:render partial="Analysis/Identified" arguments="{_all}" />
         </div>
         <div class="col-md-6">
             <div class="row">
@@ -21,11 +14,13 @@
                             <h3 class="panel-title">Last Leads</h3>
                         </div>
                         <div class="panel-body">
-                            <ol>
-                                <li>Anonym Seite XY</li>
-                                <li>Anonym Seite XY</li>
-                                <li>Anonym Seite XY</li>
-                            </ol>
+                            <div style="height: 258px;">
+                                <ol>
+                                    <li>Anonym Seite XY</li>
+                                    <li>Anonym Seite XY</li>
+                                    <li>Anonym Seite XY</li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -33,22 +28,29 @@
                             <h3 class="panel-title">Best contacts</h3>
                         </div>
                         <div class="panel-body">
-                            <ol>
-                                <li>Sandra Pohl</li>
-                                <li>Sandra Pohl</li>
-                                <li>Sandra Pohl</li>
-                            </ol>
+                            <div style="height: 258px;">
+                                <ol>
+                                    <li>Sandra Pohl</li>
+                                    <li>Sandra Pohl</li>
+                                    <li>Sandra Pohl</li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Protokoll</h3>
+                        </div>
                         <div class="panel-body">
-                            <ul>
-                                <li>Lux hat was tolles gemacht</li>
-                                <li>Lux hat was tolles gemacht</li>
-                                <li>Lux hat was tolles gemacht</li>
-                            </ul>
+                            <div style="height: 600px;">
+                                <ul>
+                                    <li>Lux hat was tolles gemacht</li>
+                                    <li>Lux hat was tolles gemacht</li>
+                                    <li>Lux hat was tolles gemacht</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,7 +64,9 @@
                     <h3 class="panel-title">Map</h3>
                 </div>
                 <div class="panel-body">
-                    KARTE
+                    <div style="height: 250px;">
+                        KARTE
+                    </div>
                 </div>
             </div>
         </div>

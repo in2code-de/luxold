@@ -109,6 +109,22 @@
 			<trans-unit id="pageoverview.recurringvisits">
 				<source>Recurring visits</source>
 			</trans-unit>
+
+			<trans-unit id="module.analysis">
+				<source>Analysis</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.recurring.0">
+				<source>Recurring leads</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.recurring.1">
+				<source>Unique leads</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.identified.0">
+				<source>Identified leads</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.identified.1">
+				<source>Unknown leads</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

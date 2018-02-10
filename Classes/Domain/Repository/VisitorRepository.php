@@ -37,4 +37,48 @@ class VisitorRepository extends AbstractRepository
         $query->setLimit(3);
         return $query->execute();
     }
+
+    /**
+     * @return QueryResultInterface
+     */
+    public function findByUniqueSiteVisits()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('visits', 1));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
+
+    /**
+     * @return QueryResultInterface
+     */
+    public function findByRecurringSiteVisits()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->greaterThan('visits', 1));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
+
+    /**
+     * @return QueryResultInterface
+     */
+    public function findIdentified()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('identified', true));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
+
+    /**
+     * @return QueryResultInterface
+     */
+    public function findUnknown()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('identified', false));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
 }
