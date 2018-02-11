@@ -10,20 +10,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <f:render partial="Analysis/Pagevisits" arguments="{_all}" />
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Best contacts</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div style="height: 258px;">
-                                <ol>
-                                    <li>Sandra Pohl</li>
-                                    <li>Sandra Pohl</li>
-                                    <li>Sandra Pohl</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+                    <f:render partial="Analysis/BestVisitors" arguments="{_all}" />
                 </div>
                 <div class="col-md-6">
                     <f:render partial="Analysis/Log" arguments="{_all}" />

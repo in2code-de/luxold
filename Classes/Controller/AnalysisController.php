@@ -39,21 +39,23 @@ class AnalysisController extends ActionController
      */
     public function dashboardAction()
     {
-        $uniqueVisits = $this->visitorRepository->findByUniqueSiteVisits()->count();
-        $recurringVisits = $this->visitorRepository->findByRecurringSiteVisits()->count();
-        $identifiedVisits = $this->visitorRepository->findIdentified()->count();
-        $unknownVisits = $this->visitorRepository->findUnknown()->count();
+        $numberOfUniqueSiteVisitors = $this->visitorRepository->findByUniqueSiteVisits()->count();
+        $numberOfRecurringSiteVisitors = $this->visitorRepository->findByRecurringSiteVisits()->count();
+        $numberOfIdentifiedVisitors = $this->visitorRepository->findIdentified()->count();
+        $numberOfUnknownVisitors = $this->visitorRepository->findUnknown()->count();
         $interestingLogs = $this->logRepository->findInterestingLogs();
         $countries = $this->ipinformationRepository->findAllCountryCodesGrouped();
         $latestPagevisits = $this->pagevisitsRepository->findLatestPagevisits();
+        $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits();
         $this->view->assignMultiple([
-            'numberOfUniqueSiteVisitors' => $uniqueVisits,
-            'numberOfRecurringSiteVisitors' => $recurringVisits,
-            'numberOfIdentifiedVisitors' => $identifiedVisits,
-            'numberOfUnknownVisitors' => $unknownVisits,
+            'numberOfUniqueSiteVisitors' => $numberOfUniqueSiteVisitors,
+            'numberOfRecurringSiteVisitors' => $numberOfRecurringSiteVisitors,
+            'numberOfIdentifiedVisitors' => $numberOfIdentifiedVisitors,
+            'numberOfUnknownVisitors' => $numberOfUnknownVisitors,
             'interestingLogs' => $interestingLogs,
             'countries' => $countries,
-            'latestPagevisits' => $latestPagevisits
+            'latestPagevisits' => $latestPagevisits,
+            'identifiedByMostVisits' => $identifiedByMostVisits,
         ]);
     }
 

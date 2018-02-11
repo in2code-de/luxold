@@ -76,4 +76,16 @@ class VisitorRepository extends AbstractRepository
         $query->matching($query->equals('identified', false));
         return $query->execute();
     }
+
+    /**
+     * @return QueryResultInterface
+     */
+    public function findIdentifiedByMostVisits()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('identified', true));
+        $query->setLimit(4);
+        $query->setOrderings(['visits' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
 }
