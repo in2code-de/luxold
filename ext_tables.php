@@ -47,7 +47,7 @@ call_user_func(
                 'analysis',
                 '',
                 [
-                    'Analysis' => 'dashboard'
+                    'Analysis' => 'dashboard,list'
                 ],
                 [
                     'access' => 'user,group',
@@ -55,6 +55,8 @@ call_user_func(
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_analysis.xlf',
                 ]
             );
+
+            // TODO Add workflow
         }
 
         /**

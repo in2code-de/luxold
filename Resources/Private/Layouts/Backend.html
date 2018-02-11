@@ -1,6 +1,6 @@
-{namespace lux=In2code\Lux\ViewHelpers}
 <f:Be.Container
 		includeJsFiles="{0:'{f:uri.resource(path:\'JavaScripts/Vendor/Chart.min.js\')}'}"
+		includeCssFiles="{0:'{f:uri.resource(path:\'Css/Modules.min.css\')}'}"
 		pageTitle="lux">
 
 	<div class="module">
@@ -8,9 +8,13 @@
 			<div class="typo3-docheader-functions">
 				<div class="module-docheader-bar module-docheader-bar-navigation">
 					<div class="module-docheader-bar-column-left">
-						<div class="btn-group btn-group-xs" role="group">
-							<f:link.action action="dashboard" class="btn btn-default">
-								<f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis">Analysis</f:translate>
+						<div class="btn-group" role="group">
+							<f:debug>{action}</f:debug>
+							<f:link.action action="dashboard" class="btn{lux:Be.GetClassNameOnAction(actionName:'dashboard')}">
+								<f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.dashboard">dashboard</f:translate>
+							</f:link.action>
+							<f:link.action action="list" class="btn{lux:Be.GetClassNameOnAction(actionName:'list')}">
+								<f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.list">Leads</f:translate>
 							</f:link.action>
 						</div>
 					</div>

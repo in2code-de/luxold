@@ -129,9 +129,13 @@
 				<source>Recurring visits</source>
 			</trans-unit>
 
-			<trans-unit id="module.analysis">
+			<trans-unit id="module.analysis.dashboard">
 				<source>Analysis</source>
 			</trans-unit>
+			<trans-unit id="module.analysis.list">
+				<source>Leads</source>
+			</trans-unit>
+
 			<trans-unit id="module.analysis.novalues">
 				<source>No data for analysis yet</source>
 			</trans-unit>

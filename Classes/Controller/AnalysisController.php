@@ -78,6 +78,14 @@ class AnalysisController extends ActionController
     }
 
     /**
+     * @return void
+     */
+    public function listAction()
+    {
+
+    }
+
+    /**
      * @param VisitorRepository $visitorRepository
      * @return void
      */

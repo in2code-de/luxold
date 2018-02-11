@@ -1,0 +1,11 @@
+@import "Settings";
+
+.btn-primary {
+  background-color: $colorMain;
+  border-color: $colorMain;
+  color: black;
+  &:hover {
+    background-color: $colorAlternative;
+    border-color: $colorAlternative;
+  }
+}
