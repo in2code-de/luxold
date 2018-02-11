@@ -3,6 +3,8 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
 use In2code\Lux\Domain\Model\Ipinformation;
+use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Class IpinformationRepository
@@ -11,12 +13,15 @@ class IpinformationRepository extends AbstractRepository
 {
 
     /**
+     * @param FilterDto $filter
      * @return array
      */
-    public function findAllCountryCodesGrouped(): array
+    public function findAllCountryCodesGrouped(FilterDto $filter): array
     {
         $query = $this->createQuery();
-        $query->matching($query->equals('name', 'countryCode'));
+        $logicalAnd = [$query->equals('name', 'countryCode')];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
         $ipinformations = $query->execute();
 
         $countryCodes = [];
@@ -28,5 +33,21 @@ class IpinformationRepository extends AbstractRepository
             }
         }
         return $countryCodes;
+    }
+
+    /**
+     * @param FilterDto $filter
+     * @param QueryInterface $query
+     * @param array $logicalAnd
+     * @return array
+     */
+    protected function extendLogicalAndWithFilterConstraints(
+        FilterDto $filter,
+        QueryInterface $query,
+        array $logicalAnd
+    ): array {
+        $logicalAnd[] = $query->greaterThan('crdate', $filter->getStartTimeForFilter());
+        $logicalAnd[] = $query->lessThan('crdate', $filter->getEndTimeForFilter());
+        return $logicalAnd;
     }
 }

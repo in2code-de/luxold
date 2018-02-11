@@ -173,6 +173,34 @@
 				<source>Analysis</source>
 				<target state="translated">Analyse</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.novalues">
+				<source>No data for analysis yet</source>
+				<target state="translated">Es sind noch keine Daten für eine Analyse vorhanden</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.timePeriod.0">
+				<source>This year</source>
+				<target state="translated">Dieses Jahr</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.timePeriod.1">
+				<source>This month</source>
+				<target state="translated">Diesen Monat</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.timePeriod.2">
+				<source>Previous month</source>
+				<target state="translated">Letzter Monat</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.pagevisits">
+				<source>Latest page visits</source>
+				<target state="translated">Letzte Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.bestvisitors">
+				<source>Best identified leads</source>
+				<target state="translated">Beste identifizierte Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log">
+				<source>Activity log</source>
+				<target state="translated">Protokoll der Aktivitäten</target>
+			</trans-unit>
 			<trans-unit id="module.analysis.recurring.0">
 				<source>Recurring leads</source>
 				<target state="translated">Wiederkehrende Leads</target>

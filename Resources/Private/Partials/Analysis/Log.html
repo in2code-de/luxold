@@ -1,11 +1,12 @@
-{namespace lux=In2code\Lux\ViewHelpers}
 <div class="panel panel-default">
-    <f:if condition="{interestingLogs}">
-        <f:then>
-            <div class="panel-heading">
-                <h3 class="panel-title">Todo Protokoll</h3>
-            </div>
-            <div class="panel-body">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log">Log</f:translate>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <f:if condition="{interestingLogs}">
+            <f:then>
                 <div style="height: 600px;">
                     <ul class="list-group">
                         <f:for each="{interestingLogs}" as="log">
@@ -18,14 +19,12 @@
                         </f:for>
                     </ul>
                 </div>
-            </div>
-        </f:then>
-        <f:else>
-            <div class="panel-heading">
-                <h3 class="panel-title">Todo No logs yet</h3>
-            </div>
-        </f:else>
-    </f:if>
+            </f:then>
+            <f:else>
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.novalues">No values to show</f:translate>
+            </f:else>
+        </f:if>
+    </div>
 </div>
 
 

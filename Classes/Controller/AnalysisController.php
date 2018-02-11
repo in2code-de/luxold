@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
@@ -35,19 +36,36 @@ class AnalysisController extends ActionController
     protected $pagevisitsRepository = null;
 
     /**
+     * Always set a FilterDto even if there are no filter params
+     *
      * @return void
      */
-    public function dashboardAction()
+    public function initializeDashboardAction()
     {
-        $numberOfUniqueSiteVisitors = $this->visitorRepository->findByUniqueSiteVisits()->count();
-        $numberOfRecurringSiteVisitors = $this->visitorRepository->findByRecurringSiteVisits()->count();
-        $numberOfIdentifiedVisitors = $this->visitorRepository->findIdentified()->count();
-        $numberOfUnknownVisitors = $this->visitorRepository->findUnknown()->count();
-        $interestingLogs = $this->logRepository->findInterestingLogs();
-        $countries = $this->ipinformationRepository->findAllCountryCodesGrouped();
-        $latestPagevisits = $this->pagevisitsRepository->findLatestPagevisits();
-        $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits();
+        try {
+            $this->request->getArgument('filter');
+        } catch (\Exception $exception) {
+            unset($exception);
+            $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));
+        }
+    }
+
+    /**
+     * @param FilterDto|null $filter
+     * @return void
+     */
+    public function dashboardAction(FilterDto $filter)
+    {
+        $numberOfUniqueSiteVisitors = $this->visitorRepository->findByUniqueSiteVisits($filter)->count();
+        $numberOfRecurringSiteVisitors = $this->visitorRepository->findByRecurringSiteVisits($filter)->count();
+        $numberOfIdentifiedVisitors = $this->visitorRepository->findIdentified($filter)->count();
+        $numberOfUnknownVisitors = $this->visitorRepository->findUnknown($filter)->count();
+        $interestingLogs = $this->logRepository->findInterestingLogs($filter);
+        $countries = $this->ipinformationRepository->findAllCountryCodesGrouped($filter);
+        $latestPagevisits = $this->pagevisitsRepository->findLatestPagevisits($filter);
+        $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
         $this->view->assignMultiple([
+            'filter' => $filter,
             'numberOfUniqueSiteVisitors' => $numberOfUniqueSiteVisitors,
             'numberOfRecurringSiteVisitors' => $numberOfRecurringSiteVisitors,
             'numberOfIdentifiedVisitors' => $numberOfIdentifiedVisitors,

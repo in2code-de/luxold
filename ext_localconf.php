@@ -57,5 +57,10 @@ call_user_func(
             'logIdentifiedVisitor',
             false
         );
+
+        /**
+         * Fluid Namespace
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['lux'][] = 'In2code\Lux\ViewHelpers';
     }
 );

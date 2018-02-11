@@ -2,6 +2,11 @@
 
 <f:section name="content">
     <div class="row">
+        <div class="col-md-12">
+            <f:render partial="Analysis/Filter" arguments="{_all}" />
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <f:render partial="Analysis/Recurring" arguments="{_all}" />
             <f:render partial="Analysis/Identified" arguments="{_all}" />

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -15,7 +16,7 @@ class VisitorRepository extends AbstractRepository
      * @param string $email
      * @return QueryResultInterface
      */
-    public function findDuplicatesByEmail(string $email)
+    public function findDuplicatesByEmail(string $email): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching($query->equals('email', $email));
@@ -29,7 +30,7 @@ class VisitorRepository extends AbstractRepository
      * @param int $pageIdentifier
      * @return QueryResultInterface
      */
-    public function findByVisitedPageIdentifier(int $pageIdentifier)
+    public function findByVisitedPageIdentifier(int $pageIdentifier): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching($query->equals('pagevisits.page', $pageIdentifier));
@@ -38,54 +39,85 @@ class VisitorRepository extends AbstractRepository
     }
 
     /**
+     * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findByUniqueSiteVisits()
+    public function findByUniqueSiteVisits(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
-        $query->matching($query->equals('visits', 1));
+        $logicalAnd = [$query->equals('visits', 1)];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
         return $query->execute();
     }
 
     /**
+     * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findByRecurringSiteVisits()
+    public function findByRecurringSiteVisits(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
-        $query->matching($query->greaterThan('visits', 1));
+        $logicalAnd = [$query->greaterThan('visits', 1)];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
         return $query->execute();
     }
 
     /**
+     * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findIdentified()
+    public function findIdentified(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
-        $query->matching($query->equals('identified', true));
+        $logicalAnd = [$query->equals('identified', true)];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
         return $query->execute();
     }
 
     /**
+     * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findUnknown()
+    public function findUnknown(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
-        $query->matching($query->equals('identified', false));
+        $logicalAnd = [$query->equals('identified', false)];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
         return $query->execute();
     }
 
     /**
+     * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findIdentifiedByMostVisits()
+    public function findIdentifiedByMostVisits(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
-        $query->matching($query->equals('identified', true));
+        $logicalAnd = [$query->equals('identified', true)];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
         $query->setLimit(4);
         $query->setOrderings(['visits' => QueryInterface::ORDER_DESCENDING]);
         return $query->execute();
+    }
+
+    /**
+     * @param FilterDto $filter
+     * @param QueryInterface $query
+     * @param array $logicalAnd
+     * @return array
+     */
+    protected function extendLogicalAndWithFilterConstraints(
+        FilterDto $filter,
+        QueryInterface $query,
+        array $logicalAnd
+    ): array {
+        $logicalAnd[] = $query->greaterThan('pagevisits.crdate', $filter->getStartTimeForFilter());
+        $logicalAnd[] = $query->lessThan('pagevisits.crdate', $filter->getEndTimeForFilter());
+        return $logicalAnd;
     }
 }

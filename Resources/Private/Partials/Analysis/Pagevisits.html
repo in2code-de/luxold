@@ -1,7 +1,8 @@
-{namespace lux=In2code\Lux\ViewHelpers}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Todo Latest page visits</h3>
+        <h3 class="panel-title">
+            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.pagevisits">Pagevisits</f:translate>
+        </h3>
     </div>
     <div class="panel-body">
         <f:if condition="{latestPagevisits}">
@@ -21,7 +22,7 @@
                 </div>
             </f:then>
             <f:else>
-                TODO No pagevisits yet
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.novalues">No values to show</f:translate>
             </f:else>
         </f:if>
     </div>
