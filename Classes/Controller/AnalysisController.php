@@ -4,6 +4,7 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
+use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -29,6 +30,11 @@ class AnalysisController extends ActionController
     protected $logRepository = null;
 
     /**
+     * @var PagevisitRepository|null
+     */
+    protected $pagevisitsRepository = null;
+
+    /**
      * @return void
      */
     public function dashboardAction()
@@ -39,13 +45,15 @@ class AnalysisController extends ActionController
         $unknownVisits = $this->visitorRepository->findUnknown()->count();
         $interestingLogs = $this->logRepository->findInterestingLogs();
         $countries = $this->ipinformationRepository->findAllCountryCodesGrouped();
+        $latestPagevisits = $this->pagevisitsRepository->findLatestPagevisits();
         $this->view->assignMultiple([
             'numberOfUniqueSiteVisitors' => $uniqueVisits,
             'numberOfRecurringSiteVisitors' => $recurringVisits,
             'numberOfIdentifiedVisitors' => $identifiedVisits,
             'numberOfUnknownVisitors' => $unknownVisits,
             'interestingLogs' => $interestingLogs,
-            'countries' => $countries
+            'countries' => $countries,
+            'latestPagevisits' => $latestPagevisits
         ]);
     }
 
@@ -74,5 +82,14 @@ class AnalysisController extends ActionController
     public function injectLogRepository(LogRepository $logRepository)
     {
         $this->logRepository = $logRepository;
+    }
+
+    /**
+     * @param PagevisitRepository $pagevisitRepository
+     * @return void
+     */
+    public function injectPagevisitRepository(PagevisitRepository $pagevisitRepository)
+    {
+        $this->pagevisitsRepository = $pagevisitRepository;
     }
 }
