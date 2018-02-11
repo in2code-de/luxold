@@ -1,0 +1,125 @@
+page {
+    # Add JavaScript for field mapping configuration
+    1517985223 = TEXT
+    1517985223 {
+        typolink {
+            parameter.data = TSFE:id
+            additionalParams = &type=1517985223
+            returnLast = url
+        }
+        wrap = <script type="text/javascript" src="|"></script>
+    }
+    # Add main JavaScript for lux
+    includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux/Lux.min.js
+
+    # Container for informations that will be send via AJAX
+    1517942451 = COA
+    1517942451 {
+        wrap = <script id="lux_container"|></script>
+
+        # Uri to send AJAX page request to
+        10 = TEXT
+        10 {
+            noTrimWrap = | data-lux-pagerequesturi="|"|
+            typolink {
+                parameter.data = TSFE:id
+                additionalParams = &type=1517942451
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
+
+        # Uri to send AJAX fieldlistening request to
+        20 = TEXT
+        20 {
+            noTrimWrap = | data-lux-fieldlisteninguri="|"|
+            typolink {
+                parameter.data = TSFE:id
+                additionalParams = &type=1518001045
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
+
+        # Current page uid
+        30 = TEXT
+        30 {
+            noTrimWrap = | data-lux-pageuid="|"|
+            data = TSFE:id
+        }
+
+        # FE language
+        40 = TEXT
+        40 {
+            noTrimWrap = | data-lux-languageuid="|"|
+            data = GP:L
+            intval = 1
+        }
+
+        # Activate page tracking
+        100 = TEXT
+        100 {
+            value = data-lux-pagetracking="{$plugin.tx_lux.settings.pagetracking}"
+            noTrimWrap = | ||
+        }
+    }
+}
+
+# AJAX types
+luxPageRequestAjax = PAGE
+luxPageRequestAjax {
+    typeNum = 1517942451
+    config {
+        additionalHeaders.10.header = Content-Type: application/json
+        no_cache = 1
+        disableAllHeaderCode = 1
+        disablePrefixComment = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Lux
+        pluginName = Fe
+        vendorName = In2code
+        controller = Frontend
+        action = pageRequest
+        switchableControllerActions.Frontend.1 = pageRequest
+    }
+}
+luxFieldListeningRequestAjax < luxPageRequestAjax
+luxFieldListeningRequestAjax {
+    typeNum = 1518001045
+    10.action = fieldListeningRequest
+    10.switchableControllerActions.Frontend.1 = fieldListeningRequest
+}
+
+# Typenum to get field mapping configuration in a dynamic JS file
+[globalVar = LIT:0 < {$plugin.tx_lux.settings.fieldidentification}]
+    luxConfiguration = PAGE
+    luxConfiguration {
+        typeNum = 1517985223
+        config {
+            additionalHeaders.10.header = Content-Type: application/javascript
+            disableAllHeaderCode = 1
+            disablePrefixComment = 1
+            xhtml_cleaning = 0
+            admPanel = 0
+            debug = 0
+        }
+
+        10 = FLUIDTEMPLATE
+        10 {
+            file = EXT:lux/Resources/Private/Templates/Configuration/JavaScriptConfiguration.js
+            settings < plugin.tx_lux_fe.settings
+            dataProcessing {
+                10 = In2code\Lux\DataProcessing\FieldMappingProcessor
+            }
+        }
+    }
+[else]
+    page.1517985223 >
+[end]
