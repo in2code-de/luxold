@@ -13,6 +13,19 @@ class VisitorRepository extends AbstractRepository
 {
 
     /**
+     * @return QueryResultInterface
+     */
+    public function findAllWithIdentifiedFirst(): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->setOrderings([
+            'identified' => QueryInterface::ORDER_DESCENDING,
+            'tstamp' => QueryInterface::ORDER_DESCENDING
+        ]);
+        return $query->execute();
+    }
+
+    /**
      * @param string $email
      * @return QueryResultInterface
      */

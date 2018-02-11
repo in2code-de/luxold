@@ -78,6 +78,16 @@ class Visitor extends AbstractEntity
     protected $logs = null;
 
     /**
+     * @var \DateTime
+     */
+    protected $crdate = null;
+
+    /**
+     * @var \DateTime
+     */
+    protected $tstamp = null;
+
+    /**
      * Visitor constructor.
      */
     public function __construct()
@@ -395,6 +405,42 @@ class Visitor extends AbstractEntity
     public function removeLog(Log $log)
     {
         $this->logs->detach($log);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCrdate(): \DateTime
+    {
+        return $this->crdate;
+    }
+
+    /**
+     * @param \DateTime $crdate
+     * @return Visitor
+     */
+    public function setCrdate(\DateTime $crdate)
+    {
+        $this->crdate = $crdate;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTstamp(): \DateTime
+    {
+        return $this->tstamp;
+    }
+
+    /**
+     * @param \DateTime $tstamp
+     * @return Visitor
+     */
+    public function setTstamp(\DateTime $tstamp)
+    {
+        $this->tstamp = $tstamp;
         return $this;
     }
 

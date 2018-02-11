@@ -7,6 +7,10 @@
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.identification">
+				<source>Lead identification</source>
+				<target state="translated">Lead Ident</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
 				<source>Enrichments</source>
 				<target state="translated">Angereicherte Informationen</target>
@@ -66,6 +70,22 @@
 			<trans-unit id="tx_lux_domain_model_visitor.logs">
 				<source>Log</source>
 				<target state="translated">Log</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.company">
+				<source>Company</source>
+				<target state="translated">Firma</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.country">
+				<source>Country</source>
+				<target state="translated">Land</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.city">
+				<source>City</source>
+				<target state="translated">Ort</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.location">
+				<source>Location</source>
+				<target state="translated">Location</target>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">

@@ -6,6 +6,9 @@
 			<trans-unit id="tx_lux_domain_model_visitor">
 				<source>Lead</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.identification">
+				<source>Lead identification</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
 				<source>Enrichments</source>
 			</trans-unit>
@@ -50,6 +53,18 @@
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.logs">
 				<source>Log</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.company">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.location">
+				<source>Location</source>
 			</trans-unit>
 
 			<trans-unit id="tx_lux_domain_model_pagevisit">

@@ -82,7 +82,9 @@ class AnalysisController extends ActionController
      */
     public function listAction()
     {
-
+        $this->view->assignMultiple([
+            'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst()
+        ]);
     }
 
     /**
