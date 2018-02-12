@@ -29,6 +29,8 @@ function LuxMain() {
 			generateNewIdCookieIfNoCookieFound();
 			pageRequest();
 			addFieldListeners();
+			addEmail4LinkListeners();
+			lightboxListener();
 		}
 	};
 
@@ -58,16 +60,52 @@ function LuxMain() {
 			// Skip every password field and check if this field is configured for listening in TypoScript
 			if (element.type !== 'password' && isFieldConfiguredInFieldMapping(element)) {
 				element.addEventListener('change', function() {
-					listener(this);
+					fieldListener(this);
 				});
 			}
 		}
 	};
 
 	/**
-	 * @param {Node} field
+	 * @returns {void}
 	 */
-	var listener = function(field) {
+	var addEmail4LinkListeners = function() {
+		var links = document.querySelectorAll('[data-lux-email4link-title]');
+		for (var i = 0; i < links.length; i++) {
+			var element = links[i];
+			element.addEventListener('click', function(event) {
+				email4LinkListener(this, event);
+			});
+		}
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var lightboxListener = function() {
+		document.querySelectorAll('.luxlightbox').forEach(function (elem) {
+			elem.onclick = function (e) {
+				const src = elem.getAttribute('data-src');
+				const html = '<img src="' + src + '">';
+				basicLightbox.create(html).show();
+			}
+		})
+	};
+
+	/**
+	 * @param {Node} link
+	 * @returns {void}
+	 */
+	var email4LinkListener = function(link, event) {
+		alert('form!');
+		event.preventDefault();
+	};
+
+	/**
+	 * @param {Node} field
+	 * @returns {void}
+	 */
+	var fieldListener = function(field) {
 		var key = getKeyOfFieldConfigurationToGivenField(field);
 		var value = field.value;
 		ajaxConnection(

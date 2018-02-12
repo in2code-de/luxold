@@ -1,4 +1,7 @@
 page {
+    # Add Main CSS for the frontend
+    includeCSS.lux = EXT:lux/Resources/Public/Css/Frontend.min.css
+
     # Add JavaScript for field mapping configuration
     1517985223 = TEXT
     1517985223 {
@@ -10,6 +13,7 @@ page {
         wrap = <script type="text/javascript" src="|"></script>
     }
     # Add main JavaScript for lux
+    includeJSFooter.luxBasicLightbox = EXT:lux/Resources/Public/JavaScripts/Vendor/BasicLightbox.min.js
     includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux/Lux.min.js
 
     # Container for informations that will be send via AJAX
