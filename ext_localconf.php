@@ -59,6 +59,11 @@ call_user_func(
         );
 
         /**
+         * CK editor configuration
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['lux'] = 'EXT:lux/Configuration/Yaml/CkEditor.yaml';
+
+        /**
          * Fluid Namespace
          */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['lux'][] = 'In2code\Lux\ViewHelpers';
