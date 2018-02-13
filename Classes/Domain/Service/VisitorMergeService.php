@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Service;
 
 use In2code\Lux\Domain\Model\Attribute;
+use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\AttributeRepository;
@@ -66,6 +67,7 @@ class VisitorMergeService
                 $this->setFirstVisitor($visitor);
                 if ($visitor !== $this->firstVisitor) {
                     $this->mergePagevisits($visitor);
+                    $this->mergeLogs($visitor);
                     $this->mergeAttributes($visitor);
                     $this->updateIdCookie($visitor);
                     $this->removeVisitor($visitor);
@@ -92,6 +94,27 @@ class VisitorMergeService
             $connection->query(
                 'update ' . Pagevisit::TABLE_NAME . ' set visitor = ' . $this->firstVisitor->getUid() . ' ' .
                 'where uid in (' . implode(',', $pagevisits) . ')'
+            );
+        }
+    }
+
+    /**
+     * Update existing logs with another parent visitor uid
+     *
+     * @param Visitor $newVisitor
+     * @return void
+     */
+    protected function mergeLogs(Visitor $newVisitor)
+    {
+        $logs = [];
+        foreach ($newVisitor->getLogs() as $log) {
+            $logs[] = $log->getUid();
+        }
+        if (count($logs) > 0) {
+            $connection = DatabaseUtility::getConnectionForTable(Log::TABLE_NAME);
+            $connection->query(
+                'update ' . Log::TABLE_NAME . ' set visitor = ' . $this->firstVisitor->getUid() . ' ' .
+                'where uid in (' . implode(',', $logs) . ')'
             );
         }
     }

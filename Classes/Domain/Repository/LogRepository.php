@@ -20,7 +20,9 @@ class LogRepository extends AbstractRepository
     public function findInterestingLogs(FilterDto $filter)
     {
         $query = $this->createQuery();
-        $logicalAnd = [$query->in('status', [Log::STATUS_NEW, Log::STATUS_IDENTIFIED])];
+        $logicalAnd = [
+            $query->in('status', [Log::STATUS_NEW, Log::STATUS_IDENTIFIED, Log::STATUS_IDENTIFIED_EMAIL4LINK])
+        ];
         $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
         $query->matching($query->logicalAnd($logicalAnd));
         $query->setLimit(10);

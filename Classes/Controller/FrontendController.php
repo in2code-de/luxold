@@ -4,6 +4,7 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Factory\AttributeFactory;
 use In2code\Lux\Domain\Factory\VisitorFactory;
+use In2code\Lux\Signal\SignalTrait;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -22,7 +23,7 @@ class FrontendController extends ActionController
     public function pageRequestAction(string $idCookie, int $languageUid, int $pageUid, string $referrer = ''): string
     {
         $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $pageUid, $referrer);
-        $visitor = $visitorFactory->getVisitor();
+        $visitorFactory->getVisitor();
         return json_encode([]);
     }
 
@@ -32,10 +33,30 @@ class FrontendController extends ActionController
      * @param string $value
      * @return string
      */
-    public function fieldListeningRequestAction(string $idCookie, string $key, string $value)
+    public function fieldListeningRequestAction(string $idCookie, string $key, string $value): string
     {
-        $attributeFactory = $this->objectManager->get(AttributeFactory::class, $idCookie);
-        $visitor = $attributeFactory->getVisitorAndAddAttribute($key, $value);
+        $attributeFactory = $this->objectManager->get(
+            AttributeFactory::class,
+            $idCookie,
+            AttributeFactory::CONTEXT_FIELDLISTENING
+        );
+        $attributeFactory->getVisitorAndAddAttribute($key, $value);
+        return json_encode([]);
+    }
+
+    /**
+     * @param string $idCookie
+     * @param string $email
+     * @return string
+     */
+    public function email4LinkRequestAction(string $idCookie, string $email): string
+    {
+        $attributeFactory = $this->objectManager->get(
+            AttributeFactory::class,
+            $idCookie,
+            AttributeFactory::CONTEXT_EMAIL4LINK
+        );
+        $attributeFactory->getVisitorAndAddAttribute('email', $email);
         return json_encode([]);
     }
 }

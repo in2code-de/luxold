@@ -14,7 +14,7 @@
                                 <span class="badge" title="{f:format.date(date:log.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
                                     <lux:format.readableDate>{log.crdate}</lux:format.readableDate>
                                 </span>
-                                <f:render section="status{log.status}" arguments="{_all}" />
+                                <f:render section="status{log.status}" optional="true" arguments="{_all}" />
                             </li>
                         </f:for>
                     </ul>
@@ -31,7 +31,7 @@
 
 <f:section name="status1">
     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.1">New lead:</f:translate><br />
-    <strong title="IdCookie: {log.visitor.idCookie}">{log.visitor.fullName}</strong>
+    <strong title="UID:{log.visitor.uid}"><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:anonym">Anonymous</f:translate></strong>
     <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>
 
@@ -39,6 +39,14 @@
 
 <f:section name="status2">
     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.2">Identified lead:</f:translate><br />
-    <strong title="IdCookie: {log.visitor.idCookie}">{log.visitor.fullName}</strong>
+    <strong title="UID:{log.visitor.uid}">{log.visitor.fullName}</strong>
+    <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
+</f:section>
+
+
+
+<f:section name="status21">
+    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.21">Identified lead:</f:translate><br />
+    <strong title="UID:{log.visitor.uid}">{log.visitor.fullName}</strong>
     <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>

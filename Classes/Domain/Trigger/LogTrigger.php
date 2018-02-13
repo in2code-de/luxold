@@ -45,4 +45,14 @@ class LogTrigger implements SingletonInterface
     {
         $this->logService->logIdentifiedVisitor($visitor);
     }
+
+    /**
+     * @param Attribute $attribute
+     * @param Visitor $visitor
+     * @return void
+     */
+    public function logIdentifiedVisitorByEmail4Link(Attribute $attribute, Visitor $visitor)
+    {
+        $this->logService->logIdentifiedVisitorByEmail4Link($visitor);
+    }
 }

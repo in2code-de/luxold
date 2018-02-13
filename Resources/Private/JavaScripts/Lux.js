@@ -19,6 +19,16 @@ function LuxMain() {
 	var idCookie = '';
 
 	/**
+	 * @type {null}
+	 */
+	this.lightboxInstance = null;
+
+	/**
+	 * @type {LuxMain}
+	 */
+	var that = this;
+
+	/**
 	 * Initialize
 	 *
 	 * @returns {void}
@@ -30,7 +40,15 @@ function LuxMain() {
 			pageRequest();
 			addFieldListeners();
 			addEmail4LinkListeners();
-			lightboxListener();
+		}
+	};
+
+	/**
+	 * Close any lightbox
+	 */
+	this.closeLightbox = function() {
+		if (that.lightboxInstance !== null) {
+			that.lightboxInstance.close();
 		}
 	};
 
@@ -80,25 +98,49 @@ function LuxMain() {
 	};
 
 	/**
-	 * @returns {void}
-	 */
-	var lightboxListener = function() {
-		document.querySelectorAll('.luxlightbox').forEach(function (elem) {
-			elem.onclick = function (e) {
-				const src = elem.getAttribute('data-src');
-				const html = '<img src="' + src + '">';
-				basicLightbox.create(html).show();
-			}
-		})
-	};
-
-	/**
 	 * @param {Node} link
+	 * @param event
 	 * @returns {void}
 	 */
 	var email4LinkListener = function(link, event) {
-		alert('form!');
 		event.preventDefault();
+
+		var title = link.getAttribute('data-lux-email4link-title') || '';
+		var text = link.getAttribute('data-lux-email4link-text') || '';
+		var href = link.getAttribute('href');
+		var containers = document.querySelectorAll('[data-lux-container="email4link"]');
+		if (containers.length > 0) {
+			var container = containers[0].cloneNode(true);
+			var html = container.innerHTML;
+			html = html.replace('###TITLE###', title);
+			html = html.replace('###TEXT###', text);
+			that.lightboxInstance = basicLightbox.create(html);
+			that.lightboxInstance.element().querySelector('[data-lux-email4link="submit"]').addEventListener('click', function(event) {
+				email4LinkLightboxSubmitListener(this, event, href);
+			});
+			that.lightboxInstance.show();
+		}
+	};
+
+	/**
+	 * Callback function if lightbox should be submitted
+	 *
+	 * @param element
+	 * @param event
+	 * @param href
+	 * @returns {void}
+	 */
+	var email4LinkLightboxSubmitListener = function(element, event, href) {
+		event.preventDefault();
+		var email = that.lightboxInstance.element().querySelector('[data-lux-email4link="email"]').value;
+		if (validateEmail(email)) {
+			ajaxConnection(
+				getEmail4LinkRequestUri(),
+				{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[email]': email}
+			);
+			that.lightboxInstance.close();
+			window.location = href;
+		}
 	};
 
 	/**
@@ -277,6 +319,17 @@ function LuxMain() {
 	};
 
 	/**
+	 * @returns {string}
+	 */
+	var getEmail4LinkRequestUri = function() {
+		var container = getContainer();
+		if (container !== null) {
+			return container.getAttribute('data-lux-email4linkuri');
+		}
+		return '';
+	};
+
+	/**
 	 * @params {string} uri
 	 * @params {object} parameters
 	 * @returns void
@@ -351,6 +404,17 @@ function LuxMain() {
 			text += possible.charAt(Math.floor(Math.random() * possible.length));
 		}
 		return text;
+	};
+
+	/**
+	 * Check if string is an email
+	 *
+	 * @param email
+	 * @returns {boolean}
+	 */
+	var validateEmail = function(email) {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
 	};
 
 	/**

@@ -13,10 +13,10 @@ call_user_func(
             'In2code.lux',
             'Fe',
             [
-                'Frontend' => 'pageRequest,fieldListeningRequest'
+                'Frontend' => 'pageRequest,fieldListeningRequest,email4LinkRequest'
             ],
             [
-                'Frontend' => 'pageRequest,fieldListeningRequest'
+                'Frontend' => 'pageRequest,fieldListeningRequest,email4LinkRequest'
             ]
         );
 
@@ -49,12 +49,20 @@ call_user_func(
             'logNewVisitor',
             false
         );
-        // Log: Identified visitor
+        // Log: Identified visitor by listening to field inputs
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Factory\AttributeFactory::class,
-            'isIdentified',
+            'isIdentifiedByFieldlistening',
             \In2code\Lux\Domain\Trigger\LogTrigger::class,
             'logIdentifiedVisitor',
+            false
+        );
+        // Log: Identified visitor by email4link
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Domain\Factory\AttributeFactory::class,
+            'isIdentifiedByEmail4link',
+            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            'logIdentifiedVisitorByEmail4Link',
             false
         );
 

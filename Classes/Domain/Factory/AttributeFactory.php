@@ -18,10 +18,20 @@ class AttributeFactory
 {
     use SignalTrait;
 
+    const CONTEXT_FIELDLISTENING = 'Fieldlistening';
+    const CONTEXT_EMAIL4LINK = 'Email4link';
+
     /**
      * @var string
      */
     protected $idCookie = '';
+
+    /**
+     * Set different context for logging (attribute came from fieldlistening or from email4link and so on)
+     *
+     * @var string
+     */
+    protected $context = '';
 
     /**
      * @var VisitorRepository|null
@@ -38,9 +48,10 @@ class AttributeFactory
      *
      * @param string $idCookie
      */
-    public function __construct(string $idCookie)
+    public function __construct(string $idCookie, string $context = self::CONTEXT_FIELDLISTENING)
     {
         $this->idCookie = $idCookie;
+        $this->context = $context;
         $this->visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
         $this->attributeRepository = ObjectUtility::getObjectManager()->get(AttributeRepository::class);
     }
@@ -63,9 +74,11 @@ class AttributeFactory
                 $this->signalDispatch(__CLASS__, 'createNewAttribute', [$attribute, $visitor]);
             }
             if ($attribute->isEmail()) {
+                if ($visitor->isIdentified() === false) {
+                    $this->signalDispatch(__CLASS__, 'isIdentifiedBy' . $this->context, [$attribute, $visitor]);
+                }
                 $visitor->setIdentified(true);
                 $visitor->setEmail($value);
-                $this->signalDispatch(__CLASS__, 'isIdentified', [$attribute, $visitor]);
             }
             $this->visitorRepository->update($visitor);
             $this->visitorRepository->persistAll();

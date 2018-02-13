@@ -13,6 +13,7 @@ class Log extends AbstractEntity
     const STATUS_DEFAULT = 0;
     const STATUS_NEW = 1;
     const STATUS_IDENTIFIED = 2;
+    const STATUS_IDENTIFIED_EMAIL4LINK = 21;
     const STATUS_ATTRIBUTE = 3;
     const STATUS_PAGEVISIT2 = 40;
     const STATUS_PAGEVISIT3 = 41;

@@ -45,31 +45,56 @@ page {
             }
         }
 
-        # Current page uid
+        # Uri to send AJAX email4link emailaddress-request to
         30 = TEXT
         30 {
+            noTrimWrap = | data-lux-email4linkuri="|"|
+            typolink {
+                parameter.data = TSFE:id
+                additionalParams = &type=1518550595
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
+
+        # Current page uid
+        100 = TEXT
+        100 {
             noTrimWrap = | data-lux-pageuid="|"|
             data = TSFE:id
         }
 
         # FE language
-        40 = TEXT
-        40 {
+        110 = TEXT
+        110 {
             noTrimWrap = | data-lux-languageuid="|"|
             data = GP:L
             intval = 1
         }
 
         # Activate page tracking
-        100 = TEXT
-        100 {
+        120 = TEXT
+        120 {
             value = data-lux-pagetracking="{$plugin.tx_lux.settings.pagetracking}"
             noTrimWrap = | ||
         }
     }
+
+    # HTML-markup for email4link lightbox form
+    1518545003 = FLUIDTEMPLATE
+    1518545003.file = EXT:lux/Resources/Private/Templates/Frontend/Email4Link.html
 }
 
-# AJAX types
+
+
+
+
+
+###############
+# AJAX TypeNums
+###############
+
+# Page request tracking
 luxPageRequestAjax = PAGE
 luxPageRequestAjax {
     typeNum = 1517942451
@@ -94,12 +119,26 @@ luxPageRequestAjax {
         switchableControllerActions.Frontend.1 = pageRequest
     }
 }
+
+# Identification via field listening
 luxFieldListeningRequestAjax < luxPageRequestAjax
 luxFieldListeningRequestAjax {
     typeNum = 1518001045
     10.action = fieldListeningRequest
     10.switchableControllerActions.Frontend.1 = fieldListeningRequest
 }
+
+# Identification via email4link form
+luxEmail4LinkAjax < luxPageRequestAjax
+luxEmail4LinkAjax {
+    typeNum = 1518550595
+    10.action = email4LinkRequest
+    10.switchableControllerActions.Frontend.1 = email4LinkRequest
+}
+
+
+
+
 
 # Typenum to get field mapping configuration in a dynamic JS file
 [globalVar = LIT:0 < {$plugin.tx_lux.settings.fieldidentification}]
