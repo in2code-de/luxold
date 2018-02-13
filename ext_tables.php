@@ -15,7 +15,7 @@ call_user_func(
         $iconRegistry->registerIcon(
             'extension-lux-module',
             \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-            ['source' => 'EXT:lux/Resources/Public/Icons/lux.svg']
+            ['source' => 'EXT:lux/Resources/Public/Icons/lux_white.svg']
         );
 
         /**
@@ -51,7 +51,7 @@ call_user_func(
                 ],
                 [
                     'access' => 'user,group',
-                    'icon' => 'EXT:lux/Resources/Public/Icons/lux.svg',
+                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_white.svg',
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_analysis.xlf',
                 ]
             );
