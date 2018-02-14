@@ -14,6 +14,8 @@ class Log extends AbstractEntity
     const STATUS_NEW = 1;
     const STATUS_IDENTIFIED = 2;
     const STATUS_IDENTIFIED_EMAIL4LINK = 21;
+    const STATUS_IDENTIFIED_EMAIL4LINK_SENDEMAIL = 22;
+    const STATUS_IDENTIFIED_EMAIL4LINK_SENDEMAILFAILED = 23;
     const STATUS_ATTRIBUTE = 3;
     const STATUS_PAGEVISIT2 = 40;
     const STATUS_PAGEVISIT3 = 41;
@@ -34,6 +36,11 @@ class Log extends AbstractEntity
      * @var \DateTime|null
      */
     protected $crdate = null;
+
+    /**
+     * @var string
+     */
+    protected $properties = '';
 
     /**
      * @return Visitor
@@ -87,5 +94,45 @@ class Log extends AbstractEntity
     {
         $this->crdate = $crdate;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProperties(): array
+    {
+        return json_decode($this->properties, true);
+    }
+
+    /**
+     * @param array $properties
+     * @return Log
+     */
+    public function setProperties(array $properties): Log
+    {
+        $this->properties = json_encode($properties);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHref(): string
+    {
+        return $this->getPropertyByKey('href');
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getPropertyByKey(string $key): string
+    {
+        $property = '';
+        $properties = $this->getProperties();
+        if (array_key_exists($key, $properties)) {
+            $property = $properties[$key];
+        }
+        return $property;
     }
 }

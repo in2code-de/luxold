@@ -115,6 +115,9 @@
 			<trans-unit id="tx_lux_domain_model_log.status">
 				<source>Status</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.properties">
+				<source>Properties</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_log.visitor">
 				<source>Lead</source>
 			</trans-unit>
@@ -192,6 +195,12 @@
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.21">
 				<source>lux has identified a new lead by "email4link":</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.22">
+				<source>"email4link" send asset via email:</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.23">
+				<source>"email4link" send asset failed:</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>

@@ -59,7 +59,9 @@ class FrontendController extends ActionController
             AttributeFactory::CONTEXT_EMAIL4LINK
         );
         $visitor = $attributeFactory->getVisitorAndAddAttribute('email', $email);
-        $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($href);
+        if ($sendEmail === true) {
+            $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($href);
+        }
         return json_encode([]);
     }
 }

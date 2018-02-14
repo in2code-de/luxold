@@ -16,10 +16,10 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Log::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'crdate,status,visitor',
+        'showRecordFieldList' => 'crdate,status,properties,visitor',
     ],
     'types' => [
-        '1' => ['showitem' => 'crdate,status,visitor'],
+        '1' => ['showitem' => 'crdate,status,properties,visitor'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -83,6 +83,16 @@ return [
                 'readOnly' => true,
                 'default' => 0,
                 'itemsProcFunc' => \In2code\Lux\TCA\GetStatusForLogSelection::class . '->addOptions'
+            ]
+        ],
+        'properties' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Log::TABLE_NAME . '.properties',
+            'config' => [
+                'type' => 'text',
+                'cols' => 32,
+                'rows' => 5,
+                'readOnly' => true
             ]
         ],
         'visitor' => [

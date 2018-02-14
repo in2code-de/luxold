@@ -46,7 +46,21 @@
 
 
 <f:section name="status21">
-    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.21">Identified lead:</f:translate><br />
+    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.21">Identified lead with "email4link"</f:translate><br />
     <strong title="UID:{log.visitor.uid}">{log.visitor.fullName}</strong>
     <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
+</f:section>
+
+
+
+<f:section name="status22">
+    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.22">Send asset</f:translate><br />
+    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> ({log.visitor.fullName})
+</f:section>
+
+
+
+<f:section name="status23">
+    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.23">Send asset failed</f:translate><br />
+    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> ({log.visitor.fullName})
 </f:section>

@@ -151,6 +151,10 @@
 				<source>Status</source>
 				<target state="translated">Status</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.properties">
+				<source>Properties</source>
+				<target state="translated">Eigenschaften</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_log.visitor">
 				<source>Lead</source>
 				<target state="translated">Lead</target>
@@ -253,6 +257,14 @@
 			<trans-unit id="module.analysis.log.status.21">
 				<source>"email4link" identified lead:</source>
 				<target state="translated">"email4link" hat einen Lead identifiziert:</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.22">
+				<source>"email4link" send asset via email:</source>
+				<target state="translated">"email4link" hat eine Datei verschickt:</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.23">
+				<source>"email4link" send asset failed:</source>
+				<target state="translated">"email4link" Datei versenden fehlgeschlagen:</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>

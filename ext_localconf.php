@@ -65,6 +65,22 @@ call_user_func(
             'logIdentifiedVisitorByEmail4Link',
             false
         );
+        // Log: email4link send mail
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Domain\Service\SendAssetEmail4LinkService::class,
+            'email4linkSendEmail',
+            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            'logEmail4LinkEmail',
+            false
+        );
+        // Log: email4link send mail
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Domain\Service\SendAssetEmail4LinkService::class,
+            'email4linkSendEmailFailed',
+            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            'logEmail4LinkEmailFailed',
+            false
+        );
 
         /**
          * CK editor configuration

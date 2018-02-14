@@ -42,16 +42,37 @@ class LogService
     }
 
     /**
-     * @param int $status
      * @param Visitor $visitor
+     * @param string $href
      * @return void
      */
-    protected function log(int $status, Visitor $visitor)
+    public function logEmail4LinkEmail(Visitor $visitor, string $href)
+    {
+        $this->log(Log::STATUS_IDENTIFIED_EMAIL4LINK_SENDEMAIL, $visitor, ['href' => $href]);
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @param string $href
+     * @return void
+     */
+    public function logEmail4LinkEmailFailed(Visitor $visitor, string $href)
+    {
+        $this->log(Log::STATUS_IDENTIFIED_EMAIL4LINK_SENDEMAILFAILED, $visitor, ['href' => $href]);
+    }
+
+    /**
+     * @param int $status
+     * @param Visitor $visitor
+     * @param array $properties
+     * @return void
+     */
+    protected function log(int $status, Visitor $visitor, array $properties = [])
     {
         $logRepository = ObjectUtility::getObjectManager()->get(LogRepository::class);
         $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
 
-        $log = ObjectUtility::getObjectManager()->get(Log::class)->setStatus($status);
+        $log = ObjectUtility::getObjectManager()->get(Log::class)->setStatus($status)->setProperties($properties);
         $logRepository->add($log);
         $visitor->addLog($log);
         if ($visitor->getUid() > 0) {
