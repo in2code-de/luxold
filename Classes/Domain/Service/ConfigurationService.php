@@ -4,6 +4,7 @@ namespace In2code\Lux\Domain\Service;
 
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
@@ -20,10 +21,21 @@ class ConfigurationService implements SingletonInterface
     protected $settings = [];
 
     /**
+     * @param string $path
+     * @param string $pluginName
+     * @return mixed
+     */
+    public function getTypoScriptSettingsByPath(string $path, string $pluginName = 'Fe')
+    {
+        $typoScript = $this->getTypoScriptSettings($pluginName);
+        return ArrayUtility::getValueByPath($typoScript, $path, '.');
+    }
+
+    /**
      * @param string $pluginName
      * @return array
      */
-    public function getTypoScriptSettings($pluginName = 'Fe'): array
+    public function getTypoScriptSettings(string $pluginName = 'Fe'): array
     {
         if (empty($this->settings[$pluginName])) {
             $this->settings[$pluginName] = $this->getTypoScriptSettingsFromOverallConfiguration($pluginName);
@@ -35,7 +47,7 @@ class ConfigurationService implements SingletonInterface
      * @param string $pluginName
      * @return array
      */
-    protected function getTypoScriptSettingsFromOverallConfiguration($pluginName): array
+    protected function getTypoScriptSettingsFromOverallConfiguration(string $pluginName): array
     {
         $configurationManager = ObjectUtility::getObjectManager()->get(ConfigurationManagerInterface::class);
         return (array)$configurationManager->getConfiguration(

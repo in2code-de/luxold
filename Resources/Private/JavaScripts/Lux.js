@@ -114,9 +114,10 @@ function LuxMain() {
 			var html = container.innerHTML;
 			html = html.replace('###TITLE###', title);
 			html = html.replace('###TEXT###', text);
+			html = html.replace('###HREF###', href);
 			that.lightboxInstance = basicLightbox.create(html);
 			that.lightboxInstance.element().querySelector('[data-lux-email4link="submit"]').addEventListener('click', function(event) {
-				email4LinkLightboxSubmitListener(this, event, href);
+				email4LinkLightboxSubmitListener(this, event, link);
 			});
 			that.lightboxInstance.show();
 		}
@@ -125,21 +126,44 @@ function LuxMain() {
 	/**
 	 * Callback function if lightbox should be submitted
 	 *
-	 * @param element
+	 * @param {Node} element
 	 * @param event
-	 * @param href
+	 * @param {Node} link
 	 * @returns {void}
 	 */
-	var email4LinkLightboxSubmitListener = function(element, event, href) {
+	var email4LinkLightboxSubmitListener = function(element, event, link) {
 		event.preventDefault();
+		var href = link.getAttribute('href');
+		var sendEmail = link.getAttribute('data-lux-email4link-sendemail') || 'false';
 		var email = that.lightboxInstance.element().querySelector('[data-lux-email4link="email"]').value;
 		if (validateEmail(email)) {
+			addWaitClassToBodyTag();
 			ajaxConnection(
 				getEmail4LinkRequestUri(),
-				{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[email]': email}
+				{
+					'tx_lux_fe[idCookie]': getIdCookie(),
+					'tx_lux_fe[email]': email,
+					'tx_lux_fe[sendEmail]': sendEmail === 'true',
+					'tx_lux_fe[href]': href
+				}
 			);
-			that.lightboxInstance.close();
-			window.location = href;
+
+			if (sendEmail === 'true') {
+				hideElement(that.lightboxInstance.element().querySelector('[data-lux-email4link="form"]'));
+				showElement(
+					that.lightboxInstance.element().querySelector('[data-lux-email4link="successMessageSendEmail"]')
+				);
+				setTimeout(function() {
+					that.lightboxInstance.close();
+					removeWaitClassToBodyTag();
+				}, 2000);
+			} else {
+				setTimeout(function() {
+					that.lightboxInstance.close();
+					window.location = href;
+					removeWaitClassToBodyTag();
+				}, 500);
+			}
 		}
 	};
 
@@ -332,7 +356,7 @@ function LuxMain() {
 	/**
 	 * @params {string} uri
 	 * @params {object} parameters
-	 * @returns void
+	 * @returns {void}
 	 */
 	var ajaxConnection = function(uri, parameters) {
 		if (uri) {
@@ -391,6 +415,36 @@ function LuxMain() {
 	 */
 	var getContainer = function() {
 		return document.getElementById('lux_container');
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var addWaitClassToBodyTag = function() {
+		document.body.className += ' ' + 'lux_waiting';
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var removeWaitClassToBodyTag = function() {
+		document.body.classList.remove('lux_waiting');
+	};
+
+	/**
+	 * @param {Node} element
+	 * @returns {void}
+	 */
+	var hideElement = function(element) {
+		element.style.display = 'none';
+	};
+
+	/**
+	 * @param {Node} element
+	 * @returns {void}
+	 */
+	var showElement = function(element) {
+		element.style.display = 'block';
 	};
 
 	/**

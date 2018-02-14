@@ -5,6 +5,7 @@ plugin {
                 0 = EXT:lux/Resources/Private/Templates/
             }
         }
+        features.requireCHashArgumentForActionArguments = 0
         settings {
             # All tracking settings
             tracking {
@@ -58,8 +59,33 @@ plugin {
                         3 = benutze
                     }
                 }
+
+                # Email4Link configuration if visitor wants to receive a mail
+                email4link {
+                    mail {
+                        # Enable/Disable
+                        _enable = 1
+
+                        # Template file for mail with asset attachment
+                        mailTemplate = EXT:lux/Resources/Private/Templates/Mail/Email4LinkMail.html
+
+                        # Mail subject
+                        subject = Your requested asset
+
+                        # From name for mail to visitor
+                        fromName = Website
+
+                        # From email for mail to visitor
+                        fromEmail = marketing@website.org
+
+                        # Allow only files with this extensions
+                        allowedFileExtensions = pdf,txt,doc,docx,xls,xlsx,ppt,pptx,jpg,png,zip
+
+                        # Allow only sending of files within this storages (commaseparated uid list)
+                        allowedStorages = 1
+                    }
+                }
             }
         }
-        features.requireCHashArgumentForActionArguments = 0
     }
 }

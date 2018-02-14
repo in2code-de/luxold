@@ -4,7 +4,7 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Factory\AttributeFactory;
 use In2code\Lux\Domain\Factory\VisitorFactory;
-use In2code\Lux\Signal\SignalTrait;
+use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -47,16 +47,19 @@ class FrontendController extends ActionController
     /**
      * @param string $idCookie
      * @param string $email
+     * @param bool $sendEmail
+     * @param string $href
      * @return string
      */
-    public function email4LinkRequestAction(string $idCookie, string $email): string
+    public function email4LinkRequestAction(string $idCookie, string $email, bool $sendEmail, string $href): string
     {
         $attributeFactory = $this->objectManager->get(
             AttributeFactory::class,
             $idCookie,
             AttributeFactory::CONTEXT_EMAIL4LINK
         );
-        $attributeFactory->getVisitorAndAddAttribute('email', $email);
+        $visitor = $attributeFactory->getVisitorAndAddAttribute('email', $email);
+        $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($href);
         return json_encode([]);
     }
 }
