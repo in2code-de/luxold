@@ -15,21 +15,29 @@
 ### Identification
 
 - Formulardaten generisch
-- Todo: Email4Link
-- Todo: Email4Download
+- Email4Link
 
 ### Analyses
 
 - Letzte Leads pro Seite
 - Dashboard (wichtigste Informationen)
 - Listview
+- Todo: Eye-Candy Detailview mit Pagefunnel und Log (mit Verlinkungen von Liste, Dashboard, LetzteLeads)
+
+### Workflow & User Experience
+
+- Todo: Workflow GUI (Trigger & Actions)
+- Todo: Scoring
+- Todo: Action: Lightbox mit Content
+- Todo: Action: E-Mail versenden
 
 ### Enterprise Features
 
-- Signale bei Events (Neulead, Identifikation, X Besuche, X Seiten, Seite mit Kategorie X)
+- Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
+- Contextual content?
 
 ##Ideen
 
+- Email4Download Plugin?
 - Bild anzeigen (E-Mail => Gravatar)
-- Scoring (eventuell nach Kategorie)
-- Workflow GUI mit Trigger und Events
+- Kategoriesierung?
