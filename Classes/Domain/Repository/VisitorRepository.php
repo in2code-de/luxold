@@ -119,6 +119,36 @@ class VisitorRepository extends AbstractRepository
     }
 
     /**
+     * Find visitors where tstamp is older then given timestamp
+     *
+     * @param int $timestamp
+     * @return QueryResultInterface
+     */
+    public function findByLastChange(int $timestamp): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->matching($query->lessThan('tstamp', $timestamp));
+        return $query->execute();
+    }
+
+    /**
+     * Find unknown visitors where tstamp is older then given timestamp
+     *
+     * @param int $timestamp
+     * @return QueryResultInterface
+     */
+    public function findByLastChangeUnknown(int $timestamp): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $logicalAnd = [
+            $query->equals('identified', false),
+            $query->lessThan('tstamp', $timestamp)
+        ];
+        $query->matching($query->logicalAnd($logicalAnd));
+        return $query->execute();
+    }
+
+    /**
      * @param FilterDto $filter
      * @param QueryInterface $query
      * @param array $logicalAnd

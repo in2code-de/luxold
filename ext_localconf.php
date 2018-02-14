@@ -91,5 +91,11 @@ call_user_func(
          * Fluid Namespace
          */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['lux'][] = 'In2code\Lux\ViewHelpers';
+
+        /**
+         * CommandControllers
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
+            \In2code\Lux\Command\LuxCleanupCommandController::class;
     }
 );
