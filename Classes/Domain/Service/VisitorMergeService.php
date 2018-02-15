@@ -88,7 +88,7 @@ class VisitorMergeService
         $connection = DatabaseUtility::getConnectionForTable(Pagevisit::TABLE_NAME);
         $connection->query(
             'update ' . Pagevisit::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
-            'where uid = ' . (int)$newVisitor->getUid()
+            'where visitor = ' . (int)$newVisitor->getUid()
         )->execute();
     }
 
