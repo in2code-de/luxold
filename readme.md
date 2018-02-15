@@ -35,6 +35,8 @@
 
 - Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
 - Contextual content?
+- Kontakte (Import?)
+- API/Export
 
 ##Ideen
 
