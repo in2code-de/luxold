@@ -45,6 +45,19 @@ class FrontendController extends ActionController
     }
 
     /**
+     * @return void
+     */
+    public function initializeEmail4LinkRequestAction()
+    {
+        try {
+            $sendEmail = $this->request->getArgument('sendEmail');
+            $this->request->setArgument('sendEmail', $sendEmail === 'true');
+        } catch (\Exception $exception) {
+            unset($exception);
+        }
+    }
+
+    /**
      * @param string $idCookie
      * @param string $email
      * @param bool $sendEmail
