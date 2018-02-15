@@ -70,7 +70,7 @@ class VisitorMergeService
                     $this->mergeLogs($visitor);
                     $this->mergeAttributes($visitor);
                     $this->updateIdCookie($visitor);
-                    $this->removeVisitor($visitor);
+                    $this->deleteVisitor($visitor);
                 }
             }
             $this->signalDispatch(__CLASS__, 'mergeVisitors', [$visitors]);
@@ -85,17 +85,11 @@ class VisitorMergeService
      */
     protected function mergePagevisits(Visitor $newVisitor)
     {
-        $pagevisits = [];
-        foreach ($newVisitor->getPagevisits() as $pagevisit) {
-            $pagevisits[] = $pagevisit->getUid();
-        }
-        if (count($pagevisits) > 0) {
-            $connection = DatabaseUtility::getConnectionForTable(Pagevisit::TABLE_NAME);
-            $connection->query(
-                'update ' . Pagevisit::TABLE_NAME . ' set visitor = ' . $this->firstVisitor->getUid() . ' ' .
-                'where uid in (' . implode(',', $pagevisits) . ')'
-            );
-        }
+        $connection = DatabaseUtility::getConnectionForTable(Pagevisit::TABLE_NAME);
+        $connection->query(
+            'update ' . Pagevisit::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
+            'where uid = ' . (int)$newVisitor->getUid()
+        )->execute();
     }
 
     /**
@@ -106,17 +100,11 @@ class VisitorMergeService
      */
     protected function mergeLogs(Visitor $newVisitor)
     {
-        $logs = [];
-        foreach ($newVisitor->getLogs() as $log) {
-            $logs[] = $log->getUid();
-        }
-        if (count($logs) > 0) {
-            $connection = DatabaseUtility::getConnectionForTable(Log::TABLE_NAME);
-            $connection->query(
-                'update ' . Log::TABLE_NAME . ' set visitor = ' . $this->firstVisitor->getUid() . ' ' .
-                'where uid in (' . implode(',', $logs) . ')'
-            );
-        }
+        $connection = DatabaseUtility::getConnectionForTable(Log::TABLE_NAME);
+        $connection->query(
+            'update ' . Log::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
+            'where visitor = ' . (int)$newVisitor->getUid()
+        )->execute();
     }
 
     /**
@@ -139,7 +127,7 @@ class VisitorMergeService
                 $connection->query(
                     'update ' . Attribute::TABLE_NAME . ' set visitor = ' . $this->firstVisitor->getUid() . ' ' .
                     'where uid = ' . (int)$newAttribute->getUid()
-                );
+                )->execute();
             }
         }
     }
@@ -159,10 +147,12 @@ class VisitorMergeService
      * @param Visitor $newVisitor
      * @return void
      */
-    protected function removeVisitor(Visitor $newVisitor)
+    protected function deleteVisitor(Visitor $newVisitor)
     {
         $connection = DatabaseUtility::getConnectionForTable(Visitor::TABLE_NAME);
-        $connection->query('update ' . Visitor::TABLE_NAME . ' set deleted=1 where uid=' . (int)$newVisitor->getUid());
+        $connection
+            ->query('update ' . Visitor::TABLE_NAME . ' set deleted=1 where uid=' . (int)$newVisitor->getUid())
+            ->execute();
     }
 
     /**
