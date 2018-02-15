@@ -83,4 +83,50 @@ class Pagevisit extends AbstractEntity
         $this->crdate = $crdate;
         return $this;
     }
+
+    /**
+     * Get all pagevisits of the current visitor
+     *
+     * @return Pagevisit[]
+     */
+    public function getAllPagevisits()
+    {
+        return $this->getVisitor()->getPagevisits();
+    }
+
+    /**
+     * @return Pagevisit|null
+     */
+    public function getNextPagevisit()
+    {
+        $allPagevisits = $this->getAllPagevisits();
+        $thisFound = false;
+        $nextPagevisit = null;
+        foreach ($allPagevisits as $pagevisit) {
+            if ($thisFound === true) {
+                $nextPagevisit = $pagevisit;
+                break;
+            }
+            if ($pagevisit === $this) {
+                $thisFound = true;
+            }
+        }
+        return $nextPagevisit;
+    }
+
+    /**
+     * @return Pagevisit|null
+     */
+    public function getPreviousPagevisit()
+    {
+        $allPagevisits = $this->getAllPagevisits();
+        $previousPagevisit = $lastPagevisit = null;
+        foreach ($allPagevisits as $pagevisit) {
+            if ($pagevisit === $this) {
+                $previousPagevisit = $lastPagevisit;
+            }
+            $lastPagevisit = $pagevisit;
+        }
+        return $previousPagevisit;
+    }
 }

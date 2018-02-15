@@ -1,4 +1,5 @@
 <f:if condition="{visitors}">
+    <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/PageOverview.min.css',extensionName:'lux')}" media="all">
     <h4 class="callout-title">
         <img src="{f:uri.resource(path:'Icons/lux.svg?hash=123',extensionName:'lux')}" height="30" />
         <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pageoverview">Last visitors</f:translate>
@@ -6,33 +7,28 @@
 
     <div class="callout-body">
         <ul class="list-group">
+
             <f:for each="{visitors}" as="visitor">
-                <li class="list-group-item clearfix {f:if(condition:visitor.identified,then:' list-group-item-info')}">
-                    <h4 class="list-group-item-heading">
-                        <strong title="IdCookie: {visitor.idCookie}">{visitor.fullName}</strong>
-                        <f:if condition="{visitor.location}">({visitor.location})</f:if>
+                <li class="list-group-item clearfix {f:if(condition:visitor.identified,then:' __list-group-item-info')}">
+                    <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
+                        <span class="badge badge-primary badge-pill" title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                            <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
+                        </span>
 
-                        <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
-                            <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}" style="font-size: 0.75em; float: right;">
-                                <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
-                            </span>
-                        </f:alias>
-                    </h4>
+                        <h4 class="list-group-item-heading">
+                            <strong title="UID{visitor.uid} {visitor.company} {visitor.email}">{visitor.fullName}</strong>
+                            <f:if condition="{visitor.location}">({visitor.location})</f:if>
+                        </h4>
 
-                    <span class="badge badge-primary badge-pill" title="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pageoverview.recurringvisits')}">{visitor.numberOfUniquePagevisits}</span>
-
-                    <f:if condition="{visitor.identified}">
-                        <p class="list-group-item-text">
-                            <f:if condition="{visitor.company}">
-                                <strong>Firma:</strong> {visitor.company}<f:if condition="{visitor.email}">,</f:if>
-                            </f:if>
-                            <f:if condition="{visitor.email}">
-                                <strong>E-Mail:</strong> {visitor.email}
-                            </f:if>
-                        </p>
-                    </f:if>
+                        <nav class="timeline timeline--horizontal timeline__thin">
+                            <div class="timeline__item" title="PID{pagevisit.previousPagevisit.page.uid}">{pagevisit.previousPagevisit.page.title}</div>
+                            <div class="timeline__item" title="PID{pagevisit.page.uid}">{pagevisit.page.title}</div>
+                            <div class="timeline__item" title="PID{pagevisit.nextPagevisit.page.uid}"">{pagevisit.nextPagevisit.page.title}</div>
+                        </nav>
+                    </f:alias>
                 </li>
             </f:for>
+
         </ul>
     </div>
 </f:if>
