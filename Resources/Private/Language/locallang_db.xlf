@@ -188,19 +188,19 @@
 				<source>Unknown leads</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.1">
-				<source>lux has tracked a new lead:</source>
+				<source>lux has tracked a new lead</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.2">
-				<source>lux has identified a new lead:</source>
+				<source>lux has identified a new lead</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.21">
-				<source>lux has identified a new lead by "email4link":</source>
+				<source>lux has identified a new lead by "email4link"</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.22">
-				<source>"email4link" send asset via email:</source>
+				<source>"email4link" send asset via email</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.23">
-				<source>"email4link" send asset failed:</source>
+				<source>"email4link" send asset failed</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>

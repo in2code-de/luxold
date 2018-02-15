@@ -12,12 +12,20 @@ class ReadableDateViewHelper extends AbstractViewHelper
 {
 
     /**
+     * @return void
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('date', \DateTime::class, 'Datetime', false);
+    }
+
+    /**
      * @return string
      */
     public function render(): string
     {
-        /** @var \DateTime $date */
-        $date = $this->renderChildren();
+        $date = $this->getDate();
         $deltaTimestamp = time() - $date->getTimestamp();
         $delta = $date->diff(new \DateTime());
 
@@ -84,5 +92,17 @@ class ReadableDateViewHelper extends AbstractViewHelper
             'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:readabledate.date'
         );
         return $date->format($format);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    protected function getDate(): \DateTime
+    {
+        $pathAndFilename = $this->renderChildren();
+        if (!empty($this->arguments['date'])) {
+            $pathAndFilename = $this->arguments['date'];
+        }
+        return $pathAndFilename;
     }
 }

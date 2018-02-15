@@ -247,24 +247,24 @@
 				<target state="translated">Unbekannte Leads</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.1">
-				<source>lux has tracked a new lead:</source>
-				<target state="translated">lux hat einen neuen Lead erfasst:</target>
+				<source>lux has tracked a new lead</source>
+				<target state="translated">lux hat einen neuen Lead erfasst</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.2">
-				<source>lux has identified a new lead:</source>
-				<target state="translated">lux hat einen neuen Lead identifiziert:</target>
+				<source>lux has identified a new lead</source>
+				<target state="translated">lux hat einen neuen Lead identifiziert</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.21">
-				<source>"email4link" identified lead:</source>
-				<target state="translated">"email4link" hat einen Lead identifiziert:</target>
+				<source>"email4link" identified lead</source>
+				<target state="translated">"email4link" hat einen Lead identifiziert</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.22">
-				<source>"email4link" send asset via email:</source>
-				<target state="translated">"email4link" hat eine Datei verschickt:</target>
+				<source>"email4link" send asset via email</source>
+				<target state="translated">"email4link" hat eine Datei verschickt</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.log.status.23">
-				<source>"email4link" send asset failed:</source>
-				<target state="translated">"email4link" Datei versenden fehlgeschlagen:</target>
+				<source>"email4link" send asset failed</source>
+				<target state="translated">"email4link" Datei versenden fehlgeschlagen</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
