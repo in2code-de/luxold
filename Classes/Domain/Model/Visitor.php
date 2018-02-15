@@ -70,6 +70,14 @@ class Visitor extends AbstractEntity
     protected $ipinformations = null;
 
     /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Download>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @extensionScannerIgnoreLine Still needed for TYPO3 8.7
+     * @lazy
+     */
+    protected $downloads = null;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Log>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      * @extensionScannerIgnoreLine Still needed for TYPO3 8.7
@@ -96,6 +104,7 @@ class Visitor extends AbstractEntity
         $this->attributes = new ObjectStorage();
         $this->ipinformations = new ObjectStorage();
         $this->logs = new ObjectStorage();
+        $this->downloads = new ObjectStorage();
     }
 
     /**
@@ -367,6 +376,44 @@ class Visitor extends AbstractEntity
     public function removeIpinformation(Ipinformation $ipinformation)
     {
         $this->ipinformations->detach($ipinformation);
+        return $this;
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getDownloads(): ObjectStorage
+    {
+        return $this->downloads;
+    }
+
+    /**
+     * @param ObjectStorage $downloads
+     * @return Visitor
+     */
+    public function setDownloads(ObjectStorage $downloads)
+    {
+        $this->downloads = $downloads;
+        return $this;
+    }
+
+    /**
+     * @param Download $download
+     * @return Visitor
+     */
+    public function addDownload(Download $download): Visitor
+    {
+        $this->downloads->attach($download);
+        return $this;
+    }
+
+    /**
+     * @param Download $download
+     * @return Visitor
+     */
+    public function removeDownload(Download $download): Visitor
+    {
+        $this->downloads->detach($download);
         return $this;
     }
 

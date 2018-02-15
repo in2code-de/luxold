@@ -11,6 +11,14 @@
 				<source>Lead identification</source>
 				<target state="translated">Lead Ident</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.pagevisits">
+				<source>Page visits</source>
+				<target state="translated">Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.downloads">
+				<source>Downloads</source>
+				<target state="translated">Datei-Downloads</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
 				<source>Enrichments</source>
 				<target state="translated">Angereicherte Informationen</target>
@@ -66,6 +74,10 @@
 			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
 				<source>Information from IP address</source>
 				<target state="translated">Informationen über IP-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.downloads">
+				<source>Download</source>
+				<target state="translated">Download</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.logs">
 				<source>Log</source>
@@ -135,6 +147,23 @@
 				<target state="translated">Value</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_ipinformation.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_download">
+				<source>Download</source>
+				<target state="translated">Download</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.crdate">
+				<source>Date</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.href">
+				<source>File</source>
+				<target state="translated">Datei</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.visitor">
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>

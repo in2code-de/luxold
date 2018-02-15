@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Factory\AttributeFactory;
+use In2code\Lux\Domain\Factory\DownloadFactory;
 use In2code\Lux\Domain\Factory\VisitorFactory;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -75,6 +76,18 @@ class FrontendController extends ActionController
         if ($sendEmail === true) {
             $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($href);
         }
+        return json_encode([]);
+    }
+
+    /**
+     * @param string $idCookie
+     * @param string $href
+     * @return string
+     */
+    public function downloadRequestAction(string $idCookie, string $href): string
+    {
+        $downloadFactory = $this->objectManager->get(DownloadFactory::class, $idCookie);
+        $downloadFactory->getVisitorAndAddDownload($href);
         return json_encode([]);
     }
 }

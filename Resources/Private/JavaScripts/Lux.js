@@ -40,6 +40,7 @@ function LuxMain() {
 			pageRequest();
 			addFieldListeners();
 			addEmail4LinkListeners();
+			addDownloadListener();
 		}
 	};
 
@@ -94,6 +95,27 @@ function LuxMain() {
 			element.addEventListener('click', function(event) {
 				email4LinkListener(this, event);
 			});
+		}
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var addDownloadListener = function() {
+		if (isDownloadTrackingEnabled()) {
+			var links = document.querySelectorAll('[href]');
+			var href;
+			for (var i = 0; i < links.length; i++) {
+				href = links[i].getAttribute('href');
+				if (isAllowedAsset(href)) {
+					links[i].addEventListener('click', function() {
+						ajaxConnection(
+							getDownloadRequestUri(),
+							{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[href]': this.getAttribute('href')}
+						);
+					});
+				}
+			}
 		}
 	};
 
@@ -214,6 +236,15 @@ function LuxMain() {
 	};
 
 	/**
+	 * @returns {boolean}
+	 */
+	var isAllowedAsset = function(href) {
+		var extension = getFileExtension(href);
+		var extensions = getContainer().getAttribute('data-lux-downloadtracking-extensions').toLowerCase().split(',');
+		return inArray(extension.toLowerCase(), extensions);
+	};
+
+	/**
 	 * Check if string is identically to another string. But if there is a "*", check if the string is part of another
 	 * string
 	 *
@@ -268,6 +299,21 @@ function LuxMain() {
 			if (container.hasAttribute('data-lux-pagetracking')) {
 				var pageTrackingEnabled = container.getAttribute('data-lux-pagetracking');
 				enabled = pageTrackingEnabled === '1';
+			}
+		}
+		return enabled;
+	};
+
+	/**
+	 * @returns {boolean}
+	 */
+	var isDownloadTrackingEnabled = function() {
+		var enabled = false;
+		var container = getContainer();
+		if (container !== null) {
+			if (container.hasAttribute('data-lux-downloadtracking')) {
+				var trackingEnabled = container.getAttribute('data-lux-downloadtracking');
+				enabled = trackingEnabled === '1';
 			}
 		}
 		return enabled;
@@ -349,6 +395,17 @@ function LuxMain() {
 		var container = getContainer();
 		if (container !== null) {
 			return container.getAttribute('data-lux-email4linkuri');
+		}
+		return '';
+	};
+
+	/**
+	 * @returns {string}
+	 */
+	var getDownloadRequestUri = function() {
+		var container = getContainer();
+		if (container !== null) {
+			return container.getAttribute('data-lux-downloaduri');
 		}
 		return '';
 	};
@@ -469,6 +526,30 @@ function LuxMain() {
 	var validateEmail = function(email) {
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(email);
+	};
+
+	/**
+	 * @param {String} needle
+	 * @param {Array} haystack
+	 * @returns {boolean}
+	 */
+	var inArray = function(needle, haystack) {
+		var length = haystack.length;
+		for (var i = 0; i < length; i++) {
+			if (haystack[i] === needle) return true;
+		}
+		return false;
+	};
+
+	/**
+	 * @param {String} filename
+	 * @returns {String}
+	 */
+	var getFileExtension = function(filename) {
+		if (filename.indexOf('.') !== -1) {
+			return filename.split('.').pop();
+		}
+		return '';
 	};
 
 	/**

@@ -22,16 +22,20 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
+        'showRecordFieldList' => 'identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,downloads,' .
             'referrer,user_agent,ip_address,ipinformations,logs',
     ],
     'types' => [
         '1' => [
             'showitem' =>
                 '--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
-                'attributes,pagevisits,--palette--;Lead;referrer,' .
+                'attributes,--palette--;Lead;referrer,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
                 'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations,' .
+                '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+                'tx_lux_domain_model_visitor.tab.pagevisits,pagevisits,' .
+                '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+                'tx_lux_domain_model_visitor.tab.downloads,downloads,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
                 'tx_lux_domain_model_visitor.tab.logs,logs'
         ],
@@ -248,6 +252,23 @@ return [
                 'foreign_table' => \In2code\Lux\Domain\Model\Ipinformation::TABLE_NAME,
                 'foreign_field' => 'visitor',
                 'maxitems' => 20,
+                'appearance' => [
+                    'collapse' => 1,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ]
+            ]
+        ],
+        'downloads' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.downloads',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => \In2code\Lux\Domain\Model\Download::TABLE_NAME,
+                'foreign_field' => 'visitor',
+                'maxitems' => 1000,
                 'appearance' => [
                     'collapse' => 1,
                     'levelLinksPosition' => 'top',

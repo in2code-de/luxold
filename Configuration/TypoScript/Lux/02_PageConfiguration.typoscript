@@ -57,6 +57,18 @@ page {
             }
         }
 
+        # Uri to send AJAX tracking of download request to
+        40 = TEXT
+        40 {
+            noTrimWrap = | data-lux-downloaduri="|"|
+            typolink {
+                parameter.data = TSFE:id
+                additionalParams = &type=1518727787
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
+
         # Current page uid
         100 = TEXT
         100 {
@@ -75,7 +87,21 @@ page {
         # Activate page tracking
         120 = TEXT
         120 {
-            value = data-lux-pagetracking="{$plugin.tx_lux.settings.pagetracking}"
+            value = data-lux-pagetracking="{$plugin.tx_lux.settings.tracking.page}"
+            noTrimWrap = | ||
+        }
+
+        # Activate download tracking
+        130 = TEXT
+        130 {
+            value = data-lux-downloadtracking="{$plugin.tx_lux.settings.tracking.assetDownloads}"
+            noTrimWrap = | ||
+        }
+
+        # Allowed extensions for download tracking
+        140 = TEXT
+        140 {
+            value = data-lux-downloadtracking-extensions="{$plugin.tx_lux.settings.tracking.assetDownloads.allowedExtensions}"
             noTrimWrap = | ||
         }
     }
@@ -134,6 +160,14 @@ luxEmail4LinkAjax {
     typeNum = 1518550595
     10.action = email4LinkRequest
     10.switchableControllerActions.Frontend.1 = email4LinkRequest
+}
+
+# Identification via email4link form
+luxEmail4LinkAjax < luxPageRequestAjax
+luxEmail4LinkAjax {
+    typeNum = 1518727787
+    10.action = downloadRequest
+    10.switchableControllerActions.Frontend.1 = downloadRequest
 }
 
 

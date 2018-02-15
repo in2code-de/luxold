@@ -9,6 +9,12 @@
 			<trans-unit id="tx_lux_domain_model_visitor.identification">
 				<source>Lead identification</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.pagevisits">
+				<source>Page visits</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.downloads">
+				<source>Downloads</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
 				<source>Enrichments</source>
 			</trans-unit>
@@ -50,6 +56,9 @@
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
 				<source>Information from IP address</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.downloads">
+				<source>Download</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.logs">
 				<source>Log</source>
@@ -103,6 +112,19 @@
 				<source>Value</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_ipinformation.visitor">
+				<source>Lead</source>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_download">
+				<source>Download</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.crdate">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.href">
+				<source>File</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.visitor">
 				<source>Lead</source>
 			</trans-unit>
 
