@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Service;
 
 use In2code\Lux\Domain\Model\Attribute;
+use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
@@ -68,6 +69,7 @@ class VisitorMergeService
                 if ($visitor !== $this->firstVisitor) {
                     $this->mergePagevisits($visitor);
                     $this->mergeLogs($visitor);
+                    $this->mergeDownloads($visitor);
                     $this->mergeAttributes($visitor);
                     $this->updateIdCookie($visitor);
                     $this->deleteVisitor($visitor);
@@ -103,6 +105,21 @@ class VisitorMergeService
         $connection = DatabaseUtility::getConnectionForTable(Log::TABLE_NAME);
         $connection->query(
             'update ' . Log::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
+            'where visitor = ' . (int)$newVisitor->getUid()
+        )->execute();
+    }
+
+    /**
+     * Update existing downloads with another parent visitor uid
+     *
+     * @param Visitor $newVisitor
+     * @return void
+     */
+    protected function mergeDownloads(Visitor $newVisitor)
+    {
+        $connection = DatabaseUtility::getConnectionForTable(Download::TABLE_NAME);
+        $connection->query(
+            'update ' . Download::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
             'where visitor = ' . (int)$newVisitor->getUid()
         )->execute();
     }
