@@ -65,7 +65,12 @@ function LuxMain() {
 	 */
 	var pageRequest = function() {
 		if (isPageTrackingEnabled()) {
-			ajaxConnection(getPageRequestUri(), getParametersForAjaxCall());
+			ajaxConnection({
+				'tx_lux_fe[dispatchAction]': 'pageRequest',
+				'tx_lux_fe[idCookie]': getIdCookie(),
+				'tx_lux_fe[arguments][pageUid]': getPageUid(),
+				'tx_lux_fe[arguments][referrer]': getReferrer()
+			});
 		}
 	};
 
@@ -109,10 +114,11 @@ function LuxMain() {
 				href = links[i].getAttribute('href');
 				if (isAllowedAsset(href)) {
 					links[i].addEventListener('click', function() {
-						ajaxConnection(
-							getDownloadRequestUri(),
-							{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[href]': this.getAttribute('href')}
-						);
+						ajaxConnection({
+							'tx_lux_fe[dispatchAction]': 'downloadRequest',
+							'tx_lux_fe[idCookie]': getIdCookie(),
+							'tx_lux_fe[arguments][href]': this.getAttribute('href')
+						});
 					});
 				}
 			}
@@ -160,15 +166,13 @@ function LuxMain() {
 		var email = that.lightboxInstance.element().querySelector('[data-lux-email4link="email"]').value;
 		if (validateEmail(email)) {
 			addWaitClassToBodyTag();
-			ajaxConnection(
-				getEmail4LinkRequestUri(),
-				{
-					'tx_lux_fe[idCookie]': getIdCookie(),
-					'tx_lux_fe[email]': email,
-					'tx_lux_fe[sendEmail]': sendEmail === 'true',
-					'tx_lux_fe[href]': href
-				}
-			);
+			ajaxConnection({
+				'tx_lux_fe[dispatchAction]': 'email4LinkRequest',
+				'tx_lux_fe[idCookie]': getIdCookie(),
+				'tx_lux_fe[arguments][email]': email,
+				'tx_lux_fe[arguments][sendEmail]': sendEmail === 'true',
+				'tx_lux_fe[arguments][href]': href
+			});
 
 			if (sendEmail === 'true') {
 				hideElement(that.lightboxInstance.element().querySelector('[data-lux-email4link="form"]'));
@@ -196,10 +200,12 @@ function LuxMain() {
 	var fieldListener = function(field) {
 		var key = getKeyOfFieldConfigurationToGivenField(field);
 		var value = field.value;
-		ajaxConnection(
-			getFieldListeningRequestUri(),
-			{'tx_lux_fe[idCookie]': getIdCookie(), 'tx_lux_fe[key]': key, 'tx_lux_fe[value]': value}
-		);
+		ajaxConnection({
+			'tx_lux_fe[dispatchAction]': 'fieldListeningRequest',
+			'tx_lux_fe[idCookie]': getIdCookie(),
+			'tx_lux_fe[arguments][key]': key,
+			'tx_lux_fe[arguments][value]': value
+		});
 	};
 
 	/**
@@ -276,20 +282,6 @@ function LuxMain() {
 	};
 
 	/**
-	 * Get parameters for ajax call
-	 *
-	 * @returns {object}
-	 */
-	var getParametersForAjaxCall = function() {
-		return {
-			'tx_lux_fe[idCookie]': getIdCookie(),
-			'tx_lux_fe[pageUid]': getPageUid(),
-			'tx_lux_fe[referrer]': getReferrer(),
-			'tx_lux_fe[languageUid]': getLanguageUid()
-		};
-	};
-
-	/**
 	 * @returns {boolean}
 	 */
 	var isPageTrackingEnabled = function() {
@@ -342,21 +334,6 @@ function LuxMain() {
 	};
 
 	/**
-	 * @returns {int}
-	 */
-	var getLanguageUid = function() {
-		var uid = 0;
-		var container = getContainer();
-		if (container !== null) {
-			if (container.hasAttribute('data-lux-languageuid')) {
-				var uidContainer = container.getAttribute('data-lux-languageuid');
-				uid = parseInt(uidContainer);
-			}
-		}
-		return uid;
-	};
-
-	/**
 	 * @returns {void}
 	 */
 	var generateNewIdCookieIfNoCookieFound = function() {
@@ -369,54 +346,21 @@ function LuxMain() {
 	/**
 	 * @returns {string}
 	 */
-	var getPageRequestUri = function() {
+	var getRequestUri = function() {
 		var container = getContainer();
 		if (container !== null) {
-			return container.getAttribute('data-lux-pagerequesturi');
+			return container.getAttribute('data-lux-requesturi');
 		}
 		return '';
 	};
 
 	/**
-	 * @returns {string}
-	 */
-	var getFieldListeningRequestUri = function() {
-		var container = getContainer();
-		if (container !== null) {
-			return container.getAttribute('data-lux-fieldlisteninguri');
-		}
-		return '';
-	};
-
-	/**
-	 * @returns {string}
-	 */
-	var getEmail4LinkRequestUri = function() {
-		var container = getContainer();
-		if (container !== null) {
-			return container.getAttribute('data-lux-email4linkuri');
-		}
-		return '';
-	};
-
-	/**
-	 * @returns {string}
-	 */
-	var getDownloadRequestUri = function() {
-		var container = getContainer();
-		if (container !== null) {
-			return container.getAttribute('data-lux-downloaduri');
-		}
-		return '';
-	};
-
-	/**
-	 * @params {string} uri
 	 * @params {object} parameters
 	 * @returns {void}
 	 */
-	var ajaxConnection = function(uri, parameters) {
-		if (uri) {
+	var ajaxConnection = function(parameters) {
+		var uri = getRequestUri();
+		if (uri !== '') {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState === 4 && this.status === 200) {

@@ -17,71 +17,27 @@ page {
     includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux/Lux.min.js
 
     # Container for informations that will be send via AJAX
-    1517942451 = COA
-    1517942451 {
+    1518815717 = COA
+    1518815717 {
         wrap = <script id="lux_container"|></script>
 
         # Uri to send AJAX page request to
         10 = TEXT
         10 {
-            noTrimWrap = | data-lux-pagerequesturi="|"|
+            noTrimWrap = | data-lux-requesturi="|"|
             typolink {
                 parameter.data = TSFE:id
-                additionalParams = &type=1517942451
-                returnLast = url
-                forceAbsoluteUrl = 1
-            }
-        }
-
-        # Uri to send AJAX fieldlistening request to
-        20 = TEXT
-        20 {
-            noTrimWrap = | data-lux-fieldlisteninguri="|"|
-            typolink {
-                parameter.data = TSFE:id
-                additionalParams = &type=1518001045
-                returnLast = url
-                forceAbsoluteUrl = 1
-            }
-        }
-
-        # Uri to send AJAX email4link emailaddress-request to
-        30 = TEXT
-        30 {
-            noTrimWrap = | data-lux-email4linkuri="|"|
-            typolink {
-                parameter.data = TSFE:id
-                additionalParams = &type=1518550595
-                returnLast = url
-                forceAbsoluteUrl = 1
-            }
-        }
-
-        # Uri to send AJAX tracking of download request to
-        40 = TEXT
-        40 {
-            noTrimWrap = | data-lux-downloaduri="|"|
-            typolink {
-                parameter.data = TSFE:id
-                additionalParams = &type=1518727787
+                additionalParams = &type=1518815717
                 returnLast = url
                 forceAbsoluteUrl = 1
             }
         }
 
         # Current page uid
-        100 = TEXT
-        100 {
-            noTrimWrap = | data-lux-pageuid="|"|
-            data = TSFE:id
-        }
-
-        # FE language
         110 = TEXT
         110 {
-            noTrimWrap = | data-lux-languageuid="|"|
-            data = GP:L
-            intval = 1
+            noTrimWrap = | data-lux-pageuid="|"|
+            data = TSFE:id
         }
 
         # Activate page tracking
@@ -123,7 +79,7 @@ page {
 # Page request tracking
 luxPageRequestAjax = PAGE
 luxPageRequestAjax {
-    typeNum = 1517942451
+    typeNum = 1518815717
     config {
         additionalHeaders.10.header = Content-Type: application/json
         no_cache = 1
@@ -141,33 +97,9 @@ luxPageRequestAjax {
         pluginName = Fe
         vendorName = In2code
         controller = Frontend
-        action = pageRequest
-        switchableControllerActions.Frontend.1 = pageRequest
+        action = dispatchRequest
+        switchableControllerActions.Frontend.1 = dispatchRequest
     }
-}
-
-# Identification via field listening
-luxFieldListeningRequestAjax < luxPageRequestAjax
-luxFieldListeningRequestAjax {
-    typeNum = 1518001045
-    10.action = fieldListeningRequest
-    10.switchableControllerActions.Frontend.1 = fieldListeningRequest
-}
-
-# Identification via email4link form
-luxEmail4LinkAjax < luxPageRequestAjax
-luxEmail4LinkAjax {
-    typeNum = 1518550595
-    10.action = email4LinkRequest
-    10.switchableControllerActions.Frontend.1 = email4LinkRequest
-}
-
-# Identification via email4link form
-luxEmail4LinkAjax < luxPageRequestAjax
-luxEmail4LinkAjax {
-    typeNum = 1518727787
-    10.action = downloadRequest
-    10.switchableControllerActions.Frontend.1 = downloadRequest
 }
 
 
