@@ -10,12 +10,13 @@
 - Erster / Letzter Besuch
 - Diverse Eigenschaften (aus Formularen)
 - IP-Adresse: Land, Region, Firma
-- Todo: Asset-Downloads
+- Asset-Downloads
 
 ### Identification
 
 - Formulardaten generisch
 - Email4Link
+- Automatisches Zusammenführen bei neuem Cookie (bei Identifikation)
 
 ### Analyses
 
