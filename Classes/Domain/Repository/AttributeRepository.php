@@ -12,18 +12,6 @@ class AttributeRepository extends AbstractRepository
 {
 
     /**
-     * @param string $idCookie
-     * @param string $key
-     * @return Attribute|null
-     */
-    public function findByIdCookieAndKey(string $idCookie, string $key)
-    {
-        $visitorRepository = $this->objectManager->get(VisitorRepository::class);
-        $visitor = $visitorRepository->findOneByIdCookie($idCookie);
-        return $this->findByVisitorAndKey($visitor, $key);
-    }
-
-    /**
      * @param Visitor $visitor
      * @param string $key
      * @return Attribute|null|object

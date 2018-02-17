@@ -51,7 +51,7 @@ call_user_func(
         );
         // Log: Identified visitor by listening to field inputs
         $signalSlotDispatcher->connect(
-            \In2code\Lux\Domain\Factory\AttributeFactory::class,
+            \In2code\Lux\Domain\Tracker\AttributeTracker::class,
             'isIdentifiedByFieldlistening',
             \In2code\Lux\Domain\Trigger\LogTrigger::class,
             'logIdentifiedVisitor',
@@ -59,7 +59,7 @@ call_user_func(
         );
         // Log: Identified visitor by email4link
         $signalSlotDispatcher->connect(
-            \In2code\Lux\Domain\Factory\AttributeFactory::class,
+            \In2code\Lux\Domain\Tracker\AttributeTracker::class,
             'isIdentifiedByEmail4link',
             \In2code\Lux\Domain\Trigger\LogTrigger::class,
             'logIdentifiedVisitorByEmail4Link',

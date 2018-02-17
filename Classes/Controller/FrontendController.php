@@ -2,10 +2,10 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
-use In2code\Lux\Domain\Factory\AttributeFactory;
 use In2code\Lux\Domain\Factory\DownloadFactory;
 use In2code\Lux\Domain\Factory\VisitorFactory;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
+use In2code\Lux\Domain\Tracker\AttributeTracker;
 use In2code\Lux\Domain\Tracker\PageTracker;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -53,9 +53,8 @@ class FrontendController extends ActionController
     public function pageRequestAction(string $idCookie, array $arguments): string
     {
         $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $arguments['referrer']);
-        $visitor = $visitorFactory->getVisitor();
         $pageTracker = $this->objectManager->get(PageTracker::class);
-        $pageTracker->trackPage($visitor, (int)$arguments['pageUid']);
+        $pageTracker->trackPage($visitorFactory->getVisitor(), (int)$arguments['pageUid']);
         return json_encode([]);
     }
 
@@ -66,26 +65,14 @@ class FrontendController extends ActionController
      */
     public function fieldListeningRequestAction(string $idCookie, array $arguments): string
     {
-        $attributeFactory = $this->objectManager->get(
-            AttributeFactory::class,
-            $idCookie,
-            AttributeFactory::CONTEXT_FIELDLISTENING
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
+        $attributeTracker = $this->objectManager->get(
+            AttributeTracker::class,
+            $visitorFactory->getVisitor(),
+            AttributeTracker::CONTEXT_FIELDLISTENING
         );
-        $attributeFactory->getVisitorAndAddAttribute($arguments['key'], $arguments['value']);
+        $attributeTracker->addAttribute($arguments['key'], $arguments['value']);
         return json_encode([]);
-    }
-
-    /**
-     * @return void
-     */
-    public function initializeEmail4LinkRequestAction()
-    {
-        try {
-            $sendEmail = $this->request->getArgument('sendEmail');
-            $this->request->setArgument('sendEmail', $sendEmail === 'true');
-        } catch (\Exception $exception) {
-            unset($exception);
-        }
     }
 
     /**
@@ -95,12 +82,14 @@ class FrontendController extends ActionController
      */
     public function email4LinkRequestAction(string $idCookie, array $arguments): string
     {
-        $attributeFactory = $this->objectManager->get(
-            AttributeFactory::class,
-            $idCookie,
-            AttributeFactory::CONTEXT_EMAIL4LINK
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
+        $visitor = $visitorFactory->getVisitor();
+        $attributeTracker = $this->objectManager->get(
+            AttributeTracker::class,
+            $visitor,
+            AttributeTracker::CONTEXT_EMAIL4LINK
         );
-        $visitor = $attributeFactory->getVisitorAndAddAttribute('email', $arguments['email']);
+        $attributeTracker->addAttribute('email', $arguments['email']);
         if ($arguments['sendEmail'] === 'true') {
             $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($arguments['href']);
         }

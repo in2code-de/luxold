@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace In2code\Lux\Domain\Factory;
+namespace In2code\Lux\Domain\Tracker;
 
 use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Visitor;
@@ -12,9 +12,9 @@ use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ObjectUtility;
 
 /**
- * Class AttributeFactory to add an attribute key/value pair to a visitor
+ * Class AttributeTracker to add an attribute key/value pair to a visitor
  */
-class AttributeFactory
+class AttributeTracker
 {
     use SignalTrait;
 
@@ -22,9 +22,9 @@ class AttributeFactory
     const CONTEXT_EMAIL4LINK = 'Email4link';
 
     /**
-     * @var string
+     * @var Visitor|null
      */
-    protected $idCookie = '';
+    protected $visitor = null;
 
     /**
      * Set different context for logging (attribute came from fieldlistening or from email4link and so on)
@@ -44,13 +44,14 @@ class AttributeFactory
     protected $attributeRepository = null;
 
     /**
-     * AttributeFactory constructor.
+     * AttributeTracker constructor.
      *
-     * @param string $idCookie
+     * @param Visitor $visitor
+     * @param string $context
      */
-    public function __construct(string $idCookie, string $context = self::CONTEXT_FIELDLISTENING)
+    public function __construct(Visitor $visitor, string $context = self::CONTEXT_FIELDLISTENING)
     {
-        $this->idCookie = $idCookie;
+        $this->visitor = $visitor;
         $this->context = $context;
         $this->visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
         $this->attributeRepository = ObjectUtility::getObjectManager()->get(AttributeRepository::class);
@@ -61,55 +62,47 @@ class AttributeFactory
      *
      * @param string $key
      * @param string $value
-     * @return Visitor
+     * @return void
      */
-    public function getVisitorAndAddAttribute(string $key, string $value): Visitor
+    public function addAttribute(string $key, string $value)
     {
-        $visitor = $this->getVisitorFromDatabase();
         if (!empty($value) && $this->isEnabledIdentification()) {
             $attribute = $this->getAndUpdateAttributeFromDatabase($key, $value);
             if ($attribute === null) {
                 $attribute = $this->createNewAttribute($key, $value);
-                $visitor->addAttribute($attribute);
-                $this->signalDispatch(__CLASS__, 'createNewAttribute', [$attribute, $visitor]);
+                $this->visitor->addAttribute($attribute);
+                $this->signalDispatch(__CLASS__, 'createNewAttribute', [$attribute, $this->visitor]);
             }
             if ($attribute->isEmail()) {
-                if ($visitor->isIdentified() === false) {
-                    $this->signalDispatch(__CLASS__, 'isIdentifiedBy' . $this->context, [$attribute, $visitor]);
+                if ($this->visitor->isIdentified() === false) {
+                    $this->signalDispatch(__CLASS__, 'isIdentifiedBy' . $this->context, [$attribute, $this->visitor]);
                 }
-                $visitor->setIdentified(true);
-                $visitor->setEmail($value);
+                $this->visitor->setIdentified(true);
+                $this->visitor->setEmail($value);
             }
-            $this->visitorRepository->update($visitor);
+            $this->visitorRepository->update($this->visitor);
             $this->visitorRepository->persistAll();
 
             $this->mergeVisitorsOnGivenEmail($key, $value);
         }
-        return $visitor;
     }
 
     /**
+     * Get fitting attribute to a given key. If found: just update and return. If not found, return null.
+     *
      * @param string $key
      * @param string $value
      * @return Attribute|null
      */
     protected function getAndUpdateAttributeFromDatabase(string $key, string $value)
     {
-        $attribute = $this->attributeRepository->findByIdCookieAndKey($this->idCookie, $key);
+        $attribute = $this->attributeRepository->findByVisitorAndKey($this->visitor, $key);
         if ($attribute !== null) {
             $attribute->setValue($value);
             $this->attributeRepository->update($attribute);
         }
         $this->signalDispatch(__CLASS__, __FUNCTION__, [$attribute]);
         return $attribute;
-    }
-
-    /**
-     * @return Visitor|null
-     */
-    protected function getVisitorFromDatabase()
-    {
-        return $this->visitorRepository->findOneByIdCookie($this->idCookie);
     }
 
     /**
