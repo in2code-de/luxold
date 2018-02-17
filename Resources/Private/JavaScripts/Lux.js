@@ -108,19 +108,17 @@ function LuxMain() {
 	 */
 	var addDownloadListener = function() {
 		if (isDownloadTrackingEnabled()) {
-			var links = document.querySelectorAll('[href]');
+			var links = document.querySelectorAll(getExpressionForLinkSelection());
 			var href;
 			for (var i = 0; i < links.length; i++) {
 				href = links[i].getAttribute('href');
-				if (isAllowedAsset(href)) {
-					links[i].addEventListener('click', function() {
-						ajaxConnection({
-							'tx_lux_fe[dispatchAction]': 'downloadRequest',
-							'tx_lux_fe[idCookie]': getIdCookie(),
-							'tx_lux_fe[arguments][href]': this.getAttribute('href')
-						});
+				links[i].addEventListener('click', function() {
+					ajaxConnection({
+						'tx_lux_fe[dispatchAction]': 'downloadRequest',
+						'tx_lux_fe[idCookie]': getIdCookie(),
+						'tx_lux_fe[arguments][href]': this.getAttribute('href')
 					});
-				}
+				});
 			}
 		}
 	};
@@ -242,12 +240,14 @@ function LuxMain() {
 	};
 
 	/**
-	 * @returns {boolean}
+	 * Return an expression for a querySelectorAll function to select all download links
+	 * Like 'a[href$="jpg"],a[href$="pdf"]'
+	 *
+	 * @returns {String}
 	 */
-	var isAllowedAsset = function(href) {
-		var extension = getFileExtension(href);
+	var getExpressionForLinkSelection = function() {
 		var extensions = getContainer().getAttribute('data-lux-downloadtracking-extensions').toLowerCase().split(',');
-		return inArray(extension.toLowerCase(), extensions);
+		return 'a[href$="' + extensions.join('"],a[href$="') + '"]';
 	};
 
 	/**
