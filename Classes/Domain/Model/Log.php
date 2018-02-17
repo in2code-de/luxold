@@ -21,6 +21,7 @@ class Log extends AbstractEntity
     const STATUS_PAGEVISIT3 = 41;
     const STATUS_PAGEVISIT4 = 42;
     const STATUS_PAGEVISIT5 = 43;
+    const STATUS_DOWNLOAD = 50;
 
     /**
      * @var \In2code\Lux\Domain\Model\Visitor

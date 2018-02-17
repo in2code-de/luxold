@@ -224,6 +224,9 @@
 			<trans-unit id="module.analysis.log.status.23">
 				<source>"email4link" send asset failed</source>
 			</trans-unit>
+			<trans-unit id="module.analysis.log.status.50">
+				<source>"lux tracked a download</source>
+			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 			</trans-unit>

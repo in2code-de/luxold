@@ -48,6 +48,7 @@ class DownloadFactory
         if (!empty($href) && $this->isEnabledDownloadTracking()) {
             $download = $this->getAndPersistNewDownload($href);
             $visitor->addDownload($download);
+            $download->setVisitor($visitor);
             $this->visitorRepository->update($visitor);
             $this->visitorRepository->persistAll();
             $this->signalDispatch(__CLASS__, 'addDownload', [$download, $visitor]);

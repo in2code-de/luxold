@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Trigger;
 
 use In2code\Lux\Domain\Model\Attribute;
+use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Service\LogService;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -74,5 +75,15 @@ class LogTrigger implements SingletonInterface
     public function logEmail4LinkEmailFailed(Visitor $visitor, string $href)
     {
         $this->logService->logEmail4LinkEmailFailed($visitor, $href);
+    }
+
+    /**
+     * @param Download $download
+     * @param Visitor $visitor
+     * @return void
+     */
+    public function logDownload(Download $download, Visitor $visitor)
+    {
+        $this->logService->logDownload($download);
     }
 }

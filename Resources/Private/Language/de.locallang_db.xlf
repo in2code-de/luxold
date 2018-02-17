@@ -295,6 +295,10 @@
 				<source>"email4link" send asset failed</source>
 				<target state="translated">"email4link" Datei versenden fehlgeschlagen</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.log.status.50">
+				<source>"lux tracked a download</source>
+				<target state="translated">lux hat einen Download aufgezeichnet</target>
+			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 				<target state="translated">Lead Ursprung</target>

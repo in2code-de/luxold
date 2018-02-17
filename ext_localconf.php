@@ -81,6 +81,14 @@ call_user_func(
             'logEmail4LinkEmailFailed',
             false
         );
+        // Log: download tracking
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Domain\Factory\DownloadFactory::class,
+            'addDownload',
+            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            'logDownload',
+            false
+        );
 
         /**
          * CK editor configuration

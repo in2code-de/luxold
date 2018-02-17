@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Service;
 
+use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\LogRepository;
@@ -59,6 +60,15 @@ class LogService
     public function logEmail4LinkEmailFailed(Visitor $visitor, string $href)
     {
         $this->log(Log::STATUS_IDENTIFIED_EMAIL4LINK_SENDEMAILFAILED, $visitor, ['href' => $href]);
+    }
+
+    /**
+     * @param Download $download
+     * @return void
+     */
+    public function logDownload(Download $download)
+    {
+        $this->log(Log::STATUS_DOWNLOAD, $download->getVisitor(), ['href' => $download->getHref()]);
     }
 
     /**
