@@ -6,6 +6,7 @@ use In2code\Lux\Domain\Factory\AttributeFactory;
 use In2code\Lux\Domain\Factory\DownloadFactory;
 use In2code\Lux\Domain\Factory\VisitorFactory;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
+use In2code\Lux\Domain\Tracker\PageTracker;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -51,13 +52,10 @@ class FrontendController extends ActionController
      */
     public function pageRequestAction(string $idCookie, array $arguments): string
     {
-        $visitorFactory = $this->objectManager->get(
-            VisitorFactory::class,
-            $idCookie,
-            (int)$arguments['pageUid'],
-            $arguments['referrer']
-        );
-        $visitorFactory->getVisitor();
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $arguments['referrer']);
+        $visitor = $visitorFactory->getVisitor();
+        $pageTracker = $this->objectManager->get(PageTracker::class);
+        $pageTracker->trackPage($visitor, (int)$arguments['pageUid']);
         return json_encode([]);
     }
 
