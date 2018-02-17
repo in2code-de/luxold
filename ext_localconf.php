@@ -83,7 +83,7 @@ call_user_func(
         );
         // Log: download tracking
         $signalSlotDispatcher->connect(
-            \In2code\Lux\Domain\Factory\DownloadFactory::class,
+            \In2code\Lux\Domain\Tracker\DownloadTracker::class,
             'addDownload',
             \In2code\Lux\Domain\Trigger\LogTrigger::class,
             'logDownload',

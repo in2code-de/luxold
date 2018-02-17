@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace In2code\Lux\Domain\Factory;
+namespace In2code\Lux\Domain\Tracker;
 
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Visitor;
@@ -11,16 +11,16 @@ use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ObjectUtility;
 
 /**
- * Class DownloadFactory to get an existing visitor and add another download
+ * Class DownloadTracker add a download record to a visitor
  */
-class DownloadFactory
+class DownloadTracker
 {
     use SignalTrait;
 
     /**
-     * @var string
+     * @var Visitor|null
      */
-    protected $idCookie = '';
+    protected $visitor = null;
 
     /**
      * @var VisitorRepository|null
@@ -28,32 +28,30 @@ class DownloadFactory
     protected $visitorRepository = null;
 
     /**
-     * AttributeFactory constructor.
+     * DownloadTracker constructor.
      *
-     * @param string $idCookie
+     * @param Visitor $visitor
      */
-    public function __construct(string $idCookie)
+    public function __construct(Visitor $visitor)
     {
-        $this->idCookie = $idCookie;
+        $this->visitor = $visitor;
         $this->visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
     }
 
     /**
      * @param string $href
-     * @return Visitor
+     * @return void
      */
-    public function getVisitorAndAddDownload(string $href): Visitor
+    public function addDownload(string $href)
     {
-        $visitor = $this->getVisitorFromDatabase();
         if (!empty($href) && $this->isEnabledDownloadTracking()) {
             $download = $this->getAndPersistNewDownload($href);
-            $visitor->addDownload($download);
-            $download->setVisitor($visitor);
-            $this->visitorRepository->update($visitor);
+            $this->visitor->addDownload($download);
+            $download->setVisitor($this->visitor);
+            $this->visitorRepository->update($this->visitor);
             $this->visitorRepository->persistAll();
-            $this->signalDispatch(__CLASS__, 'addDownload', [$download, $visitor]);
+            $this->signalDispatch(__CLASS__, 'addDownload', [$download, $this->visitor]);
         }
-        return $visitor;
     }
 
     /**
@@ -67,14 +65,6 @@ class DownloadFactory
         $downloadRepository->add($download);
         $downloadRepository->persistAll();
         return $download;
-    }
-
-    /**
-     * @return Visitor|null
-     */
-    protected function getVisitorFromDatabase()
-    {
-        return $this->visitorRepository->findOneByIdCookie($this->idCookie);
     }
 
     /**

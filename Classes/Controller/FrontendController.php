@@ -2,10 +2,10 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
-use In2code\Lux\Domain\Factory\DownloadFactory;
 use In2code\Lux\Domain\Factory\VisitorFactory;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
 use In2code\Lux\Domain\Tracker\AttributeTracker;
+use In2code\Lux\Domain\Tracker\DownloadTracker;
 use In2code\Lux\Domain\Tracker\PageTracker;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -103,8 +103,9 @@ class FrontendController extends ActionController
      */
     public function downloadRequestAction(string $idCookie, array $arguments): string
     {
-        $downloadFactory = $this->objectManager->get(DownloadFactory::class, $idCookie);
-        $downloadFactory->getVisitorAndAddDownload($arguments['href']);
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
+        $downloadFactory = $this->objectManager->get(DownloadTracker::class, $visitorFactory->getVisitor());
+        $downloadFactory->addDownload($arguments['href']);
         return json_encode([]);
     }
 }
