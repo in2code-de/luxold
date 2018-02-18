@@ -14,6 +14,11 @@ class ScoringService
 {
 
     /**
+     * @var string
+     */
+    protected $calculation = '';
+
+    /**
      * ScoringService constructor.
      */
     public function __construct()
@@ -48,9 +53,7 @@ class ScoringService
             'lastVisitDaysAgo' => $this->getNumberOfDaysSinceLastVisit($visitor),
             'downloads' => count($visitor->getDownloads())
         ];
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
-        $calculation = $configurationService->getTypoScriptSettingsByPath('scoring.calculation');
-        return (int)Parser::solve($calculation, $variables);
+        return (int)Parser::solve($this->getCalculation(), $variables);
     }
 
     /**
@@ -66,5 +69,29 @@ class ScoringService
             $days = $delta->d;
         }
         return $days;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCalculation(): string
+    {
+        return $this->calculation;
+    }
+
+    /**
+     * Calculation can be overruled with a string - otherwise try to get from TypoScript
+     *
+     * @param string $calculation
+     * @return void
+     */
+    public function setCalculation(string $calculation = '')
+    {
+        if (!empty($calculation)) {
+            $this->calculation = $calculation;
+        } else {
+            $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+            $this->calculation = $configurationService->getTypoScriptSettingsByPath('scoring.calculation');
+        }
     }
 }
