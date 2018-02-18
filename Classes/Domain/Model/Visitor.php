@@ -14,6 +14,11 @@ class Visitor extends AbstractEntity
     const TABLE_NAME = 'tx_lux_domain_model_visitor';
 
     /**
+     * @var int
+     */
+    protected $scoring = 0;
+
+    /**
      * @var string
      */
     protected $idCookie = '';
@@ -105,6 +110,24 @@ class Visitor extends AbstractEntity
         $this->ipinformations = new ObjectStorage();
         $this->logs = new ObjectStorage();
         $this->downloads = new ObjectStorage();
+    }
+
+    /**
+     * @return int
+     */
+    public function getScoring(): int
+    {
+        return $this->scoring;
+    }
+
+    /**
+     * @param int $scoring
+     * @return Visitor
+     */
+    public function setScoring(int $scoring)
+    {
+        $this->scoring = $scoring;
+        return $this;
     }
 
     /**
@@ -222,6 +245,20 @@ class Visitor extends AbstractEntity
     {
         $this->pagevisits->detach($pagevisit);
         return $this;
+    }
+
+    /**
+     * @return Pagevisit|null
+     */
+    public function getLastPagevisit()
+    {
+        $pagevisits = $this->getPagevisits();
+        $lastPagevisit = null;
+        foreach ($pagevisits as $pagevisit) {
+            $lastPagevisit = $pagevisit;
+            break;
+        }
+        return $lastPagevisit;
     }
 
     /**

@@ -6,8 +6,14 @@
 			<trans-unit id="tx_lux_domain_model_visitor">
 				<source>Lead</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.scoring">
+				<source>Scoring</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identification">
 				<source>Lead identification</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.score">
+				<source>Lead score</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.pagevisits">
 				<source>Page visits</source>
@@ -178,6 +184,9 @@
 
 			<trans-unit id="module.analysis.novalues">
 				<source>No data for analysis yet</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.submit">
+				<source>Filter now</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.filter.timePeriod.0">
 				<source>This year</source>

@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <f:form name="filter" class="form-inline">
+            <div class="input-group">
+                <div class="form-control-clearable"><input
+                        id="formengine-input-5a8986a752122737622313"
+                        class="t3js-datetimepicker form-control t3js-clearable hasDefaultValue"
+                        data-date-type="datetime"
+                        data-formengine-validation-rules="[{&quot;type&quot;:&quot;datetime&quot;}]"
+                        data-formengine-input-params="{&quot;field&quot;:&quot;data[pages][2][starttime]&quot;,&quot;evalList&quot;:&quot;datetime&quot;}"
+                        data-formengine-input-name="data[pages][2][starttime]"
+                        data-formengine-input-initialized="true" style="" type="text">
+                    <button type="button" class="close" tabindex="-1" aria-hidden="true" style="">
+                        <span class="t3js-icon icon icon-size-small icon-state-default icon-actions-close" data-identifier="actions-close">
+                            <span class="icon-markup">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M11.9 5.5L9.4 8l2.5 2.5c.2.2.2.5 0 .7l-.7.7c-.2.2-.5.2-.7 0L8 9.4l-2.5 2.5c-.2.2-.5.2-.7 0l-.7-.7c-.2-.2-.2-.5 0-.7L6.6 8 4.1 5.5c-.2-.2-.2-.5 0-.7l.7-.7c.2-.2.5-.2.7 0L8 6.6l2.5-2.5c.2-.2.5-.2.7 0l.7.7c.2.2.2.5 0 .7z" class="icon-color"></path>
+                                </svg>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+                <input name="data[pages][2][starttime]" value="2018-02-18T14:59:00Z" type="hidden">
+                <span class="input-group-btn">
+                    <label class="btn btn-default" for="formengine-input-5a8986a752122737622313">
+                        <span class="t3js-icon icon icon-size-small icon-state-default icon-actions-edit-pick-date" data-identifier="actions-edit-pick-date">
+                            <span class="icon-markup">
+                                <img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-edit-pick-date.svg" width="16" height="16">
+                            </span>
+                        </span>
+                    </label>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <f:form.select class="form-control" property="timePeriod"
+                               options="{lux:form.getOptionsArrayTimePeriodFilter()}"
+                               value="{filter.timePeriod}"/>
+            </div>
+            <div class="form-group">
+                <f:form.submit class="btn btn-default"
+                               value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.filter.submit')}"/>
+            </div>
+        </f:form>
+    </div>
+</div>

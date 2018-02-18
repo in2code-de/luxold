@@ -3,10 +3,12 @@ declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Factory\VisitorFactory;
+use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
 use In2code\Lux\Domain\Tracker\AttributeTracker;
 use In2code\Lux\Domain\Tracker\DownloadTracker;
 use In2code\Lux\Domain\Tracker\PageTracker;
+use In2code\Lux\Signal\SignalTrait;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -14,6 +16,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class FrontendController extends ActionController
 {
+    use SignalTrait;
 
     /**
      * Check for allowed actions
@@ -54,7 +57,9 @@ class FrontendController extends ActionController
     {
         $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie, $arguments['referrer']);
         $pageTracker = $this->objectManager->get(PageTracker::class);
-        $pageTracker->trackPage($visitorFactory->getVisitor(), (int)$arguments['pageUid']);
+        $visitor = $visitorFactory->getVisitor();
+        $pageTracker->trackPage($visitor, (int)$arguments['pageUid']);
+        $this->afterTracking($visitor);
         return json_encode([]);
     }
 
@@ -66,12 +71,14 @@ class FrontendController extends ActionController
     public function fieldListeningRequestAction(string $idCookie, array $arguments): string
     {
         $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
+        $visitor = $visitorFactory->getVisitor();
         $attributeTracker = $this->objectManager->get(
             AttributeTracker::class,
-            $visitorFactory->getVisitor(),
+            $visitor,
             AttributeTracker::CONTEXT_FIELDLISTENING
         );
         $attributeTracker->addAttribute($arguments['key'], $arguments['value']);
+        $this->afterTracking($visitor);
         return json_encode([]);
     }
 
@@ -93,6 +100,7 @@ class FrontendController extends ActionController
         if ($arguments['sendEmail'] === 'true') {
             $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($arguments['href']);
         }
+        $this->afterTracking($visitor);
         return json_encode([]);
     }
 
@@ -104,8 +112,19 @@ class FrontendController extends ActionController
     public function downloadRequestAction(string $idCookie, array $arguments): string
     {
         $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
-        $downloadFactory = $this->objectManager->get(DownloadTracker::class, $visitorFactory->getVisitor());
+        $visitor = $visitorFactory->getVisitor();
+        $downloadFactory = $this->objectManager->get(DownloadTracker::class, $visitor);
         $downloadFactory->addDownload($arguments['href']);
+        $this->afterTracking($visitor);
         return json_encode([]);
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @return void
+     */
+    protected function afterTracking(Visitor $visitor)
+    {
+        $this->signalDispatch(__CLASS__, __FUNCTION__, [$visitor]);
     }
 }

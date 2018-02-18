@@ -22,13 +22,13 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,downloads,' .
-            'referrer,user_agent,ip_address,ipinformations,logs',
+        'showRecordFieldList' => 'scoring,identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
+            'downloads,referrer,user_agent,ip_address,ipinformations,logs',
     ],
     'types' => [
         '1' => [
             'showitem' =>
-                '--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
+                'scoring,--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
                 'attributes,--palette--;Lead;referrer,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
                 'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations,' .
@@ -149,6 +149,15 @@ return [
                 'size' => 30,
                 'eval' => 'datetime',
                 'readOnly' => true
+            ]
+        ],
+        'scoring' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.scoring',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
+                'default' => 0
             ]
         ],
         'identified' => [

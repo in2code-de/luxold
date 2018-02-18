@@ -93,6 +93,13 @@ plugin {
                     }
                 }
             }
+
+            # Scoring related settings
+            scoring {
+                # Main scoring calculation (only integer values as result)
+                # Available Variables are: numberOfSiteVisits, numberOfPageVisits, downloads, lastVisitDaysAgo
+                calculation = (10 * numberOfSiteVisits) + (1 * numberOfPageVisits) + (20 * downloads) - (1 * lastVisitDaysAgo)
+            }
         }
     }
 }
