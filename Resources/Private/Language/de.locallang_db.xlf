@@ -252,8 +252,8 @@
 				<target state="translated">Letzte Seitenbesuche</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.bestvisitors">
-				<source>Best identified leads</source>
-				<target state="translated">Beste identifizierte Leads</target>
+				<source>Hottest leads</source>
+				<target state="translated">Hottest Leads</target>
 			</trans-unit>
 			<trans-unit id="module.analysis.log">
 				<source>Activity log</source>
@@ -303,6 +303,14 @@
 				<source>Lead source</source>
 				<target state="translated">Lead Ursprung</target>
 			</trans-unit>
+			<trans-unit id="module.list.pagevisits">
+				<source>Pagevisits</source>
+				<target state="translated">Seitenaufrufe</target>
+			</trans-unit>
+			<trans-unit id="module.list.pagevisits.label">
+				<source>Pagevisits</source>
+				<target state="translated">Seitenaufrufe</target>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
@@ -311,6 +319,35 @@
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
 				<target state="translated">Weiter</target>
+			</trans-unit>
+
+			<trans-unit id="datetime.weekday.mon">
+				<source>Mo</source>
+				<target state="translated">Mo</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.tue">
+				<source>Tu</source>
+				<target state="translated">Di</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.wed">
+				<source>We</source>
+				<target state="translated">Mi</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.thu">
+				<source>Th</source>
+				<target state="translated">Do</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.fri">
+				<source>Fr</source>
+				<target state="translated">Fr</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.sat">
+				<source>Sa</source>
+				<target state="translated">Sa</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.sun">
+				<source>Su</source>
+				<target state="translated">So</target>
 			</trans-unit>
 		</body>
 	</file>

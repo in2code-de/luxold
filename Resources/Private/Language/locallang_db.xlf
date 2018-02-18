@@ -192,7 +192,7 @@
 				<source>Latest page visits</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.bestvisitors">
-				<source>Best identified leads</source>
+				<source>Hottest leads</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.log">
 				<source>Activity log</source>
@@ -230,12 +230,40 @@
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 			</trans-unit>
+			<trans-unit id="module.list.pagevisits">
+				<source>Pagevisits</source>
+			</trans-unit>
+			<trans-unit id="module.list.pagevisits.label">
+				<source>Pagevisits</source>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="datetime.weekday.mon">
+				<source>Mo</source>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.tue">
+				<source>Tu</source>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.wed">
+				<source>We</source>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.thu">
+				<source>Th</source>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.fri">
+				<source>Fr</source>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.sat">
+				<source>Sa</source>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.sun">
+				<source>Su</source>
 			</trans-unit>
 		</body>
 	</file>

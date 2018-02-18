@@ -36,18 +36,11 @@ class AnalysisController extends ActionController
     protected $pagevisitsRepository = null;
 
     /**
-     * Always set a FilterDto even if there are no filter params
-     *
      * @return void
      */
     public function initializeDashboardAction()
     {
-        try {
-            $this->request->getArgument('filter');
-        } catch (\Exception $exception) {
-            unset($exception);
-            $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));
-        }
+        $this->setFilterDto();
     }
 
     /**
@@ -80,11 +73,40 @@ class AnalysisController extends ActionController
     /**
      * @return void
      */
-    public function listAction()
+    public function initializeListAction()
     {
+        $this->setFilterDto();
+    }
+
+    /**
+     * @param FilterDto $filter
+     * @return void
+     */
+    public function listAction(FilterDto $filter)
+    {
+        $allVisitors = $this->visitorRepository->findAllWithIdentifiedFirst();
+        $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
+        $numberOfVisitorsByDay = $this->pagevisitsRepository->getNumberOfVisitorsByDay();
         $this->view->assignMultiple([
-            'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst()
+            'allVisitors' => $allVisitors,
+            'identifiedByMostVisits' => $identifiedByMostVisits,
+            'numberOfVisitorsByDay' => $numberOfVisitorsByDay,
         ]);
+    }
+
+    /**
+     * Always set a FilterDto even if there are no filter params
+     *
+     * @return void
+     */
+    protected function setFilterDto()
+    {
+        try {
+            $this->request->getArgument('filter');
+        } catch (\Exception $exception) {
+            unset($exception);
+            $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));
+        }
     }
 
     /**
