@@ -17,7 +17,7 @@
                             data-chart-label="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.pagevisits.label')}"
                             data-chart-labels="{lux:charts.getLastDayNames()}"></canvas>
                     <script>
-						require(['/typo3conf/ext/lux/Resources/Public/JavaScripts/Vendor/Chart.min.js'], function(Chart) {
+						require(['TYPO3/CMS/Lux/Vendor/Chart.min'], function(Chart) {
 							var container = document.getElementById('extension-lux-list-pagevisits');
 							var ctx = container.getContext('2d');
 

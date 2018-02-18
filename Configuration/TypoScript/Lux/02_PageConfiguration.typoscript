@@ -13,8 +13,8 @@ page {
         wrap = <script type="text/javascript" src="|"></script>
     }
     # Add main JavaScript for lux
-    includeJSFooter.luxBasicLightbox = EXT:lux/Resources/Public/JavaScripts/Vendor/BasicLightbox.min.js
-    includeJSFooter.lux = EXT:lux/Resources/Public/JavaScripts/Lux/Lux.min.js
+    includeJSFooter.luxBasicLightbox = EXT:lux/Resources/Public/JavaScript/Vendor/BasicLightbox.min.js
+    includeJSFooter.lux = EXT:lux/Resources/Public/JavaScript/Lux/Lux.min.js
 
     # Container for informations that will be send via AJAX
     1518815717 = COA

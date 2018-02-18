@@ -10,7 +10,7 @@ var rename = require('gulp-rename');
 var project = {
 	base: __dirname + '/../../Public',
 	css: __dirname + '/../../Public/Css',
-	js: __dirname + '/../../Public/JavaScripts/Lux',
+	js: __dirname + '/../../Public/JavaScript/Lux',
 	images: __dirname + '/../../Public/Images'
 };
 
@@ -29,7 +29,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-	gulp.src([__dirname + '/../JavaScripts/*.js'])
+	gulp.src([__dirname + '/../JavaScript/*.js'])
 		.pipe(plumber())
 		.pipe(uglify())
 		.pipe(rename({
@@ -43,5 +43,5 @@ gulp.task('js', function() {
  *********************************/
 gulp.task('default', function() {
 	gulp.watch(__dirname + '/../Sass/*.scss', ['css']);
-	gulp.watch(__dirname + '/../JavaScripts/*.js', ['js']);
+	gulp.watch(__dirname + '/../JavaScript/*.js', ['js']);
 });

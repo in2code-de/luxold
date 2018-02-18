@@ -6,7 +6,7 @@ imports:
 editor:
   externalPlugins:
     luxEmail4Link:
-      resource: 'EXT:lux/Resources/Public/JavaScripts/Static/CkEditorPlugins/luxEmail4Link/plugin.js'
+      resource: 'EXT:lux/Resources/Public/JavaScript/Static/CkEditorPlugins/luxEmail4Link/plugin.js'
 
   config:
 

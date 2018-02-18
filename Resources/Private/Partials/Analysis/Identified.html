@@ -7,7 +7,7 @@
             <f:then>
                 <canvas id="extension-lux-analysis-identified" width="750" height="250" data-chart-data="{numberOfIdentifiedVisitors},{numberOfUnknownVisitors}" data-chart-labels="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.identified.0')},{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.identified.1')}"></canvas>
                 <script>
-                    require(['/typo3conf/ext/lux/Resources/Public/JavaScripts/Vendor/Chart.min.js'], function (Chart) {
+                    require(['TYPO3/CMS/Lux/Vendor/Chart.min'], function (Chart) {
                         var container = document.getElementById('extension-lux-analysis-identified');
                         var ctx = container.getContext('2d');
 
