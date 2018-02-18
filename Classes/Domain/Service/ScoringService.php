@@ -26,6 +26,7 @@ class ScoringService
         if (!class_exists(Parser::class)) {
             throw new \BadFunctionCallException('Parser class not found. Did you do a "composer update"?', 1518975126);
         }
+        $this->setCalculation();
     }
 
     /**
