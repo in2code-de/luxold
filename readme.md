@@ -25,6 +25,10 @@
 - Listview
 - Todo: Eye-Candy Detailview mit Pagefunnel und Log (mit Verlinkungen von Liste, Dashboard, LetzteLeads)
 
+### Scoring
+
+- Allgemeines Scoring (individuelle Berechnung)
+
 ### Workflow & User Experience
 
 - Todo: Workflow GUI (Trigger & Actions)
@@ -32,12 +36,18 @@
 - Todo: Action: Lightbox mit Content
 - Todo: Action: E-Mail versenden
 
+### CommandControllers & Scheduler
+
+- Cleanup commands (zum kompletten Entfernen von Daten)
+- Service commands (Scoring Neuberechnung)
+
 ### Enterprise Features
 
-- Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
-- Contextual content?
-- Kontakte (Import?)
-- API/Export
+- Todo: Blacklist
+- Todo: Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
+- Todo: Contextual content?
+- Todo: Kontakte (Import?)
+- Todo: API/Export
 
 ##Ideen
 

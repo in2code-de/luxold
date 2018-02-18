@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <f:render partial="List/Filter" arguments="{_all}"/>
 
-                    <f:be.widget.paginate objects="{allVisitors}" as="visitors"
+                    <f:be.widget.paginate objects="{allVisitors}" as="visitorsPage"
                                           configuration="{itemsPerPage:100,insertAbove:0,insertBelow:1,maximumNumberOfLinks:10}">
                         <table class="table table-striped table-hover table-condensed">
                             <thead>
@@ -51,10 +51,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <f:for each="{visitors}" as="visitor">
+                            <f:for each="{visitorsPage}" as="visitor">
                                 <tr>
                                     <td><span title="UID{visitor.uid}">{visitor.fullName}</span></td>
-                                    <td>Score (coming soon)</td>
+                                    <td>{visitor.scoring}</td>
                                     <td>{visitor.email}</td>
                                     <td>{visitor.company}</td>
                                     <td>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-md-4">
                     <f:render partial="List/Pagevisits" arguments="{_all}"/>
-                    <f:render partial="List/BestVisitors" arguments="{_all}"/>
+                    <f:render partial="List/HottestVisitors" arguments="{_all}"/>
                 </div>
             </div>
         </f:then>

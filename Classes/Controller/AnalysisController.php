@@ -49,6 +49,7 @@ class AnalysisController extends ActionController
      */
     public function dashboardAction(FilterDto $filter)
     {
+        $visitors = $this->visitorRepository->findByHottestScorings($filter);
         $numberOfUniqueSiteVisitors = $this->visitorRepository->findByUniqueSiteVisits($filter)->count();
         $numberOfRecurringSiteVisitors = $this->visitorRepository->findByRecurringSiteVisits($filter)->count();
         $numberOfIdentifiedVisitors = $this->visitorRepository->findIdentified($filter)->count();
@@ -58,6 +59,7 @@ class AnalysisController extends ActionController
         $latestPagevisits = $this->pagevisitsRepository->findLatestPagevisits($filter);
         $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
         $this->view->assignMultiple([
+            'visitors' => $visitors,
             'filter' => $filter,
             'numberOfUniqueSiteVisitors' => $numberOfUniqueSiteVisitors,
             'numberOfRecurringSiteVisitors' => $numberOfRecurringSiteVisitors,
@@ -84,10 +86,12 @@ class AnalysisController extends ActionController
      */
     public function listAction(FilterDto $filter)
     {
+        $visitors = $this->visitorRepository->findByHottestScorings($filter);
         $allVisitors = $this->visitorRepository->findAllWithIdentifiedFirst();
         $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
         $numberOfVisitorsByDay = $this->pagevisitsRepository->getNumberOfVisitorsByDay();
         $this->view->assignMultiple([
+            'visitors' => $visitors,
             'allVisitors' => $allVisitors,
             'identifiedByMostVisits' => $identifiedByMostVisits,
             'numberOfVisitorsByDay' => $numberOfVisitorsByDay,

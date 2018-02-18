@@ -20,6 +20,27 @@ class VisitorRepository extends AbstractRepository
         $query = $this->createQuery();
         $query->setOrderings([
             'identified' => QueryInterface::ORDER_DESCENDING,
+            'scoring' => QueryInterface::ORDER_DESCENDING,
+            'tstamp' => QueryInterface::ORDER_DESCENDING
+        ]);
+        return $query->execute();
+    }
+
+    /**
+     * Find 5 hottest visitors
+     *
+     * @param FilterDto $filter
+     * @return QueryResultInterface
+     */
+    public function findByHottestScorings(FilterDto $filter): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $logicalAnd = [];
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $query->matching($query->logicalAnd($logicalAnd));
+        $query->setLimit(6);
+        $query->setOrderings([
+            'scoring' => QueryInterface::ORDER_DESCENDING,
             'tstamp' => QueryInterface::ORDER_DESCENDING
         ]);
         return $query->execute();
