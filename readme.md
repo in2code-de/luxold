@@ -1,4 +1,4 @@
-# LUX - Living User eXperience
+# LUX - Living User eXperience - Marketing Automation for TYPO3
 
 ## Features
 
@@ -49,7 +49,7 @@
 - Todo: Kontakte (Import?)
 - Todo: API/Export
 
-##Ideen
+## Ideas
 
 - Email4Download Plugin?
 - Bild anzeigen (E-Mail => Gravatar)
