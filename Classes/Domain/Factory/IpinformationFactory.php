@@ -30,6 +30,7 @@ class IpinformationFactory
             $ipinformationRepo->add($ipinformation);
             $objectStorage->attach($ipinformation);
         }
+        /** @var ObjectStorage $objectStorage */
         return $objectStorage;
     }
 

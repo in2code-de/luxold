@@ -15,6 +15,8 @@ class ObjectUtility
      */
     public static function getObjectManager(): ObjectManager
     {
-        return GeneralUtility::makeInstance(ObjectManager::class);
+        /** @var ObjectManager $objectManager */
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        return $objectManager;
     }
 }

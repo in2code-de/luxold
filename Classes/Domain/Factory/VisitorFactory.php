@@ -9,6 +9,8 @@ use In2code\Lux\Utility\ConfigurationUtility;
 use In2code\Lux\Utility\IpUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
 
 /**
  * Class VisitorFactory to add a new visitor to database (if not yet stored).
@@ -47,6 +49,8 @@ class VisitorFactory
 
     /**
      * @return Visitor
+     * @throws IllegalObjectTypeException
+     * @throws UnsupportedMethodException
      */
     public function getVisitor(): Visitor
     {
@@ -61,6 +65,7 @@ class VisitorFactory
 
     /**
      * @return Visitor|null
+     * @throws UnsupportedMethodException
      */
     protected function getVisitorFromDatabase()
     {
@@ -72,6 +77,7 @@ class VisitorFactory
      */
     protected function createNewVisitor(): Visitor
     {
+        /** @var Visitor $visitor */
         $visitor = GeneralUtility::makeInstance(Visitor::class);
         $visitor->setIdCookie($this->idCookie);
         $visitor->setUserAgent(GeneralUtility::getIndpEnv('HTTP_USER_AGENT'));

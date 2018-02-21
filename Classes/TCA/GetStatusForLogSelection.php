@@ -12,6 +12,7 @@ class GetStatusForLogSelection
     /**
      * @param array $params
      * @return void
+     * @throws \ReflectionException
      */
     public function addOptions(array &$params)
     {
@@ -20,6 +21,7 @@ class GetStatusForLogSelection
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     protected function getStatusItemsFromLogModel(): array
     {

@@ -107,13 +107,7 @@ class AnalysisController extends ActionController
     protected function setFilterDto()
     {
         try {
-            $filter = $this->request->getArgument('filter');
-            //if (is_array($filter) && !empty($filter['timeFrom'])) {
-            //    $filter['timeFrom'] = new \DateTime($filter['timeFrom']);
-            //}
-            //if (is_array($filter) && !empty($filter['timeTo'])) {
-            //    $filter['timeTo'] = new \DateTime($filter['timeTo']);
-            //}
+            $this->request->getArgument('filter');
         } catch (\Exception $exception) {
             unset($exception);
             $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));

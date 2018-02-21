@@ -22,9 +22,9 @@ class GetOptionsArrayTimePeriodFilterViewHelper extends AbstractViewHelper
             FilterDto::PERIOD_THISYEAR
                 => LocalizationUtility::translate($locallangPath . 'module.analysis.filter.timePeriod.0'),
             FilterDto::PERIOD_THISMONTH
-            => LocalizationUtility::translate($locallangPath . 'module.analysis.filter.timePeriod.1'),
+                => LocalizationUtility::translate($locallangPath . 'module.analysis.filter.timePeriod.1'),
             FilterDto::PERIOD_LASTMONTH
-            => LocalizationUtility::translate($locallangPath . 'module.analysis.filter.timePeriod.2')
+                => LocalizationUtility::translate($locallangPath . 'module.analysis.filter.timePeriod.2')
         ];
     }
 }
