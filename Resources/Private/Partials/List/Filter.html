@@ -8,7 +8,7 @@
                             property="timeFrom"
                             id="timeFrom"
                             class="form-control t3js-datetimepicker t3js-clearable"
-                            placeholder="Von"
+                            placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeFrom')}"
                             value="{filter.timeFrom}"
                             data="{date-type:'datetime',date-offset:'0'}" />
                     <label class="input-group-addon fa fa-calendar" for="timeFrom"></label>
@@ -20,7 +20,7 @@
                             property="timeTo"
                             id="timeTo"
                             class="form-control t3js-datetimepicker t3js-clearable"
-                            placeholder="Bis"
+                            placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeTo')}"
                             value="{filter.timeTo}"
                             data="{date-type:'datetime',date-offset:'0'}" />
                     <label class="input-group-addon fa fa-calendar" for="timeTo"></label>
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <f:form.submit
                             class="btn btn-default"
-                            value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.filter.submit')}" />
+                            value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.submit')}" />
                 </div>
             </div>
         </f:form>
