@@ -87,11 +87,12 @@ class AnalysisController extends ActionController
     public function listAction(FilterDto $filter)
     {
         $visitors = $this->visitorRepository->findByHottestScorings($filter);
-        $allVisitors = $this->visitorRepository->findAllWithIdentifiedFirst();
+        $allVisitors = $this->visitorRepository->findAllWithIdentifiedFirst($filter);
         $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
         $numberOfVisitorsByDay = $this->pagevisitsRepository->getNumberOfVisitorsByDay();
         $this->view->assignMultiple([
             'visitors' => $visitors,
+            'filter' => $filter,
             'allVisitors' => $allVisitors,
             'identifiedByMostVisits' => $identifiedByMostVisits,
             'numberOfVisitorsByDay' => $numberOfVisitorsByDay,
@@ -99,14 +100,20 @@ class AnalysisController extends ActionController
     }
 
     /**
-     * Always set a FilterDto even if there are no filter params
+     * Always set a default FilterDto even if there are no filter params
      *
      * @return void
      */
     protected function setFilterDto()
     {
         try {
-            $this->request->getArgument('filter');
+            $filter = $this->request->getArgument('filter');
+            //if (is_array($filter) && !empty($filter['timeFrom'])) {
+            //    $filter['timeFrom'] = new \DateTime($filter['timeFrom']);
+            //}
+            //if (is_array($filter) && !empty($filter['timeTo'])) {
+            //    $filter['timeTo'] = new \DateTime($filter['timeTo']);
+            //}
         } catch (\Exception $exception) {
             unset($exception);
             $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));

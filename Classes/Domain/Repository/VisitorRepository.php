@@ -13,11 +13,14 @@ class VisitorRepository extends AbstractRepository
 {
 
     /**
+     * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findAllWithIdentifiedFirst(): QueryResultInterface
+    public function findAllWithIdentifiedFirst(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, []);
+        $query->matching($query->logicalAnd($logicalAnd));
         $query->setOrderings([
             'identified' => QueryInterface::ORDER_DESCENDING,
             'scoring' => QueryInterface::ORDER_DESCENDING,
@@ -35,8 +38,7 @@ class VisitorRepository extends AbstractRepository
     public function findByHottestScorings(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
-        $logicalAnd = [];
-        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
+        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, []);
         $query->matching($query->logicalAnd($logicalAnd));
         $query->setLimit(6);
         $query->setOrderings([

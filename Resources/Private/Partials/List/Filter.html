@@ -1,32 +1,36 @@
 <div class="panel panel-default">
     <div class="panel-body">
-        <f:form name="filter" class="form-inline">
-            <div class="input-group">
-                <f:form.textfield type="datetime" property="timeRestriction" id="timeRestriction" class="form-control t3js-datetimepicker t3js-clearable" data="{date-type:'datetime',date-offset:'0'}" />
-                <span class="input-group-btn">
-                    <label class="btn btn-default" for="timeRestriction">
-                        <span class="fa fa-calendar"></span>
-                    </label>
-                </span>
-            </div>
+        <f:form name="filter" class="form-inline" action="list">
+            <div>
+                <div class="input-group">
+                    <f:form.textfield
+                            type="datetime"
+                            property="timeFrom"
+                            id="timeFrom"
+                            class="form-control t3js-datetimepicker t3js-clearable"
+                            placeholder="Von"
+                            value="{filter.timeFrom}"
+                            data="{date-type:'datetime',date-offset:'0'}" />
+                    <label class="input-group-addon fa fa-calendar" for="timeFrom"></label>
+                </div>
 
-            <div class="input-group">
-                <f:form.textfield type="datetime" property="timeRestriction" id="timeRestriction" class="form-control t3js-datetimepicker t3js-clearable" data="{date-type:'datetime',date-offset:'0'}" />
-                <span class="input-group-btn">
-                    <label class="btn btn-default" for="timeRestriction">
-                        <span class="fa fa-calendar"></span>
-                    </label>
-                </span>
-            </div>
+                <div class="input-group">
+                    <f:form.textfield
+                            type="datetime"
+                            property="timeTo"
+                            id="timeTo"
+                            class="form-control t3js-datetimepicker t3js-clearable"
+                            placeholder="Bis"
+                            value="{filter.timeTo}"
+                            data="{date-type:'datetime',date-offset:'0'}" />
+                    <label class="input-group-addon fa fa-calendar" for="timeTo"></label>
+                </div>
 
-            <div class="form-group">
-                <f:form.select class="form-control" property="timePeriod"
-                               options="{lux:form.getOptionsArrayTimePeriodFilter()}"
-                               value="{filter.timePeriod}"/>
-            </div>
-            <div class="form-group">
-                <f:form.submit class="btn btn-default"
-                               value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.filter.submit')}"/>
+                <div class="form-group">
+                    <f:form.submit
+                            class="btn btn-default"
+                            value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.filter.submit')}" />
+                </div>
             </div>
         </f:form>
     </div>

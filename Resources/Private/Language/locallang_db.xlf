@@ -183,7 +183,7 @@
 			</trans-unit>
 
 			<trans-unit id="module.analysis.novalues">
-				<source>No data for analysis yet</source>
+				<source>No data found</source>
 			</trans-unit>
 			<trans-unit id="module.analysis.filter.submit">
 				<source>Filter now</source>

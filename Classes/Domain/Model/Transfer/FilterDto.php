@@ -12,9 +12,71 @@ class FilterDto
     const PERIOD_LASTMONTH = 2;
 
     /**
+     * @var string
+     */
+    protected $timeFrom = '';
+
+    /**
+     * @var string
+     */
+    protected $timeTo = '';
+
+    /**
      * @var int
      */
     protected $timePeriod = self::PERIOD_THISYEAR;
+
+    /**
+     * @return string
+     */
+    public function getTimeFrom(): string
+    {
+        return $this->timeFrom;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimeFromDateTime(): \DateTime
+    {
+        return new \DateTime($this->getTimeFrom());
+    }
+
+    /**
+     * @param string $timeFrom
+     * @return FilterDto
+     */
+    public function setTimeFrom(string $timeFrom)
+    {
+        $this->timeFrom = $timeFrom;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeTo(): string
+    {
+        return $this->timeTo;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimeToDateTime(): \DateTime
+    {
+        return new \DateTime($this->getTimeTo());
+    }
+
+    /**
+     * @param string $timeTo
+     * @return FilterDto
+     */
+    public function setTimeTo(string $timeTo)
+    {
+        $this->timeTo = $timeTo;
+        return $this;
+    }
 
     /**
      * @return int
@@ -41,6 +103,34 @@ class FilterDto
      */
     public function getStartTimeForFilter(): \DateTime
     {
+        if ($this->isTimeFromAndTimeToGiven()) {
+            $time = $this->getTimeFromDateTime();
+        } else {
+            $time = $this->getStartTimeFromTimePeriod();
+        }
+        return $time;
+    }
+
+    /**
+     * Get a stop datetime for period filter
+     *
+     * @return \DateTime
+     */
+    public function getEndTimeForFilter(): \DateTime
+    {
+        if ($this->isTimeFromAndTimeToGiven()) {
+            $time = $this->getTimeToDateTime();
+        } else {
+            $time = $this->getEndTimeFromTimePeriod();
+        }
+        return $time;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    protected function getStartTimeFromTimePeriod(): \DateTime
+    {
         $time = new \DateTime();
         if ($this->getTimePeriod() === self::PERIOD_THISYEAR) {
             $time = new \DateTime();
@@ -59,11 +149,9 @@ class FilterDto
     }
 
     /**
-     * Get a stop datetime for period filter
-     *
      * @return \DateTime
      */
-    public function getEndTimeForFilter(): \DateTime
+    protected function getEndTimeFromTimePeriod(): \DateTime
     {
         $time = new \DateTime();
         if ($this->getTimePeriod() === self::PERIOD_LASTMONTH) {
@@ -71,5 +159,13 @@ class FilterDto
             $time->setTime(23, 59, 59);
         }
         return $time;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isTimeFromAndTimeToGiven(): bool
+    {
+        return $this->getTimeFrom() && $this->getTimeTo();
     }
 }
