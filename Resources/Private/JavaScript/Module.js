@@ -2,14 +2,120 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 	'use strict';
 
 	/**
+	 * LuxBackend functions
+	 *
+	 * @class LuxBackend
+	 */
+	function LuxBackend($) {
+		'use strict';
+
+		/**
+		 * @type {LuxBackend}
+		 */
+		var that = this;
+
+		/**
+		 * Initialize
+		 *
+		 * @returns {void}
+		 */
+		this.initialize = function() {
+			addDetailViewListener();
+			addDatePickers();
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addDetailViewListener = function() {
+			var elements = document.querySelectorAll('[data-lux-action-detail]');
+			for (var i = 0; i < elements.length; i++) {
+				var element = elements[i];
+				element.addEventListener('click', function() {
+					var visitor = this.getAttribute('data-lux-action-detail');
+					ajaxConnection(TYPO3.settings.ajaxUrls['/lux/detail'], {
+						visitor: visitor
+					}, 'showDetailCallback');
+				});
+			}
+		};
+
+		/**
+		 * @params {Json} response
+		 */
+		this.showDetailCallback = function(response)
+		{
+			document.querySelector('[data-lux-container="detail"]').innerHTML = response.html;
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addDatePickers = function() {
+			if (document.querySelector('.t3js-datetimepicker') !== null) {
+				require(['TYPO3/CMS/Backend/DateTimePicker'], function(DateTimePicker) {
+					DateTimePicker.initialize();
+				});
+			}
+		};
+
+		/**
+		 * @params {string} uri
+		 * @params {object} parameters
+		 * @params {string} target callback function name
+		 * @returns {void}
+		 */
+		var ajaxConnection = function(uri, parameters, target) {
+			if (uri !== undefined && uri !== '') {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState === 4 && this.status === 200) {
+						that[target](JSON.parse(this.responseText));
+					}
+				};
+				xhttp.open('POST', mergeUriWithParameters(uri, parameters), true);
+				xhttp.send();
+			} else {
+				console.log('No ajax URI given!');
+			}
+		};
+
+		/**
+		 * Build an uri string for an ajax call together with params from an object
+		 * 		{
+		 * 			'x': 123,
+		 * 			'y': 'abc'
+		 * 		}
+		 *
+		 * 		=>
+		 *
+		 * 		"?x=123&y=abc"
+		 *
+		 * @params {string} uri
+		 * @params {object} parameters
+		 * @returns {string} e.g. "index.php?id=123&type=123&x=123&y=abc"
+		 */
+		var mergeUriWithParameters = function(uri, parameters) {
+			for (var key in parameters) {
+				if (parameters.hasOwnProperty(key)) {
+					if (uri.indexOf('?') !== -1) {
+						uri += '&';
+					} else {
+						uri += '?';
+					}
+					uri += key + '=' + parameters[key];
+				}
+			}
+			return uri;
+		};
+	}
+
+
+	/**
 	 * Init
 	 */
 	$(document).ready(function () {
-		// Apply DatePicker to all date time fields
-		if ($('.t3js-datetimepicker').length) {
-			require(['TYPO3/CMS/Backend/DateTimePicker'], function(DateTimePicker) {
-				DateTimePicker.initialize();
-			});
-		}
+		var LuxBackendObject = new LuxBackend($);
+		LuxBackendObject.initialize();
 	})
 });

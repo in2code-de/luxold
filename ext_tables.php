@@ -47,7 +47,7 @@ call_user_func(
                 'analysis',
                 '',
                 [
-                    'Analysis' => 'dashboard,list'
+                    'Analysis' => 'dashboard,list,detail'
                 ],
                 [
                     'access' => 'user,group',

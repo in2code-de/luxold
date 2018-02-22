@@ -7,7 +7,12 @@ use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Utility\ObjectUtility;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Class AnalysisController
@@ -97,6 +102,27 @@ class AnalysisController extends ActionController
             'identifiedByMostVisits' => $identifiedByMostVisits,
             'numberOfVisitorsByDay' => $numberOfVisitorsByDay,
         ]);
+    }
+
+    /**
+     * AJAX action to show a detail view
+     *
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
+    public function detailAjax(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    {
+        $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
+        $standaloneView = ObjectUtility::getObjectManager()->get(StandaloneView::class);
+        $standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(
+            'EXT:lux/Resources/Private/Templates/Analysis/Detail.html'
+        ));
+        $standaloneView->assignMultiple([
+            'visitor' => $visitorRepository->findByUid((int)$request->getQueryParams()['visitor'])
+        ]);
+        $response->getBody()->write(json_encode(['html' => $standaloneView->render()]));
+        return $response;
     }
 
     /**

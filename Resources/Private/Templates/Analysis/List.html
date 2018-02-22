@@ -48,7 +48,7 @@
                             </thead>
                             <tbody>
                             <f:for each="{visitorsPage}" as="visitor">
-                                <tr>
+                                <tr data-lux-action-detail="{visitor.uid}">
                                     <td><span title="UID{visitor.uid}">{visitor.fullName}</span></td>
                                     <td>{visitor.scoring}</td>
                                     <td>{visitor.email}</td>
@@ -75,8 +75,10 @@
             </f:if>
         </div>
         <div class="col-md-4">
-            <f:render partial="List/Pagevisits" arguments="{_all}"/>
-            <f:render partial="List/HottestVisitors" arguments="{_all}"/>
+            <div data-lux-container="detail">
+                <f:render partial="List/Pagevisits" arguments="{_all}"/>
+                <f:render partial="List/HottestVisitors" arguments="{_all}"/>
+            </div>
         </div>
     </div>
 </f:section>
