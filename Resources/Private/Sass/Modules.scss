@@ -4,11 +4,19 @@
 .btn-primary {
   background-color: $colorMain;
   border-color: $colorMain;
-  color: black;
+  color: white;
   &:hover {
     background-color: $colorAlternative;
     border-color: $colorAlternative;
   }
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: $colorMain;
+}
+
+.table-pointer > tbody > tr {
+  cursor: pointer;
 }
 
 a {
