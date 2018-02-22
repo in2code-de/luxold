@@ -1,4 +1,6 @@
-# LUX - Living User eXperience - Marketing Automation for TYPO3
+# Living User eXperience - LUX - the Marketing Automation tool for TYPO3
+
+<img src="Resources/Public/Icons/lux.svg" width="100" />
 
 ## Features
 
