@@ -340,6 +340,10 @@
 				<source>Lead preview</source>
 				<target state="translated">Lead Vorschau</target>
 			</trans-unit>
+			<trans-unit id="module.detail.linkdetail">
+				<source>Show lead details</source>
+				<target state="translated">Show Lead Details</target>
+			</trans-unit>
 			<trans-unit id="module.detail.scoring">
 				<source>Lead scoring</source>
 				<target state="translated">Lead Scoring</target>

@@ -258,6 +258,9 @@
 			<trans-unit id="module.detail">
 				<source>Lead preview</source>
 			</trans-unit>
+			<trans-unit id="module.detail.linkdetail">
+				<source>Show lead details</source>
+			</trans-unit>
 			<trans-unit id="module.detail.scoring">
 				<source>Lead scoring</source>
 			</trans-unit>
