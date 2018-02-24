@@ -41,8 +41,6 @@ class ScoringService
         }
         if ($time !== null) {
             $this->time = $time;
-        } else {
-            $this->time = new \DateTime();
         }
         $this->setCalculation();
     }
@@ -85,22 +83,26 @@ class ScoringService
      */
     protected function getNumberOfSiteVisits(Visitor $visitor): int
     {
-        /** @var PagevisitRepository $pagevisitRepository */
-        $pagevisitRepository = ObjectUtility::getObjectManager()->get(PagevisitRepository::class);
-        $pagevisits = $pagevisitRepository->findByVisitorAndTime($visitor, $this->time);
         $sitevisits = 0;
-        if ($pagevisits > 0) {
-            $lastVisit = null;
-            foreach ($pagevisits as $pagevisit) {
-                if ($lastVisit !== null) {
-                    /** @var Pagevisit $pagevisit */
-                    $interval = $lastVisit->diff($pagevisit->getCrdate());
-                    // if difference is greater then one hour
-                    if ($interval->h > 0) {
-                        $sitevisits++;
+        if ($this->time === null) {
+            $sitevisits = $visitor->getVisits();
+        } else {
+            /** @var PagevisitRepository $pagevisitRepository */
+            $pagevisitRepository = ObjectUtility::getObjectManager()->get(PagevisitRepository::class);
+            $pagevisits = $pagevisitRepository->findByVisitorAndTime($visitor, $this->time);
+            if ($pagevisits > 0) {
+                $lastVisit = null;
+                foreach ($pagevisits as $pagevisit) {
+                    if ($lastVisit !== null) {
+                        /** @var Pagevisit $pagevisit */
+                        $interval = $lastVisit->diff($pagevisit->getCrdate());
+                        // if difference is greater then one hour
+                        if ($interval->h > 0) {
+                            $sitevisits++;
+                        }
                     }
+                    $lastVisit = $pagevisit->getCrdate();
                 }
-                $lastVisit = $pagevisit->getCrdate();
             }
         }
         return $sitevisits;
@@ -112,10 +114,14 @@ class ScoringService
      */
     protected function getNumberOfVisits(Visitor $visitor): int
     {
-        /** @var PagevisitRepository $pagevisitRepository */
-        $pagevisitRepository = ObjectUtility::getObjectManager()->get(PagevisitRepository::class);
-        $pagevisits = $pagevisitRepository->findByVisitorAndTime($visitor, $this->time);
-        return $pagevisits->count();
+        if ($this->time === null) {
+            $visits = count($visitor->getPagevisits());
+        } else {
+            /** @var PagevisitRepository $pagevisitRepository */
+            $pagevisitRepository = ObjectUtility::getObjectManager()->get(PagevisitRepository::class);
+            $visits = $pagevisitRepository->findByVisitorAndTime($visitor, $this->time)->count();
+        }
+        return $visits;
     }
 
     /**
@@ -125,9 +131,13 @@ class ScoringService
     protected function getNumberOfDaysSinceLastVisit(Visitor $visitor): int
     {
         $days = 50;
-        $pagevisitRepository = ObjectUtility::getObjectManager()->get(PagevisitRepository::class);
-        /** @var Pagevisit $lastPagevisit */
-        $lastPagevisit = $pagevisitRepository->findLastByVisitorAndTime($visitor, $this->time);
+        if ($this->time === null) {
+            $lastPagevisit = $visitor->getLastPagevisit();
+        } else {
+            $pagevisitRepository = ObjectUtility::getObjectManager()->get(PagevisitRepository::class);
+            /** @var Pagevisit $lastPagevisit */
+            $lastPagevisit = $pagevisitRepository->findLastByVisitorAndTime($visitor, $this->time);
+        }
         if ($lastPagevisit !== null) {
             $delta = $this->time->diff($lastPagevisit->getCrdate());
             $days = $delta->d;
@@ -141,9 +151,13 @@ class ScoringService
      */
     protected function getNumberOfDownloads(Visitor $visitor): int
     {
-        /** @var DownloadRepository $downloadRepository */
-        $downloadRepository = ObjectUtility::getObjectManager()->get(DownloadRepository::class);
-        $downloads = $downloadRepository->findByVisitorAndTime($visitor, $this->time)->count();
+        if ($this->time === null) {
+            $downloads = count($visitor->getDownloads());
+        } else {
+            /** @var DownloadRepository $downloadRepository */
+            $downloadRepository = ObjectUtility::getObjectManager()->get(DownloadRepository::class);
+            $downloads = $downloadRepository->findByVisitorAndTime($visitor, $this->time)->count();
+        }
         return $downloads;
     }
 
