@@ -262,6 +262,9 @@
 				<source>Submit</source>
 			</trans-unit>
 
+			<trans-unit id="datetime.weekday.now">
+				<source>Now</source>
+			</trans-unit>
 			<trans-unit id="datetime.weekday.mon">
 				<source>Mo</source>
 			</trans-unit>

@@ -19,9 +19,8 @@ class GetLastDayNamesViewHelper extends AbstractViewHelper
     public function render(): string
     {
         $weekdayNames = [];
-        $today = new \DateTime();
         $locallangPrefix = 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:datetime.weekday.';
-        $weekdayNames[] = LocalizationUtility::translate($locallangPrefix . strtolower($today->format('D')));
+        $weekdayNames[] = LocalizationUtility::translate($locallangPrefix . 'now');
         $yesterday = new \DateTime('yesterday');
         $weekdayNames[] = LocalizationUtility::translate($locallangPrefix . strtolower($yesterday->format('D')));
         $day3 = new \DateTime('2 days ago');

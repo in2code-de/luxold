@@ -345,6 +345,10 @@
 				<target state="translated">Weiter</target>
 			</trans-unit>
 
+			<trans-unit id="datetime.weekday.now">
+				<source>Now</source>
+				<target state="translated">Heute</target>
+			</trans-unit>
 			<trans-unit id="datetime.weekday.mon">
 				<source>Mo</source>
 				<target state="translated">Mo</target>
