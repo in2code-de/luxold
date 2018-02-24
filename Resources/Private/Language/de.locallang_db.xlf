@@ -336,6 +336,11 @@
 				<target state="translated">Seitenaufrufe</target>
 			</trans-unit>
 
+			<trans-unit id="module.detail.scoring">
+				<source>Lead scoring</source>
+				<target state="translated">Lead Scoring</target>
+			</trans-unit>
+
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 				<target state="translated">E-Mail</target>
@@ -376,6 +381,38 @@
 			<trans-unit id="datetime.weekday.sun">
 				<source>Su</source>
 				<target state="translated">So</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.0">
+				<source>Now</source>
+				<target state="translated">Heute</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.1">
+				<source>1 week ago</source>
+				<target state="translated">Vor 1 Woche</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.2">
+				<source>2 weeks ago</source>
+				<target state="translated">Vor 2 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.3">
+				<source>3 weeks ago</source>
+				<target state="translated">Vor 3 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.4">
+				<source>4 weeks ago</source>
+				<target state="translated">Vor 4 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.5">
+				<source>5 weeks ago</source>
+				<target state="translated">Vor 5 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.6">
+				<source>6 weeks ago</source>
+				<target state="translated">Vor 6 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.7">
+				<source>7 weeks ago</source>
+				<target state="translated">Vor 7 Wochen</target>
 			</trans-unit>
 		</body>
 	</file>

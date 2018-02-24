@@ -255,6 +255,10 @@
 				<source>Pagevisits</source>
 			</trans-unit>
 
+			<trans-unit id="module.detail.scoring">
+				<source>Lead scoring</source>
+			</trans-unit>
+
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 			</trans-unit>
@@ -285,6 +289,31 @@
 			</trans-unit>
 			<trans-unit id="datetime.weekday.sun">
 				<source>Su</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.0">
+				<source>Now</source>
+				<target state="translated">Heute</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.1">
+				<source>1 week ago</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.2">
+				<source>2 weeks ago</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.3">
+				<source>3 weeks ago</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.4">
+				<source>4 weeks ago</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.5">
+				<source>5 weeks ago</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.6">
+				<source>6 weeks ago</source>
+			</trans-unit>
+			<trans-unit id="datetime.week.7">
+				<source>7 weeks ago</source>
 			</trans-unit>
 		</body>
 	</file>
