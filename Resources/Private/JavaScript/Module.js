@@ -32,7 +32,10 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			for (var i = 0; i < elements.length; i++) {
 				var element = elements[i];
 				element.addEventListener('click', function() {
+					removeClassFromElements(elements, 'lux-action-detail');
+					this.classList.add('lux-action-detail');
 					var visitor = this.getAttribute('data-lux-action-detail');
+
 					ajaxConnection(TYPO3.settings.ajaxUrls['/lux/detail'], {
 						visitor: visitor
 					}, 'showDetailCallback');
@@ -87,6 +90,17 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 				require(['TYPO3/CMS/Backend/DateTimePicker'], function(DateTimePicker) {
 					DateTimePicker.initialize();
 				});
+			}
+		};
+
+		/**
+		 * @param {string} elements
+		 * @param {string} className
+		 * @returns {void}
+		 */
+		var removeClassFromElements = function(elements, className) {
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].classList.remove(className);
 			}
 		};
 

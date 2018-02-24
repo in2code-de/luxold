@@ -4,15 +4,20 @@
 .btn-primary {
   background-color: $colorMain;
   border-color: $colorMain;
-  color: white;
+  color: $white;
   &:hover {
     background-color: $colorAlternative;
     border-color: $colorAlternative;
   }
 }
 
-.table-hover > tbody > tr:hover {
+.table-hover > tbody > tr:hover,
+.table-hover > tbody > tr.lux-action-detail {
   background-color: $colorMain;
+
+  > td {
+    color: $white;
+  }
 }
 
 .table-pointer > tbody > tr {
