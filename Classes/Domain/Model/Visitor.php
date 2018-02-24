@@ -2,7 +2,9 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
+use In2code\Lux\Domain\Service\ScoringService;
 use In2code\Lux\Utility\LocalizationUtility;
+use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -128,6 +130,18 @@ class Visitor extends AbstractEntity
     {
         $this->scoring = $scoring;
         return $this;
+    }
+
+    /**
+     * Get the scoring to any time in the past
+     *
+     * @param \DateTime $time
+     * @return int
+     */
+    public function getScoringByDate(\DateTime $time): int
+    {
+        $scoringService = ObjectUtility::getObjectManager()->get(ScoringService::class, $time);
+        return $scoringService->calculateScoring($this);
     }
 
     /**
@@ -263,6 +277,7 @@ class Visitor extends AbstractEntity
 
     /**
      * Calculate number of unique page visits. If user show a reaction after min. 1h we define it as new pagevisit.
+     *
      * @return int
      */
     public function getNumberOfUniquePagevisits(): int

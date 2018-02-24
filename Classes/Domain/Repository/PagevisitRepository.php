@@ -2,7 +2,10 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use In2code\Lux\Domain\Model\Visitor;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
@@ -15,7 +18,7 @@ class PagevisitRepository extends AbstractRepository
      * @param FilterDto $filter
      * @return QueryResultInterface
      */
-    public function findLatestPagevisits(FilterDto $filter)
+    public function findLatestPagevisits(FilterDto $filter): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching(
@@ -85,5 +88,47 @@ class PagevisitRepository extends AbstractRepository
             $visits[] = $query->execute()->count();
         }
         return $visits;
+    }
+
+    /**
+     * Find all page visits of a visitor but with a given time. If a visitor visits our page every single day since
+     * a week ago (so also today) and the given time is yesterday, we want to get all visits but not from today.
+     *
+     * @param Visitor $visitor
+     * @param \DateTime $time
+     * @return QueryResultInterface
+     */
+    public function findByVisitorAndTime(Visitor $visitor, \DateTime $time): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $logicalAnd = [
+            $query->equals('visitor', $visitor),
+            $query->lessThanOrEqual('crdate', $time)
+        ];
+        $query->matching($query->logicalAnd($logicalAnd));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
+
+    /**
+     * Find last page visit of a visitor but with a given time. If a visitor visits a page 3 days ago and today and
+     * the given time is yesterday, we want to get the visit from 3 days ago
+     *
+     * @param Visitor $visitor
+     * @param \DateTime $time
+     * @return Pagevisit|null
+     */
+    public function findLastByVisitorAndTime(Visitor $visitor, \DateTime $time)
+    {
+        $query = $this->createQuery();
+        $logicalAnd = [
+            $query->equals('visitor', $visitor),
+            $query->lessThanOrEqual('crdate', $time)
+        ];
+        $query->matching($query->logicalAnd($logicalAnd));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        /** @var Pagevisit $pagevisit */
+        $pagevisit = $query->execute()->getFirst();
+        return $pagevisit;
     }
 }

@@ -12,6 +12,15 @@ class ConfigurationUtility
 {
 
     /**
+     * @return string
+     */
+    public static function getScoringCalculation(): string
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return $extensionConfig['scoringCalculation'];
+    }
+
+    /**
      * @return bool
      */
     public static function isLastLeadsBoxInPageDisabled(): bool

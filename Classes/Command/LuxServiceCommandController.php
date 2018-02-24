@@ -15,20 +15,19 @@ class LuxServiceCommandController extends CommandController
     /**
      * Recalculate scoring of all visitors
      *
-     *      Recalculate scoring of all visitors
+     *      Recalculate scoring of all visitors. Scoring calculation will be used from extension settings.
+     *      You should run this task frequently (1 time a day) if you are using the variable {lastVisitDaysAgo}
+     *      in your calculation
      *
-     * @param string $calculation
      * @return void
      */
-    public function reCalculateScoringCommand(
-        string $calculation = '(10 * numberOfSiteVisits) + (1 * numberOfPageVisits) + (20 * downloads) - (1 * lastVisitDaysAgo)'
-    ) {
+    public function reCalculateScoringCommand()
+    {
         $scoringService = $this->objectManager->get(ScoringService::class);
         $visitorRepository = $this->objectManager->get(VisitorRepository::class);
         $visitors = $visitorRepository->findAll();
         foreach ($visitors as $visitor) {
-            $scoringService->setCalculation($calculation);
-            $scoringService->calculateScoring($visitor);
+            $scoringService->calculateAndSetScoring($visitor);
         }
     }
 }

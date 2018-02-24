@@ -46,6 +46,37 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		this.showDetailCallback = function(response)
 		{
 			document.querySelector('[data-lux-container="detail"]').innerHTML = response.html;
+
+			var container = document.querySelector('[data-lux-container="detailchart"]');
+			var ctx = container.getContext('2d');
+			new Chart(ctx, {
+				type: 'line',
+				data: {
+					datasets: [{
+						label: container.getAttribute('data-chart-label'),
+						data: container.getAttribute('data-chart-data').split(','),
+						borderColor: 'rgb(77, 231, 255)',
+						"lineTension": 0.5
+					}],
+					labels: container.getAttribute('data-chart-labels').split(',')
+				},
+				options: {
+					legend: {
+						display: false,
+						position: 'right',
+						labels: {
+							fontSize: 18
+						}
+					},
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
 		};
 
 		/**

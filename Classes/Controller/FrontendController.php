@@ -10,6 +10,7 @@ use In2code\Lux\Domain\Tracker\DownloadTracker;
 use In2code\Lux\Domain\Tracker\PageTracker;
 use In2code\Lux\Signal\SignalTrait;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 
 /**
  * Class FrontendController
@@ -42,6 +43,7 @@ class FrontendController extends ActionController
      * @param string $idCookie
      * @param array $arguments
      * @return void
+     * @throws StopActionException
      */
     public function dispatchRequestAction(string $dispatchAction, string $idCookie, array $arguments)
     {

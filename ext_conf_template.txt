@@ -9,3 +9,6 @@ disableIpInformation = 0
 
 # cat=basic/enable/100; type=boolean; label= Disable analysis module: If you want, you can turn off the analysis backend-module.
 disableAnalysisModule = 0
+
+# cat=basic//200; type=text; label= Scoring calculation: Define your own main scoring calculation. This will be used automaticly on a pagevisit or frequently with a scheduler task (commandcontroller). Available variables are - numberOfSiteVisits, numberOfPageVisits, downloads, lastVisitDaysAgo.
+scoringCalculation = (10 * numberOfSiteVisits) + (1 * numberOfPageVisits) + (20 * downloads) - (1 * lastVisitDaysAgo)
