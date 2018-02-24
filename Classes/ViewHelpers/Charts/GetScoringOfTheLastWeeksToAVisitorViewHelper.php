@@ -30,13 +30,12 @@ class GetScoringOfTheLastWeeksToAVisitorViewHelper extends AbstractViewHelper
         $visitor = $this->arguments['visitor'];
         $scorings = [
             $visitor->getScoring(),
-            $visitor->getScoringByDate(new \DateTime('7 days ago')),
-            $visitor->getScoringByDate(new \DateTime('14 days ago')),
-            $visitor->getScoringByDate(new \DateTime('21 days ago')),
-            $visitor->getScoringByDate(new \DateTime('28 days ago')),
-            $visitor->getScoringByDate(new \DateTime('35 days ago')),
-            $visitor->getScoringByDate(new \DateTime('42 days ago')),
-            $visitor->getScoringByDate(new \DateTime('49 days ago')),
+            $visitor->getScoringByDate(new \DateTime('7 days ago midnight')),
+            $visitor->getScoringByDate(new \DateTime('14 days ago midnight')),
+            $visitor->getScoringByDate(new \DateTime('21 days ago midnight')),
+            $visitor->getScoringByDate(new \DateTime('28 days ago midnight')),
+            $visitor->getScoringByDate(new \DateTime('35 days ago midnight')),
+            $visitor->getScoringByDate(new \DateTime('42 days ago midnight')),
         ];
         $scorings = array_reverse($scorings);
         return implode(',', $scorings);
