@@ -351,9 +351,9 @@
 				<source>Pagevisits</source>
 				<target state="translated">Seitenaufrufe</target>
 			</trans-unit>
-			<trans-unit id="module.list.filter.submit">
-				<source>Filter now</source>
-				<target state="translated">Jetzt filtern</target>
+			<trans-unit id="module.list.filter">
+				<source>Filter Leads</source>
+				<target state="translated">Lead Filter</target>
 			</trans-unit>
 			<trans-unit id="module.list.filter.timeFrom">
 				<source>From</source>
@@ -362,6 +362,22 @@
 			<trans-unit id="module.list.filter.timeTo">
 				<source>To</source>
 				<target state="translated">Bis</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.searchterm">
+				<source>Searchterm</source>
+				<target state="translated">Suchbegriff</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.pid">
+				<source>Page ID to search for</source>
+				<target state="translated">Seiten ID</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.reset">
+				<source>Reset filter</source>
+				<target state="translated">Filter aufheben</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.submit">
+				<source>Filter now</source>
+				<target state="translated">Jetzt filtern</target>
 			</trans-unit>
 			<trans-unit id="module.list.pagevisits.label">
 				<source>Pagevisits</source>

@@ -184,6 +184,20 @@ class VisitorRepository extends AbstractRepository
     ): array {
         $logicalAnd[] = $query->greaterThan('pagevisits.crdate', $filter->getStartTimeForFilter());
         $logicalAnd[] = $query->lessThan('pagevisits.crdate', $filter->getEndTimeForFilter());
+        if ($filter->getSearchterms() !== []) {
+            $logicalOr = [];
+            foreach ($filter->getSearchterms() as $searchterm) {
+                $logicalOr[] = $query->like('email', $searchterm);
+                $logicalOr[] = $query->like('ipAddress', $searchterm);
+                $logicalOr[] = $query->like('referrer', $searchterm);
+                $logicalOr[] = $query->like('description', $searchterm);
+                $logicalOr[] = $query->like('attributes.value', $searchterm);
+            }
+            $logicalAnd[] = $query->logicalOr($logicalOr);
+        }
+        if ($filter->getPid() !== '') {
+            $logicalAnd[] = $query->equals('pagevisits.page.uid', (int)$filter->getPid());
+        }
         return $logicalAnd;
     }
 }

@@ -263,14 +263,26 @@
 			<trans-unit id="module.list.pagevisits">
 				<source>Pagevisits</source>
 			</trans-unit>
-			<trans-unit id="module.list.filter.submit">
-				<source>Filter now</source>
+			<trans-unit id="module.list.filter">
+				<source>Filter Leads</source>
 			</trans-unit>
 			<trans-unit id="module.list.filter.timeFrom">
 				<source>From</source>
 			</trans-unit>
 			<trans-unit id="module.list.filter.timeTo">
 				<source>To</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.searchterm">
+				<source>Searchterm</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.pid">
+				<source>Page ID to search for</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.reset">
+				<source>Reset filter</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.submit">
+				<source>Filter now</source>
 			</trans-unit>
 			<trans-unit id="module.list.pagevisits.label">
 				<source>Pagevisits</source>

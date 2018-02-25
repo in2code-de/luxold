@@ -1,37 +1,76 @@
 <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter">Filter</f:translate>
+        </h3>
+    </div>
     <div class="panel-body">
-        <f:form name="filter" class="form-inline" action="list">
-            <div>
-                <div class="input-group">
-                    <f:form.textfield
-                            type="datetime"
-                            property="timeFrom"
-                            id="timeFrom"
-                            class="form-control t3js-datetimepicker t3js-clearable"
-                            placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeFrom')}"
-                            value="{filter.timeFrom}"
-                            data="{date-type:'datetime',date-offset:'0'}" />
-                    <label class="input-group-addon fa fa-calendar" for="timeFrom"></label>
+        <f:form name="filter" class="form" action="list">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group form-group">
+                        <f:form.textfield
+                                type="datetime"
+                                property="searchterm"
+                                id="searchterm"
+                                class="form-control"
+                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.searchterm')}"
+                                value="{filter.searchterm}" />
+                        <label class="input-group-addon fa fa-search" for="searchterm"></label>
+                    </div>
                 </div>
-
-                <div class="input-group">
-                    <f:form.textfield
-                            type="datetime"
-                            property="timeTo"
-                            id="timeTo"
-                            class="form-control t3js-datetimepicker t3js-clearable"
-                            placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeTo')}"
-                            value="{filter.timeTo}"
-                            data="{date-type:'datetime',date-offset:'0'}" />
-                    <label class="input-group-addon fa fa-calendar" for="timeTo"></label>
-                </div>
-
-                <div class="form-group">
-                    <f:form.submit
-                            class="btn btn-primary"
-                            value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.submit')}" />
+                <div class="col-md-6">
+                    <div class="input-group form-group">
+                        <f:form.textfield
+                                type="datetime"
+                                property="pid"
+                                id="pid"
+                                class="form-control"
+                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.pid')}"
+                                value="{filter.pid}" />
+                        <label class="input-group-addon fa fa-file" for="pid"></label>
+                    </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group form-group">
+                        <f:form.textfield
+                                type="datetime"
+                                property="timeFrom"
+                                id="timeFrom"
+                                class="form-control t3js-datetimepicker t3js-clearable"
+                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeFrom')}"
+                                value="{filter.timeFrom}"
+                                data="{date-type:'datetime',date-offset:'0'}" />
+                        <label class="input-group-addon fa fa-calendar" for="timeFrom"></label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group form-group">
+                        <f:form.textfield
+                                type="datetime"
+                                property="timeTo"
+                                id="timeTo"
+                                class="form-control t3js-datetimepicker t3js-clearable"
+                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeTo')}"
+                                value="{filter.timeTo}"
+                                data="{date-type:'datetime',date-offset:'0'}" />
+                        <label class="input-group-addon fa fa-calendar" for="timeTo"></label>
+                    </div>
+                </div>
+            </div>
+                <div class="form-group">
+                    <f:form.submit
+                            class="btn btn-primary pull-right"
+                            value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.submit')}" />
+                    <f:if condition="{filter.set}">
+                        <f:link.action class="btn btn-default pull-right" style="margin-right: 10px" action="list">
+                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.reset">Reset</f:translate>
+                        </f:link.action>
+                    </f:if>
+                </div>
         </f:form>
     </div>
 </div>
