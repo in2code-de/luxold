@@ -35,6 +35,10 @@
 				<source>Log</source>
 				<target state="translated">Log</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
 				<source>Is identified lead?</source>
 				<target state="translated">Lead bereits identifiziert?</target>
@@ -66,6 +70,10 @@
 			<trans-unit id="tx_lux_domain_model_visitor.attributes">
 				<source>Lead attributes</source>
 				<target state="translated">Eigenschaften des Leads</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.referrer">
 				<source>External referrer</source>
@@ -371,6 +379,10 @@
 			<trans-unit id="module.detail.scoring">
 				<source>Lead scoring</source>
 				<target state="translated">Lead Scoring</target>
+			</trans-unit>
+			<trans-unit id="module.detail.description">
+				<source>Add an individual description...</source>
+				<target state="translated">Individuelle Beschreibung hinzufügen...</target>
 			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">

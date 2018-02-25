@@ -12,6 +12,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -122,6 +124,26 @@ class AnalysisController extends ActionController
             'visitor' => $visitorRepository->findByUid((int)$request->getQueryParams()['visitor'])
         ]);
         $response->getBody()->write(json_encode(['html' => $standaloneView->render()]));
+        return $response;
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
+     */
+    public function detailDescriptionAjax(
+        ServerRequestInterface $request,
+        ResponseInterface $response
+    ): ResponseInterface {
+        /** @var VisitorRepository $visitorRepository */
+        $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
+        $visitor = $visitorRepository->findByUid((int)$request->getQueryParams()['visitor']);
+        $visitor->setDescription($request->getQueryParams()['value']);
+        $visitorRepository->update($visitor);
+        $visitorRepository->persistAll();
         return $response;
     }
 

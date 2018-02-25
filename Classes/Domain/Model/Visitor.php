@@ -103,6 +103,11 @@ class Visitor extends AbstractEntity
     protected $tstamp = null;
 
     /**
+     * @var string
+     */
+    protected $description = '';
+
+    /**
      * Visitor constructor.
      */
     public function __construct()
@@ -563,6 +568,24 @@ class Visitor extends AbstractEntity
     public function setTstamp(\DateTime $tstamp)
     {
         $this->tstamp = $tstamp;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Visitor
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
         return $this;
     }
 

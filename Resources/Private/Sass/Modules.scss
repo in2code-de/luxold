@@ -28,3 +28,12 @@ a {
   color: $colorAlternative;
   cursor: pointer;
 }
+
+.lux-textarea {
+  width: 100%;
+  padding: 10px;
+
+  &__default {
+    color: $colorGrey;
+  }
+}

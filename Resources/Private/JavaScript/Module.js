@@ -21,6 +21,7 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		 */
 		this.initialize = function() {
 			addDetailViewListener();
+			addDescriptionListener();
 			addDatePickers();
 		};
 
@@ -41,6 +42,30 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 					}, 'showDetailCallback');
 				});
 			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addDescriptionListener = function() {
+			var container = document.querySelector('[data-lux-container="detail"]');
+			container.addEventListener('click', function(event) {
+				var clickedElement = event.target;
+				if (clickedElement.getAttribute('data-lux-visitor-description') > 0) {
+					if (clickedElement.classList.contains('lux-textarea__default')) {
+						clickedElement.classList.remove('lux-textarea__default');
+						clickedElement.value = '';
+					}
+					var visitor = clickedElement.getAttribute('data-lux-visitor-description');
+					clickedElement.addEventListener('blur', function() {
+						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/visitordescription'], {
+							visitor: visitor,
+							value: this.value
+						}, null);
+					});
+				}
+			});
+
 		};
 
 		/**
@@ -115,7 +140,9 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 				var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState === 4 && this.status === 200) {
-						that[target](JSON.parse(this.responseText));
+						if (target !== null) {
+							that[target](JSON.parse(this.responseText));
+						}
 					}
 				};
 				xhttp.open('POST', mergeUriWithParameters(uri, parameters), true);
@@ -148,7 +175,7 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 					} else {
 						uri += '?';
 					}
-					uri += key + '=' + parameters[key];
+					uri += key + '=' + encodeURIComponent(parameters[key]);
 				}
 			}
 			return uri;

@@ -16,6 +16,7 @@ CREATE TABLE tx_lux_domain_model_visitor (
 	user_agent varchar(255) DEFAULT '' NOT NULL,
 	visits int(11) unsigned DEFAULT '0' NOT NULL,
 	scoring int(11) unsigned DEFAULT '0' NOT NULL,
+	description text NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

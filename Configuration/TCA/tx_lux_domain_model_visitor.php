@@ -22,8 +22,8 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'scoring,identified,visits,email,id_cookie,crdate,tstamp,attributes,pagevisits,' .
-            'downloads,referrer,user_agent,ip_address,ipinformations,logs',
+        'showRecordFieldList' => 'scoring,identified,visits,email,id_cookie,crdate,tstamp,attributes,' .
+            'pagevisits,downloads,referrer,user_agent,ip_address,ipinformations,logs,description',
     ],
     'types' => [
         '1' => [
@@ -37,7 +37,9 @@ return [
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
                 'tx_lux_domain_model_visitor.tab.downloads,downloads,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
-                'tx_lux_domain_model_visitor.tab.logs,logs'
+                'tx_lux_domain_model_visitor.tab.logs,logs,' .
+                '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
+                'tx_lux_domain_model_visitor.tab.description,description'
         ],
     ],
     'palettes' => [
@@ -302,6 +304,16 @@ return [
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1
                 ]
+            ]
+        ],
+        'description' => [
+            'exclude' => true,
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.description',
+            'config' => [
+                'type' => 'text',
+                'cols' => 500,
+                'rows' => 8
             ]
         ]
     ]
