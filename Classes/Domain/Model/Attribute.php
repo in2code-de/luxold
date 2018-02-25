@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
+use In2code\Lux\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
@@ -51,6 +52,21 @@ class Attribute extends AbstractEntity
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Try to get a translation for the name, otherwise return name
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        $lllPrefix = 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:';
+        $label = LocalizationUtility::translate($lllPrefix . 'tx_lux_domain_model_attribute.label.' . $this->getName());
+        if (empty($label)) {
+            $label = $this->getName();
+        }
+        return $label;
     }
 
     /**

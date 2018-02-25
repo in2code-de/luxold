@@ -137,6 +137,30 @@
 				<source>Name</source>
 				<target state="translated">Name</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.email">
+				<source>Email</source>
+				<target state="translated">E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.firstname">
+				<source>Firstname</source>
+				<target state="translated">Vorname</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.lastname">
+				<source>Lastname</source>
+				<target state="translated">Nachname</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.company">
+				<source>Company</source>
+				<target state="translated">Firma</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.username">
+				<source>Username</source>
+				<target state="translated">Benutzername</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.phone">
+				<source>Phone</source>
+				<target state="translated">Telefon</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_attribute.value">
 				<source>Value</source>
 				<target state="translated">Wert</target>

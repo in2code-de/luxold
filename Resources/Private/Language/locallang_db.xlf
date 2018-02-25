@@ -104,6 +104,21 @@
 			<trans-unit id="tx_lux_domain_model_attribute.name">
 				<source>Name</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.firstname">
+				<source>Firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.lastname">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.company">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.phone">
+				<source>Phone</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_attribute.value">
 				<source>Value</source>
 			</trans-unit>

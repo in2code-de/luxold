@@ -340,6 +340,29 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @return array
+     */
+    public function getImportantAttributes(): array
+    {
+        $important = [
+            'email',
+            'firstname',
+            'lastname',
+            'company',
+            'username'
+        ];
+        $attributes = $this->getAttributes();
+        $importantAttributes = [];
+        /** @var Attribute $attribute */
+        foreach ($attributes as $attribute) {
+            if (in_array($attribute->getName(), $important)) {
+                $importantAttributes[] = $attribute;
+            }
+        }
+        return $importantAttributes;
+    }
+
+    /**
      * @return string
      */
     public function getReferrer(): string
