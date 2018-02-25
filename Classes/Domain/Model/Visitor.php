@@ -446,6 +446,27 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @return ObjectStorage
+     */
+    public function getImportantIpinformations(): array
+    {
+        $important = [
+            'org',
+            'country',
+            'city'
+        ];
+        $informations = $this->getIpinformations();
+        $importantInformations = [];
+        /** @var Ipinformation $information */
+        foreach ($informations as $information) {
+            if (in_array($information->getName(), $important)) {
+                $importantInformations[] = $information;
+            }
+        }
+        return $importantInformations;
+    }
+
+    /**
      * @var ObjectStorage $ipinformations
      * @return Visitor
      */
@@ -716,5 +737,35 @@ class Visitor extends AbstractEntity
             }
         }
         return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getLatitude(): string
+    {
+        $lat = '';
+        $ipInformations = $this->getIpinformations();
+        foreach ($ipInformations as $information) {
+            if ($information->getName() === 'lat') {
+                $lat = $information->getValue();
+            }
+        }
+        return $lat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongitude(): string
+    {
+        $lng = '';
+        $ipInformations = $this->getIpinformations();
+        foreach ($ipInformations as $information) {
+            if ($information->getName() === 'lon') {
+                $lng = $information->getValue();
+            }
+        }
+        return $lng;
     }
 }
