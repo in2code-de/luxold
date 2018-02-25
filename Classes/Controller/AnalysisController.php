@@ -13,6 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -57,26 +58,17 @@ class AnalysisController extends ActionController
      */
     public function dashboardAction(FilterDto $filter)
     {
-        $visitors = $this->visitorRepository->findByHottestScorings($filter);
-        $numberOfUniqueSiteVisitors = $this->visitorRepository->findByUniqueSiteVisits($filter)->count();
-        $numberOfRecurringSiteVisitors = $this->visitorRepository->findByRecurringSiteVisits($filter)->count();
-        $numberOfIdentifiedVisitors = $this->visitorRepository->findIdentified($filter)->count();
-        $numberOfUnknownVisitors = $this->visitorRepository->findUnknown($filter)->count();
-        $interestingLogs = $this->logRepository->findInterestingLogs($filter);
-        $countries = $this->ipinformationRepository->findAllCountryCodesGrouped($filter);
-        $latestPagevisits = $this->pagevisitsRepository->findLatestPagevisits($filter);
-        $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
         $this->view->assignMultiple([
-            'visitors' => $visitors,
+            'hottestVisitors' => $this->visitorRepository->findByHottestScorings($filter),
             'filter' => $filter,
-            'numberOfUniqueSiteVisitors' => $numberOfUniqueSiteVisitors,
-            'numberOfRecurringSiteVisitors' => $numberOfRecurringSiteVisitors,
-            'numberOfIdentifiedVisitors' => $numberOfIdentifiedVisitors,
-            'numberOfUnknownVisitors' => $numberOfUnknownVisitors,
-            'interestingLogs' => $interestingLogs,
-            'countries' => $countries,
-            'latestPagevisits' => $latestPagevisits,
-            'identifiedByMostVisits' => $identifiedByMostVisits,
+            'numberOfUniqueSiteVisitors' => $this->visitorRepository->findByUniqueSiteVisits($filter)->count(),
+            'numberOfRecurringSiteVisitors' => $this->visitorRepository->findByRecurringSiteVisits($filter)->count(),
+            'numberOfIdentifiedVisitors' => $this->visitorRepository->findIdentified($filter)->count(),
+            'numberOfUnknownVisitors' => $this->visitorRepository->findUnknown($filter)->count(),
+            'interestingLogs' => $this->logRepository->findInterestingLogs($filter),
+            'countries' => $this->ipinformationRepository->findAllCountryCodesGrouped($filter),
+            'latestPagevisits' => $this->pagevisitsRepository->findLatestPagevisits($filter),
+            'identifiedByMostVisits' => $this->visitorRepository->findIdentifiedByMostVisits($filter)
         ]);
     }
 
@@ -90,21 +82,40 @@ class AnalysisController extends ActionController
 
     /**
      * @param FilterDto $filter
+     * @param string $export
+     * @return void
+     * @throws StopActionException
+     */
+    public function listAction(FilterDto $filter, string $export = '')
+    {
+        if ($export === 'csv') {
+            $this->forward('downloadCsv', null, null, ['filter' => $filter]);
+        }
+        $this->view->assignMultiple([
+            'hottestVisitors' => $this->visitorRepository->findByHottestScorings($filter),
+            'filter' => $filter,
+            'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst($filter),
+            'identifiedByMostVisits' => $this->visitorRepository->findIdentifiedByMostVisits($filter),
+            'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay(),
+        ]);
+    }
+
+    /**
+     * @param FilterDto $filter
      * @return void
      */
-    public function listAction(FilterDto $filter)
+    public function downloadCsvAction(FilterDto $filter)
     {
-        $visitors = $this->visitorRepository->findByHottestScorings($filter);
-        $allVisitors = $this->visitorRepository->findAllWithIdentifiedFirst($filter);
-        $identifiedByMostVisits = $this->visitorRepository->findIdentifiedByMostVisits($filter);
-        $numberOfVisitorsByDay = $this->pagevisitsRepository->getNumberOfVisitorsByDay();
         $this->view->assignMultiple([
-            'visitors' => $visitors,
-            'filter' => $filter,
-            'allVisitors' => $allVisitors,
-            'identifiedByMostVisits' => $identifiedByMostVisits,
-            'numberOfVisitorsByDay' => $numberOfVisitorsByDay,
+            'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst($filter),
         ]);
+
+        $this->response->setHeader('Content-Type', 'text/x-csv');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="Leads.csv"');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->sendHeaders();
+        echo $this->view->render();
+        exit;
     }
 
     /**

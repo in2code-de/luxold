@@ -5,11 +5,11 @@
         </h3>
     </div>
     <div class="panel-body">
-        <f:if condition="{visitors}">
+        <f:if condition="{hottestVisitors}">
             <f:then>
                 <div style="height: 258px;">
                     <ol class="list-group">
-                        <f:for each="{visitors}" as="visitor">
+                        <f:for each="{hottestVisitors}" as="visitor">
                             <li class="list-group-item">
                                 <span class="badge" title="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.scoring')}">{visitor.scoring}</span>
                                 <strong title="{visitor.location}">{visitor.fullName}</strong>
