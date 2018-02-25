@@ -2,6 +2,22 @@
 
 <img src="Resources/Public/Icons/lux.svg" width="100" />
 
+## Introduction
+
+LUX is an enterprise software solution to fill the gap between your TYPO3-website and a standalone marketing automation
+tool. LUX will track, identify, analyse your leads and give the visitors some improved user experience for your website
+like showing relevant information at the right time.
+
+## Screenshots
+
+<img src="Documentation/Screenshots/dashboard.png" width="800" />
+
+<img src="Documentation/Screenshots/list.png" width="800" />
+
+<img src="Documentation/Screenshots/list2.png" width="800" />
+
+<img src="Documentation/Screenshots/page.png" width="800" />
+
 ## Features
 
 ### Tracking
@@ -25,16 +41,16 @@
 - Letzte Leads pro Seite
 - Dashboard (wichtigste Informationen)
 - Listview
-- Todo: Eye-Candy Detailview mit Pagefunnel und Log (mit Verlinkungen von Liste, Dashboard, LetzteLeads)
+- Detailview mit Pagefunnel und Log
 
 ### Scoring
 
-- Allgemeines Scoring (individuelle Berechnung)
+- Allgemeines Scoring (individuelle Berechnungsmöglichkeit)
 
 ### Workflow & User Experience
 
 - Todo: Workflow GUI (Trigger & Actions)
-- Todo: Scoring
+- Todo: Category Scoring
 - Todo: Action: Lightbox mit Content
 - Todo: Action: E-Mail versenden
 
@@ -52,9 +68,3 @@
 - Todo: API/Export
 - Todo: A/B Tests
 - Todo: SocialMedia (Twitter)
-
-## Ideas
-
-- Email4Download Plugin?
-- Bild anzeigen (E-Mail => Gravatar)
-- Kategoriesierung?
