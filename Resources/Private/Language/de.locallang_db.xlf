@@ -384,6 +384,10 @@
 				<source>Add an individual description...</source>
 				<target state="translated">Individuelle Beschreibung hinzufügen...</target>
 			</trans-unit>
+			<trans-unit id="module.detail.pagefunnel">
+				<source>Conversion Funnel / Page Visits</source>
+				<target state="translated">Conversion Funnel / Seitenbesuche</target>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>

@@ -14,6 +14,13 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Visitor extends AbstractEntity
 {
     const TABLE_NAME = 'tx_lux_domain_model_visitor';
+    const IMPORTANT_ATTRIBUTES = [
+        'email',
+        'firstname',
+        'lastname',
+        'company',
+        'username'
+    ];
 
     /**
      * @var int
@@ -349,22 +356,31 @@ class Visitor extends AbstractEntity
      */
     public function getImportantAttributes(): array
     {
-        $important = [
-            'email',
-            'firstname',
-            'lastname',
-            'company',
-            'username'
-        ];
         $attributes = $this->getAttributes();
         $importantAttributes = [];
         /** @var Attribute $attribute */
         foreach ($attributes as $attribute) {
-            if (in_array($attribute->getName(), $important)) {
+            if (in_array($attribute->getName(), self::IMPORTANT_ATTRIBUTES)) {
                 $importantAttributes[] = $attribute;
             }
         }
         return $importantAttributes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUnimportantAttributes(): array
+    {
+        $attributes = $this->getAttributes();
+        $unimportantAttributes = [];
+        /** @var Attribute $attribute */
+        foreach ($attributes as $attribute) {
+            if (!in_array($attribute->getName(), self::IMPORTANT_ATTRIBUTES)) {
+                $unimportantAttributes[] = $attribute;
+            }
+        }
+        return $unimportantAttributes;
     }
 
     /**

@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.detail.pagefunnel">Pagefunnel</f:translate>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <f:if condition="{visitor.pagevisits}">
+            <f:then>
+                <div style="height: 600px; overflow: hidden;">
+                    <nav class="timeline timeline--vertical">
+                        <f:for each="{visitor.pagevisits}" as="pagevisit">
+                            <div class="timeline__item" title="PID{pagevisit.page.uid}">
+                                <div style="margin-top: 5px;">
+                                    {pagevisit.page.title}
+                                    <span class="badge pull-right" title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">{lux:format.readableDate(date:pagevisit.crdate)}</span>
+                                </div>
+                            </div>
+                        </f:for>
+                    </nav>
+                </div>
+            </f:then>
+            <f:else>
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.novalues">No values to show</f:translate>
+            </f:else>
+        </f:if>
+    </div>
+</div>

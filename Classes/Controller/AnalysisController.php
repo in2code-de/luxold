@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
@@ -107,6 +108,15 @@ class AnalysisController extends ActionController
     }
 
     /**
+     * @param Visitor $visitor
+     * @return void
+     */
+    public function detailAction(Visitor $visitor)
+    {
+        $this->view->assign('visitor', $visitor);
+    }
+
+    /**
      * AJAX action to show a detail view
      *
      * @param ServerRequestInterface $request
@@ -118,7 +128,7 @@ class AnalysisController extends ActionController
         $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
         $standaloneView = ObjectUtility::getObjectManager()->get(StandaloneView::class);
         $standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(
-            'EXT:lux/Resources/Private/Templates/Analysis/Detail.html'
+            'EXT:lux/Resources/Private/Templates/Analysis/DetailAjax.html'
         ));
         $standaloneView->assignMultiple([
             'visitor' => $visitorRepository->findByUid((int)$request->getQueryParams()['visitor'])

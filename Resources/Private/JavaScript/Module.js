@@ -22,6 +22,7 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		this.initialize = function() {
 			addDetailViewListener();
 			addDescriptionListener();
+			addLinkMockListener();
 			addDatePickers();
 		};
 
@@ -65,7 +66,23 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 					});
 				}
 			});
+		};
 
+		/**
+		 * @returns {void}
+		 */
+		var addLinkMockListener = function() {
+			var container = document.querySelector('[data-lux-container="detail"]');
+			container.addEventListener('click', function(event) {
+				var clickedElement = event.target;
+				if (clickedElement.getAttribute('data-lux-linkmock-event') !== null) {
+					var name = clickedElement.getAttribute('data-lux-linkmock-event');
+					var target = document.querySelector('[data-lux-linkmock-link="' + name + '"]');
+					if (target !== null) {
+						target.click();
+					}
+				}
+			});
 		};
 
 		/**
