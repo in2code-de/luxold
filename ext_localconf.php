@@ -94,7 +94,7 @@ call_user_func(
             \In2code\Lux\Controller\FrontendController::class,
             'afterTracking',
             \In2code\Lux\Domain\Service\ScoringService::class,
-            'calculateScoring',
+            'calculateAndSetScoring',
             false
         );
 
