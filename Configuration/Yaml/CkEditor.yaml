@@ -10,9 +10,6 @@ editor:
 
   config:
 
-    email4Link:
-      foo: 'bar'
-
     allowedContent: true
     contentsCss: ['EXT:lux/Resources/Public/Css/Modules.min.css']
 
@@ -20,7 +17,7 @@ editor:
       - { name: 'styles', groups: [ 'styles' ] }
       - { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] }
       - { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] }
-      - { name: 'links', groups: [ 'links', 'Email4Link', 'RemoveEmail4Link' ] }
+      - { name: 'links', groups: [ 'links', 'Email4Link' ] }
       - { name: 'document', groups: [ 'document', 'doctools' ] }
       - { name: 'clipboard', groups: [ 'clipboard', 'undo' ] }
       - { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] }

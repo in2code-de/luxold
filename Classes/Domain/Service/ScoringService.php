@@ -139,7 +139,11 @@ class ScoringService
             $lastPagevisit = $pagevisitRepository->findLastByVisitorAndTime($visitor, $this->time);
         }
         if ($lastPagevisit !== null) {
-            $delta = $this->time->diff($lastPagevisit->getCrdate());
+            $time = $this->time;
+            if ($this->time === null) {
+                $time = new \DateTime();
+            }
+            $delta = $time->diff($lastPagevisit->getCrdate());
             $days = $delta->d;
         }
         return $days;

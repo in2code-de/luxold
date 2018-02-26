@@ -68,3 +68,10 @@ like showing relevant information at the right time.
 - Todo: API/Export
 - Todo: A/B Tests
 - Todo: SocialMedia (Twitter)
+
+## Changelog
+
+| Version    | Date       | State      | Description                                                                  |
+| ---------- | ---------- | ---------- | ---------------------------------------------------------------------------- |
+| 1.0.1      | 2018-02-26 | Bugfix     | Fix some smaller bugs that occurs with live data                             |
+| 1.0.0      | 2018-02-26 | Task       | Initial Release with a stable tracking, identification and analyses          |
