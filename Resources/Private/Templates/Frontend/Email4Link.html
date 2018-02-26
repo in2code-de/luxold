@@ -1,0 +1,25 @@
+<div class="lux_container_email4link" data-lux-container="email4link">
+    <div class="lux_lightbox_container">
+        <h3>###TITLE###</h3>
+        <p>###TEXT###</p>
+        <form class="form-inline" data-lux-email4link="form">
+            <div class="form-group">
+                <input
+                        type="email"
+                        class="form-control"
+                        data-lux-email4link="email"
+                        placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:frontend.email4link.lightbox.email')}"
+                        name="email4link[m]">
+            </div>
+            <input
+                    type="submit"
+                    data-lux-email4link="submit"
+                    class="btn btn-primary"
+                    value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:frontend.email4link.lightbox.submit')}" />
+        </form>
+        <p class="lux_smalltext">###HREF###</p>
+        <div data-lux-email4link="successMessageSendEmail" style="display:none;" class="alert alert-success">
+            E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.
+        </div>
+    </div>
+</div>

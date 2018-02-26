@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-02-06T12:00:00Z" product-name="lux">
+		<header/>
+		<body>
+			<trans-unit id="tx_lux_domain_model_visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.scoring">
+				<source>Scoring</source>
+				<target state="translated">Scoring</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.identification">
+				<source>Lead identification</source>
+				<target state="translated">Lead Ident</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.score">
+				<source>Lead score</source>
+				<target state="translated">Lead Score</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.pagevisits">
+				<source>Page visits</source>
+				<target state="translated">Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.downloads">
+				<source>Downloads</source>
+				<target state="translated">Datei-Downloads</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.enrichments">
+				<source>Enrichments</source>
+				<target state="translated">Angereicherte Informationen</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.logs">
+				<source>Log</source>
+				<target state="translated">Log</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tab.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.identified">
+				<source>Is identified lead?</source>
+				<target state="translated">Lead bereits identifiziert?</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.visits">
+				<source>Number of visits</source>
+				<target state="translated">Anzahl Besuche</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.email">
+				<source>Email</source>
+				<target state="translated">E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.crdate">
+				<source>First visit</source>
+				<target state="translated">Erster Besuch</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.tstamp">
+				<source>Last visit</source>
+				<target state="translated">Letzter Besuch</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.id_cookie">
+				<source>Cookie ID</source>
+				<target state="translated">Cookie ID</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.pagevisits">
+				<source>Page visits</source>
+				<target state="translated">Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.attributes">
+				<source>Lead attributes</source>
+				<target state="translated">Eigenschaften des Leads</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.referrer">
+				<source>External referrer</source>
+				<target state="translated">Ursprung</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.user_agent">
+				<source>User agent</source>
+				<target state="translated">User agent</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.ip_address">
+				<source>IP address</source>
+				<target state="translated">IP-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.ipinformations">
+				<source>Information from IP address</source>
+				<target state="translated">Informationen über IP-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.downloads">
+				<source>Download</source>
+				<target state="translated">Download</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.logs">
+				<source>Log</source>
+				<target state="translated">Log</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.company">
+				<source>Company</source>
+				<target state="translated">Firma</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.country">
+				<source>Country</source>
+				<target state="translated">Land</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.city">
+				<source>City</source>
+				<target state="translated">Ort</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.location">
+				<source>Location</source>
+				<target state="translated">Location</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_pagevisit">
+				<source>Pagevisit</source>
+				<target state="translated">Seitenbesuch</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.crdate">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.page">
+				<source>Page</source>
+				<target state="translated">Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_pagevisit.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_attribute">
+				<source>Attribute</source>
+				<target state="translated">Eigenschaft</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.crdate">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.name">
+				<source>Name</source>
+				<target state="translated">Name</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.email">
+				<source>Email</source>
+				<target state="translated">E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.firstname">
+				<source>Firstname</source>
+				<target state="translated">Vorname</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.lastname">
+				<source>Lastname</source>
+				<target state="translated">Nachname</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.company">
+				<source>Company</source>
+				<target state="translated">Firma</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.username">
+				<source>Username</source>
+				<target state="translated">Benutzername</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.label.phone">
+				<source>Phone</source>
+				<target state="translated">Telefon</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_attribute.value">
+				<source>Value</source>
+				<target state="translated">Wert</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_ipinformation">
+				<source>IP-Informations</source>
+				<target state="translated">IP-Informationen</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_ipinformation.name">
+				<source>Name</source>
+				<target state="translated">Name</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_ipinformation.value">
+				<source>Value</source>
+				<target state="translated">Value</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_ipinformation.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_download">
+				<source>Download</source>
+				<target state="translated">Download</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.crdate">
+				<source>Date</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.href">
+				<source>File</source>
+				<target state="translated">Datei</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_log">
+				<source>Lead log</source>
+				<target state="translated">Lead Log</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.crdate">
+				<source>Date</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.status">
+				<source>Status</source>
+				<target state="translated">Status</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.properties">
+				<source>Properties</source>
+				<target state="translated">Eigenschaften</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_log.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="anonym">
+				<source>Anonym</source>
+				<target state="translated">Anonym</target>
+			</trans-unit>
+			<trans-unit id="readabledate.minutes">
+				<source>%s minutes ago</source>
+				<target state="translated">vor %s Minuten</target>
+			</trans-unit>
+			<trans-unit id="readabledate.hours">
+				<source>%s hours ago</source>
+				<target state="translated">vor %s Stunden</target>
+			</trans-unit>
+			<trans-unit id="readabledate.days">
+				<source>%s days ago</source>
+				<target state="translated">vor %s Tagen</target>
+			</trans-unit>
+			<trans-unit id="readabledate.date">
+				<source>Y-m-d</source>
+				<target state="translated">m.d.Y</target>
+			</trans-unit>
+			<trans-unit id="date">
+				<source>%Y-%m-%d, %H:%M</source>
+				<target state="translated">%e. %B %Y, %H:%M Uhr</target>
+			</trans-unit>
+			<trans-unit id="pageoverview">
+				<source>Last leads</source>
+				<target state="translated">Letzte Leads</target>
+			</trans-unit>
+			<trans-unit id="pageoverview.recurringvisits">
+				<source>Recurring visits</source>
+				<target state="translated">Wiederkehrende Besuche</target>
+			</trans-unit>
+
+			<trans-unit id="module.analysis.dashboard">
+				<source>Dashboard</source>
+				<target state="translated">Dashboard</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.list">
+				<source>Leads</source>
+				<target state="translated">Leads</target>
+			</trans-unit>
+
+			<trans-unit id="module.analysis.novalues">
+				<source>No data found</source>
+				<target state="translated">Keine Daten für eine Anzeige vorhanden</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.submit">
+				<source>Filter now</source>
+				<target state="translated">Jetzt filtern</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.timePeriod.0">
+				<source>This year</source>
+				<target state="translated">Dieses Jahr</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.timePeriod.1">
+				<source>This month</source>
+				<target state="translated">Diesen Monat</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.filter.timePeriod.2">
+				<source>Previous month</source>
+				<target state="translated">Letzter Monat</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.pagevisits">
+				<source>Latest page visits</source>
+				<target state="translated">Letzte Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.bestvisitors">
+				<source>Hottest leads</source>
+				<target state="translated">Hottest Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log">
+				<source>Activity log</source>
+				<target state="translated">Protokoll der Aktivitäten</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.recurring.0">
+				<source>Recurring leads</source>
+				<target state="translated">Wiederkehrende Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.recurring.1">
+				<source>Unique leads</source>
+				<target state="translated">Leads mit einem Besuch</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.identified.0">
+				<source>Identified leads</source>
+				<target state="translated">Identifizierte Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.identified.1">
+				<source>Unknown leads</source>
+				<target state="translated">Unbekannte Leads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.1">
+				<source>lux has tracked a new lead</source>
+				<target state="translated">lux hat einen neuen Lead erfasst</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.2">
+				<source>lux has identified a new lead</source>
+				<target state="translated">lux hat einen neuen Lead identifiziert</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.21">
+				<source>"email4link" identified lead</source>
+				<target state="translated">"email4link" hat einen Lead identifiziert</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.22">
+				<source>"email4link" send asset via email</source>
+				<target state="translated">"email4link" hat eine Datei verschickt</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.23">
+				<source>"email4link" send asset failed</source>
+				<target state="translated">"email4link" Datei versenden fehlgeschlagen</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.log.status.50">
+				<source>"lux tracked a download</source>
+				<target state="translated">lux hat einen Download aufgezeichnet</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.map">
+				<source>Lead source</source>
+				<target state="translated">Lead Ursprung</target>
+			</trans-unit>
+			<trans-unit id="module.list.pagevisits">
+				<source>Pagevisits</source>
+				<target state="translated">Seitenaufrufe</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter">
+				<source>Filter Leads</source>
+				<target state="translated">Lead Filter</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.timeFrom">
+				<source>From</source>
+				<target state="translated">Von</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.timeTo">
+				<source>To</source>
+				<target state="translated">Bis</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.searchterm">
+				<source>Searchterm</source>
+				<target state="translated">Suchbegriff</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.pid">
+				<source>Page ID to search for</source>
+				<target state="translated">Seiten ID</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.reset">
+				<source>Reset filter</source>
+				<target state="translated">Filter aufheben</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.submit">
+				<source>Filter now</source>
+				<target state="translated">Jetzt filtern</target>
+			</trans-unit>
+			<trans-unit id="module.list.pagevisits.label">
+				<source>Pagevisits</source>
+				<target state="translated">Seitenaufrufe</target>
+			</trans-unit>
+
+			<trans-unit id="module.detail">
+				<source>Lead preview</source>
+				<target state="translated">Lead Vorschau</target>
+			</trans-unit>
+			<trans-unit id="module.detail.linkdetail">
+				<source>Show lead details</source>
+				<target state="translated">Show Lead Details</target>
+			</trans-unit>
+			<trans-unit id="module.detail.scoring">
+				<source>Lead scoring</source>
+				<target state="translated">Lead Scoring</target>
+			</trans-unit>
+			<trans-unit id="module.detail.description">
+				<source>Add an individual description...</source>
+				<target state="translated">Individuelle Beschreibung hinzufügen...</target>
+			</trans-unit>
+			<trans-unit id="module.detail.pagefunnel">
+				<source>Conversion Funnel / Page Visits</source>
+				<target state="translated">Conversion Funnel / Seitenbesuche</target>
+			</trans-unit>
+
+			<trans-unit id="frontend.email4link.lightbox.email">
+				<source>Email</source>
+				<target state="translated">E-Mail</target>
+			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.submit">
+				<source>Submit</source>
+				<target state="translated">Weiter</target>
+			</trans-unit>
+
+			<trans-unit id="datetime.weekday.now">
+				<source>Now</source>
+				<target state="translated">Heute</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.mon">
+				<source>Mo</source>
+				<target state="translated">Mo</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.tue">
+				<source>Tu</source>
+				<target state="translated">Di</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.wed">
+				<source>We</source>
+				<target state="translated">Mi</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.thu">
+				<source>Th</source>
+				<target state="translated">Do</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.fri">
+				<source>Fr</source>
+				<target state="translated">Fr</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.sat">
+				<source>Sa</source>
+				<target state="translated">Sa</target>
+			</trans-unit>
+			<trans-unit id="datetime.weekday.sun">
+				<source>Su</source>
+				<target state="translated">So</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.0">
+				<source>Now</source>
+				<target state="translated">Heute</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.1">
+				<source>1 week ago</source>
+				<target state="translated">Vor 1 Woche</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.2">
+				<source>2 weeks ago</source>
+				<target state="translated">Vor 2 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.3">
+				<source>3 weeks ago</source>
+				<target state="translated">Vor 3 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.4">
+				<source>4 weeks ago</source>
+				<target state="translated">Vor 4 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.5">
+				<source>5 weeks ago</source>
+				<target state="translated">Vor 5 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.6">
+				<source>6 weeks ago</source>
+				<target state="translated">Vor 6 Wochen</target>
+			</trans-unit>
+			<trans-unit id="datetime.week.7">
+				<source>7 weeks ago</source>
+				<target state="translated">Vor 7 Wochen</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

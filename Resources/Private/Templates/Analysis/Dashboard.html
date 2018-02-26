@@ -1,0 +1,31 @@
+<f:layout name="Backend" />
+
+<f:section name="content">
+    <div class="row">
+        <div class="col-md-12">
+            <f:render partial="Analysis/Filter" arguments="{_all}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <f:render partial="Analysis/Recurring" arguments="{_all}" />
+            <f:render partial="Analysis/Identified" arguments="{_all}" />
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <f:render partial="Analysis/Pagevisits" arguments="{_all}" />
+                    <f:render partial="Analysis/HottestVisitors" arguments="{_all}" />
+                </div>
+                <div class="col-md-6">
+                    <f:render partial="Analysis/Log" arguments="{_all}" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <f:render partial="Analysis/Map" arguments="{_all}" />
+        </div>
+    </div>
+</f:section>

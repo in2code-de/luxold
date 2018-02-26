@@ -1,0 +1,12 @@
+# Table Mapping
+config.tx_extbase {
+    persistence {
+        classes {
+            In2code\Lux\Domain\Model\Page {
+                mapping {
+                    tableName = pages
+                }
+            }
+        }
+    }
+}

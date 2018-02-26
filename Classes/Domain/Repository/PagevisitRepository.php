@@ -1,0 +1,134 @@
+<?php
+declare(strict_types=1);
+namespace In2code\Lux\Domain\Repository;
+
+use In2code\Lux\Domain\Model\Pagevisit;
+use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use In2code\Lux\Domain\Model\Visitor;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
+/**
+ * Class PagevisitRepository
+ */
+class PagevisitRepository extends AbstractRepository
+{
+
+    /**
+     * @param FilterDto $filter
+     * @return QueryResultInterface
+     */
+    public function findLatestPagevisits(FilterDto $filter): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd([
+                $query->greaterThan('crdate', $filter->getStartTimeForFilter()),
+                $query->lessThan('crdate', $filter->getEndTimeForFilter())
+            ])
+        );
+        $query->setLimit(4);
+        return $query->execute();
+    }
+
+    /**
+     * Get the number of visitors of the last 8 days
+     *      Example return
+     *          [10,52,8,54,536,15,55,44] or
+     *          [numberVisitorsToday,numberVisitorsYesterday,...]
+     *
+     * @return array
+     */
+    public function getNumberOfVisitorsByDay(): array
+    {
+        $frames = [
+            [
+                new \DateTime('today midnight'),
+                new \DateTime()
+            ],
+            [
+                new \DateTime('yesterday midnight'),
+                new \DateTime('today midnight')
+            ],
+            [
+                new \DateTime('2 days ago midnight'),
+                new \DateTime('yesterday midnight')
+            ],
+            [
+                new \DateTime('3 days ago midnight'),
+                new \DateTime('2 days ago midnight')
+            ],
+            [
+                new \DateTime('4 days ago midnight'),
+                new \DateTime('3 days ago midnight')
+            ],
+            [
+                new \DateTime('5 days ago midnight'),
+                new \DateTime('4 days ago midnight')
+            ],
+            [
+                new \DateTime('6 days ago midnight'),
+                new \DateTime('5 days ago midnight')
+            ],
+            [
+                new \DateTime('7 days ago midnight'),
+                new \DateTime('6 days ago midnight')
+            ]
+        ];
+        $frames = array_reverse($frames);
+        $visits = [];
+        foreach ($frames as $frame) {
+            $query = $this->createQuery();
+            $query->matching(
+                $query->logicalAnd([
+                    $query->greaterThan('crdate', $frame[0]),
+                    $query->lessThan('crdate', $frame[1])
+                ])
+            );
+            $visits[] = $query->execute()->count();
+        }
+        return $visits;
+    }
+
+    /**
+     * Find all page visits of a visitor but with a given time. If a visitor visits our page every single day since
+     * a week ago (so also today) and the given time is yesterday, we want to get all visits but not from today.
+     *
+     * @param Visitor $visitor
+     * @param \DateTime $time
+     * @return QueryResultInterface
+     */
+    public function findByVisitorAndTime(Visitor $visitor, \DateTime $time): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $logicalAnd = [
+            $query->equals('visitor', $visitor),
+            $query->lessThanOrEqual('crdate', $time)
+        ];
+        $query->matching($query->logicalAnd($logicalAnd));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
+    }
+
+    /**
+     * Find last page visit of a visitor but with a given time. If a visitor visits a page 3 days ago and today and
+     * the given time is yesterday, we want to get the visit from 3 days ago
+     *
+     * @param Visitor $visitor
+     * @param \DateTime $time
+     * @return Pagevisit|null
+     */
+    public function findLastByVisitorAndTime(Visitor $visitor, \DateTime $time)
+    {
+        $query = $this->createQuery();
+        $logicalAnd = [
+            $query->equals('visitor', $visitor),
+            $query->lessThanOrEqual('crdate', $time)
+        ];
+        $query->matching($query->logicalAnd($logicalAnd));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        /** @var Pagevisit $pagevisit */
+        $pagevisit = $query->execute()->getFirst();
+        return $pagevisit;
+    }
+}
