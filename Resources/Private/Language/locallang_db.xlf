@@ -303,6 +303,9 @@
 			<trans-unit id="module.detail.pagefunnel">
 				<source>Conversion Funnel / Page Visits</source>
 			</trans-unit>
+			<trans-unit id="module.detail.location">
+				<source>Location</source>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
