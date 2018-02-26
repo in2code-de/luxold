@@ -404,6 +404,10 @@
 				<source>Conversion Funnel / Page Visits</source>
 				<target state="translated">Conversion Funnel / Seitenbesuche</target>
 			</trans-unit>
+			<trans-unit id="module.detail.location">
+				<source>Location</source>
+				<target state="translated">Ort</target>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>

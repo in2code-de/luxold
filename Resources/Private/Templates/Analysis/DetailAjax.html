@@ -25,6 +25,12 @@
                                 <td>{attribute.value}</td>
                             </tr>
                         </f:for>
+                        <f:if condition="{visitor.location}">
+                            <tr>
+                                <td><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.detail.location">Location</f:translate>:</td>
+                                <td>{visitor.location}</td>
+                            </tr>
+                        </f:if>
                     </table>
                 </f:if>
 
