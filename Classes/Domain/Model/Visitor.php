@@ -535,11 +535,18 @@ class Visitor extends AbstractEntity
     }
 
     /**
-     * @return ObjectStorage
+     * @return array
      */
-    public function getLogs(): ObjectStorage
+    public function getLogs(): array
     {
-        return $this->logs;
+        $logs = $this->logs;
+        $logsArray = [];
+        /** @var Log $log */
+        foreach ($logs as $log) {
+            $logsArray[$log->getCrdate()->getTimestamp()] = $log;
+        }
+        krsort($logsArray);
+        return $logsArray;
     }
 
     /**
