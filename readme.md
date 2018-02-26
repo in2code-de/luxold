@@ -1,6 +1,6 @@
-# Living User eXperience - LUX - the Marketing Automation tool for TYPO3
+<img align="right" src="Resources/Public/Icons/lux.svg" width="100" />
 
-<img src="Resources/Public/Icons/lux.svg" width="100" />
+# Living User eXperience - LUX - the Marketing Automation tool for TYPO3
 
 ## Introduction
 
