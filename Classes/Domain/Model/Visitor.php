@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
+use In2code\Lux\Domain\Service\ReadableReferrerService;
 use In2code\Lux\Domain\Service\ScoringService;
 use In2code\Lux\Utility\LocalizationUtility;
 use In2code\Lux\Utility\ObjectUtility;
@@ -774,5 +775,14 @@ class Visitor extends AbstractEntity
             }
         }
         return $lng;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReadableReferrer(): string
+    {
+        $referrerService = ObjectUtility::getObjectManager()->get(ReadableReferrerService::class, $this->getReferrer());
+        return $referrerService->getReadableReferrer();
     }
 }
