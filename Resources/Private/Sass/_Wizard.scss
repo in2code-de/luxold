@@ -16,7 +16,7 @@
   position: relative;
   display: inline-block;
   text-decoration: none;
-  min-width: 31%;
+  min-width: 33.00%;
   margin-left: 3px;
   text-align: center;
   text-decoration: none;
@@ -26,6 +26,7 @@
   background: $colorGrey;
   text-transform: uppercase;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .wizard a:hover {

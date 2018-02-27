@@ -15,6 +15,18 @@ class WorkflowController extends ActionController
      */
     public function listAction()
     {
+        $this->view->assign('workflowss', 13);
+    }
+
+    /**
+     * @return void
+     */
+    public function newAction()
+    {
+    }
+
+    public function createAction()
+    {
 
     }
 }

@@ -24,6 +24,7 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			addDescriptionListener();
 			addLinkMockListener();
 			addDatePickers();
+			addWizardForm();
 		};
 
 		/**
@@ -50,22 +51,24 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		 */
 		var addDescriptionListener = function() {
 			var container = document.querySelector('[data-lux-container="detail"]');
-			container.addEventListener('click', function(event) {
-				var clickedElement = event.target;
-				if (clickedElement.getAttribute('data-lux-visitor-description') > 0) {
-					if (clickedElement.classList.contains('lux-textarea__default')) {
-						clickedElement.classList.remove('lux-textarea__default');
-						clickedElement.value = '';
+			if (container !== null) {
+				container.addEventListener('click', function(event) {
+					var clickedElement = event.target;
+					if (clickedElement.getAttribute('data-lux-visitor-description') > 0) {
+						if (clickedElement.classList.contains('lux-textarea__default')) {
+							clickedElement.classList.remove('lux-textarea__default');
+							clickedElement.value = '';
+						}
+						var visitor = clickedElement.getAttribute('data-lux-visitor-description');
+						clickedElement.addEventListener('blur', function() {
+							ajaxConnection(TYPO3.settings.ajaxUrls['/lux/visitordescription'], {
+								visitor: visitor,
+								value: this.value
+							}, null);
+						});
 					}
-					var visitor = clickedElement.getAttribute('data-lux-visitor-description');
-					clickedElement.addEventListener('blur', function() {
-						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/visitordescription'], {
-							visitor: visitor,
-							value: this.value
-						}, null);
-					});
-				}
-			});
+				});
+			}
 		};
 
 		/**
@@ -73,16 +76,18 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		 */
 		var addLinkMockListener = function() {
 			var container = document.querySelector('[data-lux-container="detail"]');
-			container.addEventListener('click', function(event) {
-				var clickedElement = event.target;
-				if (clickedElement.getAttribute('data-lux-linkmock-event') !== null) {
-					var name = clickedElement.getAttribute('data-lux-linkmock-event');
-					var target = document.querySelector('[data-lux-linkmock-link="' + name + '"]');
-					if (target !== null) {
-						target.click();
+			if (container !== null) {
+				container.addEventListener('click', function (event) {
+					var clickedElement = event.target;
+					if (clickedElement.getAttribute('data-lux-linkmock-event') !== null) {
+						var name = clickedElement.getAttribute('data-lux-linkmock-event');
+						var target = document.querySelector('[data-lux-linkmock-link="' + name + '"]');
+						if (target !== null) {
+							target.click();
+						}
 					}
-				}
-			});
+				});
+			}
 		};
 
 		/**
@@ -131,6 +136,33 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			if (document.querySelector('.t3js-datetimepicker') !== null) {
 				require(['TYPO3/CMS/Backend/DateTimePicker'], function(DateTimePicker) {
 					DateTimePicker.initialize();
+				});
+			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addWizardForm = function() {
+			var fieldsets = document.querySelectorAll('.wizardform > fieldset');
+			var buttons = document.querySelectorAll('[data-wizardform-gotostep]');
+			var wizardLinks = document.querySelectorAll('.wizard > a');
+
+			for (var i = 1; i < fieldsets.length; i++) {
+				fieldsets[i].style.display = 'none';
+			}
+			for (var j = 0; j < buttons.length; j++) {
+				buttons[j].addEventListener('click', function(event) {
+					event.preventDefault();
+					var step = this.getAttribute('data-wizardform-gotostep');
+
+					removeClassFromElements(wizardLinks, 'current');
+					wizardLinks[step-1].classList.add('current');
+
+					for (var k = 0; k < fieldsets.length; k++) {
+						fieldsets[k].style.display = 'none';
+					}
+					fieldsets[step-1].style.display = 'block';
 				});
 			}
 		};
