@@ -64,7 +64,7 @@ class SendAssetEmail4LinkService
             ->setTo([$this->visitor->getEmail() => 'Receiver'])
             ->setFrom($this->getSender())
             ->setSubject($this->getSubject())
-            ->attach(\Swift_Attachment::fromPath(GeneralUtility::getFileAbsFileName($href)))
+            ->attach(\Swift_Attachment::fromPath(GeneralUtility::getFileAbsFileName($this->cleanHref($href))))
             ->setBody($this->getMailTemplate($href), 'text/html');
         $this->signalDispatch(__CLASS__, 'send', [$message, $this->visitor, $href]);
         $message->send();
@@ -157,7 +157,7 @@ class SendAssetEmail4LinkService
             if ($storage->isOnline()) {
                 $configuration = $storage->getConfiguration();
                 $basePath = $configuration['basePath'];
-                if (StringUtility::startsWith($href, $basePath)) {
+                if (StringUtility::startsWith($this->cleanHref($href), $basePath)) {
                     $allowed = true;
                     break;
                 }
@@ -183,6 +183,19 @@ class SendAssetEmail4LinkService
      */
     protected function isFileExisting(string $href): bool
     {
-        return file_exists(GeneralUtility::getFileAbsFileName($href));
+        return file_exists(GeneralUtility::getFileAbsFileName($this->cleanHref($href)));
+    }
+
+    /**
+     * Remove leading slash or domain from href for comparing with basePath
+     *
+     * @param string $path
+     * @return string
+     */
+    protected function cleanHref(string $path): string
+    {
+        $path = ltrim($path, StringUtility::getCurrentUri());
+        $path = ltrim($path, '/');
+        return $path;
     }
 }
