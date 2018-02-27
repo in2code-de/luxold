@@ -27,6 +27,19 @@ class FrontendUtility
     /**
      * @return string
      */
+    public static function getModuleName(): string
+    {
+        $module = '';
+        $moduleName = GeneralUtility::_GP('M');
+        if (!empty($moduleName)) {
+            $module = ltrim($moduleName, 'lux_Lux');
+        }
+        return $module;
+    }
+
+    /**
+     * @return string
+     */
     public static function getPluginName(): string
     {
         $pluginName = 'tx_lux_lux_luxanalysis';

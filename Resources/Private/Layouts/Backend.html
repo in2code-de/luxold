@@ -10,12 +10,7 @@
 					<div class="module-docheader-bar-column-left">
 						<div class="btn-group" role="group">
 							<img src="{f:uri.resource(path:'Icons/lux.svg?hash=123',extensionName:'lux')}" height="30" style="float:left;" />
-							<f:link.action action="dashboard" class="btn{lux:Be.GetClassNameOnAction(actionName:'dashboard')}">
-								<f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.dashboard">dashboard</f:translate>
-							</f:link.action>
-							<f:link.action action="list" class="btn{lux:Be.GetClassNameOnAction(actionName:'list')}">
-								<f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.list">Leads</f:translate>
-							</f:link.action>
+							<f:render partial="{lux:be.getControllerName()}/ActionSwitcher" arguments="{_all}" optional="true" />
 						</div>
 					</div>
 					<div class="module-docheader-bar-column-right">
