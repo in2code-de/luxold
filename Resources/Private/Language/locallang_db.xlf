@@ -307,6 +307,19 @@
 				<source>Location</source>
 			</trans-unit>
 
+			<trans-unit id="trigger.pagevisit">
+				<source>On entering a page</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.description">
+				<source>Start an action as soon as a lead enters a page.</source>
+			</trans-unit>
+			<trans-unit id="trigger.timeframe">
+				<source>On a defined time</source>
+			</trans-unit>
+			<trans-unit id="trigger.timeframe.description">
+				<source>Start an action from given start- to a stoptime.</source>
+			</trans-unit>
+
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 			</trans-unit>

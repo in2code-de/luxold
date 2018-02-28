@@ -11,6 +11,13 @@ a {
   cursor: pointer;
 }
 
+hr {
+  border-style: dashed;
+  border-color: $colorGrey;
+  border-bottom: 0;
+  margin: 40px 0;
+}
+
 /**
  * Button classes
  */
@@ -40,6 +47,14 @@ a {
   margin-top: -100px;
   margin-left: -200px;
   position: fixed;
+}
+
+.btn-add-lg {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /**

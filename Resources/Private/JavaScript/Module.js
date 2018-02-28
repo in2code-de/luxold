@@ -25,6 +25,7 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			addLinkMockListener();
 			addDatePickers();
 			addWizardForm();
+			addTriggers();
 		};
 
 		/**
@@ -164,6 +165,38 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 					}
 					fieldsets[step-1].style.display = 'block';
 				});
+			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addTriggers = function() {
+			var button = document.querySelector('[data-lux-action-trigger="add"]');
+			if (button !== null) {
+				button.addEventListener('click', function() {
+					var trigger = document.querySelector('[data-lux-action-trigger="trigger"]').value;
+					var conjunction = document.querySelector('[data-lux-action-trigger="conjunction"]').value;
+
+					if (trigger !== '' && conjunction !== '') {
+						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/addtrigger'], {
+							trigger: trigger
+						}, 'showHtmlInTriggerAreaCallback');
+					} else {
+						alert('Please choose a trigger first!');
+					}
+				});
+			}
+		};
+
+		/**
+		 * @param response
+		 * @returns {void}
+		 */
+		this.showHtmlInTriggerAreaCallback = function(response) {
+			var triggerArea = document.querySelector('[data-lux-container="triggerarea"]');
+			if (triggerArea !== null) {
+				triggerArea.innerHTML += response.html;
 			}
 		};
 

@@ -18,6 +18,10 @@ class LocalizationUtility
      */
     public static function translate(string $key, string $extensionName = 'Lux', array $arguments = null)
     {
-        return LocalizationUtilityExtbase::translate($key, $extensionName, $arguments);
+        $label = LocalizationUtilityExtbase::translate($key, $extensionName, $arguments);
+        if (empty($label)) {
+            $label = $key;
+        }
+        return $label;
     }
 }

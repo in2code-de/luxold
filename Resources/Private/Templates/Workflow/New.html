@@ -13,7 +13,7 @@
                         <label for="title" class="lb-lg">
                             Titel
                         </label>
-                        <f:form.textfield class="form-control input-lg" property="title" id="title" placeholder="Titel für Workflow..." />
+                        <f:form.textfield class="form-control input-lg" property="title" id="title" placeholder="Titel für Workflow..." required="required" />
                         <span class="help-block">Increase CategoryscoringA on page "ProductB", Show a popup with some valuable information on the second page visit, etc...</span>
                     </div>
 
@@ -29,12 +29,31 @@
                 </fieldset>
 
                 <fieldset>
-                    <div>
-                        Select Triggers
+                    <h2>Trigger hinzufügen</h2>
+                    <div class="row form-group">
+                        <div class="col-md-2">
+                            <f:form.select class="form-control input-lg" options="{0:'AND'}" name="conjunction" data="{lux-action-trigger:'conjunction'}" />
+                        </div>
+                        <div class="col-md-9">
+                            <f:form.select class="form-control input-lg" options="{triggers}" prependOptionValue="" prependOptionLabel="Bitte wählen..." name="addTrigger" data="{lux-action-trigger:'trigger'}" />
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-primary btn-add-lg" data-lux-action-trigger="add">+</button>
+                        </div>
                     </div>
 
-                    <button class="btn btn-primary btn-lg" data-wizardform-gotostep="1">Zurück</button>
-                    <button class="btn btn-primary btn-lg pull-right" data-wizardform-gotostep="3">Weiter</button>
+                    <hr />
+
+                    <div data-lux-container="triggerarea">
+
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary btn-lg" data-wizardform-gotostep="1">Zurück</button>
+                            <button class="btn btn-primary btn-lg pull-right" data-wizardform-gotostep="3">Weiter</button>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <fieldset>
