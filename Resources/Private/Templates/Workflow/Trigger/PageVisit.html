@@ -13,17 +13,19 @@
     <div class="row form-group lux-trigger">
         <div class="col-md-4">
             <label for="trigger_{index}_visit" class="lb-lg">
-                Der Lead besucht zum
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1">Lead visits page</f:translate>
             </label>
             <select name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][visit]" class="form-control" id="trigger_{index}_visit">
-                <option value="1">1. mal</option>
-                <option value="2">2. mal</option>
-                <option value="3">3. mal</option>
+                <option value="1">{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.1')}</option>
+                <option value="2">{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.2')}</option>
+                <option value="3">{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.3')}</option>
+                <option value="4">{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.4')}</option>
+                <option value="5">{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.5')}</option>
             </select>
         </div>
         <div class="col-md-8">
             <label for="trigger_{index}_page" class="lb-lg">
-                die Seite (PID)
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label2">the page</f:translate>
             </label>
             <input type="number" name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][page]" class="form-control" id="trigger_{index}_page" />
 

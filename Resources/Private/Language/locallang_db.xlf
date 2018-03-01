@@ -377,6 +377,36 @@
 			<trans-unit id="trigger.pagevisit.description">
 				<source>Start an action as soon as a lead enters a page.</source>
 			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label1">
+				<source>Lead visits a page for the time</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label1.1">
+				<source>1. time</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label1.2">
+				<source>2. time</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label1.3">
+				<source>3. time</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label1.4">
+				<source>4. time</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label1.5">
+				<source>5. time</source>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.label2">
+				<source>the page (PID)</source>
+			</trans-unit>
+			<trans-unit id="trigger.scoring">
+				<source>When lead reaches a scoring</source>
+			</trans-unit>
+			<trans-unit id="trigger.scoring.label1">
+				<source>The minimum scoring of the lead is</source>
+			</trans-unit>
+			<trans-unit id="trigger.scoring.description">
+				<source>Start an action as soon as a lead gets a scoring.</source>
+			</trans-unit>
 			<trans-unit id="trigger.timeframe">
 				<source>On a defined time</source>
 			</trans-unit>
