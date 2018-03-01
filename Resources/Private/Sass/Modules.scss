@@ -1,5 +1,32 @@
 @import "Settings";
 @import "Timeline";
+@import "Wizard";
+@import "WizardForm";
+
+/**
+ * General backend classes
+ */
+a {
+  color: $colorAlternative;
+  cursor: pointer;
+}
+
+hr {
+  border-style: dashed;
+  border-color: $colorGrey;
+  border-bottom: 0;
+  margin: 40px 0;
+}
+
+/**
+ * Button classes
+ */
+.btn-lg-extra {
+  padding: 30px 60px;
+  font-size: 25px;
+  line-height: 2;
+  border-radius: 5px;
+}
 
 .btn-primary {
   background-color: $colorMain;
@@ -11,6 +38,40 @@
   }
 }
 
+.btn-primary-extra {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  left: 50%;
+  top: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  position: fixed;
+}
+
+.btn-add-lg {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/**
+ * Form classes
+ */
+.lb-lg {
+  font-size: 20px;
+}
+
+.help-block {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+/**
+ * Table classes
+ */
 .table-hover > tbody > tr:hover,
 .table-hover > tbody > tr.lux-action-detail {
   background-color: $colorMain;
@@ -21,11 +82,6 @@
 }
 
 .table-pointer > tbody > tr {
-  cursor: pointer;
-}
-
-a {
-  color: $colorAlternative;
   cursor: pointer;
 }
 

@@ -48,7 +48,7 @@
                                         </tr>
                                         <tr>
                                             <th>Letzter Besuch</th>
-                                            <td>{lux:format.readableDate(date:visitor.crdate)} ({f:format.date(date:visitor.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')})</td>
+                                            <td>{lux:format.readableDate(date:visitor.tstamp)} ({f:format.date(date:visitor.tstamp,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')})</td>
                                         </tr>
                                         <f:if condition="{visitor.referrer}">
                                             <tr>

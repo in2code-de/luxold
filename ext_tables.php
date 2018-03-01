@@ -28,19 +28,22 @@ call_user_func(
          */
         // Add Main module "LUX".
         // Acces to a main module is implicit, as soon as a user has access to at least one of its submodules.
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
-            'lux',
-            '',
-            '',
-            null,
-            [
-                'name' => 'lux',
-                'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod.xlf',
-                'iconIdentifier' => 'extension-lux-module'
-            ]
-        );
+        if (\In2code\Lux\Utility\ConfigurationUtility::isAnalysisModuleDisabled() === false
+            || \In2code\Lux\Utility\ConfigurationUtility::isWorkflowModuleDisabled() === false) {
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
+                'lux',
+                '',
+                '',
+                null,
+                [
+                    'name' => 'lux',
+                    'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod.xlf',
+                    'iconIdentifier' => 'extension-lux-module'
+                ]
+            );
+        }
+        // Add module for analysis
         if (\In2code\Lux\Utility\ConfigurationUtility::isAnalysisModuleDisabled() === false) {
-            // Add module for analysis
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'In2code.lux',
                 'lux',
@@ -55,8 +58,23 @@ call_user_func(
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_analysis.xlf',
                 ]
             );
-
-            // TODO Add workflow
+        }
+        // Add module for workflow
+        if (false && \In2code\Lux\Utility\ConfigurationUtility::isWorkflowModuleDisabled() === false) {
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                'In2code.lux',
+                'lux',
+                'workflow',
+                '',
+                [
+                    'Workflow' => 'list,new,create,edit,update'
+                ],
+                [
+                    'access' => 'user,group',
+                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module.svg',
+                    'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_workflow.xlf',
+                ]
+            );
         }
 
         /**

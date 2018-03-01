@@ -42,7 +42,12 @@ class GetClassNameOnActionViewHelper extends AbstractViewHelper
     {
         $actionName = FrontendUtility::getActionName();
         if ($actionName === '') {
-            $actionName = 'dashboard';
+            if (FrontendUtility::getModuleName() === 'Analysis') {
+                $actionName = 'dashboard';
+            }
+            if (FrontendUtility::getModuleName() === 'Workflow') {
+                $actionName = 'list';
+            }
         }
         return $actionName;
     }

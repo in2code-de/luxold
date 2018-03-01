@@ -409,6 +409,23 @@
 				<target state="translated">Ort</target>
 			</trans-unit>
 
+			<trans-unit id="trigger.pagevisit">
+				<source>On entering a page</source>
+				<target state="translated">Bei Seitenbesuch</target>
+			</trans-unit>
+			<trans-unit id="trigger.pagevisit.description">
+				<source>Start an action as soon as a lead enters a page.</source>
+				<target state="translated">Führe eine Aktion aus, sobald ein Lead eine bestimmte Seite öffnet.</target>
+			</trans-unit>
+			<trans-unit id="trigger.timeframe">
+				<source>On a defined time</source>
+				<target state="translated">Bei einer bestimmten Zeit</target>
+			</trans-unit>
+			<trans-unit id="trigger.timeframe.description">
+				<source>Start an action from given start- to a stoptime.</source>
+				<target state="translated">Führe eine Aktion zwischen einer definierten Start- und Stoppzeit aus.</target>
+			</trans-unit>
+
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 				<target state="translated">E-Mail</target>

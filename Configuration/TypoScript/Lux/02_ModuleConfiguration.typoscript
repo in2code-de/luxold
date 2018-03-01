@@ -1,0 +1,48 @@
+module.tx_lux {
+    settings {
+        workflow {
+            triggers {
+
+                # Trigger if visitor enter a page
+                1 {
+                    # Title to show in workflow backend module
+                    title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit
+
+                    # Description to show in workflow backend module
+                    description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.description
+
+                    # Classname for implementation of the trigger itself
+                    className = In2code\Lux\Domain\Trigger\PageVisitTrigger
+
+                    # Templatefile for implementation of the form in workflow module
+                    templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/PageVisit.html
+
+                    # Additional configuration
+                    configuration {
+                        # Any configuration - available as array in Template File and Trigger class for some own magic
+                    }
+                }
+
+                # Trigger for a defined time (start to stop)
+                2 {
+                    # Title to show in workflow backend module
+                    title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe
+
+                    # Description to show in workflow backend module
+                    description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.description
+
+                    # Classname for implementation of the trigger itself
+                    className = In2code\Lux\Domain\Trigger\TimeFrameTrigger
+
+                    # Templatefile for implementation of the form in workflow module
+                    templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/TimeFrame.html
+
+                    # Additional configuration
+                    configuration {
+                        # Any configuration - available as array in Template File and Trigger class for some own magic
+                    }
+                }
+            }
+        }
+    }
+}

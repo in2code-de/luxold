@@ -1,6 +1,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.identified.0')}</h3>
+        <h3 class="panel-title">
+            {f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.identified.0')}
+            <span class="badge" style="float: right;" title="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.identified.0')}">{numberOfIdentifiedVisitors}</span>
+        </h3>
     </div>
     <div class="panel-body">
         <f:if condition="{numberOfIdentifiedVisitors} || {numberOfUnknownVisitors}">
