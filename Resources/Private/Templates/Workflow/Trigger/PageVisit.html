@@ -1,12 +1,33 @@
-<div class="row form-group">
-    <div class="col-md-12">
-        Der Lead besucht zum
-        <select name="trigger[{className}][visit]">
-            <option value="1">1.</option>
-            <option value="2">2.</option>
-            <option value="3">3.</option>
-        </select>
-        Mal die Seite
-        <input type="text" name="trigger[{className}][page]" />
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {triggerSettings.title} Trigger title from TypoScript
+        {triggerSettings.description} Trigger description from TypoScript
+        {triggerSettings.className} Trigger className from TypoScript
+        {triggerSettings.templateFile} Trigger templateFile from TypoScript
+        {triggerSettings.configuration.foo} Trigger configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-trigger">
+        <div class="col-md-4">
+            <label for="trigger_{index}_visit" class="lb-lg">
+                Der Lead besucht zum
+            </label>
+            <select name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][visit]" class="form-control" id="trigger_{index}_visit">
+                <option value="1">1. mal</option>
+                <option value="2">2. mal</option>
+                <option value="3">3. mal</option>
+            </select>
+        </div>
+        <div class="col-md-8">
+            <label for="trigger_{index}_page" class="lb-lg">
+                die Seite (PID)
+            </label>
+            <input type="number" name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][page]" class="form-control" id="trigger_{index}_page" />
+
+            <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+        </div>
     </div>
-</div>
+</f:spaceless>

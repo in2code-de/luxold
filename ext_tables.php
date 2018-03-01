@@ -67,7 +67,7 @@ call_user_func(
                 'workflow',
                 '',
                 [
-                    'Workflow' => 'list,new,create,edit,update'
+                    'Workflow' => 'list,new,create,edit,update,delete'
                 ],
                 [
                     'access' => 'user,group',

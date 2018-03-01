@@ -229,6 +229,85 @@
 				<target state="translated">Lead</target>
 			</trans-unit>
 
+			<trans-unit id="tx_lux_domain_model_workflow">
+				<source>Workflow</source>
+				<target state="translated">Workflow</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.cruser_id">
+				<source>Author</source>
+				<target state="translated">Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.crdate">
+				<source>Creation date</source>
+				<target state="translated">Erstellungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.tstamp">
+				<source>Change date</source>
+				<target state="translated">Änderungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.title">
+				<source>Title</source>
+				<target state="translated">Bezeichnung</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.triggers">
+				<source>Triggers</source>
+				<target state="translated">Trigger</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_workflow.actions">
+				<source>Actions</source>
+				<target state="translated">Aktionen</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_trigger">
+				<source>Trigger</source>
+				<target state="translated">Trigger</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_trigger.crdate">
+				<source>Creation date</source>
+				<target state="translated">Erstellungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_trigger.tstamp">
+				<source>Change date</source>
+				<target state="translated">Änderungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_trigger.class_name">
+				<source>Class</source>
+				<target state="translated">Klasse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_trigger.configuration">
+				<source>Configuration</source>
+				<target state="translated">Konfiguration</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_trigger.conjunction">
+				<source>Logical conjunction</source>
+				<target state="translated">Logische Verknüpfung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_action">
+				<source>Action</source>
+				<target state="translated">Aktion</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_action.crdate">
+				<source>Creation date</source>
+				<target state="translated">Erstellungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_action.tstamp">
+				<source>Change date</source>
+				<target state="translated">Änderungsdatum</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_action.class_name">
+				<source>Class</source>
+				<target state="translated">Klasse</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_action.configuration">
+				<source>Configuration</source>
+				<target state="translated">Konfiguration</target>
+			</trans-unit>
+
 			<trans-unit id="anonym">
 				<source>Anonym</source>
 				<target state="translated">Anonym</target>
@@ -407,6 +486,11 @@
 			<trans-unit id="module.detail.location">
 				<source>Location</source>
 				<target state="translated">Ort</target>
+			</trans-unit>
+
+			<trans-unit id="module.workflow.new">
+				<source>Workflow successfully added</source>
+				<target state="translated">Workflow erfolgreich hinzugefügt</target>
 			</trans-unit>
 
 			<trans-unit id="trigger.pagevisit">

@@ -7,7 +7,7 @@
 
             <f:render partial="Workflow/Wizard" arguments="{_all}" />
 
-            <f:form class="wizardform">
+            <f:form class="wizardform" action="create" name="workflow">
                 <fieldset>
                     <div class="form-group">
                         <label for="title" class="lb-lg">
@@ -44,7 +44,7 @@
 
                     <hr />
 
-                    <div data-lux-container="triggerarea">
+                    <div data-lux-container="triggerarea" data-lux-triggers="0" class="lux_triggerarea">
 
                     </div>
 
