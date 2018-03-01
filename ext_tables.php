@@ -60,7 +60,7 @@ call_user_func(
             );
         }
         // Add module for workflow
-        if (\In2code\Lux\Utility\ConfigurationUtility::isWorkflowModuleDisabled() === false) {
+        if (false && \In2code\Lux\Utility\ConfigurationUtility::isWorkflowModuleDisabled() === false) {
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'In2code.lux',
                 'lux',
