@@ -44,9 +44,7 @@
 
                     <hr />
 
-                    <div data-lux-container="triggerarea" data-lux-triggers="0" class="lux_triggerarea">
-
-                    </div>
+                    <div data-lux-container="triggerarea" data-lux-triggers="0" class="lux_triggerarea"></div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
@@ -57,9 +55,19 @@
                 </fieldset>
 
                 <fieldset>
-                    <div>
-                        Select Actions
+                    <h2>Action hinzufügen</h2>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <f:form.select class="form-control input-lg" options="{actions}" prependOptionValue="" prependOptionLabel="Bitte wählen..." name="addAction" data="{lux-action-action:'action'}" />
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-primary btn-add-lg" data-lux-action-action="add">+</button>
+                        </div>
                     </div>
+
+                    <hr />
+
+                    <div data-lux-container="actionarea" data-lux-actions="0" class="lux_actionarea"></div>
 
                     <button class="btn btn-primary btn-lg" data-wizardform-gotostep="2">Zurück</button>
                     <f:form.submit class="btn btn-primary btn-lg pull-right" value="Submit" />

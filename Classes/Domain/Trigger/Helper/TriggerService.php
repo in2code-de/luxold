@@ -5,12 +5,11 @@ namespace In2code\Lux\Domain\Trigger\Helper;
 use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Utility\LocalizationUtility;
 use In2code\Lux\Utility\ObjectUtility;
-use TYPO3\CMS\Core\SingletonInterface;
 
 /**
  * Class TriggerService
  */
-class TriggerService implements SingletonInterface
+class TriggerService
 {
 
     /**

@@ -367,6 +367,9 @@
 				<source>Location</source>
 			</trans-unit>
 
+			<trans-unit id="module.workflow">
+				<source>Workflows</source>
+			</trans-unit>
 			<trans-unit id="module.workflow.new">
 				<source>Workflow successfully added</source>
 			</trans-unit>
@@ -412,6 +415,19 @@
 			</trans-unit>
 			<trans-unit id="trigger.timeframe.description">
 				<source>Start an action from given start- to a stoptime.</source>
+			</trans-unit>
+
+			<trans-unit id="action.popupcontentelement">
+				<source>Open a popup (lightbox) with a content element</source>
+			</trans-unit>
+			<trans-unit id="action.popupcontentelement.description">
+				<source>Opens a lightbox to the lead which a defined content element.</source>
+			</trans-unit>
+			<trans-unit id="action.email">
+				<source>Sends an email</source>
+			</trans-unit>
+			<trans-unit id="action.email.description">
+				<source>Sends a notification email to a defined receiver.</source>
 			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">

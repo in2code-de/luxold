@@ -183,7 +183,7 @@ class Workflow extends AbstractEntity
      * @param Action $action
      * @return $this
      */
-    public function addPagevisit(Action $action)
+    public function addAction(Action $action)
     {
         $this->actions->attach($action);
         return $this;
@@ -193,7 +193,7 @@ class Workflow extends AbstractEntity
      * @param Action $action
      * @return $this
      */
-    public function removePagevisit(Action $action)
+    public function removeAction(Action $action)
     {
         $this->actions->detach($action);
         return $this;

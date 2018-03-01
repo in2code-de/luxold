@@ -488,6 +488,10 @@
 				<target state="translated">Ort</target>
 			</trans-unit>
 
+			<trans-unit id="module.workflow">
+				<source>Workflows</source>
+				<target state="translated">Workflows</target>
+			</trans-unit>
 			<trans-unit id="module.workflow.new">
 				<source>Workflow successfully added</source>
 				<target state="translated">Workflow erfolgreich hinzugefügt</target>
@@ -548,6 +552,23 @@
 			<trans-unit id="trigger.timeframe.description">
 				<source>Start an action from given start- to a stoptime.</source>
 				<target state="translated">Führe eine Aktion zwischen einer definierten Start- und Stoppzeit aus.</target>
+			</trans-unit>
+
+			<trans-unit id="action.popupcontentelement">
+				<source>Open a popup (lightbox) with a content element</source>
+				<target state="translated">Öffne ein Popup (Lightbox) mit einem Seiteninhalt</target>
+			</trans-unit>
+			<trans-unit id="action.popupcontentelement.description">
+				<source>Opens a lightbox to the lead which a defined content element.</source>
+				<target state="translated">Öffnet eine Lightbox für den Besucher mit einem definierten Seiteninhalt.</target>
+			</trans-unit>
+			<trans-unit id="action.email">
+				<source>Sends an email</source>
+				<target state="translated">Sendet eine E-Mail</target>
+			</trans-unit>
+			<trans-unit id="action.email.description">
+				<source>Sends a notification email to a defined receiver.</source>
+				<target state="translated">Sendet eine Hinweis-E-Mail an einen hinterlegten Empfänger.</target>
 			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">

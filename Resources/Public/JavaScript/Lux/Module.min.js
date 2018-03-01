@@ -26,6 +26,7 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			addDatePickers();
 			addWizardForm();
 			addTriggers();
+			addActions();
 			addDeleteListener();
 		};
 
@@ -201,6 +202,43 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			if (triggerArea !== null) {
 				triggerArea.innerHTML += response.html;
 				increaseTriggerIndex();
+				addDatePickers();
+			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addActions = function() {
+			var button = document.querySelector('[data-lux-action-action="add"]');
+			if (button !== null) {
+				button.addEventListener('click', function(event) {
+					event.preventDefault();
+					var action = document.querySelector('[data-lux-action-action="action"]').value;
+					var index = document.querySelector('[data-lux-actions]').getAttribute('data-lux-actions');
+
+					if (action !== '') {
+						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/addaction'], {
+							action: action,
+							index: index
+						}, 'showHtmlInActionAreaCallback');
+					} else {
+						alert('Please choose an action first!');
+					}
+				});
+			}
+		};
+
+		/**
+		 * @param response
+		 * @returns {void}
+		 */
+		this.showHtmlInActionAreaCallback = function(response) {
+			var actionArea = document.querySelector('[data-lux-container="actionarea"]');
+			if (actionArea !== null) {
+				actionArea.innerHTML += response.html;
+				increaseActionIndex();
+				addDatePickers();
 			}
 		};
 
@@ -224,6 +262,14 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		var increaseTriggerIndex = function() {
 			var index = document.querySelector('[data-lux-triggers]').getAttribute('data-lux-triggers');
 			document.querySelector('[data-lux-triggers]').setAttribute('data-lux-triggers', parseInt(index)+1)
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var increaseActionIndex = function() {
+			var index = document.querySelector('[data-lux-actions]').getAttribute('data-lux-actions');
+			document.querySelector('[data-lux-actions]').setAttribute('data-lux-actions', parseInt(index)+1)
 		};
 
 		/**

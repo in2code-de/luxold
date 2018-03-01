@@ -1,0 +1,51 @@
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {triggerSettings.title} Trigger title from TypoScript
+        {triggerSettings.description} Trigger description from TypoScript
+        {triggerSettings.className} Trigger className from TypoScript
+        {triggerSettings.templateFile} Trigger templateFile from TypoScript
+        {triggerSettings.configuration.foo} Trigger configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-trigger">
+        <div class="col-md-6">
+            <label for="trigger_{index}_timefrom" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label1">
+                    From
+                </f:translate>
+            </label>
+            <div class="input-group">
+                <f:form.textfield
+                        type="datetime"
+                        name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][timefrom]"
+                        id="trigger_{index}_timefrom"
+                        class="form-control t3js-datetimepicker t3js-clearable"
+                        placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label1')}"
+                        data="{date-type:'datetime',date-offset:'0'}" />
+                <label class="input-group-addon fa fa-calendar"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="trigger_{index}_timefrom" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label2">
+                    To
+                </f:translate>
+            </label>
+            <div class="input-group">
+                <f:form.textfield
+                        type="datetime"
+                        name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][timeto]"
+                        id="trigger_{index}_timeto"
+                        class="form-control t3js-datetimepicker t3js-clearable"
+                        placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label2')}"
+                        data="{date-type:'datetime',date-offset:'0'}" />
+                <label class="input-group-addon fa fa-calendar"></label>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+</f:spaceless>

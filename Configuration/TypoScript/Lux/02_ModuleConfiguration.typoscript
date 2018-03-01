@@ -1,6 +1,10 @@
 module.tx_lux {
     settings {
         workflow {
+
+            ############################
+            # Define individual triggers
+            ############################
             triggers {
 
                 # Trigger if visitor enter a page
@@ -60,6 +64,53 @@ module.tx_lux {
                     # Additional configuration
                     configuration {
                         # Any configuration - available as array in Template File and Trigger class for some own magic
+                    }
+                }
+            }
+
+
+            ###########################
+            # Define individual actions
+            ###########################
+            actions {
+
+                # Action for showing an individual content element in a lightbox to the lead
+                1 {
+                    # Title to show in workflow backend module
+                    title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement
+
+                    # Description to show in workflow backend module
+                    description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement.description
+
+                    # Classname for implementation of the action itself
+                    className = In2code\Lux\Domain\Action\PopupContentElementAction
+
+                    # Templatefile for implementation of the form in workflow module
+                    templateFile = EXT:lux/Resources/Private/Templates/Workflow/Action/PopupContentElement.html
+
+                    # Additional configuration
+                    configuration {
+                        # Any configuration - available as array in Template File and Action class for some own magic
+                    }
+                }
+
+                # Action for sending a notification email
+                2 {
+                    # Title to show in workflow backend module
+                    title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email
+
+                    # Description to show in workflow backend module
+                    description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.description
+
+                    # Classname for implementation of the action itself
+                    className = In2code\Lux\Domain\Action\EmailAction
+
+                    # Templatefile for implementation of the form in workflow module
+                    templateFile = EXT:lux/Resources/Private/Templates/Workflow/Action/Email.html
+
+                    # Additional configuration
+                    configuration {
+                        # Any configuration - available as array in Template File and Action class for some own magic
                     }
                 }
             }

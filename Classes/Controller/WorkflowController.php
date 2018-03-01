@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use In2code\Lux\Domain\Action\Helper\ActionService;
 use In2code\Lux\Domain\Factory\WorkflowFactory;
 use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\WorkflowRepository;
@@ -34,12 +35,18 @@ class WorkflowController extends ActionController
     protected $triggerService = null;
 
     /**
+     * @var ActionService
+     */
+    protected $actionService = null;
+
+    /**
      * WorkflowController constructor.
      */
     public function __construct()
     {
         parent::__construct();
         $this->triggerService = ObjectUtility::getObjectManager()->get(TriggerService::class);
+        $this->actionService = ObjectUtility::getObjectManager()->get(ActionService::class);
     }
 
     /**
@@ -55,7 +62,10 @@ class WorkflowController extends ActionController
      */
     public function newAction()
     {
-        $this->view->assign('triggers', $this->triggerService->getAllTriggersAsOptions());
+        $this->view->assignMultiple([
+            'triggers' => $this->triggerService->getAllTriggersAsOptions(),
+            'actions' => $this->actionService->getAllActionsAsOptions()
+        ]);
     }
 
     /**
@@ -100,14 +110,29 @@ class WorkflowController extends ActionController
      */
     public function addTriggerAjax(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $trigger = $request->getQueryParams()['trigger'];
-        $triggerSettings = $this->triggerService->getTriggerSettingsFromClassName($trigger);
+        $triggerSettings = $this->triggerService->getTriggerSettingsFromClassName(
+            $request->getQueryParams()['trigger']
+        );
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
-        $view->setTemplatePathAndFilename(
-            GeneralUtility::getFileAbsFileName($triggerSettings['templateFile'])
-        );
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']));
         $view->assignMultiple(['index' => $request->getQueryParams()['index'], 'triggerSettings' => $triggerSettings]);
+        $response->getBody()->write(json_encode(['html' => $view->render()]));
+        return $response;
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
+    public function addActionAjax(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    {
+        $actionSettings = $this->actionService->getActionSettingsFromClassName($request->getQueryParams()['action']);
+        /** @var StandaloneView $view */
+        $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($actionSettings['templateFile']));
+        $view->assignMultiple(['index' => $request->getQueryParams()['index'], 'actionSettings' => $actionSettings]);
         $response->getBody()->write(json_encode(['html' => $view->render()]));
         return $response;
     }

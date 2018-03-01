@@ -2,8 +2,11 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Factory;
 
+use In2code\Lux\Domain\Model\Action;
 use In2code\Lux\Domain\Model\Trigger;
 use In2code\Lux\Domain\Model\Workflow;
+use In2code\Lux\Domain\Repository\UserRepository;
+use In2code\Lux\Utility\BackendUtility;
 use In2code\Lux\Utility\ObjectUtility;
 
 /**
@@ -13,16 +16,31 @@ class WorkflowFactory
 {
 
     /**
+     * @param array $workflow
+     * @param array $trigger
+     * @param array $action
      * @return Workflow
      */
-    public function getWorkflowFromArguments(array $workflow, array $trigger, array $actions): Workflow
+    public function getWorkflowFromArguments(array $workflow, array $trigger, array $action): Workflow
     {
         /** @var Workflow $newWorkflow */
         $newWorkflow = ObjectUtility::getObjectManager()->get(Workflow::class);
         $newWorkflow->setTitle($workflow['title']);
         $newWorkflow->setDescription($workflow['description']);
+        $this->enrichWorkflow($newWorkflow);
         $this->addTriggers($newWorkflow, $trigger);
+        $this->addActions($newWorkflow, $action);
         return $newWorkflow;
+    }
+
+    /**
+     * @param Workflow $newWorkflow
+     * @return void
+     */
+    protected function enrichWorkflow(Workflow $newWorkflow)
+    {
+        $userRepository = ObjectUtility::getObjectManager()->get(UserRepository::class);
+        $newWorkflow->setCruserId($userRepository->findByUid(BackendUtility::getPropertyFromBackendUser()));
     }
 
     /**
@@ -43,6 +61,23 @@ class WorkflowFactory
     }
 
     /**
+     * @param Workflow $workflow
+     * @param array $action
+     * @return void
+     */
+    protected function addActions(Workflow $workflow, array $action)
+    {
+        foreach ($action as $actionItem) {
+            $this->checkAction($actionItem);
+            /** @var Action $action */
+            $action = ObjectUtility::getObjectManager()->get(Action::class);
+            $action->setClassName($actionItem['className']);
+            $action->setConfigurationFromArray($actionItem['configuration']);
+            $workflow->addAction($action);
+        }
+    }
+
+    /**
      * @param array $triggerItem
      * @return void
      */
@@ -57,6 +92,26 @@ class WorkflowFactory
         if (!class_exists($triggerItem['className'])) {
             throw new \UnexpectedValueException(
                 'Class ' . $triggerItem['className'] . ' does not exist',
+                1519928321
+            );
+        }
+    }
+
+    /**
+     * @param array $actionItem
+     * @return void
+     */
+    protected function checkAction(array $actionItem)
+    {
+        if (empty($actionItem['className'])) {
+            throw new \UnexpectedValueException('No classname given', 1519928150);
+        }
+        if (empty($actionItem['configuration']) || !is_array($actionItem['configuration'])) {
+            throw new \UnexpectedValueException('No configuration given', 1519928166);
+        }
+        if (!class_exists($actionItem['className'])) {
+            throw new \UnexpectedValueException(
+                'Class ' . $actionItem['className'] . ' does not exist',
                 1519928321
             );
         }

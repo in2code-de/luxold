@@ -125,10 +125,13 @@ label {
   left: 0;
 }
 
-.lux_triggerarea {
+.lux_triggerarea,
+.lux_actionarea {
+
   position: relative;
 
-  .lux-trigger {
+  .lux-trigger,
+  .lux-action {
     margin: 80px 0 20px 0;
     padding: 20px;
     border-style: dashed;
