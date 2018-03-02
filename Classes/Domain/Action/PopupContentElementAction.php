@@ -9,10 +9,10 @@ class PopupContentElementAction extends AbstractAction implements ActionInterfac
 {
 
     /**
-     * @return bool
+     * @return void
      */
-    public function isTriggered(): bool
+    public function doAction()
     {
-        return true;
+        $this->setTransmission('lightboxContent', ['contentElement' => (int)$this->getConfigurationByKey('page')]);
     }
 }

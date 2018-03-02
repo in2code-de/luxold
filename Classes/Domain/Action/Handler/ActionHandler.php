@@ -2,9 +2,13 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Action\Handler;
 
+use In2code\Lux\Domain\Action\AbstractAction;
+use In2code\Lux\Domain\Action\ActionInterface;
+use In2code\Lux\Domain\Model\Action;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\WorkflowRepository;
+use In2code\Lux\Domain\Service\LogService;
 use In2code\Lux\Domain\Trigger\Handler\TriggerHandler;
 use In2code\Lux\Utility\ObjectUtility;
 
@@ -36,7 +40,8 @@ class ActionHandler
             $workflows = $workflowRepository->findAll();
             foreach ($workflows as $workflow) {
                 if ($triggerHandler->isRelevantTrigger($visitor, $workflow)) {
-                    $this->setActionsForWorkflow($workflow);
+                    $this->setActionsForWorkflow($workflow, $visitor);
+                    $this->log($workflow, $visitor);
                 }
             }
         }
@@ -45,11 +50,42 @@ class ActionHandler
 
     /**
      * @param Workflow $workflow
+     * @param Visitor $visitor
      * @return void
      */
-    protected function setActionsForWorkflow(Workflow $workflow)
+    protected function setActionsForWorkflow(Workflow $workflow, Visitor $visitor)
     {
-        $this->addAction('testAction', ['foo' => 'bar'], $workflow);
+        /** @var Action $action */
+        foreach ($workflow->getActions() as $action) {
+            $this->checkAction($action);
+            /** @var AbstractAction $actionObject */
+            $actionObject = ObjectUtility::getObjectManager()->get(
+                $action->getClassName(),
+                $workflow,
+                $action,
+                $visitor
+            );
+            $actionObject->startAction();
+            if ($actionObject->isTransmission()) {
+                $this->addAction(
+                    $actionObject->getTransmissionActionName(),
+                    $actionObject->getTransmissionConfiguration(),
+                    $workflow
+                );
+            }
+        }
+    }
+
+    /**
+     * @param Workflow $workflow
+     * @param Visitor $visitor
+     * @return void
+     */
+    protected function log(Workflow $workflow, Visitor $visitor)
+    {
+        /** @var LogService $logService */
+        $logService = ObjectUtility::getObjectManager()->get(LogService::class);
+        $logService->logAction($visitor, $workflow);
     }
 
     /**
@@ -68,11 +104,39 @@ class ActionHandler
     }
 
     /**
+     * Todo: Implement further startingpoints
+     *
      * @param string $actionName
      * @return bool
      */
     protected function isAllowedStartAction(string $actionName): bool
     {
         return $actionName === 'pageRequestAction';
+    }
+
+    /**
+     * @param Action $action
+     * @return void
+     */
+    protected function checkAction(Action $action)
+    {
+        if ($action->getClassName() === '') {
+            throw new \UnexpectedValueException('No action classname given', 1520020767);
+        }
+        if ($action->getConfiguration() === '') {
+            throw new \UnexpectedValueException('No action configuration given', 1520020772);
+        }
+        if (!class_exists($action->getClassName())) {
+            throw new \UnexpectedValueException(
+                'Class ' . $action->getClassName() . ' does not exist or is not loaded',
+                1520020783
+            );
+        }
+        if (!is_subclass_of($action->getClassName(), ActionInterface::class)) {
+            throw new \UnexpectedValueException(
+                'Given actionclass does not implement interface ' . ActionInterface::class,
+                1520020827
+            );
+        }
     }
 }

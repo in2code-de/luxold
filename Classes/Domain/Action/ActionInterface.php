@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Action;
 
+use In2code\Lux\Domain\Model\Action;
+use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
 
 /**
@@ -11,13 +13,13 @@ interface ActionInterface
 {
 
     /**
-     * TriggerInterface constructor.
+     * ActionInterface constructor.
      *
      * @param Workflow $workflow
-     * @param array $settings
-     * @param array $configuration
+     * @param Action $action
+     * @param Visitor $visitor
      */
-    public function __construct(Workflow $workflow, array $settings, array $configuration);
+    public function __construct(Workflow $workflow, Action $action, Visitor $visitor);
 
     /**
      * @return void
@@ -25,12 +27,12 @@ interface ActionInterface
     public function initialize();
 
     /**
-     * @return bool
+     * @return void
      */
-    public function isTriggered(): bool;
+    public function doAction();
 
     /**
      * @return void
      */
-    public function afterTrigger();
+    public function afterAction();
 }

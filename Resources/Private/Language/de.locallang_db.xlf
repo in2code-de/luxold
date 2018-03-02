@@ -422,6 +422,10 @@
 				<source>"lux tracked a download</source>
 				<target state="translated">lux hat einen Download aufgezeichnet</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.log.status.60">
+				<source>"lux started a workflow</source>
+				<target state="translated">lux hat einen Workflow ausgeführt</target>
+			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 				<target state="translated">Lead Ursprung</target>

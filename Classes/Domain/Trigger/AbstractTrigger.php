@@ -109,6 +109,7 @@ abstract class AbstractTrigger implements TriggerInterface
     }
 
     /**
+     * @param string $key
      * @return string
      */
     final protected function getConfigurationByKey(string $key): string

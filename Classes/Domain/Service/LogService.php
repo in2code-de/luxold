@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
+
 namespace In2code\Lux\Domain\Service;
 
+use In2code\Lux\Domain\Model\Action;
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ObjectUtility;
@@ -69,6 +72,20 @@ class LogService
     public function logDownload(Download $download)
     {
         $this->log(Log::STATUS_DOWNLOAD, $download->getVisitor(), ['href' => $download->getHref()]);
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @param Workflow $workflow
+     * @return void
+     */
+    public function logAction(Visitor $visitor, Workflow $workflow)
+    {
+        $this->log(
+            Log::STATUS_ACTION,
+            $visitor,
+            ['workflowUid' => $workflow->getUid(), 'workflowTitle' => $workflow->getTitle()]
+        );
     }
 
     /**

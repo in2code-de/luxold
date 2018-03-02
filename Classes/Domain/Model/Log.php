@@ -22,6 +22,7 @@ class Log extends AbstractEntity
     const STATUS_PAGEVISIT4 = 42;
     const STATUS_PAGEVISIT5 = 43;
     const STATUS_DOWNLOAD = 50;
+    const STATUS_ACTION = 60;
 
     /**
      * @var \In2code\Lux\Domain\Model\Visitor
@@ -121,6 +122,14 @@ class Log extends AbstractEntity
     public function getHref(): string
     {
         return $this->getPropertyByKey('href');
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkflowTitle(): string
+    {
+        return $this->getPropertyByKey('workflowTitle');
     }
 
     /**
