@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Trigger;
 
+use In2code\Lux\Utility\FrontendUtility;
+
 /**
  * Class PageVisitTrigger
  */
@@ -13,22 +15,25 @@ class PageVisitTrigger extends AbstractTrigger implements TriggerInterface
      */
     public function isTriggered(): bool
     {
-        return false;
+        return $this->isCurrentPage() && $this->hasNumberOfMinimumVisitsReached();
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    protected function getPage(): int
+    protected function isCurrentPage(): bool
     {
-        return (int)$this->getConfigurationByKey('page');
+        return FrontendUtility::getCurrentPageIdentifier() === (int)$this->getConfigurationByKey('page');
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    protected function getVisit(): int
+    protected function hasNumberOfMinimumVisitsReached(): bool
     {
-        return (int)$this->getConfigurationByKey('visit');
+        $pagevisits = $this->getVisitor()->getPagevisitsOfGivenPageIdentifier(
+            FrontendUtility::getCurrentPageIdentifier()
+        );
+        return count($pagevisits) >= (int)$this->getConfigurationByKey('visit');
     }
 }

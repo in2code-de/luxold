@@ -49,19 +49,21 @@ class ActionHandler
      */
     protected function setActionsForWorkflow(Workflow $workflow)
     {
-        $this->addAction('testAction', ['foo' => 'bar']);
+        $this->addAction('testAction', ['foo' => 'bar'], $workflow);
     }
 
     /**
      * @param string $name
      * @param array $configuration
+     * @param Workflow $workflow
      * @return void
      */
-    protected function addAction(string $name, array $configuration)
+    protected function addAction(string $name, array $configuration, Workflow $workflow)
     {
         $this->actions[] = [
             'action' => $name,
-            'configuration' => $configuration
+            'configuration' => $configuration,
+            'workflow' => $workflow->getUid()
         ];
     }
 

@@ -17,11 +17,6 @@ class TriggerHandler
 {
 
     /**
-     * @var string
-     */
-    protected $triggerInterface = TriggerInterface::class;
-
-    /**
      * Check all triggers of all workflows and decide if there should be an action or not
      *
      * @param Visitor $visitor

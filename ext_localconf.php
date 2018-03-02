@@ -89,20 +89,20 @@ call_user_func(
             'logDownload',
             false
         );
-        // Calculate scoring
-        $signalSlotDispatcher->connect(
-            \In2code\Lux\Controller\FrontendController::class,
-            'afterTracking',
-            \In2code\Lux\Domain\Service\ScoringService::class,
-            'calculateAndSetScoring',
-            false
-        );
         // Add actions
         $signalSlotDispatcher->connect(
             \In2code\Lux\Controller\FrontendController::class,
             'afterTracking',
             \In2code\Lux\Domain\Action\Handler\ActionHandler::class,
             'startActions',
+            false
+        );
+        // Calculate scoring
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Controller\FrontendController::class,
+            'afterTracking',
+            \In2code\Lux\Domain\Service\ScoringService::class,
+            'calculateAndSetScoring',
             false
         );
 

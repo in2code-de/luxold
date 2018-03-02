@@ -13,6 +13,6 @@ class ScoringTrigger extends AbstractTrigger implements TriggerInterface
      */
     public function isTriggered(): bool
     {
-        return true;
+        return $this->getVisitor()->getScoring() >= (int)$this->getConfigurationByKey('scoring');
     }
 }
