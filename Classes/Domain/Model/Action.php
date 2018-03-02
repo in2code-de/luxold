@@ -90,16 +90,16 @@ class Action extends AbstractEntity
     }
 
     /**
-     * @param int $index
+     * @param int $index Prefill index for newAction but use an existing value (uid) for edit action
      * @return string
      */
-    public function renderAction(int $index): string
+    public function getRenderedAction(int $index = null): string
     {
         $actionSettings = $this->getActionSettings();
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($actionSettings['templateFile']));
-        $view->assignMultiple(['index' => $index, 'actionSettings' => $actionSettings]);
+        $view->assignMultiple(['index' => $index ?: $this->getUid(), 'actionSettings' => $actionSettings]);
         return $view->render();
     }
 }

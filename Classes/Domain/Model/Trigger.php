@@ -115,16 +115,16 @@ class Trigger extends AbstractEntity
     }
 
     /**
-     * @param int $index
+     * @param int $index Prefill index for newAction but use an existing value (uid) for edit action
      * @return string
      */
-    public function renderTrigger(int $index): string
+    public function getRenderedTrigger(int $index = null): string
     {
         $triggerSettings = $this->getTriggerSettings();
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']));
-        $view->assignMultiple(['index' => $index, 'triggerSettings' => $triggerSettings]);
+        $view->assignMultiple(['index' => $index ?: $this->getUid(), 'triggerSettings' => $triggerSettings]);
         return $view->render();
     }
 }

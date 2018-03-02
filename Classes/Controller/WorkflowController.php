@@ -13,12 +13,10 @@ use In2code\Lux\Utility\LocalizationUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Class WorkflowController
@@ -95,6 +93,18 @@ class WorkflowController extends ActionController
     /**
      * @param Workflow $workflow
      * @return void
+     */
+    public function editAction(Workflow $workflow)
+    {
+        $this->view->assignMultiple([
+            'workflow' => $workflow,
+            'action' => $this->actionMethodName
+        ]);
+    }
+
+    /**
+     * @param Workflow $workflow
+     * @return void
      * @throws StopActionException
      * @throws UnsupportedRequestTypeException
      * @throws IllegalObjectTypeException
@@ -116,7 +126,7 @@ class WorkflowController extends ActionController
         $trigger = ObjectUtility::getObjectManager()->get(Trigger::class);
         $trigger->setClassName($request->getQueryParams()['trigger']);
         $response->getBody()->write(json_encode(
-            ['html' => $trigger->renderTrigger((int)$request->getQueryParams()['index'])]
+            ['html' => $trigger->getRenderedTrigger((int)$request->getQueryParams()['index'])]
         ));
         return $response;
     }
@@ -132,7 +142,7 @@ class WorkflowController extends ActionController
         $action = ObjectUtility::getObjectManager()->get(Action::class);
         $action->setClassName($request->getQueryParams()['action']);
         $response->getBody()->write(json_encode(
-            ['html' => $action->renderAction((int)$request->getQueryParams()['index'])]
+            ['html' => $action->getRenderedAction((int)$request->getQueryParams()['index'])]
         ));
         return $response;
     }
