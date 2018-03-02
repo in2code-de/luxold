@@ -5,6 +5,8 @@ mod.web_list.table {
     tx_lux_domain_model_ipinformation.hideTable = 1
     tx_lux_domain_model_log.hideTable = 1
     tx_lux_domain_model_download.hideTable = 1
+    tx_lux_domain_model_trigger.hideTable = 1
+    tx_lux_domain_model_action.hideTable = 1
 }
 
 # CK editor

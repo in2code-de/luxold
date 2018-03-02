@@ -1,4 +1,5 @@
 module.tx_lux {
+    persistence.storagePid = 0
     settings {
         workflow {
 
