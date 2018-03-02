@@ -151,6 +151,7 @@ class WorkflowController extends ActionController
         /** @var Trigger $trigger */
         $trigger = ObjectUtility::getObjectManager()->get(Trigger::class);
         $trigger->setClassName($request->getQueryParams()['trigger']);
+        $trigger->setConjunction($request->getQueryParams()['conjunction']);
         $response->getBody()->write(json_encode(
             ['html' => $trigger->renderTrigger((int)$request->getQueryParams()['index'])]
         ));

@@ -10,7 +10,7 @@
     </f:comment>
 
 
-    <div class="row form-group lux-trigger">
+    <div class="row form-group lux-trigger lux-trigger-conjunction{trigger.conjunction}">
         <div class="col-md-6">
             <label for="trigger_{index}_timefrom" class="lb-lg">
                 <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label1">
@@ -50,4 +50,5 @@
     </div>
 
     <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][conjunction]" value="{trigger.conjunction}" />
 </f:spaceless>

@@ -22,7 +22,7 @@
     <h2>Trigger hinzufügen</h2>
     <div class="row form-group">
         <div class="col-md-2">
-            <f:form.select class="form-control input-lg" options="{0:'AND'}" name="conjunction" data="{lux-action-trigger:'conjunction'}" />
+            <f:form.select class="form-control input-lg" options="{AND:'AND',OR:'OR'}" name="conjunction" data="{lux-action-trigger:'conjunction'}" />
         </div>
         <div class="col-md-9">
             <f:form.select class="form-control input-lg" options="{triggers}" prependOptionValue="" prependOptionLabel="Bitte wählen..." name="addTrigger" data="{lux-action-trigger:'trigger'}" />

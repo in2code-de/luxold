@@ -180,11 +180,13 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 					event.preventDefault();
 					var trigger = document.querySelector('[data-lux-action-trigger="trigger"]').value;
 					var index = document.querySelector('[data-lux-triggers]').getAttribute('data-lux-triggers');
+					var conjunction = document.querySelector('[data-lux-action-trigger="conjunction"]').value;
 
 					if (trigger !== '') {
 						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/addtrigger'], {
 							trigger: trigger,
-							index: index
+							index: index,
+							conjunction: conjunction
 						}, 'showHtmlInTriggerAreaCallback');
 					} else {
 						alert('Please choose a trigger first!');

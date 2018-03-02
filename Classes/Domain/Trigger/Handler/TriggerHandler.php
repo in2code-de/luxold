@@ -25,17 +25,29 @@ class TriggerHandler
      */
     public function isRelevantTrigger(Visitor $visitor, Workflow $workflow): bool
     {
+        $moreTriggers = $result = false;
         /** @var Trigger $trigger */
         foreach ($workflow->getTriggers() as $trigger) {
             $this->checkTrigger($trigger);
             /** @var AbstractTrigger $triggerObject */
-            $triggerObject =
-                ObjectUtility::getObjectManager()->get($trigger->getClassName(), $workflow, $trigger, $visitor);
-            if ($triggerObject->checkIfIsTriggered()) {
-                return true;
+            $triggerObject = ObjectUtility::getObjectManager()->get(
+                $trigger->getClassName(),
+                $workflow,
+                $trigger,
+                $visitor
+            );
+            if ($moreTriggers === false) {
+                $result = $triggerObject->checkIfIsTriggered();
+                $moreTriggers = true;
+            } else {
+                if ($trigger->getConjunction() === 'AND') {
+                    $result = $result && $triggerObject->checkIfIsTriggered();
+                } else {
+                    $result = $result || $triggerObject->checkIfIsTriggered();
+                }
             }
         }
-        return false;
+        return $result;
     }
 
     /**

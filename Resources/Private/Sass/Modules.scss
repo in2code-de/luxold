@@ -159,6 +159,10 @@ label {
       }
     }
   }
+
+  .lux-trigger-conjunctionOR:before {
+    content: 'OR';
+  }
 }
 
 .lux-messages {
