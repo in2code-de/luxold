@@ -373,6 +373,9 @@
 			<trans-unit id="module.workflow.new">
 				<source>Workflow successfully added</source>
 			</trans-unit>
+			<trans-unit id="module.workflow.update">
+				<source>Workflow successfully updated</source>
+			</trans-unit>
 
 			<trans-unit id="trigger.pagevisit">
 				<source>On entering a page</source>

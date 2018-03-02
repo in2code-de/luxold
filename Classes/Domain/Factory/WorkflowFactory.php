@@ -8,6 +8,7 @@ use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\UserRepository;
 use In2code\Lux\Utility\BackendUtility;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Class WorkflowFactory
@@ -16,12 +17,26 @@ class WorkflowFactory
 {
 
     /**
+     * @param Workflow $workflow
+     * @param array $trigger
+     * @param array $action
+     * @return Workflow
+     */
+    public function getUpdatedWorkflowFromArguments(Workflow $workflow, array $trigger, array $action): Workflow
+    {
+        $this->enrichWorkflow($workflow);
+        $this->addTriggers($workflow, $trigger);
+        $this->addActions($workflow, $action);
+        return $workflow;
+    }
+
+    /**
      * @param array $workflow
      * @param array $trigger
      * @param array $action
      * @return Workflow
      */
-    public function getWorkflowFromArguments(array $workflow, array $trigger, array $action): Workflow
+    public function getNewWorkflowFromArguments(array $workflow, array $trigger, array $action): Workflow
     {
         /** @var Workflow $newWorkflow */
         $newWorkflow = ObjectUtility::getObjectManager()->get(Workflow::class);
@@ -50,6 +65,7 @@ class WorkflowFactory
      */
     protected function addTriggers(Workflow $workflow, array $trigger)
     {
+        $workflow->setTriggers(new ObjectStorage());
         foreach ($trigger as $triggerItem) {
             $this->checkTrigger($triggerItem);
             /** @var Trigger $trigger */
@@ -67,6 +83,7 @@ class WorkflowFactory
      */
     protected function addActions(Workflow $workflow, array $action)
     {
+        $workflow->setActions(new ObjectStorage());
         foreach ($action as $actionItem) {
             $this->checkAction($actionItem);
             /** @var Action $action */

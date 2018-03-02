@@ -4,6 +4,7 @@ namespace In2code\Lux\Domain\Model;
 
 use In2code\Lux\Domain\Trigger\Helper\TriggerService;
 use In2code\Lux\Utility\ObjectUtility;
+use In2code\Lux\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -63,7 +64,11 @@ class Trigger extends AbstractEntity
      */
     public function getConfigurationAsArray(): array
     {
-        return json_decode($this->configuration);
+        $configuration = $this->getConfiguration();
+        if (StringUtility::isJsonArray($configuration)) {
+            return json_decode($configuration, true);
+        }
+        return [];
     }
 
     /**
@@ -115,16 +120,21 @@ class Trigger extends AbstractEntity
     }
 
     /**
-     * @param int $index Prefill index for newAction but use an existing value (uid) for edit action
+     * @param int $index
      * @return string
      */
-    public function getRenderedTrigger(int $index = null): string
+    public function renderTrigger(int $index): string
     {
         $triggerSettings = $this->getTriggerSettings();
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']));
-        $view->assignMultiple(['index' => $index ?: $this->getUid(), 'triggerSettings' => $triggerSettings]);
+        $view->assignMultiple([
+            'index' => $index,
+            'triggerSettings' => $triggerSettings,
+            'configuration' => $this->getConfigurationAsArray(),
+            'trigger' => $this
+        ]);
         return $view->render();
     }
 }

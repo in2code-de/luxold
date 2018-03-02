@@ -81,7 +81,7 @@ class WorkflowController extends ActionController
     {
         /** @var WorkflowFactory $workflowFactory */
         $workflowFactory = ObjectUtility::getObjectManager()->get(WorkflowFactory::class);
-        $this->workflowRepository->add($workflowFactory->getWorkflowFromArguments($workflow, $trigger, $actions));
+        $this->workflowRepository->add($workflowFactory->getNewWorkflowFromArguments($workflow, $trigger, $actions));
         $this->addFlashMessage(
             LocalizationUtility::translate(
                 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.workflow.new'
@@ -98,8 +98,34 @@ class WorkflowController extends ActionController
     {
         $this->view->assignMultiple([
             'workflow' => $workflow,
-            'action' => $this->actionMethodName
+            'action' => $this->actionMethodName,
+            'triggers' => $this->triggerService->getAllTriggersAsOptions(),
+            'actions' => $this->actionService->getAllActionsAsOptions()
         ]);
+    }
+
+    /**
+     * @param Workflow $workflow
+     * @param array $trigger
+     * @param array $actions
+     * @return void
+     * @throws IllegalObjectTypeException
+     * @throws StopActionException
+     * @throws UnsupportedRequestTypeException
+     */
+    public function updateAction(Workflow $workflow, array $trigger = [], array $actions = [])
+    {
+        /** @var WorkflowFactory $workflowFactory */
+        $workflowFactory = ObjectUtility::getObjectManager()->get(WorkflowFactory::class);
+        $this->workflowRepository->add(
+            $workflowFactory->getUpdatedWorkflowFromArguments($workflow, $trigger, $actions)
+        );
+        $this->addFlashMessage(
+            LocalizationUtility::translate(
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.workflow.update'
+            )
+        );
+        $this->redirect('list');
     }
 
     /**
@@ -126,7 +152,7 @@ class WorkflowController extends ActionController
         $trigger = ObjectUtility::getObjectManager()->get(Trigger::class);
         $trigger->setClassName($request->getQueryParams()['trigger']);
         $response->getBody()->write(json_encode(
-            ['html' => $trigger->getRenderedTrigger((int)$request->getQueryParams()['index'])]
+            ['html' => $trigger->renderTrigger((int)$request->getQueryParams()['index'])]
         ));
         return $response;
     }
@@ -142,7 +168,7 @@ class WorkflowController extends ActionController
         $action = ObjectUtility::getObjectManager()->get(Action::class);
         $action->setClassName($request->getQueryParams()['action']);
         $response->getBody()->write(json_encode(
-            ['html' => $action->getRenderedAction((int)$request->getQueryParams()['index'])]
+            ['html' => $action->renderAction((int)$request->getQueryParams()['index'])]
         ));
         return $response;
     }

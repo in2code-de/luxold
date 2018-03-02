@@ -44,4 +44,16 @@ class StringUtility
         $uri .= rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_PATH'), '/');
         return $uri;
     }
+
+    /**
+     * @param string $string
+     * @return bool
+     */
+    public static function isJsonArray(string $string): bool
+    {
+        if (!is_string($string)) {
+            return false;
+        }
+        return is_array(json_decode($string, true));
+    }
 }

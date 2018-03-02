@@ -4,6 +4,7 @@ namespace In2code\Lux\Domain\Model;
 
 use In2code\Lux\Domain\Action\Helper\ActionService;
 use In2code\Lux\Utility\ObjectUtility;
+use In2code\Lux\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -56,7 +57,11 @@ class Action extends AbstractEntity
      */
     public function getConfigurationAsArray(): array
     {
-        return json_decode($this->configuration);
+        $configuration = $this->getConfiguration();
+        if (StringUtility::isJsonArray($configuration)) {
+            return json_decode($configuration, true);
+        }
+        return [];
     }
 
     /**
@@ -90,16 +95,21 @@ class Action extends AbstractEntity
     }
 
     /**
-     * @param int $index Prefill index for newAction but use an existing value (uid) for edit action
+     * @param int $index
      * @return string
      */
-    public function getRenderedAction(int $index = null): string
+    public function renderAction(int $index): string
     {
         $actionSettings = $this->getActionSettings();
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($actionSettings['templateFile']));
-        $view->assignMultiple(['index' => $index ?: $this->getUid(), 'actionSettings' => $actionSettings]);
+        $view->assignMultiple([
+            'index' => $index,
+            'actionSettings' => $actionSettings,
+            'configuration' => $this->getConfigurationAsArray(),
+            'trigger' => $this
+        ]);
         return $view->render();
     }
 }

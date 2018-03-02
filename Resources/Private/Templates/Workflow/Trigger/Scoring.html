@@ -18,11 +18,19 @@
                 </f:translate>
             </label>
             <div class="input-group">
-                <input type="range" min="0" max="200"
-                       name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][scoring]" class="form-control"
+                <input type="range"
+                       min="0"
+                       max="200"
+                       name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][scoring]"
+                       class="form-control"
                        onchange="document.getElementById('scoring_label_{index}').innerHTML = this.value;"
+                       value="{configuration.scoring}"
                        id="trigger_{index}_visit"/>
-                <label class="input-group-addon"><strong id="scoring_label_{index}">100</strong></label>
+                <label class="input-group-addon">
+                    <strong id="scoring_label_{index}">
+                        <f:if condition="{configuration.scoring}"><f:then>{configuration.scoring}</f:then><f:else>100</f:else></f:if>
+                    </strong>
+                </label>
             </div>
         </div>
     </div>

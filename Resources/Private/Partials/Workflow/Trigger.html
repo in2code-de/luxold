@@ -1,3 +1,3 @@
-<f:for each="{workflow.triggers}" as="trigger">
-    {trigger.renderedTrigger -> f:format.raw()}
+<f:for each="{workflow.triggers}" as="trigger" iteration="iteration">
+    <lux:workflow.renderTrigger trigger="{trigger}" index="{iteration.index}" />
 </f:for>

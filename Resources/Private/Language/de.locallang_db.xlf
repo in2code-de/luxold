@@ -496,6 +496,10 @@
 				<source>Workflow successfully added</source>
 				<target state="translated">Workflow erfolgreich hinzugefügt</target>
 			</trans-unit>
+			<trans-unit id="module.workflow.update">
+				<source>Workflow successfully updated</source>
+				<target state="translated">Workflow erfolgreich geändert</target>
+			</trans-unit>
 
 			<trans-unit id="trigger.pagevisit">
 				<source>On entering a page</source>

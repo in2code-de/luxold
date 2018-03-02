@@ -34,7 +34,7 @@
 
     <hr />
 
-    <div data-lux-container="triggerarea" data-lux-triggers="0" class="lux_triggerarea">
+    <div data-lux-container="triggerarea" data-lux-triggers="{workflow.triggers -> f:count()}" class="lux_triggerarea">
         <f:if condition="{action} == 'editAction'">
             <f:render partial="Workflow/Trigger" arguments="{_all}" />
         </f:if>
@@ -61,7 +61,7 @@
 
     <hr />
 
-    <div data-lux-container="actionarea" data-lux-actions="0" class="lux_actionarea">
+    <div data-lux-container="actionarea" data-lux-actions="{workflow.actions -> f:count()}" class="lux_actionarea">
         <f:if condition="{action} == 'editAction'">
             <f:render partial="Workflow/Action" arguments="{_all}" />
         </f:if>
