@@ -13,6 +13,22 @@ class PageVisitTrigger extends AbstractTrigger implements TriggerInterface
      */
     public function isTriggered(): bool
     {
-        return true;
+        return false;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getPage(): int
+    {
+        return (int)$this->getConfigurationByKey('page');
+    }
+
+    /**
+     * @return int
+     */
+    protected function getVisit(): int
+    {
+        return (int)$this->getConfigurationByKey('visit');
     }
 }
