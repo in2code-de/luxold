@@ -73,6 +73,8 @@ like showing relevant information at the right time.
 
 | Version    | Date       | State      | Description                                                                  |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------- |
+| 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                |
+| 1.2.0      | 2018-03-01 | Task       | Some small fixes in backend analysis show identified and recurring.          |
 | 1.1.1      | 2018-02-27 | Bugfix     | Some small fixes in backend analysis and email4link functionality.           |
 | 1.1.0      | 2018-02-26 | Task       | Show more relevant information in detail view. Small fixes.                  |
 | 1.0.1      | 2018-02-26 | Bugfix     | Fix some smaller bugs that occurs with live data                             |
