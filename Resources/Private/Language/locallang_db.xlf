@@ -423,6 +423,15 @@
 				<source>Start an action from given start- to a stoptime.</source>
 			</trans-unit>
 
+			<trans-unit id="action.label.recurring">
+				<source>Single / Recurring</source>
+			</trans-unit>
+			<trans-unit id="action.label.recurring.single">
+				<source>Single</source>
+			</trans-unit>
+			<trans-unit id="action.label.recurring.recurring">
+				<source>Recurring</source>
+			</trans-unit>
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 			</trans-unit>

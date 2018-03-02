@@ -110,6 +110,8 @@ class Trigger extends AbstractEntity
     }
 
     /**
+     * Get settings from TypoScript
+     *
      * @return array
      */
     public function getTriggerSettings(): array

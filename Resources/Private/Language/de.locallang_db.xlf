@@ -562,6 +562,18 @@
 				<target state="translated">Führe eine Aktion zwischen einer definierten Start- und Stoppzeit aus.</target>
 			</trans-unit>
 
+			<trans-unit id="action.label.recurring">
+				<source>Single / Recurring</source>
+				<target state="translated">Einmalig / Wiederkehrend</target>
+			</trans-unit>
+			<trans-unit id="action.label.recurring.single">
+				<source>Single</source>
+				<target state="translated">Einmalig</target>
+			</trans-unit>
+			<trans-unit id="action.label.recurring.recurring">
+				<source>Recurring</source>
+				<target state="translated">Wiederkehrend</target>
+			</trans-unit>
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 				<target state="translated">Öffne ein Popup (Lightbox) mit einem Seiteninhalt</target>

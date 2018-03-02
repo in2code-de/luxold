@@ -5,6 +5,8 @@ namespace In2code\Lux\Domain\Action;
 use In2code\Lux\Domain\Model\Action;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
+use In2code\Lux\Domain\Repository\LogRepository;
+use In2code\Lux\Utility\ObjectUtility;
 
 /**
  * Class AbstractAction
@@ -63,9 +65,11 @@ abstract class AbstractAction implements ActionInterface
      */
     final public function startAction()
     {
-        $this->initialize();
-        $this->doAction();
-        $this->afterAction();
+        if ($this->shouldPerform()) {
+            $this->initialize();
+            $this->doAction();
+            $this->afterAction();
+        }
     }
 
     /**
@@ -87,6 +91,22 @@ abstract class AbstractAction implements ActionInterface
      */
     public function afterAction()
     {
+    }
+
+    /**
+     * @return bool
+     */
+    public function shouldPerform(): bool
+    {
+        $perform = true;
+        $configuration = $this->getAction()->getConfigurationAsArray();
+        if (!empty($configuration['recurring']) && $configuration['recurring'] === 'single') {
+            /** @var LogRepository $logRepository */
+            $logRepository = ObjectUtility::getObjectManager()->get(LogRepository::class);
+            $log = $logRepository->findOneByVisitorAndWorkflow($this->getVisitor(), $this->getWorkflow());
+            $perform = $log === null;
+        }
+        return $perform;
     }
 
     /**
