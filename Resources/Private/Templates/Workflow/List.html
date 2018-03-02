@@ -33,6 +33,7 @@
                             <th>Beschreibung</th>
                             <th>Erstellt</th>
                             <th>Autor</th>
+                            <th>Triggers / Actions</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -46,6 +47,11 @@
                                 <td>
                                     {workflow.cruserId.username}
                                     <f:if condition="{workflow.cruserId.name}">({workflow.cruserId.username})</f:if>
+                                </td>
+                                <td>
+                                    <span title="{lux:string.implodeOnObjectsProperty(objects:workflow.triggers,property:'className')}">{workflow.triggers -> f:count()}</span>
+                                    /
+                                    <span title="{lux:string.implodeOnObjectsProperty(objects:workflow.actions,property:'className')}">{workflow.actions -> f:count()}</span>
                                 </td>
                                 <td>
                                     <f:link.action action="edit" class="btn btn-primary" arguments="{workflow:workflow}">Ändern</f:link.action>
