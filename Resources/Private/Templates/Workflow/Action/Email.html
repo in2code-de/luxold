@@ -1,0 +1,73 @@
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {actionSettings.title} Action title from TypoScript
+        {actionSettings.description} Action description from TypoScript
+        {actionSettings.className} Action className from TypoScript
+        {actionSettings.templateFile} Action templateFile from TypoScript
+        {actionSettings.configuration.foo} Action configuration from TypoScript
+    </f:comment>
+
+
+    <div class="lux-action">
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label for="action_{index}_receiverName" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label2">
+                        Receiver Name
+                    </f:translate>
+                </label>
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][receiverName]" class="form-control" id="action_{index}_receiverName" />
+            </div>
+            <div class="col-md-6">
+                <label for="action_{index}_receiverEmail" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label1">
+                        Receiver E-Mail
+                    </f:translate>
+                </label>
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][receiverEmail]" class="form-control" id="action_{index}_receiverEmail" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label for="action_{index}_senderName" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label3">
+                        Sender Name
+                    </f:translate>
+                </label>
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][senderName]" class="form-control" id="action_{index}_senderName" />
+            </div>
+            <div class="col-md-6">
+                <label for="action_{index}_senderEmail" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label4">
+                        Sender E-Mail
+                    </f:translate>
+                </label>
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][senderEmail]" class="form-control" id="action_{index}_senderEmail" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="action_{index}_subject" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label5">
+                        Subject
+                    </f:translate>
+                </label>
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][subject]" class="form-control" id="action_{index}_subject" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="action_{index}_bodytext" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label6">
+                        Bodytext
+                    </f:translate>
+                </label>
+                <textarea name="tx_lux_lux_luxworkflow[actions][{index}][configuration][bodytext]" cols="50" rows="20" class="form-control" id="action_{index}_bodytext"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[actions][{index}][className]" value="{actionSettings.className}" />
+</f:spaceless>

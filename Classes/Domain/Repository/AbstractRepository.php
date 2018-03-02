@@ -26,6 +26,7 @@ abstract class AbstractRepository extends Repository
      */
     public function initializeObject()
     {
+        /** @var Typo3QuerySettings $defaultQuerySettings */
         $defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
         $defaultQuerySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($defaultQuerySettings);

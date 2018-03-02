@@ -1,0 +1,25 @@
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {actionSettings.title} Action title from TypoScript
+        {actionSettings.description} Action description from TypoScript
+        {actionSettings.className} Action className from TypoScript
+        {actionSettings.templateFile} Action templateFile from TypoScript
+        {actionSettings.configuration.foo} Action configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-action">
+        <div class="col-md-12">
+            <label for="trigger_{index}_page" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement.label1">
+                    Content element to show in a popup (lightbox)
+                </f:translate>
+            </label>
+            <input type="number" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][page]" class="form-control" id="trigger_{index}_page" value="{configuration.page}" />
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[actions][{index}][className]" value="{actionSettings.className}" />
+</f:spaceless>

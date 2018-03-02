@@ -1,12 +1,35 @@
-<div class="row form-group">
-    <div class="col-md-12">
-        Der Lead besucht zum
-        <select name="trigger[{className}][visit]">
-            <option value="1">1.</option>
-            <option value="2">2.</option>
-            <option value="3">3.</option>
-        </select>
-        Mal die Seite
-        <input type="text" name="trigger[{className}][page]" />
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {triggerSettings.title} Trigger title from TypoScript
+        {triggerSettings.description} Trigger description from TypoScript
+        {triggerSettings.className} Trigger className from TypoScript
+        {triggerSettings.templateFile} Trigger templateFile from TypoScript
+        {triggerSettings.configuration.foo} Trigger configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-trigger">
+        <div class="col-md-4">
+            <label for="trigger_{index}_visit" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1">Lead visits page</f:translate>
+            </label>
+            <select name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][visit]" class="form-control" id="trigger_{index}_visit">
+                <option value="1"{f:if(condition:'{configuration.visit} == 1',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.1')}</option>
+                <option value="2"{f:if(condition:'{configuration.visit} == 2',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.2')}</option>
+                <option value="3"{f:if(condition:'{configuration.visit} == 3',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.3')}</option>
+                <option value="4"{f:if(condition:'{configuration.visit} == 4',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.4')}</option>
+                <option value="5"{f:if(condition:'{configuration.visit} == 5',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label1.5')}</option>
+            </select>
+        </div>
+        <div class="col-md-8">
+            <label for="trigger_{index}_page" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.label2">the page</f:translate>
+            </label>
+            <input type="number" name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][page]" class="form-control" id="trigger_{index}_page" value="{configuration.page}" />
+        </div>
     </div>
-</div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+</f:spaceless>

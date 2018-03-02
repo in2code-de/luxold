@@ -6,6 +6,7 @@ plugin {
             }
         }
         features.requireCHashArgumentForActionArguments = 0
+        persistence.storagePid = 0
         settings {
             # All tracking settings
             tracking {

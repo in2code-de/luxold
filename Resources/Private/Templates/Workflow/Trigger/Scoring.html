@@ -1,0 +1,39 @@
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {triggerSettings.title} Trigger title from TypoScript
+        {triggerSettings.description} Trigger description from TypoScript
+        {triggerSettings.className} Trigger className from TypoScript
+        {triggerSettings.templateFile} Trigger templateFile from TypoScript
+        {triggerSettings.configuration.foo} Trigger configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-trigger">
+        <div class="col-md-12">
+            <label for="trigger_{index}_visit" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.scoring.label1">
+                    Minimum scoring is
+                </f:translate>
+            </label>
+            <div class="input-group">
+                <input type="range"
+                       min="0"
+                       max="200"
+                       name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][scoring]"
+                       class="form-control"
+                       onchange="document.getElementById('scoring_label_{index}').innerHTML = this.value;"
+                       value="{configuration.scoring}"
+                       id="trigger_{index}_visit"/>
+                <label class="input-group-addon">
+                    <strong id="scoring_label_{index}">
+                        <f:if condition="{configuration.scoring}"><f:then>{configuration.scoring}</f:then><f:else>100</f:else></f:if>
+                    </strong>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+</f:spaceless>

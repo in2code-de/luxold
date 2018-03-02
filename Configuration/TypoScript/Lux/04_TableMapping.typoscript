@@ -7,6 +7,11 @@ config.tx_extbase {
                     tableName = pages
                 }
             }
+            In2code\Lux\Domain\Model\User {
+                mapping {
+                    tableName = be_users
+                }
+            }
         }
     }
 }

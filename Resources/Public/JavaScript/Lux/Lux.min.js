@@ -140,7 +140,7 @@ function LuxMain() {
 			var html = container.innerHTML;
 			html = html.replace('###TITLE###', title);
 			html = html.replace('###TEXT###', text);
-			html = html.replace('###HREF###', href);
+			html = html.replace('###HREF###', getFilenameFromHref(href));
 			that.lightboxInstance = basicLightbox.create(html);
 			that.lightboxInstance.element().querySelector('[data-lux-email4link="submit"]').addEventListener('click', function(event) {
 				email4LinkLightboxSubmitListener(this, event, link);
@@ -470,6 +470,34 @@ function LuxMain() {
 	var validateEmail = function(email) {
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(email);
+	};
+
+	/**
+	 * Just show the filename instead of the complete path - but only for asset downloads and not for links to pages
+	 * or folders
+	 *
+	 * @param {String} href
+	 * @returns {String}
+	 */
+	var getFilenameFromHref = function(href) {
+		var filename = href.replace(/^.*[\\\/]/, '');
+		var fileExtensions = [
+			'pdf',
+			'txt',
+			'doc',
+			'docx',
+			'xls',
+			'xlsx',
+			'ppt',
+			'pptx',
+			'jpg',
+			'png',
+			'zip'
+		];
+		if (inArray(getFileExtension(filename).toLowerCase(), fileExtensions)) {
+			href = filename;
+		}
+		return href;
 	};
 
 	/**

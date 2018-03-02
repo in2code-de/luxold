@@ -1,0 +1,72 @@
+<fieldset>
+    <div class="form-group">
+        <label for="title" class="lb-lg">
+            Titel
+        </label>
+        <f:form.textfield class="form-control input-lg" property="title" id="title" placeholder="Titel für Workflow..." required="required" />
+        <span class="help-block">Increase CategoryscoringA on page "ProductB", Show a popup with some valuable information on the second page visit, etc...</span>
+    </div>
+
+    <div class="form-group">
+        <label for="description" class="lb-lg">
+            Beschreibung
+        </label>
+        <f:form.textarea class="form-control input-lg" property="description" id="description" placeholder="Beschreibung einfügen..." style="height: 300px;"></f:form.textarea>
+        <span class="help-block">Increase CategoryscoringA on page "ProductB", Show a popup with some valuable information on the second page visit, etc...</span>
+    </div>
+
+    <button class="btn btn-primary btn-lg pull-right" data-wizardform-gotostep="2">Weiter</button>
+</fieldset>
+
+<fieldset>
+    <h2>Trigger hinzufügen</h2>
+    <div class="row form-group">
+        <div class="col-md-2">
+            <f:form.select class="form-control input-lg" options="{0:'AND'}" name="conjunction" data="{lux-action-trigger:'conjunction'}" />
+        </div>
+        <div class="col-md-9">
+            <f:form.select class="form-control input-lg" options="{triggers}" prependOptionValue="" prependOptionLabel="Bitte wählen..." name="addTrigger" data="{lux-action-trigger:'trigger'}" />
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary btn-add-lg" data-lux-action-trigger="add">+</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <div data-lux-container="triggerarea" data-lux-triggers="{workflow.triggers -> f:count()}" class="lux_triggerarea">
+        <f:if condition="{action} == 'editAction'">
+            <f:render partial="Workflow/Trigger" arguments="{_all}" />
+        </f:if>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-lg" data-wizardform-gotostep="1">Zurück</button>
+            <button class="btn btn-primary btn-lg pull-right" data-wizardform-gotostep="3">Weiter</button>
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <h2>Action hinzufügen</h2>
+    <div class="row form-group">
+        <div class="col-md-11">
+            <f:form.select class="form-control input-lg" options="{actions}" prependOptionValue="" prependOptionLabel="Bitte wählen..." name="addAction" data="{lux-action-action:'action'}" />
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary btn-add-lg" data-lux-action-action="add">+</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <div data-lux-container="actionarea" data-lux-actions="{workflow.actions -> f:count()}" class="lux_actionarea">
+        <f:if condition="{action} == 'editAction'">
+            <f:render partial="Workflow/Action" arguments="{_all}" />
+        </f:if>
+    </div>
+
+    <button class="btn btn-primary btn-lg" data-wizardform-gotostep="2">Zurück</button>
+    <f:form.submit class="btn btn-primary btn-lg pull-right" value="Submit" />
+</fieldset>

@@ -4,7 +4,7 @@
     <f:if condition="{workflows}">
         <div class="row">
             <div class="col-md-12">
-                <f:link.action action="new" class="btn btn-lg btn-primary" style="width: 250px; margin-bottom: 20px;">Neuen Workflow erstellen</f:link.action>
+                <f:link.action action="new" class="btn btn-lg btn-primary" style="width: 250px; margin-bottom: 20px;">Weiteren Workflow erstellen</f:link.action>
             </div>
         </div>
     </f:if>
@@ -13,6 +13,15 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Workflows</h1>
+
+            <f:flashMessages as="flashMessages">
+                <ul class="lux-messages bg-primary">
+                    <f:for each="{flashMessages}" as="flashMessage">
+                        <li>{flashMessage.message}</li>
+                    </f:for>
+                </ul>
+            </f:flashMessages>
+
 
             <f:if condition="{workflows}">
                 <f:then>
@@ -28,20 +37,32 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>Test</td>
-                            <td>Das<br/>ist<br/>toll</td>
-                            <td>20.01.1979</td>
-                            <td>akellner (Alex Kellner)</td>
-                            <td><f:link.action action="edit" class="btn btn-primary">Ändern</f:link.action></td>
-                        </tr>
+                        <f:for each="{workflows}" as="workflow" iteration="iteration">
+                            <tr>
+                                <td>{iteration.cycle}.</td>
+                                <td>{workflow.title}</td>
+                                <td><span title="{workflow.description}"><f:format.crop maxCharacters="200" append=" ...">{workflow.description}</f:format.crop></span></td>
+                                <td>{f:format.date(date:workflow.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}</td>
+                                <td>
+                                    {workflow.cruserId.username}
+                                    <f:if condition="{workflow.cruserId.name}">({workflow.cruserId.username})</f:if>
+                                </td>
+                                <td>
+                                    <f:link.action action="edit" class="btn btn-primary" arguments="{workflow:workflow}">Ändern</f:link.action>
+                                    <f:link.action action="delete" class="btn btn-warning" arguments="{workflow:workflow}" data="{lux-action:'deleteWorkflow'}">Löschen</f:link.action>
+                                </td>
+                            </tr>
+                        </f:for>
                         </tbody>
                     </table>
                 </f:then>
                 <f:else>
-                    <p>Noch keine Workflows angelegt, bitte erstellen Sie einen neuen.</p>
-                    <f:link.action action="new" class="btn btn-lg-extra btn-primary btn-primary-extra">Neuen Workflow erstellen</f:link.action>
+                    <div class="lux-workflow-new"></div>
+                    <!--<p>Noch keine Workflows angelegt, bitte erstellen Sie einen neuen.</p>-->
+                    <f:link.action action="new" class="btn btn-lg-extra btn-primary btn-primary-extra">
+                        <span>Keine Workflows gespeichert</span>
+                        Neuen Workflow erstellen
+                    </f:link.action>
                 </f:else>
             </f:if>
 

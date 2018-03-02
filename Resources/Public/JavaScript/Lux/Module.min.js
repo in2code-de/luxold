@@ -26,6 +26,8 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			addDatePickers();
 			addWizardForm();
 			addTriggers();
+			addActions();
+			addDeleteListener();
 		};
 
 		/**
@@ -174,13 +176,15 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 		var addTriggers = function() {
 			var button = document.querySelector('[data-lux-action-trigger="add"]');
 			if (button !== null) {
-				button.addEventListener('click', function() {
+				button.addEventListener('click', function(event) {
+					event.preventDefault();
 					var trigger = document.querySelector('[data-lux-action-trigger="trigger"]').value;
-					var conjunction = document.querySelector('[data-lux-action-trigger="conjunction"]').value;
+					var index = document.querySelector('[data-lux-triggers]').getAttribute('data-lux-triggers');
 
-					if (trigger !== '' && conjunction !== '') {
+					if (trigger !== '') {
 						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/addtrigger'], {
-							trigger: trigger
+							trigger: trigger,
+							index: index
 						}, 'showHtmlInTriggerAreaCallback');
 					} else {
 						alert('Please choose a trigger first!');
@@ -197,7 +201,75 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 			var triggerArea = document.querySelector('[data-lux-container="triggerarea"]');
 			if (triggerArea !== null) {
 				triggerArea.innerHTML += response.html;
+				increaseTriggerIndex();
+				addDatePickers();
 			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addActions = function() {
+			var button = document.querySelector('[data-lux-action-action="add"]');
+			if (button !== null) {
+				button.addEventListener('click', function(event) {
+					event.preventDefault();
+					var action = document.querySelector('[data-lux-action-action="action"]').value;
+					var index = document.querySelector('[data-lux-actions]').getAttribute('data-lux-actions');
+
+					if (action !== '') {
+						ajaxConnection(TYPO3.settings.ajaxUrls['/lux/addaction'], {
+							action: action,
+							index: index
+						}, 'showHtmlInActionAreaCallback');
+					} else {
+						alert('Please choose an action first!');
+					}
+				});
+			}
+		};
+
+		/**
+		 * @param response
+		 * @returns {void}
+		 */
+		this.showHtmlInActionAreaCallback = function(response) {
+			var actionArea = document.querySelector('[data-lux-container="actionarea"]');
+			if (actionArea !== null) {
+				actionArea.innerHTML += response.html;
+				increaseActionIndex();
+				addDatePickers();
+			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var addDeleteListener = function() {
+			var deleteButton = document.querySelectorAll('[data-lux-action="deleteWorkflow"]');
+			for (var i = 0; i < deleteButton.length; i++) {
+				deleteButton[i].addEventListener('click', function(event) {
+					event.preventDefault();
+					ajaxConnection(this.getAttribute('href'), {}, null);
+					fadeOut(this.closest('tr'));
+				});
+			}
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var increaseTriggerIndex = function() {
+			var index = document.querySelector('[data-lux-triggers]').getAttribute('data-lux-triggers');
+			document.querySelector('[data-lux-triggers]').setAttribute('data-lux-triggers', parseInt(index)+1)
+		};
+
+		/**
+		 * @returns {void}
+		 */
+		var increaseActionIndex = function() {
+			var index = document.querySelector('[data-lux-actions]').getAttribute('data-lux-actions');
+			document.querySelector('[data-lux-actions]').setAttribute('data-lux-actions', parseInt(index)+1)
 		};
 
 		/**
@@ -261,6 +333,38 @@ define(['jquery', 'TYPO3/CMS/Lux/Vendor/Chart.min'], function($) {
 				}
 			}
 			return uri;
+		};
+
+		/**
+		 * @param element
+		 * @returns {void}
+		 */
+		var fadeOut = function(element) {
+			element.style.opacity = 1;
+			(function fade() {
+				if ((element.style.opacity -= .1) < 0) {
+					element.style.display = 'none';
+				} else {
+					requestAnimationFrame(fade);
+				}
+			})();
+		};
+
+		/**
+		 * @param element
+		 * @param display Normally "block" or "inline"
+		 */
+		var fadeIn = function(element, display) {
+			element.style.opacity = 0;
+			element.style.display = display || 'block';
+
+			(function fade() {
+				var val = parseFloat(element.style.opacity);
+				if (!((val += .1) > 1)) {
+					element.style.opacity = val;
+					requestAnimationFrame(fade);
+				}
+			})();
 		};
 	}
 
