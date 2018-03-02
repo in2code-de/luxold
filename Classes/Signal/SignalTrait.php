@@ -21,19 +21,21 @@ trait SignalTrait
      * @param string $signalClassName
      * @param string $signalName
      * @param array $arguments
+     * @return array
      */
-    protected function signalDispatch(string $signalClassName, string $signalName, array $arguments)
+    protected function signalDispatch(string $signalClassName, string $signalName, array $arguments): array
     {
         if ($this->isSignalEnabled()) {
             $signalSlotDispatcher = ObjectUtility::getObjectManager()->get(Dispatcher::class);
-            $signalSlotDispatcher->dispatch($signalClassName, $signalName, $arguments);
+            return $signalSlotDispatcher->dispatch($signalClassName, $signalName, $arguments);
         }
+        return [];
     }
 
     /**
      * @return boolean
      */
-    protected function isSignalEnabled()
+    protected function isSignalEnabled(): bool
     {
         return $this->signalEnabled;
     }

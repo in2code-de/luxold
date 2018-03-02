@@ -97,6 +97,14 @@ call_user_func(
             'calculateAndSetScoring',
             false
         );
+        // Add actions
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Controller\FrontendController::class,
+            'afterTracking',
+            \In2code\Lux\Domain\Action\Handler\ActionHandler::class,
+            'startActions',
+            false
+        );
 
         /**
          * CK editor configuration
