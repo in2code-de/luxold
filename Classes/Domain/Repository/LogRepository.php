@@ -32,9 +32,9 @@ class LogRepository extends AbstractRepository
     /**
      * @param Visitor $visitor
      * @param Workflow $workflow
-     * @return Log
+     * @return Log|null
      */
-    public function findOneByVisitorAndWorkflow(Visitor $visitor, Workflow $workflow): Log
+    public function findOneByVisitorAndWorkflow(Visitor $visitor, Workflow $workflow)
     {
         $query = $this->createQuery();
         $logicalAnd = [
