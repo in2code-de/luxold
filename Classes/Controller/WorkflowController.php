@@ -4,6 +4,8 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Action\Helper\ActionService;
 use In2code\Lux\Domain\Factory\WorkflowFactory;
+use In2code\Lux\Domain\Model\Action;
+use In2code\Lux\Domain\Model\Trigger;
 use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\WorkflowRepository;
 use In2code\Lux\Domain\Trigger\Helper\TriggerService;
@@ -110,14 +112,12 @@ class WorkflowController extends ActionController
      */
     public function addTriggerAjax(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $triggerSettings = $this->triggerService->getTriggerSettingsFromClassName(
-            $request->getQueryParams()['trigger']
-        );
-        /** @var StandaloneView $view */
-        $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']));
-        $view->assignMultiple(['index' => $request->getQueryParams()['index'], 'triggerSettings' => $triggerSettings]);
-        $response->getBody()->write(json_encode(['html' => $view->render()]));
+        /** @var Trigger $trigger */
+        $trigger = ObjectUtility::getObjectManager()->get(Trigger::class);
+        $trigger->setClassName($request->getQueryParams()['trigger']);
+        $response->getBody()->write(json_encode(
+            ['html' => $trigger->renderTrigger((int)$request->getQueryParams()['index'])]
+        ));
         return $response;
     }
 
@@ -128,12 +128,12 @@ class WorkflowController extends ActionController
      */
     public function addActionAjax(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $actionSettings = $this->actionService->getActionSettingsFromClassName($request->getQueryParams()['action']);
-        /** @var StandaloneView $view */
-        $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($actionSettings['templateFile']));
-        $view->assignMultiple(['index' => $request->getQueryParams()['index'], 'actionSettings' => $actionSettings]);
-        $response->getBody()->write(json_encode(['html' => $view->render()]));
+        /** @var Action $action */
+        $action = ObjectUtility::getObjectManager()->get(Action::class);
+        $action->setClassName($request->getQueryParams()['action']);
+        $response->getBody()->write(json_encode(
+            ['html' => $action->renderAction((int)$request->getQueryParams()['index'])]
+        ));
         return $response;
     }
 

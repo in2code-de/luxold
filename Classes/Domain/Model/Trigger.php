@@ -2,7 +2,11 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
+use In2code\Lux\Domain\Trigger\Helper\TriggerService;
+use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Class Trigger
@@ -98,5 +102,29 @@ class Trigger extends AbstractEntity
     {
         $this->conjunction = $conjunction;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTriggerSettings(): array
+    {
+        /** @var TriggerService $triggerService */
+        $triggerService = ObjectUtility::getObjectManager()->get(TriggerService::class);
+        return $triggerService->getTriggerSettingsFromClassName($this->getClassName());
+    }
+
+    /**
+     * @param int $index
+     * @return string
+     */
+    public function renderTrigger(int $index): string
+    {
+        $triggerSettings = $this->getTriggerSettings();
+        /** @var StandaloneView $view */
+        $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']));
+        $view->assignMultiple(['index' => $index, 'triggerSettings' => $triggerSettings]);
+        return $view->render();
     }
 }
