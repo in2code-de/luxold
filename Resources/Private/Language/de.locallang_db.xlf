@@ -496,13 +496,105 @@
 				<source>Workflows</source>
 				<target state="translated">Workflows</target>
 			</trans-unit>
+			<trans-unit id="module.workflow.list.add">
+				<source>Add another Workflow</source>
+				<target state="translated">Weiteren Workflow erstellen</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.add2">
+				<source>No Workflows saved</source>
+				<target state="translated">Keine Workflows gespeichert</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.add3">
+				<source>Add new Workflow</source>
+				<target state="translated">Neuen Workflow erstellen</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.edit">
+				<source>Edit</source>
+				<target state="translated">Ändern</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.delete">
+				<source>Delete</source>
+				<target state="translated">Löschen</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.title">
+				<source>Title</source>
+				<target state="translated">Titel</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.created">
+				<source>Created</source>
+				<target state="translated">Erstellt</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.author">
+				<source>Author</source>
+				<target state="translated">Autor</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.children">
+				<source>Triggers / Actions</source>
+				<target state="translated">Trigger / Aktionen</target>
+			</trans-unit>
 			<trans-unit id="module.workflow.new">
 				<source>Workflow successfully added</source>
 				<target state="translated">Workflow erfolgreich hinzugefügt</target>
 			</trans-unit>
+			<trans-unit id="module.workflow.new.title">
+				<source>Create new Workflow</source>
+				<target state="translated">Neuen Workflow erstellen</target>
+			</trans-unit>
 			<trans-unit id="module.workflow.update">
 				<source>Workflow successfully updated</source>
 				<target state="translated">Workflow erfolgreich geändert</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.update.title">
+				<source>Edit Workflow</source>
+				<target state="translated">Workflow verändern</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.title">
+				<source>Title</source>
+				<target state="translated">Bezeichnung</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.title.placeholder">
+				<source>Title for your Workflow...</source>
+				<target state="translated">Titel für deinen Workflow...</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.title.description">
+				<source>In short words: Increase Categoryscoring A on page "Product B", Show a popup with some valuable information on the second page visit, etc...</source>
+				<target state="translated">Kurz: Erhöhe das Kategorie-Scoring A bei Besuch der Seite "Produkt B", Zeige ein Popup with hilfreichen Informationen beim zweiten Seitenbesuch, etc..</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.description">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.description.placeholder">
+				<source>Descripe your Workflow...</source>
+				<target state="translated">Beschreibe deinen Workflow...</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.description.description">
+				<source>Increase Categoryscoring A on page "Product B", Show a popup with some valuable information on the second page visit, etc...</source>
+				<target state="translated">Erhöhe das Kategorie-Scoring A bei Besuch der Seite "Produkt B", Zeige ein Popup with hilfreichen Informationen beim zweiten Seitenbesuch, etc..</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.addtrigger">
+				<source>Add Trigger</source>
+				<target state="translated">Trigger hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.addaction">
+				<source>Add Action</source>
+				<target state="translated">Aktion hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.wizard.1">
+				<source>Description</source>
+				<target state="translated">Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.wizard.2">
+				<source>Trigger</source>
+				<target state="translated">Trigger</target>
+			</trans-unit>
+			<trans-unit id="module.workflow.wizard.3">
+				<source>Action</source>
+				<target state="translated">Aktion</target>
 			</trans-unit>
 
 			<trans-unit id="trigger.pagevisit">
@@ -561,6 +653,14 @@
 				<source>Start an action from given start- to a stoptime.</source>
 				<target state="translated">Führe eine Aktion zwischen einer definierten Start- und Stoppzeit aus.</target>
 			</trans-unit>
+			<trans-unit id="trigger.timeframe.label1">
+				<source>Start on this time</source>
+				<target state="translated">Starte zu dieser Zeit</target>
+			</trans-unit>
+			<trans-unit id="trigger.timeframe.label2">
+				<source>Stop on this time</source>
+				<target state="translated">Stoppe zu dieser Zeit</target>
+			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
 				<source>Single / Recurring</source>
@@ -574,6 +674,26 @@
 				<source>Recurring</source>
 				<target state="translated">Wiederkehrend</target>
 			</trans-unit>
+			<trans-unit id="action.email.label1">
+				<source>Receiver Email</source>
+				<target state="translated">Empfänger E-Mail</target>
+			</trans-unit>
+			<trans-unit id="action.email.label3">
+				<source>Sender name</source>
+				<target state="translated">Sender Name</target>
+			</trans-unit>
+			<trans-unit id="action.email.label4">
+				<source>Sender Email</source>
+				<target state="translated">Sender E-Mail</target>
+			</trans-unit>
+			<trans-unit id="action.email.label5">
+				<source>Email subject</source>
+				<target state="translated">E-Mail Betreff</target>
+			</trans-unit>
+			<trans-unit id="action.email.label6">
+				<source>Email text</source>
+				<target state="translated">E-Mail Text</target>
+			</trans-unit>
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 				<target state="translated">Öffne ein Popup (Lightbox) mit einem Seiteninhalt</target>
@@ -581,6 +701,10 @@
 			<trans-unit id="action.popupcontentelement.description">
 				<source>Opens a lightbox to the lead which a defined content element.</source>
 				<target state="translated">Öffnet eine Lightbox für den Besucher mit einem definierten Seiteninhalt.</target>
+			</trans-unit>
+			<trans-unit id="action.popupcontentelement.label1">
+				<source>Content element (UID) to show in a popup (lightbox)</source>
+				<target state="translated">Seiteninhalt (UID) der in einem Popup (Lightbox) gezeigt werden soll</target>
 			</trans-unit>
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
@@ -663,6 +787,23 @@
 			<trans-unit id="datetime.week.7">
 				<source>7 weeks ago</source>
 				<target state="translated">Vor 7 Wochen</target>
+			</trans-unit>
+
+			<trans-unit id="pleaseChoose">
+				<source>Please choose ...</source>
+				<target state="translated">Bitte wählen...</target>
+			</trans-unit>
+			<trans-unit id="back">
+				<source>Back</source>
+				<target state="translated">Zurück</target>
+			</trans-unit>
+			<trans-unit id="next">
+				<source>Next</source>
+				<target state="translated">Weiter</target>
+			</trans-unit>
+			<trans-unit id="save">
+				<source>Save</source>
+				<target state="translated">Speichern</target>
 			</trans-unit>
 		</body>
 	</file>
