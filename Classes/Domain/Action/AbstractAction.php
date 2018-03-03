@@ -7,6 +7,7 @@ use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 /**
  * Class AbstractAction
@@ -134,7 +135,7 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * Get complete configuration
+     * Get complete configuration (stored information in database)
      *
      * @return array
      */
@@ -144,6 +145,8 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
+     * Get any stored information by given key
+     *
      * @param string $key
      * @return string
      */
@@ -152,6 +155,23 @@ abstract class AbstractAction implements ActionInterface
         $value = '';
         if (array_key_exists($key, $this->getConfiguration())) {
             $value = $this->getConfiguration()[$key];
+        }
+        return $value;
+    }
+
+    /**
+     * Get any TypoScript settings from action configuration
+     *
+     * @param string $path "configuration.emailOverrides.senderEmail"
+     * @return string
+     */
+    final protected function getSettingsByPath(string $path)
+    {
+        try {
+            $value = ArrayUtility::getValueByPath($this->getAction()->getActionSettings(), $path, '.');
+        } catch (\Exception $exception) {
+            unset($exception);
+            $value = '';
         }
         return $value;
     }

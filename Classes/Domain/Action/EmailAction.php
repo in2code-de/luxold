@@ -21,7 +21,7 @@ class EmailAction extends AbstractAction implements ActionInterface
         $message = ObjectUtility::getObjectManager()->get(MailMessage::class);
         $message
             ->setTo([$this->getConfigurationByKey('receiverEmail') => 'Receiver'])
-            ->setFrom([$this->getConfigurationByKey('senderEmail') => $this->getConfigurationByKey('senderName')])
+            ->setFrom($this->getFrom())
             ->setReplyTo([$this->getConfigurationByKey('senderEmail') => $this->getConfigurationByKey('senderName')])
             ->setSubject($this->getConfigurationByKey('subject'))
             ->setBody($this->getBodytext(), 'text/plain')
@@ -30,6 +30,7 @@ class EmailAction extends AbstractAction implements ActionInterface
 
     /**
      * Parse visitor and workflow in bodytext, so anyone can use e.g. {visitor.property} in mail bodytext
+     *
      * @return string
      */
     protected function getBodytext(): string
@@ -42,5 +43,25 @@ class EmailAction extends AbstractAction implements ActionInterface
             'workflow' => $this->getWorkflow()
         ]);
         return $standaloneView->render();
+    }
+
+    /**
+     * Get array with from values and override with values from TypoScript
+     *
+     * @return array
+     */
+    protected function getFrom(): array
+    {
+        $senderName = $this->getConfigurationByKey('senderName');
+        $overrideName = $this->getSettingsByPath('configuration.emailOverrides.senderName');
+        if (!empty($overrideName)) {
+            $senderName = $overrideName;
+        }
+        $senderEmail = $this->getConfigurationByKey('senderEmail');
+        $overrideEmail = $this->getSettingsByPath('configuration.emailOverrides.senderEmail');
+        if (!empty($overrideEmail)) {
+            $senderEmail = $overrideEmail;
+        }
+        return [$senderEmail => $senderName];
     }
 }

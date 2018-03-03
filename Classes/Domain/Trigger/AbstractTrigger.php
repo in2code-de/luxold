@@ -5,6 +5,7 @@ namespace In2code\Lux\Domain\Trigger;
 use In2code\Lux\Domain\Model\Trigger;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 /**
  * Class AbstractTrigger
@@ -99,7 +100,7 @@ abstract class AbstractTrigger implements TriggerInterface
     }
 
     /**
-     * Get complete configuration
+     * Get complete configuration (stored information in database)
      *
      * @return array
      */
@@ -109,6 +110,8 @@ abstract class AbstractTrigger implements TriggerInterface
     }
 
     /**
+     * Get any stored information by given key
+     *
      * @param string $key
      * @return string
      */
@@ -117,6 +120,23 @@ abstract class AbstractTrigger implements TriggerInterface
         $value = '';
         if (array_key_exists($key, $this->getConfiguration())) {
             $value = $this->getConfiguration()[$key];
+        }
+        return $value;
+    }
+
+    /**
+     * Get any TypoScript settings from trigger configuration
+     *
+     * @param string $path "configuration.foo"
+     * @return string
+     */
+    final protected function getSettingsByPath(string $path)
+    {
+        try {
+            $value = ArrayUtility::getValueByPath($this->getTrigger()->getTriggerSettings(), $path, '.');
+        } catch (\Exception $exception) {
+            unset($exception);
+            $value = '';
         }
         return $value;
     }
