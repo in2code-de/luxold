@@ -719,6 +719,10 @@
 				<source>Email text</source>
 				<target state="translated">E-Mail Text</target>
 			</trans-unit>
+			<trans-unit id="action.email.label7">
+				<source>Add email text directly (without HTML). It is possible to use variables from the lead (e.g. {visitor.fullName})</source>
+				<target state="translated">E-Mail Text kann direkt eingetragen werden (kein HTML). Es können auch Variablen des Leads verwendet werden (z.B. {visitor.fullName}).</target>
+			</trans-unit>
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 				<target state="translated">Öffne ein Popup (Lightbox) mit einem Seiteninhalt</target>
