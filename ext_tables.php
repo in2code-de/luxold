@@ -50,7 +50,7 @@ call_user_func(
                 'analysis',
                 '',
                 [
-                    'Analysis' => 'dashboard,content',
+                    'Analysis' => 'dashboard,content,detailPage,detailDownload',
                     'Lead' => 'list,detail,downloadCsv'
                 ],
                 [
@@ -68,7 +68,8 @@ call_user_func(
                 'leads',
                 '',
                 [
-                    'Lead' => 'list,detail,downloadCsv'
+                    'Lead' => 'list,detail,downloadCsv',
+                    'Analysis' => 'dashboard,content,detailPage,detailDownload',
                 ],
                 [
                     'access' => 'user,group',

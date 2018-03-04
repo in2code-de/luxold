@@ -512,6 +512,11 @@
 				<target state="translated">Ort</target>
 			</trans-unit>
 
+			<trans-unit id="module.diagrambox.downloads.title">
+				<source>Downloads</source>
+				<target state="translated">Downloads</target>
+			</trans-unit>
+
 			<trans-unit id="module.workflow">
 				<source>Workflows</source>
 				<target state="translated">Workflows</target>

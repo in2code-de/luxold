@@ -56,7 +56,7 @@ class LeadController extends ActionController
             'filter' => $filter,
             'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst($filter),
             'identifiedByMostVisits' => $this->visitorRepository->findIdentifiedByMostVisits($filter),
-            'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay(),
+            'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay()
         ]);
     }
 

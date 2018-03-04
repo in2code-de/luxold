@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
@@ -156,5 +157,18 @@ class PagevisitRepository extends AbstractRepository
         /** @var Pagevisit $pagevisit */
         $pagevisit = $query->execute()->getFirst();
         return $pagevisit;
+    }
+
+    /**
+     * @param Page $page
+     * @return QueryResultInterface
+     */
+    public function findByPage(Page $page): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('page', $page));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        $query->setLimit(100);
+        return $query->execute();
     }
 }

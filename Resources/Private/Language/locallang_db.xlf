@@ -385,6 +385,10 @@
 				<source>Location</source>
 			</trans-unit>
 
+			<trans-unit id="module.diagrambox.downloads.title">
+				<source>Downloads</source>
+			</trans-unit>
+
 			<trans-unit id="module.workflow">
 				<source>Workflows</source>
 			</trans-unit>

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Repository\DownloadRepository;
 use In2code\Lux\Domain\Repository\IpinformationRepository;
@@ -9,6 +10,7 @@ use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
 
 /**
  * Class AnalysisController
@@ -85,7 +87,32 @@ class AnalysisController extends ActionController
     {
         $this->view->assignMultiple([
             'pages' => $this->pagevisitsRepository->findCombinedByPageIdentifier($filter),
-            'downloads' => $this->downloadRepository->findCombinedByHref($filter)
+            'downloads' => $this->downloadRepository->findCombinedByHref($filter),
+            'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay(),
+            'numberOfDownloadsByDay' => $this->downloadRepository->getNumberOfDownloadsByDay(),
+        ]);
+    }
+
+    /**
+     * @param Page $page
+     * @return void
+     */
+    public function detailPageAction(Page $page)
+    {
+        $this->view->assignMultiple([
+            'pagevisits' => $this->pagevisitsRepository->findByPage($page)
+        ]);
+    }
+
+    /**
+     * @param string $href
+     * @return void
+     * @throws UnsupportedMethodException
+     */
+    public function detailDownloadAction(string $href)
+    {
+        $this->view->assignMultiple([
+            'downloads' => $this->downloadRepository->findByHref($href)
         ]);
     }
 

@@ -7,9 +7,11 @@
 
     <div class="row">
         <div class="col-md-6">
+            <f:render partial="DiagramBoxes/Pagevisits" arguments="{_all}"/>
+
             <f:if condition="{pages}">
                 <f:then>
-                    <table class="table table-striped table-condensed">
+                    <table class="table table-striped table-hover table-condensed">
                         <thead>
                         <tr>
                             <th>
@@ -18,6 +20,7 @@
                             <th>
                                 <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.content.visits">visits</f:translate>
                             </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -31,6 +34,13 @@
                                     </f:for>
                                 </td>
                                 <td>{page -> f:count()}</td>
+                                <td>
+                                    <f:for each="{page}" as="pageItem" iteration="iteration">
+                                        <f:if condition="{iteration.isFirst}">
+                                            <f:link.action action="detailPage" arguments="{page:pageItem.page.uid}" class="btn btn-primary">Details</f:link.action>
+                                        </f:if>
+                                    </f:for>
+                                </td>
                             </tr>
                         </f:for>
                         </tbody>
@@ -48,6 +58,8 @@
             </f:if>
         </div>
         <div class="col-md-6">
+            <f:render partial="DiagramBoxes/Downloads" arguments="{_all}"/>
+
             <f:if condition="{downloads}">
                 <f:then>
                     <table class="table table-striped table-condensed">
@@ -59,6 +71,7 @@
                             <th>
                                 <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.content.downloads">downloads</f:translate>
                             </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,6 +85,13 @@
                                     </f:for>
                                 </td>
                                 <td>{download -> f:count()}</td>
+                                <td>
+                                    <f:for each="{download}" as="downloadItem" iteration="iteration">
+                                        <f:if condition="{iteration.isFirst}">
+                                            <f:link.action action="detailDownload" arguments="{href:downloadItem.href}" class="btn btn-primary">Details</f:link.action>
+                                        </f:if>
+                                    </f:for>
+                                </td>
                             </tr>
                         </f:for>
                         </tbody>
