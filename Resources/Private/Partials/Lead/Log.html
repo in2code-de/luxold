@@ -30,7 +30,7 @@
 
 <f:section name="status1">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.1">New lead</f:translate></strong><br />
-    <f:link.action action="detail" arguments="{visitor:log.visitor}"><span title="UID:{log.visitor.uid}"><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:anonym">Anonymous</f:translate></span></f:link.action>
+    <f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}"><span title="UID:{log.visitor.uid}"><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:anonym">Anonymous</f:translate></span></f:link.action>
     <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>
 
@@ -38,7 +38,7 @@
 
 <f:section name="status2">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.2">Identified lead:</f:translate></strong><br />
-    <f:link.action action="detail" arguments="{visitor:log.visitor}"><span title="UID:{log.visitor.uid}">{log.visitor.fullName}</span></f:link.action>
+    <f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}"><span title="UID:{log.visitor.uid}">{log.visitor.fullName}</span></f:link.action>
     <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>
 
@@ -46,7 +46,7 @@
 
 <f:section name="status21">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.21">Identified lead with "email4link"</f:translate></strong><br />
-    <f:link.action action="detail" arguments="{visitor:log.visitor}"><span title="UID:{log.visitor.uid}">{log.visitor.fullName}</span></f:link.action>
+    <f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}"><span title="UID:{log.visitor.uid}">{log.visitor.fullName}</span></f:link.action>
     <f:if condition="{visitor.location}">({log.visitor.location})</f:if>
 </f:section>
 
@@ -54,26 +54,26 @@
 
 <f:section name="status22">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.22">Send asset</f:translate></strong><br />
-    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> (<f:link.action action="detail" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
+    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> (<f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
 </f:section>
 
 
 
 <f:section name="status23">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.23">Send asset failed</f:translate></strong><br />
-    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> (<f:link.action action="detail" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
+    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> (<f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
 </f:section>
 
 
 
 <f:section name="status50">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.50">Download tracked</f:translate></strong><br />
-    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> (<f:link.action action="detail" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
+    <a href="/{log.href}" target="_blank"><lux:format.getFilenameFromPathAndFilename pathAndFilename="{log.href}" /></a> (<f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
 </f:section>
 
 
 
 <f:section name="status60">
     <strong><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.log.status.60">Workflow action</f:translate></strong><br />
-    {log.workflowTitle} (<f:link.action action="detail" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
+    {log.workflowTitle} (<f:link.action action="detail" controller="Lead" arguments="{visitor:log.visitor}">{log.visitor.fullName}</f:link.action>)
 </f:section>

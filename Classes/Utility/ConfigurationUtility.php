@@ -50,6 +50,15 @@ class ConfigurationUtility
     /**
      * @return bool
      */
+    public static function isLeadModuleDisabled(): bool
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return $extensionConfig['disableLeadModule'] === '1';
+    }
+
+    /**
+     * @return bool
+     */
     public static function isAnalysisModuleDisabled(): bool
     {
         $extensionConfig = self::getExtensionConfiguration();

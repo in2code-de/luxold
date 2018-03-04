@@ -10,7 +10,10 @@ disableIpInformation = 0
 # cat=basic/enable/100; type=boolean; label= Disable analysis module: Turn off the analysis backend-module if you don't need it.
 disableAnalysisModule = 0
 
-# cat=basic/enable/100; type=boolean; label= Disable workflow module: Turn off the workflow backend-module if you don't need it.
+# cat=basic/enable/110; type=boolean; label= Disable lead module: Turn off the lead backend-module if you don't need it.
+disableLeadModule = 0
+
+# cat=basic/enable/120; type=boolean; label= Disable workflow module: Turn off the workflow backend-module if you don't need it.
 disableWorkflowModule = 0
 
 # cat=basic//200; type=text; label= Scoring calculation: Define your own main scoring calculation. This will be used automaticly on a pagevisit or frequently with a scheduler task (commandcontroller). Available variables are - numberOfSiteVisits, numberOfPageVisits, downloads, lastVisitDaysAgo.
