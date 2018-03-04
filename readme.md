@@ -49,10 +49,10 @@ like showing relevant information at the right time.
 
 ### Workflow & User Experience
 
-- Todo: Workflow GUI (Trigger & Actions)
+- Workflow GUI (Trigger & Actions)
 - Todo: Category Scoring
 - Todo: Action: Lightbox mit Content
-- Todo: Action: E-Mail versenden
+- Action: E-Mail versenden
 
 ### CommandControllers & Scheduler
 
@@ -71,11 +71,12 @@ like showing relevant information at the right time.
 
 ## Changelog
 
-| Version    | Date       | State      | Description                                                                  |
-| ---------- | ---------- | ---------- | ---------------------------------------------------------------------------- |
-| 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                |
-| 1.2.0      | 2018-03-01 | Task       | Some small fixes in backend analysis show identified and recurring.          |
-| 1.1.1      | 2018-02-27 | Bugfix     | Some small fixes in backend analysis and email4link functionality.           |
-| 1.1.0      | 2018-02-26 | Task       | Show more relevant information in detail view. Small fixes.                  |
-| 1.0.1      | 2018-02-26 | Bugfix     | Fix some smaller bugs that occurs with live data                             |
-| 1.0.0      | 2018-02-26 | Task       | Initial Release with a stable tracking, identification and analyses          |
+| Version    | Date       | State      | Description                                                                     |
+| ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.4.0      | 2018-03-04 | Task       | Split backend modules, add content analysis, integrate nearly complete workflow |
+| 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                   |
+| 1.2.0      | 2018-03-01 | Task       | Some small fixes in backend analysis show identified and recurring.             |
+| 1.1.1      | 2018-02-27 | Bugfix     | Some small fixes in backend analysis and email4link functionality.              |
+| 1.1.0      | 2018-02-26 | Task       | Show more relevant information in detail view. Small fixes.                     |
+| 1.0.1      | 2018-02-26 | Bugfix     | Fix some smaller bugs that occurs with live data                                |
+| 1.0.0      | 2018-02-26 | Task       | Initial Release with a stable tracking, identification and analyses             |
