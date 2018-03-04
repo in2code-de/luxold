@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-body">
-        <f:form name="filter" class="form-inline">
+        <f:form name="filter" class="form-inline" action="{action}">
             <div class="form-group">
                 <f:form.select class="form-control" property="timePeriod" options="{lux:form.getOptionsArrayTimePeriodFilter()}" value="{filter.timePeriod}" />
             </div>

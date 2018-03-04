@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use In2code\Lux\Domain\Repository\DownloadRepository;
 use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
@@ -16,24 +17,29 @@ class AnalysisController extends ActionController
 {
 
     /**
-     * @var VisitorRepository|null
+     * @var VisitorRepository
      */
     protected $visitorRepository = null;
 
     /**
-     * @var IpinformationRepository|null
+     * @var IpinformationRepository
      */
     protected $ipinformationRepository = null;
 
     /**
-     * @var LogRepository|null
+     * @var LogRepository
      */
     protected $logRepository = null;
 
     /**
-     * @var PagevisitRepository|null
+     * @var PagevisitRepository
      */
     protected $pagevisitsRepository = null;
+
+    /**
+     * @var DownloadRepository
+     */
+    protected $downloadRepository = null;
 
     /**
      * @return void
@@ -60,6 +66,26 @@ class AnalysisController extends ActionController
             'countries' => $this->ipinformationRepository->findAllCountryCodesGrouped($filter),
             'latestPagevisits' => $this->pagevisitsRepository->findLatestPagevisits($filter),
             'identifiedByMostVisits' => $this->visitorRepository->findIdentifiedByMostVisits($filter)
+        ]);
+    }
+
+    /**
+     * @return void
+     */
+    public function initializeContentAction()
+    {
+        $this->setFilterDto();
+    }
+
+    /**
+     * @param FilterDto $filter
+     * @return void
+     */
+    public function contentAction(FilterDto $filter)
+    {
+        $this->view->assignMultiple([
+            'pages' => $this->pagevisitsRepository->findCombinedByPageIdentifier($filter),
+            'downloads' => $this->downloadRepository->findCombinedByHref($filter)
         ]);
     }
 
@@ -112,5 +138,14 @@ class AnalysisController extends ActionController
     public function injectPagevisitRepository(PagevisitRepository $pagevisitRepository)
     {
         $this->pagevisitsRepository = $pagevisitRepository;
+    }
+
+    /**
+     * @param DownloadRepository $downloadRepository
+     * @return void
+     */
+    public function injectDownloadRepository(DownloadRepository $downloadRepository)
+    {
+        $this->downloadRepository = $downloadRepository;
     }
 }

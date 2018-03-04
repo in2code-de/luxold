@@ -349,6 +349,26 @@
 				<source>Leads</source>
 				<target state="translated">Leads</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.content">
+				<source>Content</source>
+				<target state="translated">Content</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.page">
+				<source>Page</source>
+				<target state="translated">Seite</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.visits">
+				<source>Visits</source>
+				<target state="translated">Seitenaufrufe</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.asset">
+				<source>Asset</source>
+				<target state="translated">Asset</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.downloads">
+				<source>Number of downloads</source>
+				<target state="translated">Anzahl an Downloads</target>
+			</trans-unit>
 
 			<trans-unit id="module.analysis.novalues">
 				<source>No data found</source>

@@ -15,6 +15,32 @@ class PagevisitRepository extends AbstractRepository
 {
 
     /**
+     * Find by single page entries with all pagevisits ordered by number of pagevisits with a limit of 100
+     *
+     * @param FilterDto $filter
+     * @return array
+     */
+    public function findCombinedByPageIdentifier(FilterDto $filter): array
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd([
+                $query->greaterThan('crdate', $filter->getStartTimeForFilter()),
+                $query->lessThan('crdate', $filter->getEndTimeForFilter())
+            ])
+        );
+        $pages = $query->execute();
+        $result = [];
+        /** @var Pagevisit $page */
+        foreach ($pages as $page) {
+            $result[$page->getPage()->getUid()][] = $page;
+        }
+        array_multisort(array_map('count', $result), SORT_DESC, $result);
+        $result = array_slice($result, 0, 100);
+        return $result;
+    }
+
+    /**
      * @param FilterDto $filter
      * @return QueryResultInterface
      */

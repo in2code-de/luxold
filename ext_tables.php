@@ -50,7 +50,7 @@ call_user_func(
                 'analysis',
                 '',
                 [
-                    'Analysis' => 'dashboard',
+                    'Analysis' => 'dashboard,content',
                     'Lead' => 'list,detail,downloadCsv'
                 ],
                 [
