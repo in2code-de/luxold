@@ -735,6 +735,10 @@
 				<source>Content element (UID) to show in a popup (lightbox)</source>
 				<target state="translated">Seiteninhalt (UID) der in einem Popup (Lightbox) gezeigt werden soll</target>
 			</trans-unit>
+			<trans-unit id="action.popupcontentelement.label2">
+				<source>Delay (msec)</source>
+				<target state="translated">Verzögerung (ms)</target>
+			</trans-unit>
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
 				<target state="translated">Sendet eine E-Mail</target>

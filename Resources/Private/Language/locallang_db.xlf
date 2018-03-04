@@ -544,6 +544,9 @@
 			<trans-unit id="action.popupcontentelement.label1">
 				<source>Content element (UID) to show in a popup (lightbox)</source>
 			</trans-unit>
+			<trans-unit id="action.popupcontentelement.label2">
+				<source>Delay (msec)</source>
+			</trans-unit>
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
 			</trans-unit>

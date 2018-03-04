@@ -105,7 +105,9 @@ function LuxMain() {
 			'<div><iframe src="' + uri + '&luxContent=' + parseInt(contentElementUid) + '" width="800" height="600">' +
 			'</iframe></div>';
 		that.lightboxInstance = basicLightbox.create(html);
-		that.lightboxInstance.show();
+		setTimeout(function() {
+			that.lightboxInstance.show();
+		}, parseInt(response['configuration']['delay']));
 	};
 
 	/**

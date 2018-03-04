@@ -22,13 +22,21 @@
                 <option value="recurring"{f:if(condition:'{configuration.recurring} == "recurring"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.recurring')}</option>
             </select>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-8">
             <label for="trigger_{index}_page" class="lb-lg">
                 <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement.label1">
                     Content element to show in a popup (lightbox)
                 </f:translate>
             </label>
             <input type="number" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][page]" class="form-control" id="trigger_{index}_page" value="{configuration.page}" />
+        </div>
+        <div class="col-md-2">
+            <label for="trigger_{index}_delay" class="lb-lg">
+                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement.label2">
+                    delay in MS
+                </f:translate>
+            </label>
+            <input type="number" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][delay]" class="form-control" id="trigger_{index}_delay" value="{f:if(condition:configuration.delay,then:configuration.delay,else:0)}" />
         </div>
     </div>
 
