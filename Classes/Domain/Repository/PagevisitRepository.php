@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
@@ -13,6 +14,32 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  */
 class PagevisitRepository extends AbstractRepository
 {
+
+    /**
+     * Find by single page entries with all pagevisits ordered by number of pagevisits with a limit of 100
+     *
+     * @param FilterDto $filter
+     * @return array
+     */
+    public function findCombinedByPageIdentifier(FilterDto $filter): array
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd([
+                $query->greaterThan('crdate', $filter->getStartTimeForFilter()),
+                $query->lessThan('crdate', $filter->getEndTimeForFilter())
+            ])
+        );
+        $pages = $query->execute();
+        $result = [];
+        /** @var Pagevisit $page */
+        foreach ($pages as $page) {
+            $result[$page->getPage()->getUid()][] = $page;
+        }
+        array_multisort(array_map('count', $result), SORT_DESC, $result);
+        $result = array_slice($result, 0, 100);
+        return $result;
+    }
 
     /**
      * @param FilterDto $filter
@@ -130,5 +157,18 @@ class PagevisitRepository extends AbstractRepository
         /** @var Pagevisit $pagevisit */
         $pagevisit = $query->execute()->getFirst();
         return $pagevisit;
+    }
+
+    /**
+     * @param Page $page
+     * @return QueryResultInterface
+     */
+    public function findByPage(Page $page): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('page', $page));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        $query->setLimit(100);
+        return $query->execute();
     }
 }

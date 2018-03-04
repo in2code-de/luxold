@@ -61,8 +61,7 @@ class FrontendController extends ActionController
         $pageTracker = $this->objectManager->get(PageTracker::class);
         $visitor = $visitorFactory->getVisitor();
         $pageTracker->trackPage($visitor, (int)$arguments['pageUid']);
-        $this->afterTracking($visitor);
-        return json_encode([]);
+        return json_encode($this->afterTracking($visitor));
     }
 
     /**
@@ -80,8 +79,7 @@ class FrontendController extends ActionController
             AttributeTracker::CONTEXT_FIELDLISTENING
         );
         $attributeTracker->addAttribute($arguments['key'], $arguments['value']);
-        $this->afterTracking($visitor);
-        return json_encode([]);
+        return json_encode($this->afterTracking($visitor));
     }
 
     /**
@@ -102,8 +100,7 @@ class FrontendController extends ActionController
         if ($arguments['sendEmail'] === 'true') {
             $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($arguments['href']);
         }
-        $this->afterTracking($visitor);
-        return json_encode([]);
+        return json_encode($this->afterTracking($visitor));
     }
 
     /**
@@ -117,16 +114,20 @@ class FrontendController extends ActionController
         $visitor = $visitorFactory->getVisitor();
         $downloadFactory = $this->objectManager->get(DownloadTracker::class, $visitor);
         $downloadFactory->addDownload($arguments['href']);
-        $this->afterTracking($visitor);
-        return json_encode([]);
+        return json_encode($this->afterTracking($visitor));
     }
 
     /**
+     * Pass three parameters to slot. The first is the visitor to use this data. The second is the action name from
+     * where the signal came from. The third is an array, which could be returned for passing an array as json to the
+     * javascript of the visitor.
+     *
      * @param Visitor $visitor
-     * @return void
+     * @return array
      */
-    protected function afterTracking(Visitor $visitor)
+    protected function afterTracking(Visitor $visitor): array
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$visitor]);
+        $result = $this->signalDispatch(__CLASS__, __FUNCTION__, [$visitor, $this->actionMethodName, []]);
+        return $result[2];
     }
 }

@@ -50,12 +50,31 @@ call_user_func(
                 'analysis',
                 '',
                 [
-                    'Analysis' => 'dashboard,list,detail,downloadCsv'
+                    'Analysis' => 'dashboard,content,detailPage,detailDownload',
+                    'Lead' => 'list,detail,downloadCsv'
                 ],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_white.svg',
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_analysis.xlf',
+                ]
+            );
+        }
+        // Add module for leads
+        if (\In2code\Lux\Utility\ConfigurationUtility::isLeadModuleDisabled() === false) {
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                'In2code.lux',
+                'lux',
+                'leads',
+                '',
+                [
+                    'Lead' => 'list,detail,downloadCsv',
+                    'Analysis' => 'dashboard,content,detailPage,detailDownload',
+                ],
+                [
+                    'access' => 'user,group',
+                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_white.svg',
+                    'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_lead.xlf',
                 ]
             );
         }

@@ -262,6 +262,21 @@
 			<trans-unit id="module.analysis.list">
 				<source>Leads</source>
 			</trans-unit>
+			<trans-unit id="module.analysis.content">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.visits">
+				<source>Visits</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.asset">
+				<source>Asset</source>
+			</trans-unit>
+			<trans-unit id="module.analysis.content.downloads">
+				<source>Number of downloads</source>
+			</trans-unit>
 
 			<trans-unit id="module.analysis.novalues">
 				<source>No data found</source>
@@ -317,6 +332,9 @@
 			<trans-unit id="module.analysis.log.status.50">
 				<source>"lux tracked a download</source>
 			</trans-unit>
+			<trans-unit id="module.analysis.log.status.60">
+				<source>"lux started a workflow</source>
+			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 			</trans-unit>
@@ -367,14 +385,78 @@
 				<source>Location</source>
 			</trans-unit>
 
+			<trans-unit id="module.diagrambox.downloads.title">
+				<source>Downloads</source>
+			</trans-unit>
+
 			<trans-unit id="module.workflow">
 				<source>Workflows</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.add">
+				<source>Add another Workflow</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.add2">
+				<source>No Workflows saved</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.add3">
+				<source>Add new Workflow</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.edit">
+				<source>Edit</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.list.delete">
+				<source>Delete</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.created">
+				<source>Created</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.table.children">
+				<source>Triggers / Actions</source>
 			</trans-unit>
 			<trans-unit id="module.workflow.new">
 				<source>Workflow successfully added</source>
 			</trans-unit>
+			<trans-unit id="module.workflow.new.title">
+				<source>Create new Workflow</source>
+			</trans-unit>
 			<trans-unit id="module.workflow.update">
 				<source>Workflow successfully updated</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.update.title">
+				<source>Edit Workflow</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.title.placeholder">
+				<source>Title for your Workflow...</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.title.description">
+				<source>In short words: Increase Categoryscoring A on page "Product B", Show a popup with some valuable information on the second page visit, etc...</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.description.placeholder">
+				<source>Descripe your Workflow...</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.description.description">
+				<source>Increase Categoryscoring A on page "Product B", Show a popup with some valuable information on the second page visit, etc...</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.addtrigger">
+				<source>Add Trigger</source>
+			</trans-unit>
+			<trans-unit id="module.workflow.field.addaction">
+				<source>Add Action</source>
 			</trans-unit>
 
 			<trans-unit id="trigger.pagevisit">
@@ -419,12 +501,45 @@
 			<trans-unit id="trigger.timeframe.description">
 				<source>Start an action from given start- to a stoptime.</source>
 			</trans-unit>
+			<trans-unit id="trigger.timeframe.label1">
+				<source>Start on this time</source>
+			</trans-unit>
+			<trans-unit id="trigger.timeframe.label2">
+				<source>Stop on this time</source>
+			</trans-unit>
 
+			<trans-unit id="action.label.recurring">
+				<source>Single / Recurring</source>
+			</trans-unit>
+			<trans-unit id="action.label.recurring.single">
+				<source>Single</source>
+			</trans-unit>
+			<trans-unit id="action.label.recurring.recurring">
+				<source>Recurring</source>
+			</trans-unit>
+			<trans-unit id="action.email.label1">
+				<source>Receiver Email</source>
+			</trans-unit>
+			<trans-unit id="action.email.label3">
+				<source>Sender name</source>
+			</trans-unit>
+			<trans-unit id="action.email.label4">
+				<source>Sender Email</source>
+			</trans-unit>
+			<trans-unit id="action.email.label5">
+				<source>Email subject</source>
+			</trans-unit>
+			<trans-unit id="action.email.label6">
+				<source>Email text</source>
+			</trans-unit>
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 			</trans-unit>
 			<trans-unit id="action.popupcontentelement.description">
 				<source>Opens a lightbox to the lead which a defined content element.</source>
+			</trans-unit>
+			<trans-unit id="action.popupcontentelement.label1">
+				<source>Content element (UID) to show in a popup (lightbox)</source>
 			</trans-unit>
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
@@ -488,6 +603,19 @@
 			</trans-unit>
 			<trans-unit id="datetime.week.7">
 				<source>7 weeks ago</source>
+			</trans-unit>
+
+			<trans-unit id="pleaseChoose">
+				<source>Please choose ...</source>
+			</trans-unit>
+			<trans-unit id="back">
+				<source>Back</source>
+			</trans-unit>
+			<trans-unit id="next">
+				<source>Next</source>
+			</trans-unit>
+			<trans-unit id="save">
+				<source>Save</source>
 			</trans-unit>
 		</body>
 	</file>

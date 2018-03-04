@@ -245,6 +245,24 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @param int $pageIdentifier
+     * @return array
+     */
+    public function getPagevisitsOfGivenPageIdentifier(int $pageIdentifier): array
+    {
+        $pagevisits = $this->pagevisits;
+        $pagevisitsArray = [];
+        /** @var Pagevisit $pagevisit */
+        foreach ($pagevisits as $pagevisit) {
+            if ($pagevisit->getPage()->getUid() === $pageIdentifier) {
+                $pagevisitsArray[$pagevisit->getCrdate()->getTimestamp()] = $pagevisit;
+            }
+        }
+        krsort($pagevisitsArray);
+        return $pagevisitsArray;
+    }
+
+    /**
      * @var ObjectStorage $pagevisits
      * @return Visitor
      */

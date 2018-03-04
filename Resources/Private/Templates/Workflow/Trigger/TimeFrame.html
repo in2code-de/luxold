@@ -10,7 +10,7 @@
     </f:comment>
 
 
-    <div class="row form-group lux-trigger">
+    <div class="row form-group lux-trigger lux-trigger-conjunction{trigger.conjunction}">
         <div class="col-md-6">
             <label for="trigger_{index}_timefrom" class="lb-lg">
                 <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label1">
@@ -42,7 +42,7 @@
                         id="trigger_{index}_timeto"
                         class="form-control t3js-datetimepicker t3js-clearable"
                         placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.label2')}"
-                        value="{configuration.timefrom}"
+                        value="{configuration.timeto}"
                         data="{date-type:'datetime',date-offset:'0'}" />
                 <label class="input-group-addon fa fa-calendar"></label>
             </div>
@@ -50,4 +50,5 @@
     </div>
 
     <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][conjunction]" value="{trigger.conjunction}" />
 </f:spaceless>

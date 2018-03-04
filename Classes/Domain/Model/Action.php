@@ -85,6 +85,8 @@ class Action extends AbstractEntity
     }
 
     /**
+     * Get settings from TypoScript
+     *
      * @return array
      */
     public function getActionSettings(): array

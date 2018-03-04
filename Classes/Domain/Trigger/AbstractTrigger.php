@@ -2,12 +2,15 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Trigger;
 
+use In2code\Lux\Domain\Model\Trigger;
+use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 /**
  * Class AbstractTrigger
  */
-abstract class AbstractTrigger
+abstract class AbstractTrigger implements TriggerInterface
 {
 
     /**
@@ -16,31 +19,27 @@ abstract class AbstractTrigger
     protected $workflow = null;
 
     /**
-     * TypoScript configuration
-     *
-     * @var array
+     * @var Trigger
      */
-    protected $settings = [];
+    protected $trigger = null;
 
     /**
-     * Configuration of workflow and trigger
-     *
-     * @var array
+     * @var Visitor
      */
-    protected $configuration = [];
+    protected $visitor = null;
 
     /**
      * AbstractTrigger constructor.
      *
      * @param Workflow $workflow
-     * @param array $settings
-     * @param array $configuration
+     * @param Trigger $trigger
+     * @param Visitor $visitor
      */
-    public function __construct(Workflow $workflow, array $settings, array $configuration)
+    public function __construct(Workflow $workflow, Trigger $trigger, Visitor $visitor)
     {
         $this->workflow = $workflow;
-        $this->settings = $settings;
-        $this->configuration = $configuration;
+        $this->trigger = $trigger;
+        $this->visitor = $visitor;
     }
 
     /**
@@ -74,5 +73,71 @@ abstract class AbstractTrigger
      */
     public function afterTrigger()
     {
+    }
+
+    /**
+     * @return Workflow
+     */
+    final protected function getWorkflow(): Workflow
+    {
+        return $this->workflow;
+    }
+
+    /**
+     * @return Trigger
+     */
+    final protected function getTrigger(): Trigger
+    {
+        return $this->trigger;
+    }
+
+    /**
+     * @return Visitor
+     */
+    final protected function getVisitor(): Visitor
+    {
+        return $this->visitor;
+    }
+
+    /**
+     * Get complete configuration (stored information in database)
+     *
+     * @return array
+     */
+    final protected function getConfiguration(): array
+    {
+        return $this->getTrigger()->getConfigurationAsArray();
+    }
+
+    /**
+     * Get any stored information by given key
+     *
+     * @param string $key
+     * @return string
+     */
+    final protected function getConfigurationByKey(string $key): string
+    {
+        $value = '';
+        if (array_key_exists($key, $this->getConfiguration())) {
+            $value = $this->getConfiguration()[$key];
+        }
+        return $value;
+    }
+
+    /**
+     * Get any TypoScript settings from trigger configuration
+     *
+     * @param string $path "configuration.foo"
+     * @return string
+     */
+    final protected function getSettingsByPath(string $path)
+    {
+        try {
+            $value = ArrayUtility::getValueByPath($this->getTrigger()->getTriggerSettings(), $path, '.');
+        } catch (\Exception $exception) {
+            unset($exception);
+            $value = '';
+        }
+        return $value;
     }
 }

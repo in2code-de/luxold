@@ -72,6 +72,7 @@ class WorkflowFactory
             $trigger = ObjectUtility::getObjectManager()->get(Trigger::class);
             $trigger->setClassName($triggerItem['className']);
             $trigger->setConfigurationFromArray($triggerItem['configuration']);
+            $trigger->setConjunction($triggerItem['conjunction']);
             $workflow->addTrigger($trigger);
         }
     }

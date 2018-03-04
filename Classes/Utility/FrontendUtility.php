@@ -3,12 +3,21 @@ declare(strict_types=1);
 namespace In2code\Lux\Utility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Class FrontendUtility
  */
 class FrontendUtility
 {
+
+    /**
+     * @return int
+     */
+    public static function getCurrentPageIdentifier(): int
+    {
+        return (int)self::getTyposcriptFrontendController()->id;
+    }
 
     /**
      * @return string
@@ -47,5 +56,14 @@ class FrontendUtility
             $pluginName = 'tx_lux_lux_luxworkflow';
         }
         return $pluginName;
+    }
+
+    /**
+     * @return TypoScriptFrontendController
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    protected static function getTyposcriptFrontendController()
+    {
+        return $GLOBALS['TSFE'];
     }
 }

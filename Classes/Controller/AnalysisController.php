@@ -2,21 +2,15 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
-use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Repository\DownloadRepository;
 use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
-use In2code\Lux\Utility\ObjectUtility;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
-use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
-use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
 
 /**
  * Class AnalysisController
@@ -25,24 +19,29 @@ class AnalysisController extends ActionController
 {
 
     /**
-     * @var VisitorRepository|null
+     * @var VisitorRepository
      */
     protected $visitorRepository = null;
 
     /**
-     * @var IpinformationRepository|null
+     * @var IpinformationRepository
      */
     protected $ipinformationRepository = null;
 
     /**
-     * @var LogRepository|null
+     * @var LogRepository
      */
     protected $logRepository = null;
 
     /**
-     * @var PagevisitRepository|null
+     * @var PagevisitRepository
      */
     protected $pagevisitsRepository = null;
+
+    /**
+     * @var DownloadRepository
+     */
+    protected $downloadRepository = null;
 
     /**
      * @return void
@@ -75,97 +74,46 @@ class AnalysisController extends ActionController
     /**
      * @return void
      */
-    public function initializeListAction()
+    public function initializeContentAction()
     {
         $this->setFilterDto();
     }
 
     /**
      * @param FilterDto $filter
-     * @param string $export
      * @return void
-     * @throws StopActionException
      */
-    public function listAction(FilterDto $filter, string $export = '')
+    public function contentAction(FilterDto $filter)
     {
-        if ($export === 'csv') {
-            $this->forward('downloadCsv', null, null, ['filter' => $filter]);
-        }
         $this->view->assignMultiple([
-            'hottestVisitors' => $this->visitorRepository->findByHottestScorings($filter),
-            'filter' => $filter,
-            'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst($filter),
-            'identifiedByMostVisits' => $this->visitorRepository->findIdentifiedByMostVisits($filter),
+            'pages' => $this->pagevisitsRepository->findCombinedByPageIdentifier($filter),
+            'downloads' => $this->downloadRepository->findCombinedByHref($filter),
             'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay(),
+            'numberOfDownloadsByDay' => $this->downloadRepository->getNumberOfDownloadsByDay(),
         ]);
     }
 
     /**
-     * @param FilterDto $filter
+     * @param Page $page
      * @return void
      */
-    public function downloadCsvAction(FilterDto $filter)
+    public function detailPageAction(Page $page)
     {
         $this->view->assignMultiple([
-            'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst($filter),
+            'pagevisits' => $this->pagevisitsRepository->findByPage($page)
         ]);
-
-        $this->response->setHeader('Content-Type', 'text/x-csv');
-        $this->response->setHeader('Content-Disposition', 'attachment; filename="Leads.csv"');
-        $this->response->setHeader('Pragma', 'no-cache');
-        $this->response->sendHeaders();
-        echo $this->view->render();
-        exit;
     }
 
     /**
-     * @param Visitor $visitor
+     * @param string $href
      * @return void
+     * @throws UnsupportedMethodException
      */
-    public function detailAction(Visitor $visitor)
+    public function detailDownloadAction(string $href)
     {
-        $this->view->assign('visitor', $visitor);
-    }
-
-    /**
-     * AJAX action to show a detail view
-     *
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @return ResponseInterface
-     */
-    public function detailAjax(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
-    {
-        $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
-        $standaloneView = ObjectUtility::getObjectManager()->get(StandaloneView::class);
-        $standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(
-            'EXT:lux/Resources/Private/Templates/Analysis/DetailAjax.html'
-        ));
-        $standaloneView->assignMultiple([
-            'visitor' => $visitorRepository->findByUid((int)$request->getQueryParams()['visitor'])
+        $this->view->assignMultiple([
+            'downloads' => $this->downloadRepository->findByHref($href)
         ]);
-        $response->getBody()->write(json_encode(['html' => $standaloneView->render()]));
-        return $response;
-    }
-
-    /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @return ResponseInterface
-     * @throws IllegalObjectTypeException
-     * @throws UnknownObjectException
-     */
-    public function detailDescriptionAjax(
-        ServerRequestInterface $request,
-        ResponseInterface $response
-    ): ResponseInterface {
-        /** @var VisitorRepository $visitorRepository */
-        $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
-        $visitor = $visitorRepository->findByUid((int)$request->getQueryParams()['visitor']);
-        $visitor->setDescription($request->getQueryParams()['value']);
-        $visitorRepository->update($visitor);
-        $visitorRepository->persistAll();
-        return $response;
     }
 
     /**
@@ -217,5 +165,14 @@ class AnalysisController extends ActionController
     public function injectPagevisitRepository(PagevisitRepository $pagevisitRepository)
     {
         $this->pagevisitsRepository = $pagevisitRepository;
+    }
+
+    /**
+     * @param DownloadRepository $downloadRepository
+     * @return void
+     */
+    public function injectDownloadRepository(DownloadRepository $downloadRepository)
+    {
+        $this->downloadRepository = $downloadRepository;
     }
 }

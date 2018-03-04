@@ -13,6 +13,23 @@ class TimeFrameTrigger extends AbstractTrigger implements TriggerInterface
      */
     public function isTriggered(): bool
     {
-        return true;
+        $now = new \DateTime();
+        return $this->getConfiguredTimeFrom() <= $now && $this->getConfiguredTimeTo() >= $now;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    protected function getConfiguredTimeFrom(): \DateTime
+    {
+        return new \DateTime($this->getConfigurationByKey('timefrom'));
+    }
+
+    /**
+     * @return \DateTime
+     */
+    protected function getConfiguredTimeTo(): \DateTime
+    {
+        return new \DateTime($this->getConfigurationByKey('timeto'));
     }
 }

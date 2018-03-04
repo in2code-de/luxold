@@ -13,12 +13,15 @@
     <div class="lux-action">
         <div class="row form-group">
             <div class="col-md-6">
-                <label for="action_{index}_receiverName" class="lb-lg">
-                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.label2">
-                        Receiver Name
+                <label for="trigger_{index}_recurring" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring">
+                        Recurring/Single
                     </f:translate>
                 </label>
-                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][receiverName]" class="form-control" id="action_{index}_receiverName" />
+                <select name="tx_lux_lux_luxworkflow[actions][{index}][configuration][recurring]" class="form-control" id="trigger_{index}_recurring">
+                    <option value="single"{f:if(condition:'{configuration.recurring} == "single"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.single')}</option>
+                    <option value="recurring"{f:if(condition:'{configuration.recurring} == "recurring"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.recurring')}</option>
+                </select>
             </div>
             <div class="col-md-6">
                 <label for="action_{index}_receiverEmail" class="lb-lg">
@@ -26,7 +29,7 @@
                         Receiver E-Mail
                     </f:translate>
                 </label>
-                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][receiverEmail]" class="form-control" id="action_{index}_receiverEmail" />
+                <input type="email" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][receiverEmail]" class="form-control" id="action_{index}_receiverEmail" value="{configuration.receiverEmail}" />
             </div>
         </div>
         <div class="row form-group">
@@ -36,7 +39,7 @@
                         Sender Name
                     </f:translate>
                 </label>
-                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][senderName]" class="form-control" id="action_{index}_senderName" />
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][senderName]" class="form-control" id="action_{index}_senderName" value="{configuration.senderName}" />
             </div>
             <div class="col-md-6">
                 <label for="action_{index}_senderEmail" class="lb-lg">
@@ -44,7 +47,7 @@
                         Sender E-Mail
                     </f:translate>
                 </label>
-                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][senderEmail]" class="form-control" id="action_{index}_senderEmail" />
+                <input type="email" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][senderEmail]" class="form-control" id="action_{index}_senderEmail" value="{configuration.senderEmail}" />
             </div>
         </div>
         <div class="row form-group">
@@ -54,7 +57,7 @@
                         Subject
                     </f:translate>
                 </label>
-                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][subject]" class="form-control" id="action_{index}_subject" />
+                <input type="text" name="tx_lux_lux_luxworkflow[actions][{index}][configuration][subject]" class="form-control" id="action_{index}_subject" value="{configuration.subject}" />
             </div>
         </div>
         <div class="row form-group">
@@ -64,7 +67,7 @@
                         Bodytext
                     </f:translate>
                 </label>
-                <textarea name="tx_lux_lux_luxworkflow[actions][{index}][configuration][bodytext]" cols="50" rows="20" class="form-control" id="action_{index}_bodytext"></textarea>
+                <textarea name="tx_lux_lux_luxworkflow[actions][{index}][configuration][bodytext]" cols="50" rows="20" class="form-control" id="action_{index}_bodytext">{configuration.bodytext}</textarea>
             </div>
         </div>
     </div>
