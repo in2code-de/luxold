@@ -167,7 +167,7 @@ luxLightboxContentWorkflowAction {
     10 {
         tables = tt_content
         dontCheckPid = 1
-        source.data = GP:c
+        source.data = GP:luxContent
         source.intval = 1
     }
 }

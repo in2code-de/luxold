@@ -101,7 +101,8 @@ function LuxMain() {
 		var contentElementUid = response['configuration']['contentElement'];
 		var uri = document.querySelector('[data-lux-lightboxuri]').getAttribute('data-lux-lightboxuri')
 			|| '/index.php?id=5&type=1520192598';
-		var html = '<div><iframe src="' + uri + '&c=' + parseInt(contentElementUid) + '" width="800" height="600">' +
+		var html =
+			'<div><iframe src="' + uri + '&luxContent=' + parseInt(contentElementUid) + '" width="800" height="600">' +
 			'</iframe></div>';
 		that.lightboxInstance = basicLightbox.create(html);
 		that.lightboxInstance.show();
