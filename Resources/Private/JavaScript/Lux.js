@@ -70,8 +70,40 @@ function LuxMain() {
 				'tx_lux_fe[idCookie]': getIdCookie(),
 				'tx_lux_fe[arguments][pageUid]': getPageUid(),
 				'tx_lux_fe[arguments][referrer]': getReferrer()
-			});
+			}, 'generalWorkflowActionCallback');
 		}
+	};
+
+	/**
+	 * Callback and dispatcher function for all workflow actions
+	 *
+	 * @params {Json} response
+	 * @returns {void}
+	 */
+	this.generalWorkflowActionCallback = function(response) {
+		for (var i = 0; i < response.length; i++) {
+			if (response[i]['action']) {
+				try {
+					that[response[i]['action'] + 'WorkflowAction'](response[i]);
+				} catch (error) {
+					console.log(error);
+				}
+			}
+		}
+	};
+
+	/**
+	 * Callback for workflow action "LightboxContent"
+	 *
+	 * @param response
+	 */
+	this.lightboxContentWorkflowAction = function(response) {
+		var contentElementUid = response['configuration']['contentElement'];
+		var uri = document.querySelector('[data-lux-lightboxuri]').getAttribute('data-lux-lightboxuri')
+			|| '/index.php?id=5&type=1520192598';
+		var html = '<iframe src="' + uri + '&c=' + parseInt(contentElementUid) + '" width="800" height="600"></iframe>';
+		that.lightboxInstance = basicLightbox.create(html);
+		that.lightboxInstance.show();
 	};
 
 	/**
@@ -117,7 +149,7 @@ function LuxMain() {
 						'tx_lux_fe[dispatchAction]': 'downloadRequest',
 						'tx_lux_fe[idCookie]': getIdCookie(),
 						'tx_lux_fe[arguments][href]': this.getAttribute('href')
-					});
+					}, null);
 				});
 			}
 		}
@@ -170,7 +202,7 @@ function LuxMain() {
 				'tx_lux_fe[arguments][email]': email,
 				'tx_lux_fe[arguments][sendEmail]': sendEmail === 'true',
 				'tx_lux_fe[arguments][href]': href
-			});
+			}, null);
 
 			if (sendEmail === 'true') {
 				hideElement(that.lightboxInstance.element().querySelector('[data-lux-email4link="form"]'));
@@ -203,7 +235,7 @@ function LuxMain() {
 			'tx_lux_fe[idCookie]': getIdCookie(),
 			'tx_lux_fe[arguments][key]': key,
 			'tx_lux_fe[arguments][value]': value
-		});
+		}, null);
 	};
 
 	/**
@@ -358,14 +390,15 @@ function LuxMain() {
 	 * @params {object} parameters
 	 * @returns {void}
 	 */
-	var ajaxConnection = function(parameters) {
+	var ajaxConnection = function(parameters, callback) {
 		var uri = getRequestUri();
 		if (uri !== '') {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState === 4 && this.status === 200) {
-					var jsonObject = JSON.parse(this.responseText);
-					// doAction(jsonObject);
+					if (callback !== null) {
+						that[callback](JSON.parse(this.responseText));
+					}
 				}
 			};
 			xhttp.open('POST', mergeUriWithParameters(uri, parameters), true);

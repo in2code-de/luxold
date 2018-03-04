@@ -33,6 +33,18 @@ page {
             }
         }
 
+        # Uri to render a lightbox with a single content element
+        20 = TEXT
+        20 {
+            noTrimWrap = | data-lux-lightboxuri="|"|
+            typolink {
+                parameter.data = TSFE:id
+                additionalParams = &type=1520192598
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
+
         # Current page uid
         110 = TEXT
         110 {
@@ -132,3 +144,30 @@ luxPageRequestAjax {
 [else]
     page.1517985223 >
 [end]
+
+
+
+
+
+# Typenum to render a single content element for showing in a lightbox for workflows
+luxLightboxContentWorkflowAction = PAGE
+luxLightboxContentWorkflowAction {
+    typeNum = 1520192598
+
+    config {
+        no_cache = 1
+        disableAllHeaderCode = 0
+        disablePrefixComment = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+
+    10 = RECORDS
+    10 {
+        tables = tt_content
+        dontCheckPid = 1
+        source.data = GP:c
+        source.intval = 1
+    }
+}

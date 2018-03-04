@@ -19,3 +19,9 @@
   font-size: 0.8em;
   padding-top: 10px;
 }
+
+.basicLightbox--iframe {
+  iframe {
+    background-color: $white;
+  }
+}
