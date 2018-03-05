@@ -119,9 +119,6 @@ plugin {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.description
-
                         # Classname for implementation of the trigger itself
                         className = In2code\Lux\Domain\Trigger\PageVisitTrigger
 
@@ -139,9 +136,6 @@ plugin {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.scoring
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.scoring.description
-
                         # Classname for implementation of the trigger itself
                         className = In2code\Lux\Domain\Trigger\ScoringTrigger
 
@@ -158,9 +152,6 @@ plugin {
                     3 {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe
-
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.description
 
                         # Classname for implementation of the trigger itself
                         className = In2code\Lux\Domain\Trigger\TimeFrameTrigger
@@ -186,9 +177,6 @@ plugin {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement.description
-
                         # Classname for implementation of the action itself
                         className = In2code\Lux\Domain\Action\PopupContentElementAction
 
@@ -205,9 +193,6 @@ plugin {
                     2 {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email
-
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.description
 
                         # Classname for implementation of the action itself
                         className = In2code\Lux\Domain\Action\EmailAction

@@ -462,9 +462,6 @@
 			<trans-unit id="trigger.pagevisit">
 				<source>On entering a page</source>
 			</trans-unit>
-			<trans-unit id="trigger.pagevisit.description">
-				<source>Start an action as soon as a lead enters a page.</source>
-			</trans-unit>
 			<trans-unit id="trigger.pagevisit.label1">
 				<source>Lead visits a page for the time</source>
 			</trans-unit>
@@ -492,14 +489,8 @@
 			<trans-unit id="trigger.scoring.label1">
 				<source>The minimum scoring of the lead is</source>
 			</trans-unit>
-			<trans-unit id="trigger.scoring.description">
-				<source>Start an action as soon as a lead gets a scoring.</source>
-			</trans-unit>
 			<trans-unit id="trigger.timeframe">
 				<source>On a defined time</source>
-			</trans-unit>
-			<trans-unit id="trigger.timeframe.description">
-				<source>Start an action from given start- to a stoptime.</source>
 			</trans-unit>
 			<trans-unit id="trigger.timeframe.label1">
 				<source>Start on this time</source>
@@ -538,9 +529,6 @@
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 			</trans-unit>
-			<trans-unit id="action.popupcontentelement.description">
-				<source>Opens a lightbox to the lead which a defined content element.</source>
-			</trans-unit>
 			<trans-unit id="action.popupcontentelement.label1">
 				<source>Content element (UID) to show in a popup (lightbox)</source>
 			</trans-unit>
@@ -549,9 +537,6 @@
 			</trans-unit>
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
-			</trans-unit>
-			<trans-unit id="action.email.description">
-				<source>Sends a notification email to a defined receiver.</source>
 			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
