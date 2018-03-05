@@ -47,7 +47,7 @@ class Pagevisit extends AbstractEntity
     /**
      * @return Page
      */
-    public function getPage(): Page
+    public function getPage()
     {
         return $this->page;
     }

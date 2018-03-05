@@ -532,6 +532,9 @@
 			<trans-unit id="action.email.label6">
 				<source>Email text</source>
 			</trans-unit>
+			<trans-unit id="action.email.label7">
+				<source>Add email text directly (without HTML). It is possible to use variables from the lead (e.g. {visitor.fullName})</source>
+			</trans-unit>
 			<trans-unit id="action.popupcontentelement">
 				<source>Open a popup (lightbox) with a content element</source>
 			</trans-unit>
@@ -540,6 +543,9 @@
 			</trans-unit>
 			<trans-unit id="action.popupcontentelement.label1">
 				<source>Content element (UID) to show in a popup (lightbox)</source>
+			</trans-unit>
+			<trans-unit id="action.popupcontentelement.label2">
+				<source>Delay (msec)</source>
 			</trans-unit>
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
