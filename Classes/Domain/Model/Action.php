@@ -105,7 +105,14 @@ class Action extends AbstractEntity
         $actionSettings = $this->getActionSettings();
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($actionSettings['templateFile']));
+        $pathAndFilename = GeneralUtility::getFileAbsFileName($actionSettings['templateFile']);
+        if (!file_exists($pathAndFilename)) {
+            throw new \UnexpectedValueException(
+                'Template file "' . $actionSettings['templateFile'] . '" does not exist',
+                1520265022
+            );
+        }
+        $view->setTemplatePathAndFilename($pathAndFilename);
         $view->assignMultiple([
             'index' => $index,
             'actionSettings' => $actionSettings,

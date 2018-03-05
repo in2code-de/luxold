@@ -538,6 +538,9 @@
 			<trans-unit id="action.email">
 				<source>Sends an email</source>
 			</trans-unit>
+			<trans-unit id="action.redirect">
+				<source>Redirect visitor to another page</source>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>

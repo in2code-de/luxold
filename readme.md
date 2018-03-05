@@ -64,13 +64,19 @@ Workflow - Do one or more Actions if a trigger is activated:
 ### Scoring
 
 - General scoring (with individual calculation)
+- Todo: Category Scoring
 
 ### Workflow & User Experience
 
-- Workflow backend module with a GUI (with Trigger & Actions)
-- Action: Lightbox with a content element
-- Action: Send an email with lead details
-- Todo: Category Scoring
+- Workflow backend module with a GUI and easy extension possibility
+- Triggers:
+-- On page visit (define on which number of pagevisit)
+-- On a minimum scoring
+-- If in a time frame
+- Actions:
+-- Lightbox with a content element
+-- Send an email with lead details
+-- Redirect to any URL
 
 ### CommandControllers & Scheduler
 
@@ -91,6 +97,7 @@ Workflow - Do one or more Actions if a trigger is activated:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.5.1      | 2018-03-05 | Bugfix     | Prevent exception in backend.                                                   |
 | 1.5.0      | 2018-03-05 | Task       | Finish workflow modules with initial triggers/actions. Small bugfixes.          |
 | 1.4.0      | 2018-03-04 | Task       | Split backend modules, add content analysis, integrate nearly complete workflow |
 | 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                   |

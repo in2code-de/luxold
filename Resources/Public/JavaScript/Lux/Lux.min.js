@@ -111,6 +111,17 @@ function LuxMain() {
 	};
 
 	/**
+	 * Callback for workflow action "Redirect"
+	 *
+	 * @param response
+	 */
+	this.redirectWorkflowAction = function(response) {
+		if (response['configuration']['uri']) {
+			window.location = response['configuration']['uri'];
+		}
+	};
+
+	/**
 	 * @returns {void}
 	 */
 	var addFieldListeners = function() {

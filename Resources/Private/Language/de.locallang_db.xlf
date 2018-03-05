@@ -727,6 +727,10 @@
 				<source>Sends an email</source>
 				<target state="translated">Sendet eine E-Mail</target>
 			</trans-unit>
+			<trans-unit id="action.redirect">
+				<source>Redirect visitor to another page</source>
+				<target state="translated">Leitet Besucher auf eine andere Seite</target>
+			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>

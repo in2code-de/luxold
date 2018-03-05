@@ -189,8 +189,27 @@ plugin {
                         }
                     }
 
-                    # Action for sending a notification email
+                    # Action for doing a redirect to another URI
                     2 {
+                        # Title to show in workflow backend module
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.redirect
+
+                        # Classname for implementation of the action itself
+                        className = In2code\Lux\Domain\Action\RedirectAction
+
+                        # Templatefile for implementation of the form in workflow module
+                        templateFile = EXT:lux/Resources/Private/Templates/Workflow/Action/Redirect.html
+
+                        # Additional configuration
+                        configuration {
+                            emailOverrides {
+                                # Any configuration - available as array in Template File and Action class for some own magic
+                            }
+                        }
+                    }
+
+                    # Action for sending a notification email
+                    3 {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email
 
