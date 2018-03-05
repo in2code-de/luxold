@@ -27,7 +27,8 @@ class PagevisitRepository extends AbstractRepository
         $query->matching(
             $query->logicalAnd([
                 $query->greaterThan('crdate', $filter->getStartTimeForFilter()),
-                $query->lessThan('crdate', $filter->getEndTimeForFilter())
+                $query->lessThan('crdate', $filter->getEndTimeForFilter()),
+                $query->greaterThan('page.uid', 0),
             ])
         );
         $pages = $query->execute();
