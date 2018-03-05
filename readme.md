@@ -91,6 +91,7 @@ Workflow - Do one or more Actions if a trigger is activated:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.5.0      | 2018-03-05 | Task       | Finish workflow modules with initial triggers/actions. Small bugfixes.          |
 | 1.4.0      | 2018-03-04 | Task       | Split backend modules, add content analysis, integrate nearly complete workflow |
 | 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                   |
 | 1.2.0      | 2018-03-01 | Task       | Some small fixes in backend analysis show identified and recurring.             |
