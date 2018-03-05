@@ -232,3 +232,7 @@ CREATE TABLE tx_lux_domain_model_action (
 	KEY parent (pid),
 	KEY language (l10n_parent,sys_language_uid)
 );
+
+CREATE TABLE sys_category (
+	lux_category tinyint(4) unsigned DEFAULT '0' NOT NULL
+);

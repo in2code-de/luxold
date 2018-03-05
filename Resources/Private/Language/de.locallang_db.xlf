@@ -308,6 +308,11 @@
 				<target state="translated">Konfiguration</target>
 			</trans-unit>
 
+			<trans-unit id="sys_category.lux_category">
+				<source>Is lux category?</source>
+				<target state="translated">Ist eine lux-Kategorie?</target>
+			</trans-unit>
+
 			<trans-unit id="anonym">
 				<source>Anonym</source>
 				<target state="translated">Anonym</target>
