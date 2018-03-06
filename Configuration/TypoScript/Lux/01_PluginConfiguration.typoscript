@@ -148,8 +148,25 @@ plugin {
                         }
                     }
 
-                    # Trigger for a defined time (start to stop)
+                    # If lead enters a page or downloads an asset with a relation to a lux category
                     3 {
+                        # Title to show in workflow backend module
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category
+
+                        # Classname for implementation of the trigger itself
+                        className = In2code\Lux\Domain\Trigger\CategoryTrigger
+
+                        # Templatefile for implementation of the form in workflow module
+                        templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/Category.html
+
+                        # Additional configuration
+                        configuration {
+                            # Any configuration - available as array in Template File and Trigger class for some own magic
+                        }
+                    }
+
+                    # Trigger for a defined time (start to stop)
+                    4 {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe
 

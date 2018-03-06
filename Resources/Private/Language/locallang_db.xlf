@@ -9,6 +9,9 @@
 			<trans-unit id="tx_lux_domain_model_visitor.scoring">
 				<source>Scoring</source>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.categoryscorings">
+				<source>Categoryscoring</source>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identification">
 				<source>Lead identification</source>
 			</trans-unit>
@@ -149,9 +152,25 @@
 				<source>Date</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_download.href">
-				<source>File</source>
+				<source>File path</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.href">
+				<source>File path</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_download.visitor">
+				<source>Lead</source>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_categoryscoring">
+				<source>Categoryscoring</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.scoring">
+				<source>Scoring</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.visitor">
 				<source>Lead</source>
 			</trans-unit>
 
@@ -501,6 +520,24 @@
 			</trans-unit>
 			<trans-unit id="trigger.timeframe.label2">
 				<source>Stop on this time</source>
+			</trans-unit>
+			<trans-unit id="trigger.category">
+				<source>When lead enters a page or downloads an asset of a category</source>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode">
+				<source>Page/Download</source>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.0">
+				<source>Every page or download</source>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.1">
+				<source>Only pages</source>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.2">
+				<source>Only downloads</source>
+			</trans-unit>
+			<trans-unit id="trigger.category.category">
+				<source>Please choose a category</source>
 			</trans-unit>
 
 			<trans-unit id="action.label.recurring">

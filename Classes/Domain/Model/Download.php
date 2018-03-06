@@ -27,6 +27,11 @@ class Download extends AbstractEntity
     protected $href = '';
 
     /**
+     * @var \In2code\Lux\Domain\Model\File
+     */
+    protected $file = null;
+
+    /**
      * @return Visitor
      */
     public function getVisitor()
@@ -77,6 +82,24 @@ class Download extends AbstractEntity
     public function setHref(string $href): Download
     {
         $this->href = $href;
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getFile(): File
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param File $file
+     * @return Download
+     */
+    public function setFile(File $file)
+    {
+        $this->file = $file;
         return $this;
     }
 }

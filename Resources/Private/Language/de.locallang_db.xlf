@@ -11,6 +11,10 @@
 				<source>Scoring</source>
 				<target state="translated">Scoring</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.categoryscorings">
+				<source>Categoryscoring</source>
+				<target state="translated">Kategorie-Scoring</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identification">
 				<source>Lead identification</source>
 				<target state="translated">Lead Ident</target>
@@ -200,10 +204,31 @@
 				<target state="translated">Zeitpunkt</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_download.href">
+				<source>File path</source>
+				<target state="translated">Dateipfad</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.file">
 				<source>File</source>
 				<target state="translated">Datei</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_download.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_categoryscoring">
+				<source>Categoryscoring</source>
+				<target state="translated">Kategorie-Scoring</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.scoring">
+				<source>Scoring</source>
+				<target state="translated">Scoring</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.category">
+				<source>Category</source>
+				<target state="translated">Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.visitor">
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
@@ -678,6 +703,30 @@
 			<trans-unit id="trigger.timeframe.label2">
 				<source>Stop on this time</source>
 				<target state="translated">Stoppe zu dieser Zeit</target>
+			</trans-unit>
+			<trans-unit id="trigger.category">
+				<source>When lead enters a page or downloads an asset of a category</source>
+				<target state="translated">Bei Seitenzugriff oder Download ein bestimmten Kategorie</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode">
+				<source>Page/Download</source>
+				<target state="translated">Seite/Download</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.0">
+				<source>Every page or download</source>
+				<target state="translated">Jede Seite oder Download</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.1">
+				<source>Only pages</source>
+				<target state="translated">Nur Seiten</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.2">
+				<source>Only downloads</source>
+				<target state="translated">Nur Downloads</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.category">
+				<source>Please choose a category</source>
+				<target state="translated">Bitte eine Kategorie auswählen</target>
 			</trans-unit>
 
 			<trans-unit id="action.label.recurring">

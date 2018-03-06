@@ -12,6 +12,21 @@ config.tx_extbase {
                     tableName = be_users
                 }
             }
+            In2code\Lux\Domain\Model\Category {
+                mapping {
+                    tableName = sys_category
+                }
+            }
+            In2code\Lux\Domain\Model\File {
+                mapping {
+                    tableName = sys_file
+                }
+            }
+            In2code\Lux\Domain\Model\Metadata {
+                mapping {
+                    tableName = sys_file_metadata
+                }
+            }
         }
     }
 }

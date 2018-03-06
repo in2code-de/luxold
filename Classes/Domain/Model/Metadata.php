@@ -2,21 +2,15 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
-use In2code\Lux\Utility\DatabaseUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * Class Page
+ * Class Metadata
  */
-class Page extends AbstractEntity
+class Metadata extends AbstractEntity
 {
-    const TABLE_NAME = 'pages';
-
-    /**
-     * @var string
-     */
-    protected $title = '';
+    const TABLE_NAME = 'sys_file_metadata';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Category>
@@ -24,19 +18,11 @@ class Page extends AbstractEntity
     protected $categories = null;
 
     /**
-     * Page constructor.
+     * File constructor.
      */
     public function __construct()
     {
         $this->categories = new ObjectStorage();
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 
     /**

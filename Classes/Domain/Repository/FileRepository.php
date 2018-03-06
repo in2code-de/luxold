@@ -3,8 +3,8 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
 /**
- * Class PageRepository
+ * Class FileRepository
  */
-class PageRepository extends AbstractRepository
+class FileRepository extends AbstractRepository
 {
 }

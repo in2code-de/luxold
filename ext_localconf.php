@@ -97,11 +97,19 @@ call_user_func(
             'startActions',
             false
         );
-        // Calculate scoring
+        // Calculate main scoring
         $signalSlotDispatcher->connect(
             \In2code\Lux\Controller\FrontendController::class,
             'afterTracking',
             \In2code\Lux\Domain\Service\ScoringService::class,
+            'calculateAndSetScoring',
+            false
+        );
+        // Calculate category scoring
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Controller\FrontendController::class,
+            'afterTracking',
+            \In2code\Lux\Domain\Service\CategoryScoringService::class,
             'calculateAndSetScoring',
             false
         );
