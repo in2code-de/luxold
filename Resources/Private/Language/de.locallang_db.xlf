@@ -728,6 +728,14 @@
 				<source>Please choose a category</source>
 				<target state="translated">Bitte eine Kategorie auswählen</target>
 			</trans-unit>
+			<trans-unit id="trigger.identified">
+				<source>If a lead gets identified</source>
+				<target state="translated">Sobald ein Lead identifiziert wurde</target>
+			</trans-unit>
+			<trans-unit id="trigger.identified.message">
+				<source>Nothing to do here. This action listen if a lead gets identified.</source>
+				<target state="translated">Keine Einstellung notwendig. Diese Aktion reagiert sobald ein Lead identifiziert wurde.</target>
+			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
 				<source>Single / Recurring</source>

@@ -1,0 +1,24 @@
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {triggerSettings.title} Trigger title from TypoScript
+        {triggerSettings.description} Trigger description from TypoScript
+        {triggerSettings.className} Trigger className from TypoScript
+        {triggerSettings.templateFile} Trigger templateFile from TypoScript
+        {triggerSettings.configuration.foo} Trigger configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-action">
+        <h3><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.identified" /></h3>
+        <p style="font-size: 14px; color: #aaa;">
+            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.identified.message">
+                Nothing to do here. This action listen once if a lead gets identified.
+            </f:translate>
+        </p>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][conjunction]" value="{trigger.conjunction}" />
+</f:spaceless>

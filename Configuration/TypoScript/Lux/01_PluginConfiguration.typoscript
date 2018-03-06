@@ -181,6 +181,23 @@ plugin {
                             # Any configuration - available as array in Template File and Trigger class for some own magic
                         }
                     }
+
+                    # Trigger lead gets identified
+                    5 {
+                        # Title to show in workflow backend module
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.identified
+
+                        # Classname for implementation of the trigger itself
+                        className = In2code\Lux\Domain\Trigger\IdentifiedTrigger
+
+                        # Templatefile for implementation of the form in workflow module
+                        templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/Identified.html
+
+                        # Additional configuration
+                        configuration {
+                            # Any configuration - available as array in Template File and Trigger class for some own magic
+                        }
+                    }
                 }
 
 

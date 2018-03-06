@@ -539,6 +539,12 @@
 			<trans-unit id="trigger.category.category">
 				<source>Please choose a category</source>
 			</trans-unit>
+			<trans-unit id="trigger.identified">
+				<source>If a lead gets identified</source>
+			</trans-unit>
+			<trans-unit id="trigger.identified.message">
+				<source>Nothing to do here. This action listen if a lead gets identified.</source>
+			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
 				<source>Single / Recurring</source>
