@@ -25,35 +25,34 @@ class ActionHandler
 
     /**
      * @param Visitor $visitor
-     * @param string $actionName
+     * @param string $controllerAction
      * @param array $actionArray
      * @return array
      */
-    public function startActions(Visitor $visitor, string $actionName, array $actionArray): array
+    public function startActions(Visitor $visitor, string $controllerAction, array $actionArray): array
     {
         unset($actionArray);
-        if ($this->isAllowedStartAction($actionName)) {
-            /** @var TriggerHandler $triggerHandler */
-            $triggerHandler = ObjectUtility::getObjectManager()->get(TriggerHandler::class);
-            /** @var WorkflowRepository $workflowRepository */
-            $workflowRepository = ObjectUtility::getObjectManager()->get(WorkflowRepository::class);
-            $workflows = $workflowRepository->findAll();
-            foreach ($workflows as $workflow) {
-                if ($triggerHandler->isRelevantTrigger($visitor, $workflow)) {
-                    $this->setActionsForWorkflow($workflow, $visitor);
-                    $this->log($workflow, $visitor);
-                }
+        /** @var TriggerHandler $triggerHandler */
+        $triggerHandler = ObjectUtility::getObjectManager()->get(TriggerHandler::class);
+        /** @var WorkflowRepository $workflowRepository */
+        $workflowRepository = ObjectUtility::getObjectManager()->get(WorkflowRepository::class);
+        $workflows = $workflowRepository->findAll();
+        foreach ($workflows as $workflow) {
+            if ($triggerHandler->isRelevantTrigger($visitor, $workflow)) {
+                $this->setActionsForWorkflow($workflow, $visitor, $controllerAction);
+                $this->log($workflow, $visitor);
             }
         }
-        return [$visitor, $actionName, $this->actions];
+        return [$visitor, $controllerAction, $this->actions];
     }
 
     /**
      * @param Workflow $workflow
      * @param Visitor $visitor
+     * @param string $controllerAction
      * @return void
      */
-    protected function setActionsForWorkflow(Workflow $workflow, Visitor $visitor)
+    protected function setActionsForWorkflow(Workflow $workflow, Visitor $visitor, string $controllerAction)
     {
         /** @var Action $action */
         foreach ($workflow->getActions() as $action) {
@@ -63,7 +62,8 @@ class ActionHandler
                 $action->getClassName(),
                 $workflow,
                 $action,
-                $visitor
+                $visitor,
+                $controllerAction
             );
             $actionObject->startAction();
             if ($actionObject->isTransmission()) {
@@ -101,17 +101,6 @@ class ActionHandler
             'configuration' => $configuration,
             'workflow' => $workflow->getUid()
         ];
-    }
-
-    /**
-     * Todo: Implement further startingpoints
-     *
-     * @param string $actionName
-     * @return bool
-     */
-    protected function isAllowedStartAction(string $actionName): bool
-    {
-        return $actionName === 'pageRequestAction';
     }
 
     /**

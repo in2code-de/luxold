@@ -16,6 +16,26 @@ abstract class AbstractAction implements ActionInterface
 {
 
     /**
+     * Define and overwrite conrollter action on which your action should listen. Per default actions are only called
+     * from pageRequestAction. In some cases (e.g. let's send an email on identification) it could be helpful to
+     * also add another controller action as entry point.
+     * Possible actions are:
+     *  "pageRequestAction", "fieldListeningRequestAction", "email4LinkRequestAction", "downloadRequestAction"
+     *
+     * @var array
+     */
+    protected $controllerActions = [
+        'pageRequestAction'
+    ];
+
+    /**
+     * Current controllerAction
+     *
+     * @var string
+     */
+    protected $controllerAction = '';
+
+    /**
      * @var Workflow
      */
     protected $workflow = null;
@@ -53,12 +73,14 @@ abstract class AbstractAction implements ActionInterface
      * @param Workflow $workflow
      * @param Action $action
      * @param Visitor $visitor
+     * @param string $controllerAction
      */
-    public function __construct(Workflow $workflow, Action $action, Visitor $visitor)
+    public function __construct(Workflow $workflow, Action $action, Visitor $visitor, string $controllerAction)
     {
         $this->workflow = $workflow;
         $this->action = $action;
         $this->visitor = $visitor;
+        $this->controllerAction = $controllerAction;
     }
 
     /**
@@ -95,17 +117,23 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
+     * Perform action only if given controllerAction is a allowed starting point. In addition don't perform action
+     * if workflow was already performed and configuration for recurring is turned to "single".
+     *
      * @return bool
      */
     public function shouldPerform(): bool
     {
-        $perform = true;
-        $configuration = $this->getAction()->getConfigurationAsArray();
-        if (!empty($configuration['recurring']) && $configuration['recurring'] === 'single') {
-            /** @var LogRepository $logRepository */
-            $logRepository = ObjectUtility::getObjectManager()->get(LogRepository::class);
-            $log = $logRepository->findOneByVisitorAndWorkflow($this->getVisitor(), $this->getWorkflow());
-            $perform = $log === null;
+        $perform = false;
+        if (in_array($this->controllerAction, $this->controllerActions)) {
+            $perform = true;
+            $configuration = $this->getAction()->getConfigurationAsArray();
+            if (!empty($configuration['recurring']) && $configuration['recurring'] === 'single') {
+                /** @var LogRepository $logRepository */
+                $logRepository = ObjectUtility::getObjectManager()->get(LogRepository::class);
+                $log = $logRepository->findOneByVisitorAndWorkflow($this->getVisitor(), $this->getWorkflow());
+                $perform = $log === null;
+            }
         }
         return $perform;
     }
