@@ -59,8 +59,8 @@ class TriggerHandler
         if ($trigger->getClassName() === '') {
             throw new \UnexpectedValueException('No trigger classname given', 1520005596);
         }
-        if ($trigger->getConfiguration() === '') {
-            throw new \UnexpectedValueException('No trigger configuration given', 1520005692);
+        if (!is_array($trigger->getConfigurationAsArray())) {
+            throw new \LogicException('Trigger configuration is not an array', 1520005692);
         }
         if (!class_exists($trigger->getClassName())) {
             throw new \UnexpectedValueException(
