@@ -55,7 +55,7 @@ call_user_func(
                 ],
                 [
                     'access' => 'user,group',
-                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_white.svg',
+                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_analysis.svg',
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_analysis.xlf',
                 ]
             );
@@ -73,7 +73,7 @@ call_user_func(
                 ],
                 [
                     'access' => 'user,group',
-                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_white.svg',
+                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_lead.svg',
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_lead.xlf',
                 ]
             );
@@ -90,7 +90,7 @@ call_user_func(
                 ],
                 [
                     'access' => 'user,group',
-                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module.svg',
+                    'icon' => 'EXT:lux/Resources/Public/Icons/lux_module_workflow.svg',
                     'labels' => 'LLL:EXT:lux/Resources/Private/Language/locallang_mod_workflow.xlf',
                 ]
             );
