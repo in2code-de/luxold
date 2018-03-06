@@ -21,6 +21,24 @@ class ConfigurationUtility
     }
 
     /**
+     * @return int
+     */
+    public static function getCategoryScoringAddPageVisit(): int
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return (int)$extensionConfig['categoryScoringAddPageVisit'];
+    }
+
+    /**
+     * @return int
+     */
+    public static function getCategoryScoringAddDownload(): int
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return (int)$extensionConfig['categoryScoringAddDownload'];
+    }
+
+    /**
      * @return bool
      */
     public static function isLastLeadsBoxInPageDisabled(): bool

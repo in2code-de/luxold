@@ -22,13 +22,14 @@ return [
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'scoring,identified,visits,email,id_cookie,crdate,tstamp,attributes,' .
+        'showRecordFieldList' =>
+            'scoring,categoryscorings,identified,visits,email,id_cookie,crdate,tstamp,attributes,' .
             'pagevisits,downloads,referrer,user_agent,ip_address,ipinformations,logs,description',
     ],
     'types' => [
         '1' => [
             'showitem' =>
-                'scoring,--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
+                'scoring,categoryscorings,--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
                 'attributes,--palette--;Lead;referrer,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
                 'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations,' .
@@ -160,6 +161,24 @@ return [
                 'type' => 'input',
                 'readOnly' => true,
                 'default' => 0
+            ]
+        ],
+        'categoryscorings' => [
+            'exclude' => true,
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.categoryscorings',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => \In2code\Lux\Domain\Model\Categoryscoring::TABLE_NAME,
+                'foreign_field' => 'visitor',
+                'maxitems' => 1000,
+                'appearance' => [
+                    'collapse' => 1,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ]
             ]
         ],
         'identified' => [

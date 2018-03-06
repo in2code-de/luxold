@@ -119,9 +119,6 @@ plugin {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.pagevisit.description
-
                         # Classname for implementation of the trigger itself
                         className = In2code\Lux\Domain\Trigger\PageVisitTrigger
 
@@ -139,9 +136,6 @@ plugin {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.scoring
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.scoring.description
-
                         # Classname for implementation of the trigger itself
                         className = In2code\Lux\Domain\Trigger\ScoringTrigger
 
@@ -154,13 +148,27 @@ plugin {
                         }
                     }
 
-                    # Trigger for a defined time (start to stop)
+                    # If lead enters a page or downloads an asset with a relation to a lux category
                     3 {
                         # Title to show in workflow backend module
-                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe.description
+                        # Classname for implementation of the trigger itself
+                        className = In2code\Lux\Domain\Trigger\CategoryTrigger
+
+                        # Templatefile for implementation of the form in workflow module
+                        templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/Category.html
+
+                        # Additional configuration
+                        configuration {
+                            # Any configuration - available as array in Template File and Trigger class for some own magic
+                        }
+                    }
+
+                    # Trigger for a defined time (start to stop)
+                    4 {
+                        # Title to show in workflow backend module
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.timeframe
 
                         # Classname for implementation of the trigger itself
                         className = In2code\Lux\Domain\Trigger\TimeFrameTrigger
@@ -186,9 +194,6 @@ plugin {
                         # Title to show in workflow backend module
                         title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.popupcontentelement.description
-
                         # Classname for implementation of the action itself
                         className = In2code\Lux\Domain\Action\PopupContentElementAction
 
@@ -201,13 +206,29 @@ plugin {
                         }
                     }
 
-                    # Action for sending a notification email
+                    # Action for doing a redirect to another URI
                     2 {
                         # Title to show in workflow backend module
-                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.redirect
 
-                        # Description to show in workflow backend module
-                        description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email.description
+                        # Classname for implementation of the action itself
+                        className = In2code\Lux\Domain\Action\RedirectAction
+
+                        # Templatefile for implementation of the form in workflow module
+                        templateFile = EXT:lux/Resources/Private/Templates/Workflow/Action/Redirect.html
+
+                        # Additional configuration
+                        configuration {
+                            emailOverrides {
+                                # Any configuration - available as array in Template File and Action class for some own magic
+                            }
+                        }
+                    }
+
+                    # Action for sending a notification email
+                    3 {
+                        # Title to show in workflow backend module
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.email
 
                         # Classname for implementation of the action itself
                         className = In2code\Lux\Domain\Action\EmailAction

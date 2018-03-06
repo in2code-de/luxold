@@ -130,7 +130,14 @@ class Trigger extends AbstractEntity
         $triggerSettings = $this->getTriggerSettings();
         /** @var StandaloneView $view */
         $view = ObjectUtility::getObjectManager()->get(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']));
+        $pathAndFilename = GeneralUtility::getFileAbsFileName($triggerSettings['templateFile']);
+        if (!file_exists($pathAndFilename)) {
+            throw new \UnexpectedValueException(
+                'Template file "' . $triggerSettings['templateFile'] . '" does not exist',
+                1520265022
+            );
+        }
+        $view->setTemplatePathAndFilename($pathAndFilename);
         $view->assignMultiple([
             'index' => $index,
             'triggerSettings' => $triggerSettings,

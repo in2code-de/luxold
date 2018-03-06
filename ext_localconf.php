@@ -45,7 +45,7 @@ call_user_func(
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Factory\VisitorFactory::class,
             'newVisitor',
-            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            \In2code\Lux\Slot\Log::class,
             'logNewVisitor',
             false
         );
@@ -53,7 +53,7 @@ call_user_func(
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Tracker\AttributeTracker::class,
             'isIdentifiedByFieldlistening',
-            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            \In2code\Lux\Slot\Log::class,
             'logIdentifiedVisitor',
             false
         );
@@ -61,7 +61,7 @@ call_user_func(
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Tracker\AttributeTracker::class,
             'isIdentifiedByEmail4link',
-            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            \In2code\Lux\Slot\Log::class,
             'logIdentifiedVisitorByEmail4Link',
             false
         );
@@ -69,7 +69,7 @@ call_user_func(
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Service\SendAssetEmail4LinkService::class,
             'email4linkSendEmail',
-            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            \In2code\Lux\Slot\Log::class,
             'logEmail4LinkEmail',
             false
         );
@@ -77,7 +77,7 @@ call_user_func(
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Service\SendAssetEmail4LinkService::class,
             'email4linkSendEmailFailed',
-            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            \In2code\Lux\Slot\Log::class,
             'logEmail4LinkEmailFailed',
             false
         );
@@ -85,7 +85,7 @@ call_user_func(
         $signalSlotDispatcher->connect(
             \In2code\Lux\Domain\Tracker\DownloadTracker::class,
             'addDownload',
-            \In2code\Lux\Domain\Trigger\LogTrigger::class,
+            \In2code\Lux\Slot\Log::class,
             'logDownload',
             false
         );
@@ -97,11 +97,19 @@ call_user_func(
             'startActions',
             false
         );
-        // Calculate scoring
+        // Calculate main scoring
         $signalSlotDispatcher->connect(
             \In2code\Lux\Controller\FrontendController::class,
             'afterTracking',
             \In2code\Lux\Domain\Service\ScoringService::class,
+            'calculateAndSetScoring',
+            false
+        );
+        // Calculate category scoring
+        $signalSlotDispatcher->connect(
+            \In2code\Lux\Controller\FrontendController::class,
+            'afterTracking',
+            \In2code\Lux\Domain\Service\CategoryScoringService::class,
             'calculateAndSetScoring',
             false
         );

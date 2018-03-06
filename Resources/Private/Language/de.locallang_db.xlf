@@ -11,6 +11,10 @@
 				<source>Scoring</source>
 				<target state="translated">Scoring</target>
 			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.categoryscorings">
+				<source>Categoryscoring</source>
+				<target state="translated">Kategorie-Scoring</target>
+			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identification">
 				<source>Lead identification</source>
 				<target state="translated">Lead Ident</target>
@@ -200,10 +204,31 @@
 				<target state="translated">Zeitpunkt</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_download.href">
+				<source>File path</source>
+				<target state="translated">Dateipfad</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_download.file">
 				<source>File</source>
 				<target state="translated">Datei</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_download.visitor">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+
+			<trans-unit id="tx_lux_domain_model_categoryscoring">
+				<source>Categoryscoring</source>
+				<target state="translated">Kategorie-Scoring</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.scoring">
+				<source>Scoring</source>
+				<target state="translated">Scoring</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.category">
+				<source>Category</source>
+				<target state="translated">Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_categoryscoring.visitor">
 				<source>Lead</source>
 				<target state="translated">Lead</target>
 			</trans-unit>
@@ -306,6 +331,11 @@
 			<trans-unit id="tx_lux_domain_model_action.configuration">
 				<source>Configuration</source>
 				<target state="translated">Konfiguration</target>
+			</trans-unit>
+
+			<trans-unit id="sys_category.lux_category">
+				<source>Is lux category?</source>
+				<target state="translated">Ist eine lux-Kategorie?</target>
 			</trans-unit>
 
 			<trans-unit id="anonym">
@@ -626,10 +656,6 @@
 				<source>On entering a page</source>
 				<target state="translated">Bei Seitenbesuch</target>
 			</trans-unit>
-			<trans-unit id="trigger.pagevisit.description">
-				<source>Start an action as soon as a lead enters a page.</source>
-				<target state="translated">Führe eine Aktion aus, sobald ein Lead eine bestimmte Seite öffnet.</target>
-			</trans-unit>
 			<trans-unit id="trigger.pagevisit.label1">
 				<source>Lead visits a page for the time</source>
 				<target state="translated">Der Lead besucht zum</target>
@@ -662,10 +688,6 @@
 				<source>When lead reaches a scoring</source>
 				<target state="translated">Bei Scoring</target>
 			</trans-unit>
-			<trans-unit id="trigger.scoring.description">
-				<source>Start an action as soon as a lead gets a scoring.</source>
-				<target state="translated">Führe eine Aktion aus, sobald ein Lead ein bestimmtes Scoring erreicht hat.</target>
-			</trans-unit>
 			<trans-unit id="trigger.scoring.label1">
 				<source>The minimum scoring of the lead is</source>
 				<target state="translated">Der Lead hat ein ein Scoring von mindestens</target>
@@ -674,10 +696,6 @@
 				<source>On a defined time</source>
 				<target state="translated">Bei einer bestimmten Zeit</target>
 			</trans-unit>
-			<trans-unit id="trigger.timeframe.description">
-				<source>Start an action from given start- to a stoptime.</source>
-				<target state="translated">Führe eine Aktion zwischen einer definierten Start- und Stoppzeit aus.</target>
-			</trans-unit>
 			<trans-unit id="trigger.timeframe.label1">
 				<source>Start on this time</source>
 				<target state="translated">Starte zu dieser Zeit</target>
@@ -685,6 +703,30 @@
 			<trans-unit id="trigger.timeframe.label2">
 				<source>Stop on this time</source>
 				<target state="translated">Stoppe zu dieser Zeit</target>
+			</trans-unit>
+			<trans-unit id="trigger.category">
+				<source>When lead enters a page of a given category</source>
+				<target state="translated">Bei Seitenzugriff auf eine Seite einer bestimmten Kategorie</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode">
+				<source>Page/Download</source>
+				<target state="translated">Seite/Download</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.0">
+				<source>Every page or download</source>
+				<target state="translated">Jede Seite oder Download</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.1">
+				<source>Only pages</source>
+				<target state="translated">Nur Seiten</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.mode.2">
+				<source>Only downloads</source>
+				<target state="translated">Nur Downloads</target>
+			</trans-unit>
+			<trans-unit id="trigger.category.category">
+				<source>Please choose a category</source>
+				<target state="translated">Bitte eine Kategorie auswählen</target>
 			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
@@ -727,10 +769,6 @@
 				<source>Open a popup (lightbox) with a content element</source>
 				<target state="translated">Öffne ein Popup (Lightbox) mit einem Seiteninhalt</target>
 			</trans-unit>
-			<trans-unit id="action.popupcontentelement.description">
-				<source>Opens a lightbox to the lead which a defined content element.</source>
-				<target state="translated">Öffnet eine Lightbox für den Besucher mit einem definierten Seiteninhalt.</target>
-			</trans-unit>
 			<trans-unit id="action.popupcontentelement.label1">
 				<source>Content element (UID) to show in a popup (lightbox)</source>
 				<target state="translated">Seiteninhalt (UID) der in einem Popup (Lightbox) gezeigt werden soll</target>
@@ -743,9 +781,9 @@
 				<source>Sends an email</source>
 				<target state="translated">Sendet eine E-Mail</target>
 			</trans-unit>
-			<trans-unit id="action.email.description">
-				<source>Sends a notification email to a defined receiver.</source>
-				<target state="translated">Sendet eine Hinweis-E-Mail an einen hinterlegten Empfänger.</target>
+			<trans-unit id="action.redirect">
+				<source>Redirect visitor to another page</source>
+				<target state="translated">Leitet Besucher auf eine andere Seite</target>
 			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">

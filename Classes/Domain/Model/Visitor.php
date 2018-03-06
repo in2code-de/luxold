@@ -2,11 +2,14 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
+use In2code\Lux\Domain\Repository\CategoryscoringRepository;
 use In2code\Lux\Domain\Service\ReadableReferrerService;
 use In2code\Lux\Domain\Service\ScoringService;
 use In2code\Lux\Utility\LocalizationUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -27,6 +30,14 @@ class Visitor extends AbstractEntity
      * @var int
      */
     protected $scoring = 0;
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Lux\Domain\Model\Categoryscoring>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @extensionScannerIgnoreLine Still needed for TYPO3 8.7
+     * @lazy
+     */
+    protected $categoryscorings = null;
 
     /**
      * @var string
@@ -155,6 +166,104 @@ class Visitor extends AbstractEntity
     {
         $scoringService = ObjectUtility::getObjectManager()->get(ScoringService::class, $time);
         return $scoringService->calculateScoring($this);
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getCategoryscorings(): ObjectStorage
+    {
+        return $this->categoryscorings;
+    }
+
+    /**
+     * @var ObjectStorage $categoryscorings
+     * @return Visitor
+     */
+    public function setCategoryscorings(ObjectStorage $categoryscorings)
+    {
+        $this->categoryscorings = $categoryscorings;
+        return $this;
+    }
+
+    /**
+     * @param Categoryscoring $categoryscoring
+     * @return $this
+     */
+    public function addCategoryscoring(Categoryscoring $categoryscoring)
+    {
+        $this->categoryscorings->attach($categoryscoring);
+        return $this;
+    }
+
+    /**
+     * @param Categoryscoring $categoryscoring
+     * @return $this
+     */
+    public function removeCategoryscoring(Categoryscoring $categoryscoring)
+    {
+        $this->categoryscorings->detach($categoryscoring);
+        return $this;
+    }
+
+    /**
+     * @param Category $category
+     * @return Categoryscoring|null
+     */
+    public function getCategoryscoringByCategory(Category $category)
+    {
+        $categoryscorings = $this->getCategoryscorings();
+        /** @var Categoryscoring $categoryscoring */
+        foreach ($categoryscorings as $categoryscoring) {
+            if ($categoryscoring->getCategory() === $category) {
+                return $categoryscoring;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param int $scoring
+     * @param Category $category
+     * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
+     */
+    public function setCategoryscoringByCategory(int $scoring, Category $category)
+    {
+        /** @var CategoryscoringRepository $csRepository */
+        $csRepository = ObjectUtility::getObjectManager()->get(CategoryscoringRepository::class);
+        $categoryscoring = $this->getCategoryscoringByCategory($category);
+        if ($categoryscoring !== null) {
+            $categoryscoring->setScoring($scoring);
+            $csRepository->update($categoryscoring);
+        } else {
+            /** @var Categoryscoring $categoryscoring */
+            $categoryscoring = ObjectUtility::getObjectManager()->get(Categoryscoring::class);
+            $categoryscoring->setCategory($category);
+            $categoryscoring->setScoring($scoring);
+            $categoryscoring->setVisitor($this);
+            $csRepository->add($categoryscoring);
+            $this->addCategoryscoring($categoryscoring);
+        }
+        $csRepository->persistAll();
+    }
+
+    /**
+     * @param int $value
+     * @param Category $category
+     * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
+     */
+    public function increaseCategoryscoringByCategory(int $value, Category $category)
+    {
+        $scoring = 0;
+        if ($this->getCategoryscoringByCategory($category) !== null) {
+            $scoring = $this->getCategoryscoringByCategory($category)->getScoring();
+        }
+        $newScoring = $scoring + $value;
+        $this->setCategoryscoringByCategory($newScoring, $category);
     }
 
     /**
@@ -551,6 +660,20 @@ class Visitor extends AbstractEntity
     {
         $this->downloads->detach($download);
         return $this;
+    }
+
+    /**
+     * @return Download|null
+     */
+    public function getLastDownload()
+    {
+        $downloads = $this->getDownloads();
+        $download = null;
+        foreach ($downloads as $downloadItem) {
+            /** @var Download $download */
+            $download = $downloadItem;
+        }
+        return $download;
     }
 
     /**

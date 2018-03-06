@@ -97,6 +97,8 @@ class FrontendController extends ActionController
             AttributeTracker::CONTEXT_EMAIL4LINK
         );
         $attributeTracker->addAttribute('email', $arguments['email']);
+        $downloadFactory = $this->objectManager->get(DownloadTracker::class, $visitor);
+        $downloadFactory->addDownload($arguments['href']);
         if ($arguments['sendEmail'] === 'true') {
             $this->objectManager->get(SendAssetEmail4LinkService::class, $visitor)->sendMail($arguments['href']);
         }

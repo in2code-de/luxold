@@ -47,7 +47,7 @@ class Log extends AbstractEntity
     /**
      * @return Visitor
      */
-    public function getVisitor(): Visitor
+    public function getVisitor()
     {
         return $this->visitor;
     }

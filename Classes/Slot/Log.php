@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace In2code\Lux\Domain\Trigger;
+namespace In2code\Lux\Slot;
 
 use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Download;
@@ -9,9 +9,9 @@ use In2code\Lux\Domain\Service\LogService;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**
- * Class LogTrigger
+ * Class Log
  */
-class LogTrigger implements SingletonInterface
+class Log implements SingletonInterface
 {
 
     /**

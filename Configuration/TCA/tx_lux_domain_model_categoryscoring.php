@@ -1,10 +1,13 @@
 <?php
-use In2code\Lux\Domain\Model\Download;
+
+use In2code\Lux\Domain\Model\Categoryscoring;
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Download::TABLE_NAME,
-        'label' => 'href',
+        'title' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Categoryscoring::TABLE_NAME,
+        'label' => 'category',
+        'label_alt' => 'scoring',
+        'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -13,13 +16,14 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY crdate DESC',
         'delete' => 'deleted',
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Download::TABLE_NAME . '.svg'
+        'enablecolumns' => [],
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Categoryscoring::TABLE_NAME . '.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'crdate,href,file,properties,visitor',
+        'showRecordFieldList' => 'scoring,category,visitor',
     ],
     'types' => [
-        '1' => ['showitem' => 'crdate,href,file,properties,visitor'],
+        '1' => ['showitem' => 'scoring,category,visitor'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -35,7 +39,7 @@ return [
                     ['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
                     ['LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0]
                 ]
-            ],
+            ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -45,55 +49,50 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0]
+                    ['', 0],
                 ],
-                'foreign_table' => Download::TABLE_NAME,
-                'foreign_table_where' => 'AND ' . Download::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
-                    Download::TABLE_NAME . '.sys_language_uid IN (-1,0)',
+                'foreign_table' => Categoryscoring::TABLE_NAME,
+                'foreign_table_where' => 'AND ' . Categoryscoring::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
+                    Categoryscoring::TABLE_NAME . '.sys_language_uid IN (-1,0)',
                 'default' => 0
-            ],
+            ]
         ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-            ],
+            ]
         ],
 
-        'crdate' => [
+        'scoring' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Download::TABLE_NAME . '.crdate',
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Categoryscoring::TABLE_NAME . '.scoring',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'eval' => 'datetime',
-                'readOnly' => true
+                'readOnly' => true,
+                'default' => 0
             ]
         ],
-        'href' => [
+        'category' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Download::TABLE_NAME . '.href',
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Categoryscoring::TABLE_NAME . '.category',
             'config' => [
-                'type' => 'input',
-                'readOnly' => true
-            ]
-        ],
-        'file' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Download::TABLE_NAME . '.file',
-            'config' => [
-                'type' => 'group',
-                'internal_type' => 'db',
-                'allowed' => \In2code\Lux\Domain\Model\File::TABLE_NAME,
-                'size' => 1,
-                'maxitems' => 1,
-                'multiple' => 0,
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'sys_category',
+                'foreign_table_where' => 'lux_category=1 ORDER BY title ASC',
                 'default' => 0,
                 'readOnly' => true
-            ]
+            ],
         ],
         'visitor' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Download::TABLE_NAME . '.visitor',
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Categoryscoring::TABLE_NAME . '.visitor',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',

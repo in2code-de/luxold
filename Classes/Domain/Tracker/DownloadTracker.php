@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace In2code\Lux\Domain\Tracker;
 
 use In2code\Lux\Domain\Model\Download;
@@ -7,8 +8,14 @@ use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\DownloadRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Domain\Service\ConfigurationService;
+use In2code\Lux\Domain\Service\FileService;
 use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Resource\FileRepository;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 
 /**
  * Class DownloadTracker add a download record to a visitor
@@ -41,6 +48,8 @@ class DownloadTracker
     /**
      * @param string $href
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     public function addDownload(string $href)
     {
@@ -60,8 +69,16 @@ class DownloadTracker
      */
     protected function getAndPersistNewDownload(string $href): Download
     {
+        /** @var FileService $fileService */
+        $fileService = ObjectUtility::getObjectManager()->get(FileService::class);
+        $file = $fileService->getFileFromHref($href);
         $downloadRepository = ObjectUtility::getObjectManager()->get(DownloadRepository::class);
-        $download = ObjectUtility::getObjectManager()->get(Download::class)->setHref($href);
+        /** @var Download $download */
+        $download = ObjectUtility::getObjectManager()->get(Download::class)
+            ->setHref($href);
+        if ($file !== null) {
+            $download->setFile($file);
+        }
         $downloadRepository->add($download);
         $downloadRepository->persistAll();
         return $download;
