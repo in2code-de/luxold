@@ -522,7 +522,7 @@
 				<source>Stop on this time</source>
 			</trans-unit>
 			<trans-unit id="trigger.category">
-				<source>When lead enters a page or downloads an asset of a category</source>
+				<source>When lead enters a page of a given category</source>
 			</trans-unit>
 			<trans-unit id="trigger.category.mode">
 				<source>Page/Download</source>

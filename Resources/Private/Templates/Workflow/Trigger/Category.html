@@ -11,17 +11,19 @@
 
 
     <div class="row form-group lux-trigger lux-trigger-conjunction{trigger.conjunction}">
-        <div class="col-md-4">
-            <label for="trigger_{index}_mode" class="lb-lg">
-                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode">page/download</f:translate>
-            </label>
-            <select name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][mode]" class="form-control" id="trigger_{index}_mode">
-                <option value="0"{f:if(condition:'{configuration.mode} == 0',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode.0')}</option>
-                <option value="1"{f:if(condition:'{configuration.mode} == 1',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode.1')}</option>
-                <option value="2"{f:if(condition:'{configuration.mode} == 2',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode.2')}</option>
-            </select>
-        </div>
-        <div class="col-md-8">
+        <f:comment>
+            <div class="col-md-4">
+                <label for="trigger_{index}_mode" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode">page/download</f:translate>
+                </label>
+                <select name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][mode]" class="form-control" id="trigger_{index}_mode">
+                    <option value="0"{f:if(condition:'{configuration.mode} == 0',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode.0')}</option>
+                    <option value="1"{f:if(condition:'{configuration.mode} == 1',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode.1')}</option>
+                    <option value="2"{f:if(condition:'{configuration.mode} == 2',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.mode.2')}</option>
+                </select>
+            </div>
+        </f:comment>
+        <div class="col-md-12">
             <label for="trigger_{index}_category" class="lb-lg">
                 <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.category.category">category</f:translate>
             </label>

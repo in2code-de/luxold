@@ -17,7 +17,7 @@ class CategoryTrigger extends AbstractTrigger implements TriggerInterface
      */
     public function isTriggered(): bool
     {
-        // todo respect mode
+        // todo respect mode $this->getConfigurationByKey('mode')
         return $this->isPageOfSelectedCategory() || $this->isDownloadOfSelectedCategory();
     }
 
@@ -43,7 +43,6 @@ class CategoryTrigger extends AbstractTrigger implements TriggerInterface
     {
         // todo implement download trigger
         //foreach ($this->getVisitor()->getDownloads() as $download) {
-        //
         //}
         return true;
     }
