@@ -242,8 +242,9 @@ class Visitor extends AbstractEntity
             $categoryscoring = ObjectUtility::getObjectManager()->get(Categoryscoring::class);
             $categoryscoring->setCategory($category);
             $categoryscoring->setScoring($scoring);
-            $this->addCategoryscoring($categoryscoring);
+            $categoryscoring->setVisitor($this);
             $csRepository->add($categoryscoring);
+            $this->addCategoryscoring($categoryscoring);
         }
         $csRepository->persistAll();
     }
