@@ -262,6 +262,26 @@ plugin {
                             }
                         }
                     }
+
+                    # Action for publishing to a slackchannel
+                    4 {
+                        # Title to show in workflow backend module
+                        title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack
+
+                        # Classname for implementation of the action itself
+                        className = In2code\Lux\Domain\Action\SlackAction
+
+                        # Templatefile for implementation of the form in workflow module
+                        templateFile = EXT:lux/Resources/Private/Templates/Workflow/Action/Slack.html
+
+                        # Additional configuration
+                        configuration {
+                            # Add your webhook Url like https://hooks.slack.com/services/token
+                            webhookUrl = https://hooks.slack.com/services/TOKENabcdefghi56789/67890p789/7890
+                            username = lux
+                            emoji = :fire:
+                        }
+                    }
                 }
             }
         }

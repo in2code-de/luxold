@@ -1,0 +1,44 @@
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {actionSettings.title} Action title from TypoScript
+        {actionSettings.description} Action description from TypoScript
+        {actionSettings.className} Action className from TypoScript
+        {actionSettings.templateFile} Action templateFile from TypoScript
+        {actionSettings.configuration.foo} Action configuration from TypoScript
+    </f:comment>
+
+    <div class="lux-action">
+        <h1><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack" /></h1>
+
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="trigger_{index}_recurring" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring">
+                        Recurring/Single
+                    </f:translate>
+                </label>
+                <select name="tx_lux_lux_luxworkflow[actions][{index}][configuration][recurring]" class="form-control" id="trigger_{index}_recurring">
+                    <option value="single"{f:if(condition:'{configuration.recurring} == "single"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.single')}</option>
+                    <option value="recurring"{f:if(condition:'{configuration.recurring} == "recurring"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.recurring')}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="action_{index}_text" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack.text">
+                        Bodytext
+                    </f:translate>
+                </label>
+                <textarea name="tx_lux_lux_luxworkflow[actions][{index}][configuration][text]" cols="50" rows="10" class="form-control" id="action_{index}_text">{configuration.text}</textarea>
+                <span class="help-block">
+                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack.text.help" />
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[actions][{index}][className]" value="{actionSettings.className}" />
+</f:spaceless>

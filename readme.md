@@ -73,10 +73,13 @@ Workflow - Do one or more Actions if a trigger is activated:
 -- On page visit (define on which number of pagevisit)
 -- On a minimum scoring
 -- If in a time frame
+-- If visitor enters a page from a category
+-- If visitor gets identified
 - Actions:
 -- Lightbox with a content element
 -- Send an email with lead details
 -- Redirect to any URL
+-- Send publication to a slack channel
 
 ### CommandControllers & Scheduler
 
