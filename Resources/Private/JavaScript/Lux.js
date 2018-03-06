@@ -158,14 +158,16 @@ function LuxMain() {
 			var links = document.querySelectorAll(getExpressionForLinkSelection());
 			var href;
 			for (var i = 0; i < links.length; i++) {
-				href = links[i].getAttribute('href');
-				links[i].addEventListener('click', function() {
-					ajaxConnection({
-						'tx_lux_fe[dispatchAction]': 'downloadRequest',
-						'tx_lux_fe[idCookie]': getIdCookie(),
-						'tx_lux_fe[arguments][href]': this.getAttribute('href')
-					}, null);
-				});
+				if (!links[i].hasAttribute('data-lux-email4link-title')) {
+					href = links[i].getAttribute('href');
+					links[i].addEventListener('click', function() {
+						ajaxConnection({
+							'tx_lux_fe[dispatchAction]': 'downloadRequest',
+							'tx_lux_fe[idCookie]': getIdCookie(),
+							'tx_lux_fe[arguments][href]': this.getAttribute('href')
+						}, null);
+					});
+				}
 			}
 		}
 	};
