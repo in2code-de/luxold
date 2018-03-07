@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Command;
 
 use In2code\Lux\Domain\Model\Attribute;
+use In2code\Lux\Domain\Model\Categoryscoring;
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Ipinformation;
 use In2code\Lux\Domain\Model\Log;
@@ -92,6 +93,7 @@ class LuxCleanupCommandController extends CommandController
             Pagevisit::TABLE_NAME,
             Ipinformation::TABLE_NAME,
             Download::TABLE_NAME,
+            Categoryscoring::TABLE_NAME,
             Log::TABLE_NAME
         ];
         foreach ($tables as $table) {

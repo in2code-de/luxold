@@ -24,7 +24,7 @@ Show some details:
 
 Show relevant information in page view:
 
-<img src="Documentation/Screenshots/page.png" width="800" />
+<img src="Documentation/Screenshots/pageoverview.png" width="800" />
 
 Workflow - Define your own trigger(s) and combine them via AND or OR:
 
@@ -33,6 +33,14 @@ Workflow - Define your own trigger(s) and combine them via AND or OR:
 Workflow - Do one or more Actions if a trigger is activated:
 
 <img src="Documentation/Screenshots/workflow_action.png" width="800" />
+
+Ask for the visitors email-address when he/she wants to download an asset:
+
+<img src="Documentation/Screenshots/email4link.png" width="800" />
+
+... with a CK editor plugin:
+
+<img src="Documentation/Screenshots/email4link_ckeditor_plugin.png" width="800" />
 
 ## Features
 
@@ -100,6 +108,7 @@ Workflow - Do one or more Actions if a trigger is activated:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                |
 | 1.7.0      | 2018-03-07 | Feature    | Add identified trigger and slack action.                                        |
 | 1.6.0      | 2018-03-06 | Task       | Add categoryscoring. Bugfix: Don't track downloads with email4link twice.       |
 | 1.5.1      | 2018-03-05 | Bugfix     | Prevent exception in backend.                                                   |

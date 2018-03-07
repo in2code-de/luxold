@@ -1,5 +1,4 @@
 <?php
-
 use In2code\Lux\Domain\Model\Pagevisit;
 
 return [

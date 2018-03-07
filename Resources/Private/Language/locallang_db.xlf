@@ -61,7 +61,7 @@
 				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.referrer">
-				<source>External referrer</source>
+				<source>Source</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.user_agent">
 				<source>User agent</source>
@@ -277,6 +277,9 @@
 			</trans-unit>
 			<trans-unit id="pageoverview.recurringvisits">
 				<source>Recurring visits</source>
+			</trans-unit>
+			<trans-unit id="pageoverview.visit">
+				<source>Visit</source>
 			</trans-unit>
 
 			<trans-unit id="module.analysis.dashboard">
