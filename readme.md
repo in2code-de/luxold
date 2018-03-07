@@ -108,6 +108,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                |
 | 1.7.0      | 2018-03-07 | Feature    | Add identified trigger and slack action.                                        |
 | 1.6.0      | 2018-03-06 | Task       | Add categoryscoring. Bugfix: Don't track downloads with email4link twice.       |
 | 1.5.1      | 2018-03-05 | Bugfix     | Prevent exception in backend.                                                   |
