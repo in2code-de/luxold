@@ -30,16 +30,19 @@ class GetLastVisitedPageViewHelper extends AbstractViewHelper
      */
     public function render()
     {
+        $thisPagevisit = null;
         /** @var Visitor $visitor */
         $visitor = $this->arguments['visitor'];
         /** @var Pagevisit $pagevisit */
         foreach ($visitor->getPagevisits() as $pagevisit) {
             if ($pagevisit->getPage() !== null) {
                 if ($this->arguments['pageIdentifier'] === null
-                    || $this->arguments['pageIdentifier'] === $pagevisit->getPage()->getUid()) {
-                    return $pagevisit;
+                    || (int)$this->arguments['pageIdentifier'] === $pagevisit->getPage()->getUid()) {
+                    $thisPagevisit = $pagevisit;
+                    break;
                 }
             }
         }
+        return $thisPagevisit;
     }
 }

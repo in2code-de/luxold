@@ -38,6 +38,7 @@
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.tstamp">
                                         Last visit
                                     </f:translate>
+                                    <f:if condition="{filter.pid}">(PID{filter.pid})</f:if>
                                 </th>
                                 <th>
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.visits">
@@ -54,10 +55,28 @@
                                     <td>{visitor.email}</td>
                                     <td>{visitor.company}</td>
                                     <td>
-                                        {f:format.date(date:visitor.tstamp,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}
+                                        <f:if condition="{filter.pid}">
+                                            <f:else>
+                                                <span title="{f:format.date(date:visitor.tstamp,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                                                    <lux:format.readableDate>{visitor.tstamp}</lux:format.readableDate>
+                                                </span>
+                                            </f:else>
+                                            <f:then>
+                                                <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:filter.pid)}'}">
+                                                    <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                                                        <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
+                                                    </span>
+                                                </f:alias>
+                                            </f:then>
+                                        </f:if>
                                     </td>
                                     <td>
                                         {visitor.visits}
+
+
+                                        <f:comment>
+                                            Invisible link for JS-clicks in preview only
+                                        </f:comment>
                                         <f:link.action action="detail" controller="Lead" class="btn btn-primary pull-right" arguments="{visitor:visitor}" data="{lux-linkmock-link:'detail{visitor.uid}'}" style="display:none;"><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.detail.linkdetail">show</f:translate></f:link.action>
                                     </td>
                                 </tr>
