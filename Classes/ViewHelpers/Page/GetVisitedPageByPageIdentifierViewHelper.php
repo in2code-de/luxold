@@ -7,9 +7,9 @@ use In2code\Lux\Domain\Model\Visitor;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class GetFieldLabelFromUidViewHelper
+ * Class GetVisitedPageByPageIdentifierViewHelper
  */
-class GetLastVisitedPageViewHelper extends AbstractViewHelper
+class GetVisitedPageByPageIdentifierViewHelper extends AbstractViewHelper
 {
 
     /**
@@ -19,30 +19,27 @@ class GetLastVisitedPageViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument('visitor', Visitor::class, 'visitor', true);
-        $this->registerArgument('pageIdentifier', 'int', 'page identifier', false);
+        $this->registerArgument('pageIdentifier', 'int', 'page identifier', true);
     }
 
     /**
-     * Get last pagevisit from visitor (if pageIdentifier is not given, return very first. If pageIdentifier ist given,
-     * return the first that fits to this identifier)
+     * Get all pagevisits from visitor related to a given page identifier
      *
-     * @return Pagevisit|null
+     * @return array
      */
-    public function render()
+    public function render(): array
     {
-        $thisPagevisit = null;
+        $pagevisits = [];
         /** @var Visitor $visitor */
         $visitor = $this->arguments['visitor'];
         /** @var Pagevisit $pagevisit */
         foreach ($visitor->getPagevisits() as $pagevisit) {
             if ($pagevisit->getPage() !== null) {
-                if ($this->arguments['pageIdentifier'] === null
-                    || (int)$this->arguments['pageIdentifier'] === $pagevisit->getPage()->getUid()) {
-                    $thisPagevisit = $pagevisit;
-                    break;
+                if ((int)$this->arguments['pageIdentifier'] === $pagevisit->getPage()->getUid()) {
+                    $pagevisits[] = $pagevisit;
                 }
             }
         }
-        return $thisPagevisit;
+        return $pagevisits;
     }
 }

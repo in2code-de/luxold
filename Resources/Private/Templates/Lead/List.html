@@ -41,9 +41,15 @@
                                     <f:if condition="{filter.pid}">(PID{filter.pid})</f:if>
                                 </th>
                                 <th>
-                                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.visits">
-                                        Sitevisits
-                                    </f:translate>
+                                    <f:if condition="{filter.pid}">
+                                        <f:else>
+                                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.visits">Sitevisits</f:translate>
+                                        </f:else>
+                                        <f:then>
+                                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.pagevisits">Pagevisits</f:translate>
+                                            (PID{filter.pid})
+                                        </f:then>
+                                    </f:if>
                                 </th>
                             </tr>
                             </thead>
@@ -62,7 +68,7 @@
                                                 </span>
                                             </f:else>
                                             <f:then>
-                                                <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:filter.pid)}'}">
+                                                <f:alias map="{pagevisit:'{lux:page.getLastVisitedPageByPageIdentifier(visitor:visitor,pageIdentifier:filter.pid)}'}">
                                                     <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
                                                         <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
                                                     </span>
@@ -71,7 +77,14 @@
                                         </f:if>
                                     </td>
                                     <td>
-                                        {visitor.visits}
+                                        <f:if condition="{filter.pid}">
+                                            <f:else>{visitor.visits}</f:else>
+                                            <f:then>
+                                                <f:alias map="{pagevisits:'{lux:page.getVisitedPageByPageIdentifier(visitor:visitor,pageIdentifier:filter.pid)}'}">
+                                                    {pagevisits -> f:count()}
+                                                </f:alias>
+                                            </f:then>
+                                        </f:if>
 
 
                                         <f:comment>
