@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Service;
 
 use In2code\Lux\Domain\Model\Attribute;
+use In2code\Lux\Domain\Model\Categoryscoring;
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Pagevisit;
@@ -12,6 +13,8 @@ use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\DatabaseUtility;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
@@ -58,6 +61,8 @@ class VisitorMergeService
 
     /**
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     public function merge()
     {
@@ -69,6 +74,7 @@ class VisitorMergeService
                 if ($visitor !== $this->firstVisitor) {
                     $this->mergePagevisits($visitor);
                     $this->mergeLogs($visitor);
+                    $this->mergeCategoryscorings($visitor);
                     $this->mergeDownloads($visitor);
                     $this->mergeAttributes($visitor);
                     $this->updateIdCookie($visitor);
@@ -110,6 +116,21 @@ class VisitorMergeService
     }
 
     /**
+     * Update existing categoryscorings with another parent visitor uid
+     *
+     * @param Visitor $newVisitor
+     * @return void
+     */
+    protected function mergeCategoryscorings(Visitor $newVisitor)
+    {
+        $connection = DatabaseUtility::getConnectionForTable(Categoryscoring::TABLE_NAME);
+        $connection->query(
+            'update ' . Categoryscoring::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
+            'where visitor = ' . (int)$newVisitor->getUid()
+        )->execute();
+    }
+
+    /**
      * Update existing downloads with another parent visitor uid
      *
      * @param Visitor $newVisitor
@@ -129,6 +150,8 @@ class VisitorMergeService
      *
      * @param Visitor $newVisitor
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     protected function mergeAttributes(Visitor $newVisitor)
     {
@@ -152,6 +175,8 @@ class VisitorMergeService
     /**
      * @param Visitor $newVisitor
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     protected function updateIdCookie(Visitor $newVisitor)
     {
