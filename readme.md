@@ -24,7 +24,7 @@ Show some details:
 
 Show relevant information in page view:
 
-<img src="Documentation/Screenshots/page.png" width="800" />
+<img src="Documentation/Screenshots/pageoverview.png" width="800" />
 
 Workflow - Define your own trigger(s) and combine them via AND or OR:
 
