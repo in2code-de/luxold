@@ -73,10 +73,13 @@ Workflow - Do one or more Actions if a trigger is activated:
 -- On page visit (define on which number of pagevisit)
 -- On a minimum scoring
 -- If in a time frame
+-- If visitor enters a page from a category
+-- If visitor gets identified
 - Actions:
 -- Lightbox with a content element
 -- Send an email with lead details
 -- Redirect to any URL
+-- Send publication to a slack channel
 
 ### CommandControllers & Scheduler
 
@@ -97,7 +100,8 @@ Workflow - Do one or more Actions if a trigger is activated:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
-| 1.6.0      | 2018-03-06 | Task       | Add categoryscoring. Bugfix: Don't track downloads with email4link twice        |
+| 1.7.0      | 2018-03-07 | Feature    | Add identified trigger and slack action.                                        |
+| 1.6.0      | 2018-03-06 | Task       | Add categoryscoring. Bugfix: Don't track downloads with email4link twice.       |
 | 1.5.1      | 2018-03-05 | Bugfix     | Prevent exception in backend.                                                   |
 | 1.5.0      | 2018-03-05 | Task       | Finish workflow modules with initial triggers/actions. Small bugfixes.          |
 | 1.4.0      | 2018-03-04 | Task       | Split backend modules, add content analysis, integrate nearly complete workflow |

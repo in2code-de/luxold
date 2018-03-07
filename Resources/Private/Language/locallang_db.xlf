@@ -539,6 +539,12 @@
 			<trans-unit id="trigger.category.category">
 				<source>Please choose a category</source>
 			</trans-unit>
+			<trans-unit id="trigger.identified">
+				<source>If a lead gets identified</source>
+			</trans-unit>
+			<trans-unit id="trigger.identified.message">
+				<source>Nothing to do here. This action listen if a lead gets identified.</source>
+			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
 				<source>Single / Recurring</source>
@@ -581,6 +587,15 @@
 			</trans-unit>
 			<trans-unit id="action.redirect">
 				<source>Redirect visitor to another page</source>
+			</trans-unit>
+			<trans-unit id="action.slack">
+				<source>Publish a message to a slack channel</source>
+			</trans-unit>
+			<trans-unit id="action.slack.text">
+				<source>Text to publish</source>
+			</trans-unit>
+			<trans-unit id="action.slack.text.help">
+				<source>You can also use variables like {visitor.fullName}</source>
 			</trans-unit>
 
 			<trans-unit id="frontend.email4link.lightbox.email">

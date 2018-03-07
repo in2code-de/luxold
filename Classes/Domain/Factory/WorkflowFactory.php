@@ -71,7 +71,7 @@ class WorkflowFactory
             /** @var Trigger $trigger */
             $trigger = ObjectUtility::getObjectManager()->get(Trigger::class);
             $trigger->setClassName($triggerItem['className']);
-            $trigger->setConfigurationFromArray($triggerItem['configuration']);
+            $trigger->setConfigurationFromArray((array)$triggerItem['configuration']);
             $trigger->setConjunction($triggerItem['conjunction']);
             $workflow->addTrigger($trigger);
         }
@@ -102,10 +102,7 @@ class WorkflowFactory
     protected function checkTrigger(array $triggerItem)
     {
         if (empty($triggerItem['className'])) {
-            throw new \UnexpectedValueException('No classname given', 1519928150);
-        }
-        if (empty($triggerItem['configuration']) || !is_array($triggerItem['configuration'])) {
-            throw new \UnexpectedValueException('No configuration given', 1519928166);
+            throw new \UnexpectedValueException('No classname given', 1520367239);
         }
         if (!class_exists($triggerItem['className'])) {
             throw new \UnexpectedValueException(
@@ -122,15 +119,15 @@ class WorkflowFactory
     protected function checkAction(array $actionItem)
     {
         if (empty($actionItem['className'])) {
-            throw new \UnexpectedValueException('No classname given', 1519928150);
+            throw new \UnexpectedValueException('No classname given', 1520367241);
         }
         if (empty($actionItem['configuration']) || !is_array($actionItem['configuration'])) {
-            throw new \UnexpectedValueException('No configuration given', 1519928166);
+            throw new \UnexpectedValueException('No configuration given', 1520367245);
         }
         if (!class_exists($actionItem['className'])) {
             throw new \UnexpectedValueException(
                 'Class ' . $actionItem['className'] . ' does not exist',
-                1519928321
+                1520367248
             );
         }
     }

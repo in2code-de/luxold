@@ -18,8 +18,9 @@ interface ActionInterface
      * @param Workflow $workflow
      * @param Action $action
      * @param Visitor $visitor
+     * @param string $controllerAction
      */
-    public function __construct(Workflow $workflow, Action $action, Visitor $visitor);
+    public function __construct(Workflow $workflow, Action $action, Visitor $visitor, string $controllerAction);
 
     /**
      * @return void
