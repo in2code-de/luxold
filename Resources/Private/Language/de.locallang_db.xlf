@@ -80,8 +80,8 @@
 				<target state="translated">Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.referrer">
-				<source>External referrer</source>
-				<target state="translated">Ursprung</target>
+				<source>Source</source>
+				<target state="translated">Quelle</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.user_agent">
 				<source>User agent</source>
@@ -369,6 +369,10 @@
 			<trans-unit id="pageoverview.recurringvisits">
 				<source>Recurring visits</source>
 				<target state="translated">Wiederkehrende Besuche</target>
+			</trans-unit>
+			<trans-unit id="pageoverview.visit">
+				<source>Visit</source>
+				<target state="translated">Besuch</target>
 			</trans-unit>
 
 			<trans-unit id="module.analysis.dashboard">

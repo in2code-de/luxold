@@ -6,29 +6,42 @@
     </h4>
 
     <div class="callout-body">
-        <ul class="list-group">
-
+        <div class="row">
             <f:for each="{visitors}" as="visitor">
-                <li class="list-group-item clearfix {f:if(condition:visitor.identified,then:' __list-group-item-info')}">
-                    <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
-                        <span class="badge badge-primary badge-pill" title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
-                            <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
-                        </span>
-
-                        <h4 class="list-group-item-heading">
-                            <strong title="UID{visitor.uid} {visitor.company} {visitor.email}">{visitor.fullName}</strong>
-                            <f:if condition="{visitor.location}">({visitor.location})</f:if>
-                        </h4>
-
-                        <nav class="timeline timeline--horizontal timeline__thin">
-                            <div class="timeline__item" title="PID{pagevisit.previousPagevisit.page.uid}">{pagevisit.previousPagevisit.page.title}</div>
-                            <div class="timeline__item" title="PID{pagevisit.page.uid}">{pagevisit.page.title}</div>
-                            <div class="timeline__item" title="PID{pagevisit.nextPagevisit.page.uid}"">{pagevisit.nextPagevisit.page.title}</div>
-                        </nav>
-                    </f:alias>
-                </li>
+                <div class="col-md-4">
+                    <f:link.action action="detail" controller="Lead" extensionName="lux" pluginName="lux_luxleads" additionalParams="{M:'lux_LuxLeads'}" arguments="{visitor:visitor}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="{lux:visitor.getGravatarImage(visitor:visitor)}" width="80" style="max-width: 100%;" class="img-circle img-responsive" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>
+                                            <strong title="UID{visitor.uid}">{visitor.fullName}</strong>
+                                            <span class="badge" title="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.scoring')}">{visitor.scoring}</span>
+                                            <f:if condition="{visitor.identified}">({visitor.email})</f:if>
+                                        </p>
+                                        <p>
+                                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pageoverview.visit">visit</f:translate>:
+                                            <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
+                                                <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                                                    <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
+                                                </span>
+                                            </f:alias>
+                                            <f:if condition="{visitor.referrer}">
+                                                <br />
+                                                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.referrer">source</f:translate>:
+                                                {visitor.readableReferrer}
+                                            </f:if>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </f:link.action>
+                </div>
             </f:for>
-
-        </ul>
+        </div>
     </div>
 </f:if>
