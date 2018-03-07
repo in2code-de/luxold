@@ -34,6 +34,14 @@ Workflow - Do one or more Actions if a trigger is activated:
 
 <img src="Documentation/Screenshots/workflow_action.png" width="800" />
 
+Ask for the visitors email-address when he/she wants to download an asset:
+
+<img src="Documentation/Screenshots/email4link.png" width="800" />
+
+... with a CK editor plugin:
+
+<img src="Documentation/Screenshots/email4link_ckeditor_plugin.png" width="800" />
+
 ## Features
 
 ### Tracking
