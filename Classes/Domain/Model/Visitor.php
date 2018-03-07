@@ -136,6 +136,7 @@ class Visitor extends AbstractEntity
         $this->ipinformations = new ObjectStorage();
         $this->logs = new ObjectStorage();
         $this->downloads = new ObjectStorage();
+        $this->categoryscorings = new ObjectStorage();
     }
 
     /**
