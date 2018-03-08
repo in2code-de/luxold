@@ -13,7 +13,8 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY uid ASC',
         'delete' => 'deleted',
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Action::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Action::TABLE_NAME . '.svg',
+        'rootLevel' => -1
     ],
     'interface' => [
         'showRecordFieldList' => 'workflow,class_name,configuration',

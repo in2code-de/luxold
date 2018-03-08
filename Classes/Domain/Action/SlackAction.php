@@ -61,11 +61,14 @@ class SlackAction extends AbstractAction implements ActionInterface
      */
     protected function getMessage(): array
     {
-        return [
+        $message = [
             'text' => $this->getText(),
-            'username' => $this->getSettingsByPath('configuration.username'),
-            'icon_emoji' => $this->getSettingsByPath('configuration.emoji'),
+            'username' => $this->getSettingsByPath('configuration.username')
         ];
+        if ($this->getSettingsByPath('configuration.emoji') !== '') {
+            $message['icon_emoji'] = $this->getSettingsByPath('configuration.emoji');
+        }
+        return $message;
     }
 
     protected function getText(): string

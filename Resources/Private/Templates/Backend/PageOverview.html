@@ -24,7 +24,7 @@
                                         </p>
                                         <p>
                                             <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pageoverview.visit">visit</f:translate>:
-                                            <f:alias map="{pagevisit:'{lux:page.getLastVisitedPage(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
+                                            <f:alias map="{pagevisit:'{lux:page.getLastVisitedPageByPageIdentifier(visitor:visitor,pageIdentifier:pageIdentifier)}'}">
                                                 <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
                                                     <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
                                                 </span>

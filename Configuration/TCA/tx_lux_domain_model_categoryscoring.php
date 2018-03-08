@@ -17,7 +17,8 @@ return [
         'default_sortby' => 'ORDER BY crdate DESC',
         'delete' => 'deleted',
         'enablecolumns' => [],
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Categoryscoring::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Categoryscoring::TABLE_NAME . '.svg',
+        'rootLevel' => -1
     ],
     'interface' => [
         'showRecordFieldList' => 'scoring,category,visitor',

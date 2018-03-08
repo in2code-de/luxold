@@ -16,7 +16,7 @@
 				<source>Lead identification</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.score">
-				<source>Lead score</source>
+				<source>Lead scoring</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.pagevisits">
 				<source>Page visits</source>
@@ -369,6 +369,15 @@
 			</trans-unit>
 			<trans-unit id="module.list.filter">
 				<source>Filter Leads</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.header.search">
+				<source>Search</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.header.scoring">
+				<source>Scoring</source>
+			</trans-unit>
+			<trans-unit id="module.list.filter.header.time">
+				<source>Time</source>
 			</trans-unit>
 			<trans-unit id="module.list.filter.timeFrom">
 				<source>From</source>

@@ -21,9 +21,14 @@
                                 </th>
                                 <th>
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.score">
-                                        Score
+                                        Scoring
                                     </f:translate>
                                 </th>
+                                <f:if condition="{filter.categoryScoring}">
+                                    <th>
+                                        Scoring ({filter.categoryScoring.title})
+                                    </th>
+                                </f:if>
                                 <th>
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.email">
                                         Email
@@ -38,11 +43,18 @@
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.tstamp">
                                         Last visit
                                     </f:translate>
+                                    <f:if condition="{filter.pid}">(PID{filter.pid})</f:if>
                                 </th>
                                 <th>
-                                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.visits">
-                                        Sitevisits
-                                    </f:translate>
+                                    <f:if condition="{filter.pid}">
+                                        <f:else>
+                                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.visits">Sitevisits</f:translate>
+                                        </f:else>
+                                        <f:then>
+                                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.pagevisits">Pagevisits</f:translate>
+                                            (PID{filter.pid})
+                                        </f:then>
+                                    </f:if>
                                 </th>
                             </tr>
                             </thead>
@@ -51,13 +63,41 @@
                                 <tr data-lux-action-detail="{visitor.uid}">
                                     <td><span title="UID{visitor.uid}">{visitor.fullName}</span></td>
                                     <td>{visitor.scoring}</td>
+                                    <f:if condition="{filter.categoryScoring}">
+                                        <td><lux:visitor.getCategoryScoringFromCategoryAndVisitor visitor="{visitor}" category="{filter.categoryScoring}" /></td>
+                                    </f:if>
                                     <td>{visitor.email}</td>
                                     <td>{visitor.company}</td>
                                     <td>
-                                        {f:format.date(date:visitor.tstamp,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}
+                                        <f:if condition="{filter.pid}">
+                                            <f:else>
+                                                <span title="{f:format.date(date:visitor.tstamp,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                                                    <lux:format.readableDate>{visitor.tstamp}</lux:format.readableDate>
+                                                </span>
+                                            </f:else>
+                                            <f:then>
+                                                <f:alias map="{pagevisit:'{lux:page.getLastVisitedPageByPageIdentifier(visitor:visitor,pageIdentifier:filter.pid)}'}">
+                                                    <span title="{f:format.date(date:pagevisit.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">
+                                                        <lux:format.readableDate>{pagevisit.crdate}</lux:format.readableDate>
+                                                    </span>
+                                                </f:alias>
+                                            </f:then>
+                                        </f:if>
                                     </td>
                                     <td>
-                                        {visitor.visits}
+                                        <f:if condition="{filter.pid}">
+                                            <f:else>{visitor.visits}</f:else>
+                                            <f:then>
+                                                <f:alias map="{pagevisits:'{lux:page.getVisitedPageByPageIdentifier(visitor:visitor,pageIdentifier:filter.pid)}'}">
+                                                    {pagevisits -> f:count()}
+                                                </f:alias>
+                                            </f:then>
+                                        </f:if>
+
+
+                                        <f:comment>
+                                            Invisible link for JS-clicks in preview only
+                                        </f:comment>
                                         <f:link.action action="detail" controller="Lead" class="btn btn-primary pull-right" arguments="{visitor:visitor}" data="{lux-linkmock-link:'detail{visitor.uid}'}" style="display:none;"><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.detail.linkdetail">show</f:translate></f:link.action>
                                     </td>
                                 </tr>

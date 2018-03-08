@@ -208,6 +208,21 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @return array
+     */
+    public function getCategoryscoringsSortedByScoring(): array
+    {
+        $categoryscoringsOs = $this->getCategoryscorings();
+        $categoryscorings = [];
+        /** @var Categoryscoring $categoryscoring */
+        foreach ($categoryscoringsOs as $categoryscoring) {
+            $categoryscorings[$categoryscoring->getScoring()] = $categoryscoring;
+        }
+        krsort($categoryscorings);
+        return $categoryscorings;
+    }
+
+    /**
      * @param Category $category
      * @return Categoryscoring|null
      */
@@ -221,6 +236,26 @@ class Visitor extends AbstractEntity
             }
         }
         return null;
+    }
+
+    /**
+     * @param Category $category
+     * @return Categoryscoring|null
+     */
+    public function getHottestCategoryscoring()
+    {
+        $categoryscorings = $this->getCategoryscorings();
+        $scoring = [];
+        /** @var Categoryscoring $categoryscoring */
+        foreach ($categoryscorings as $categoryscoring) {
+            $scoring[$categoryscoring->getScoring()] = $categoryscoring;
+        }
+        krsort($scoring);
+        $hottest = null;
+        if (end($scoring) !== false) {
+            $hottest = end($scoring);
+        }
+        return $hottest;
     }
 
     /**

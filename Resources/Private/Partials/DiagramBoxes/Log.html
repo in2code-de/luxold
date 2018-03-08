@@ -7,7 +7,7 @@
     <div class="panel-body">
         <f:if condition="{interestingLogs}">
             <f:then>
-                <div style="height: 600px; overflow: hidden;">
+                <div style="{style}">
                     <nav class="timeline timeline--vertical">
                         <f:for each="{interestingLogs}" as="log">
                             <div class="timeline__item" title="{lux:format.readableDate(date:log.crdate)} ({f:format.date(date:log.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')})">

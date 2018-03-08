@@ -20,8 +20,8 @@
 				<target state="translated">Lead Ident</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.score">
-				<source>Lead score</source>
-				<target state="translated">Lead Score</target>
+				<source>Lead scoring</source>
+				<target state="translated">Lead Scoring</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.tab.pagevisits">
 				<source>Page visits</source>
@@ -491,6 +491,18 @@
 			<trans-unit id="module.list.filter">
 				<source>Filter Leads</source>
 				<target state="translated">Lead Filter</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.header.search">
+				<source>Search</source>
+				<target state="translated">Suche</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.header.scoring">
+				<source>Scoring</source>
+				<target state="translated">Scoring</target>
+			</trans-unit>
+			<trans-unit id="module.list.filter.header.time">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
 			</trans-unit>
 			<trans-unit id="module.list.filter.timeFrom">
 				<source>From</source>

@@ -4,6 +4,7 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Repository\CategoryRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ObjectUtility;
@@ -23,14 +24,19 @@ class LeadController extends ActionController
 {
 
     /**
-     * @var VisitorRepository|null
+     * @var VisitorRepository
      */
     protected $visitorRepository = null;
 
     /**
-     * @var PagevisitRepository|null
+     * @var PagevisitRepository
      */
     protected $pagevisitsRepository = null;
+
+    /**
+     * @var CategoryRepository
+     */
+    protected $categoryRepository = null;
 
     /**
      * @return void
@@ -56,7 +62,8 @@ class LeadController extends ActionController
             'filter' => $filter,
             'allVisitors' => $this->visitorRepository->findAllWithIdentifiedFirst($filter),
             'identifiedByMostVisits' => $this->visitorRepository->findIdentifiedByMostVisits($filter),
-            'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay()
+            'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay(),
+            'luxCategories' => $this->categoryRepository->findAllLuxCategories()
         ]);
     }
 
@@ -129,17 +136,24 @@ class LeadController extends ActionController
     }
 
     /**
-     * Always set a default FilterDto even if there are no filter params
+     * Always set a default FilterDto even if there are no filter params. In addition remove categoryScoring with 0 to
+     * avoid propertymapping exceptions
      *
      * @return void
      */
     protected function setFilterDto()
     {
+        $filter = [];
         try {
-            $this->request->getArgument('filter');
+            $filter = $this->request->getArgument('filter');
         } catch (\Exception $exception) {
             unset($exception);
             $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));
+        }
+        if (array_key_exists('categoryScoring', $filter)
+            && (is_array($filter['categoryScoring']) || $filter['categoryScoring'] === '')) {
+            $filter['categoryScoring'] = 0;
+            $this->request->setArgument('filter', $filter);
         }
     }
 
@@ -159,5 +173,14 @@ class LeadController extends ActionController
     public function injectPagevisitRepository(PagevisitRepository $pagevisitRepository)
     {
         $this->pagevisitsRepository = $pagevisitRepository;
+    }
+
+    /**
+     * @param CategoryRepository $categoryRepository
+     * @return void
+     */
+    public function injectCategoryRepository(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
     }
 }

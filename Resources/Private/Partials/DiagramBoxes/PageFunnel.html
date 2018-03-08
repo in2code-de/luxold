@@ -8,7 +8,7 @@
     <div class="panel-body">
         <f:if condition="{visitor.pagevisits}">
             <f:then>
-                <div style="height: 600px; overflow: hidden;">
+                <div style="height: 394px; overflow: auto; ">
                     <nav class="timeline timeline--vertical">
                         <f:for each="{visitor.pagevisits}" as="pagevisit">
                             <div class="timeline__item" title="PID{pagevisit.page.uid}">
@@ -18,6 +18,14 @@
                                 </div>
                             </div>
                         </f:for>
+                        <f:if condition="{visitor.referrer}">
+                            <div class="timeline__item" title="abc">
+                                <div style="margin-top: 5px;">
+                                    {visitor.readableReferrer}
+                                    <span class="badge pull-right" title="{f:format.date(date:visitor.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">{lux:format.readableDate(date:visitor.crdate)}</span>
+                                </div>
+                            </div>
+                        </f:if>
                     </nav>
                 </div>
             </f:then>

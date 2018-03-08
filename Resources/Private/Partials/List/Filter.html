@@ -5,36 +5,66 @@
         </h3>
     </div>
     <div class="panel-body">
-        <f:form name="filter" class="form" action="list">
+        <f:form name="filter" class="form" action="list" object="{filter}">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <h5><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.header.search">Suche</f:translate></h5>
+
                     <div class="input-group form-group">
                         <f:form.textfield
                                 type="datetime"
                                 property="searchterm"
                                 id="searchterm"
                                 class="form-control"
-                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.searchterm')}"
-                                value="{filter.searchterm}" />
+                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.searchterm')}" />
                         <label class="input-group-addon fa fa-search" for="searchterm"></label>
                     </div>
-                </div>
-                <div class="col-md-6">
+
                     <div class="input-group form-group">
                         <f:form.textfield
                                 type="datetime"
                                 property="pid"
                                 id="pid"
                                 class="form-control"
-                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.pid')}"
-                                value="{filter.pid}" />
+                                placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.pid')}" />
                         <label class="input-group-addon fa fa-file" for="pid"></label>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-6">
+
+                <div class="col-md-4">
+                    <h5><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.header.scoring">Scoring</f:translate></h5>
+
+                    <div class="input-group form-group">
+                        <f:form.textfield
+                                type="range"
+                                property="scoring"
+                                class="form-control"
+                                additionalAttributes="{min:0, max:200, onchange:'document.getElementById(\'scoring_label\').innerHTML = this.value;'}"
+                                id="scoring"/>
+                        <label class="input-group-addon">
+                            Min: <strong id="scoring_label">{filter.scoring}</strong>
+                        </label>
+                    </div>
+
+                    <div class="input-group form-group">
+                        <f:form.select
+                                property="categoryScoring"
+                                options="{luxCategories}"
+                                optionLabelField="title"
+                                optionValueField="uid"
+                                prependOptionValue=""
+                                prependOptionLabel=""
+                                class="form-control"
+                                id="categoryScoring"/>
+                        <label class="input-group-addon fa fa-tag" for="categoryScoring"></label>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <h5><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.header.time">Zeitpunkt</f:translate></h5>
+
                     <div class="input-group form-group">
                         <f:form.textfield
                                 type="datetime"
@@ -42,12 +72,10 @@
                                 id="timeFrom"
                                 class="form-control t3js-datetimepicker t3js-clearable"
                                 placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeFrom')}"
-                                value="{filter.timeFrom}"
                                 data="{date-type:'datetime',date-offset:'0'}" />
                         <label class="input-group-addon fa fa-calendar" for="timeFrom"></label>
                     </div>
-                </div>
-                <div class="col-md-6">
+
                     <div class="input-group form-group">
                         <f:form.textfield
                                 type="datetime"
@@ -55,28 +83,29 @@
                                 id="timeTo"
                                 class="form-control t3js-datetimepicker t3js-clearable"
                                 placeholder="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.timeTo')}"
-                                value="{filter.timeTo}"
                                 data="{date-type:'datetime',date-offset:'0'}" />
                         <label class="input-group-addon fa fa-calendar" for="timeTo"></label>
                     </div>
                 </div>
             </div>
-                <div class="form-group">
-                    <div class="input-group pull-right">
-                        <f:form.submit class="fa fa-download" name="export" id="download" value="csv" style="visibility:hidden;"/>
-                        <label class="btn btn-default fa fa-download" for="download" style="margin-right: 10px;" title="CSV Download"></label>
 
-                        <f:if condition="{filter.set}">
-                            <f:link.action class="btn btn-default" style="margin-right: 10px" action="list">
-                                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.reset">Reset</f:translate>
-                            </f:link.action>
-                        </f:if>
 
-                        <f:form.submit
-                                class="btn btn-primary"
-                                value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.submit')}" />
-                    </div>
+            <div class="form-group">
+                <div class="input-group pull-right">
+                    <f:form.submit class="fa fa-download" name="export" id="download" value="csv" style="visibility:hidden;"/>
+                    <label class="btn btn-default fa fa-download" for="download" style="margin-right: 10px;" title="CSV Download"></label>
+
+                    <f:if condition="{filter.set}">
+                        <f:link.action class="btn btn-default" style="margin-right: 10px" action="list">
+                            <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.reset">Reset</f:translate>
+                        </f:link.action>
+                    </f:if>
+
+                    <f:form.submit
+                            class="btn btn-primary"
+                            value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.submit')}" />
                 </div>
+            </div>
         </f:form>
     </div>
 </div>

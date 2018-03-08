@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model\Transfer;
 
+use In2code\Lux\Domain\Model\Category;
+use In2code\Lux\Domain\Repository\CategoryRepository;
+use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -32,6 +35,18 @@ class FilterDto
      * @var string
      */
     protected $timeTo = '';
+
+    /**
+     * @var int
+     */
+    protected $scoring = 0;
+
+    /**
+     * Filter by categoryscoring greater then 0
+     *
+     * @var \In2code\Lux\Domain\Model\Category
+     */
+    protected $categoryScoring = null;
 
     /**
      * @var int
@@ -153,6 +168,48 @@ class FilterDto
     }
 
     /**
+     * @return int
+     */
+    public function getScoring(): int
+    {
+        return $this->scoring;
+    }
+
+    /**
+     * @param int $scoring
+     * @return FilterDto
+     */
+    public function setScoring(int $scoring)
+    {
+        $this->scoring = $scoring;
+        return $this;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategoryScoring()
+    {
+        return $this->categoryScoring;
+    }
+
+    /**
+     * @param int $categoryUid
+     * @return FilterDto
+     */
+    public function setCategoryScoring(int $categoryUid)
+    {
+        if ($categoryUid > 0) {
+            $categoryRepository = ObjectUtility::getObjectManager()->get(CategoryRepository::class);
+            $category = $categoryRepository->findByUid((int)$categoryUid);
+            if ($category !== null) {
+                $this->categoryScoring = $category;
+            }
+        }
+        return $this;
+    }
+
+    /**
      * Calculated values
      */
 
@@ -161,8 +218,8 @@ class FilterDto
      */
     public function isSet(): bool
     {
-        return $this->searchterm !== '' || $this->pid !== '' || $this->timeFrom !== '' || $this->timeTo !== ''
-            || $this->timePeriod !== self::PERIOD_THISYEAR;
+        return $this->searchterm !== '' || $this->pid !== '' || $this->scoring > 0 || $this->categoryScoring !== null
+            || $this->timeFrom !== '' || $this->timeTo !== '' || $this->timePeriod !== self::PERIOD_THISYEAR;
     }
 
     /**
