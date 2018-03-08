@@ -218,8 +218,8 @@ class FilterDto
      */
     public function isSet(): bool
     {
-        return $this->searchterm !== '' || $this->pid !== '' || $this->timeFrom !== '' || $this->timeTo !== ''
-            || $this->timePeriod !== self::PERIOD_THISYEAR;
+        return $this->searchterm !== '' || $this->pid !== '' || $this->scoring > 0 || $this->categoryScoring !== null
+            || $this->timeFrom !== '' || $this->timeTo !== '' || $this->timePeriod !== self::PERIOD_THISYEAR;
     }
 
     /**
