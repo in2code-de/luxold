@@ -16,7 +16,8 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden'
         ],
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Workflow::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Workflow::TABLE_NAME . '.svg',
+        'rootLevel' => -1
     ],
     'interface' => [
         'showRecordFieldList' => 'title,description,cruser_id,triggers,actions',

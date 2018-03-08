@@ -13,7 +13,8 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY crdate DESC',
         'delete' => 'deleted',
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Log::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Log::TABLE_NAME . '.svg',
+        'rootLevel' => -1
     ],
     'interface' => [
         'showRecordFieldList' => 'crdate,status,properties,visitor',

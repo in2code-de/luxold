@@ -19,7 +19,8 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Attribute::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Attribute::TABLE_NAME . '.svg',
+        'rootLevel' => -1
     ],
     'interface' => [
         'showRecordFieldList' => 'crdate,name,value',

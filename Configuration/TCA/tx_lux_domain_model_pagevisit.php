@@ -18,7 +18,8 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Pagevisit::TABLE_NAME . '.svg'
+        'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Pagevisit::TABLE_NAME . '.svg',
+        'rootLevel' => -1
     ],
     'interface' => [
         'showRecordFieldList' => 'page,crdate,visitor',
