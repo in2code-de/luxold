@@ -21,9 +21,14 @@
                                 </th>
                                 <th>
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.score">
-                                        Score
+                                        Scoring
                                     </f:translate>
                                 </th>
+                                <f:if condition="{filter.categoryScoring}">
+                                    <th>
+                                        Scoring ({filter.categoryScoring.title})
+                                    </th>
+                                </f:if>
                                 <th>
                                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.email">
                                         Email
@@ -58,6 +63,9 @@
                                 <tr data-lux-action-detail="{visitor.uid}">
                                     <td><span title="UID{visitor.uid}">{visitor.fullName}</span></td>
                                     <td>{visitor.scoring}</td>
+                                    <f:if condition="{filter.categoryScoring}">
+                                        <td><lux:visitor.getCategoryScoringFromCategoryAndVisitor visitor="{visitor}" category="{filter.categoryScoring}" /></td>
+                                    </f:if>
                                     <td>{visitor.email}</td>
                                     <td>{visitor.company}</td>
                                     <td>
