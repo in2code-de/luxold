@@ -21,11 +21,7 @@ class VisitorRepository extends AbstractRepository
         $query = $this->createQuery();
         $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, []);
         $query->matching($query->logicalAnd($logicalAnd));
-        $query->setOrderings([
-            'identified' => QueryInterface::ORDER_DESCENDING,
-            'scoring' => QueryInterface::ORDER_DESCENDING,
-            'tstamp' => QueryInterface::ORDER_DESCENDING
-        ]);
+        $query->setOrderings($this->getOrderingsArrayByFilterDto($filter));
         return $query->execute();
     }
 
@@ -204,7 +200,24 @@ class VisitorRepository extends AbstractRepository
         }
         if ($filter->getCategoryScoring() !== null) {
             $logicalAnd[] = $query->equals('categoryscorings.category', $filter->getCategoryScoring());
+            $logicalAnd[] = $query->greaterThan('categoryscorings.scoring', 0);
         }
         return $logicalAnd;
+    }
+
+    /**
+     * @param FilterDto $filter
+     * @return array
+     */
+    protected function getOrderingsArrayByFilterDto(FilterDto $filter): array
+    {
+        $orderings = ['identified' => QueryInterface::ORDER_DESCENDING];
+        if ($filter->getCategoryScoring() === null) {
+            $orderings['scoring'] = QueryInterface::ORDER_DESCENDING;
+        } else {
+            $orderings['categoryscorings.scoring'] = QueryInterface::ORDER_DESCENDING;
+        }
+        $orderings['tstamp'] = QueryInterface::ORDER_DESCENDING;
+        return $orderings;
     }
 }
