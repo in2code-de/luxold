@@ -199,6 +199,12 @@ class VisitorRepository extends AbstractRepository
         if ($filter->getPid() !== '') {
             $logicalAnd[] = $query->equals('pagevisits.page.uid', (int)$filter->getPid());
         }
+        if ($filter->getScoring() > 0) {
+            $logicalAnd[] = $query->greaterThan('scoring', $filter->getScoring());
+        }
+        if ($filter->getCategoryScoring() !== null) {
+            $logicalAnd[] = $query->equals('categoryscorings.category', $filter->getCategoryScoring());
+        }
         return $logicalAnd;
     }
 }
