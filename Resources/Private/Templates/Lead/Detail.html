@@ -147,15 +147,90 @@
         </div>
 
 
-        <div class="col-md-3">
-            <f:alias map="{interestingLogs:visitor.logs}">
-                <f:render partial="Lead/Log" arguments="{_all}" />
-            </f:alias>
-        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <f:alias map="{interestingLogs:visitor.logs, style:'height: 398px; overflow: auto;'}">
+                        <f:render partial="DiagramBoxes/Log" arguments="{_all}" />
+                    </f:alias>
+                </div>
+
+                <div class="col-md-6">
+                    <f:render partial="DiagramBoxes/PageFunnel" arguments="{_all}" />
+                </div>
+            </div>
 
 
-        <div class="col-md-3">
-            <f:render partial="Analysis/PageFunnel" arguments="{_all}" />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:tx_lux_domain_model_visitor.categoryscorings">CategoryScoring</f:translate>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <f:if condition="{visitor.categoryscorings}">
+                                <f:then>
+                                    <canvas id="detailchart-categoryscorings"
+                                            width="750"
+                                            height="250"
+                                            data-chart-data="{lux:visitor.getCategoryScoringListFromVisitor(visitor:visitor)}"
+                                            data-chart-labels="{lux:visitor.getCategoryScoringListFromVisitor(visitor:visitor,property:'title')}"></canvas>
+                                    <script type="application/javascript">
+                                        require(['TYPO3/CMS/Lux/Vendor/Chart.min'], function (Chart) {
+                                            var container = document.getElementById('detailchart-categoryscorings');
+                                            var ctx = container.getContext('2d');
+
+                                            var data = {
+                                                datasets: [{
+                                                    label: 'Scoring',
+                                                    data: container.getAttribute('data-chart-data').split(','),
+                                                    backgroundColor: [
+                                                        'rgba(77, 231, 255, 1)',
+                                                        'rgba(221, 221, 221, 1)'
+                                                    ]
+                                                }],
+                                                labels: container.getAttribute('data-chart-labels').split(',')
+                                            };
+                                            var options = {
+                                                legend: {
+                                                    display: false,
+                                                    position: 'right',
+                                                    labels: {
+                                                        fontSize: 18
+                                                    }
+                                                },
+                                                scales: {
+                                                    yAxes: [{
+                                                        ticks: {
+                                                            beginAtZero: true
+                                                        }
+                                                    }]
+                                                }
+                                            };
+                                            new Chart(ctx, {
+                                                type: 'bar',
+                                                data: data,
+                                                options: options
+                                            });
+                                        });
+                                    </script>
+                                </f:then>
+                                <f:else>
+                                    <div class="alert alert-warning">
+                                        <div class="header-container">
+                                            <p class="message-body">
+                                                <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.novalues">No values to show</f:translate>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </f:else>
+                            </f:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">

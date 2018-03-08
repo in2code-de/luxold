@@ -208,6 +208,21 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @return array
+     */
+    public function getCategoryscoringsSortedByScoring(): array
+    {
+        $categoryscoringsOs = $this->getCategoryscorings();
+        $categoryscorings = [];
+        /** @var Categoryscoring $categoryscoring */
+        foreach ($categoryscoringsOs as $categoryscoring) {
+            $categoryscorings[$categoryscoring->getScoring()] = $categoryscoring;
+        }
+        krsort($categoryscorings);
+        return $categoryscorings;
+    }
+
+    /**
      * @param Category $category
      * @return Categoryscoring|null
      */

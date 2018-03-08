@@ -20,7 +20,9 @@
                     <f:render partial="Lead/HottestVisitors" arguments="{_all}" />
                 </div>
                 <div class="col-md-6">
-                    <f:render partial="Lead/Log" arguments="{_all}" />
+                    <f:alias map="{style:'height: 600px; overflow: hidden;'}">
+                        <f:render partial="DiagramBoxes/Log" arguments="{_all}" />
+                    </f:alias>
                 </div>
             </div>
         </div>
