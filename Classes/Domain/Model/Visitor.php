@@ -224,6 +224,26 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @param Category $category
+     * @return Categoryscoring|null
+     */
+    public function getHottestCategoryscoring()
+    {
+        $categoryscorings = $this->getCategoryscorings();
+        $scoring = [];
+        /** @var Categoryscoring $categoryscoring */
+        foreach ($categoryscorings as $categoryscoring) {
+            $scoring[$categoryscoring->getScoring()] = $categoryscoring;
+        }
+        krsort($scoring);
+        $hottest = null;
+        if (end($scoring) !== false) {
+            $hottest = end($scoring);
+        }
+        return $hottest;
+    }
+
+    /**
      * @param int $scoring
      * @param Category $category
      * @return void
