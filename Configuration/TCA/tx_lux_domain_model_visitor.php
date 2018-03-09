@@ -20,6 +20,7 @@ return [
             'endtime' => 'endtime',
         ],
         'iconfile' => 'EXT:lux/Resources/Public/Icons/' . Visitor::TABLE_NAME . '.svg',
+        'searchFields' => 'email,id_cookie,referrer',
         'rootLevel' => -1
     ],
     'interface' => [
