@@ -708,6 +708,18 @@
 				<source>The minimum scoring of the lead is</source>
 				<target state="translated">Der Lead hat ein ein Scoring von mindestens</target>
 			</trans-unit>
+			<trans-unit id="trigger.categoryscoring">
+				<source>When lead reaches a categoryscoring</source>
+				<target state="translated">Bei Erreichen eines Kategorie-Scoring</target>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.scoring">
+				<source>The minimum scoring of the lead is</source>
+				<target state="translated">Der Lead hat ein ein Scoring von mindestens</target>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.category">
+				<source>In category</source>
+				<target state="translated">In der Kategorie</target>
+			</trans-unit>
 			<trans-unit id="trigger.timeframe">
 				<source>On a defined time</source>
 				<target state="translated">Bei einer bestimmten Zeit</target>

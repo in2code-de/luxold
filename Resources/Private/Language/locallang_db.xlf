@@ -524,6 +524,15 @@
 			<trans-unit id="trigger.scoring.label1">
 				<source>The minimum scoring of the lead is</source>
 			</trans-unit>
+			<trans-unit id="trigger.categoryscoring">
+				<source>When lead reaches a categoryscoring</source>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.scoring">
+				<source>The minimum scoring of the lead is</source>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.category">
+				<source>In category</source>
+			</trans-unit>
 			<trans-unit id="trigger.timeframe">
 				<source>On a defined time</source>
 			</trans-unit>
