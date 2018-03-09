@@ -120,14 +120,29 @@ class VisitorMergeService
      *
      * @param Visitor $newVisitor
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     protected function mergeCategoryscorings(Visitor $newVisitor)
     {
-        $connection = DatabaseUtility::getConnectionForTable(Categoryscoring::TABLE_NAME);
-        $connection->query(
-            'update ' . Categoryscoring::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() . ' ' .
-            'where visitor = ' . (int)$newVisitor->getUid()
-        )->execute();
+        /** @var Categoryscoring $categoryscoring */
+        foreach ($newVisitor->getCategoryscorings() as $categoryscoring) {
+            $category = $categoryscoring->getCategory();
+            $existingCs = $this->firstVisitor->getCategoryscoringByCategory($category);
+            $connection = DatabaseUtility::getConnectionForTable(Categoryscoring::TABLE_NAME);
+            if ($existingCs !== null) {
+                $this->firstVisitor->increaseCategoryscoringByCategory($categoryscoring->getScoring(), $category);
+                $connection->query(
+                    'update ' . Categoryscoring::TABLE_NAME . ' set deleted = 1' .
+                    ' where visitor = ' . (int)$newVisitor->getUid() . ' and category = ' . (int)$category->getUid()
+                )->execute();
+            } else {
+                $connection->query(
+                    'update ' . Categoryscoring::TABLE_NAME . ' set visitor = ' . (int)$this->firstVisitor->getUid() .
+                    ' where visitor = ' . (int)$newVisitor->getUid() . ' and category = ' . (int)$category->getUid()
+                )->execute();
+            }
+        }
     }
 
     /**
