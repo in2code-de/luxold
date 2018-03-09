@@ -40,7 +40,6 @@ class ActionHandler
         foreach ($workflows as $workflow) {
             if ($triggerHandler->isRelevantTrigger($visitor, $workflow)) {
                 $this->setActionsForWorkflow($workflow, $visitor, $controllerAction);
-                $this->log($workflow, $visitor);
             }
         }
         return [$visitor, $controllerAction, $this->actions];
@@ -65,7 +64,10 @@ class ActionHandler
                 $visitor,
                 $controllerAction
             );
-            $actionObject->startAction();
+            $actionPerformed = $actionObject->startAction();
+            if ($actionPerformed === true) {
+                $this->log($workflow, $visitor);
+            }
             if ($actionObject->isTransmission()) {
                 $this->addAction(
                     $actionObject->getTransmissionActionName(),

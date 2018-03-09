@@ -84,15 +84,17 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * @return void
+     * @return bool
      */
-    final public function startAction()
+    final public function startAction(): bool
     {
+        $actionPerformed = false;
         if ($this->shouldPerform()) {
             $this->initialize();
-            $this->doAction();
+            $actionPerformed = $this->doAction();
             $this->afterAction();
         }
+        return $actionPerformed;
     }
 
     /**
@@ -103,10 +105,13 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * @return void
+     * Return true if action was performed
+     *
+     * @return bool
      */
-    public function doAction()
+    public function doAction(): bool
     {
+        return false;
     }
 
     /**
