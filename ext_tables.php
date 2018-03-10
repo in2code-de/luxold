@@ -17,11 +17,11 @@ call_user_func(
             \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
             ['source' => 'EXT:lux/Resources/Public/Icons/lux_white.svg']
         );
-
-        /**
-         * Include Plugins
-         */
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('lux', 'Fe', 'Lux');
+        $iconRegistry->registerIcon(
+            'extension-lux',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:lux/Resources/Public/Icons/lux.svg']
+        );
 
         /**
          * Include Modules

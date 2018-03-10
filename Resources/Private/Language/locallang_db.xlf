@@ -626,6 +626,19 @@
 				<source>Submit</source>
 			</trans-unit>
 
+			<trans-unit id="pi1.title">
+				<source>Lux Tracking Opt Out</source>
+			</trans-unit>
+			<trans-unit id="pi1.description">
+				<source>Offer your visitors an opt-out function from future tracking. Normally such a form is placed on the privacy or imprint page.</source>
+			</trans-unit>
+			<trans-unit id="pi1.label">
+				<source>Label for checkbox</source>
+			</trans-unit>
+			<trans-unit id="pi1.text">
+				<source>Add an explanation text</source>
+			</trans-unit>
+
 			<trans-unit id="datetime.weekday.now">
 				<source>Now</source>
 			</trans-unit>

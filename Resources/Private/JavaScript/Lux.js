@@ -34,6 +34,7 @@ function LuxMain() {
 	 * @returns {void}
 	 */
 	this.initialize = function() {
+		trackingOptOutListener();
 		if (isLuxActivated()) {
 			setIdCookie();
 			generateNewIdCookieIfNoCookieFound();
@@ -50,6 +51,25 @@ function LuxMain() {
 	this.closeLightbox = function() {
 		if (that.lightboxInstance !== null) {
 			that.lightboxInstance.close();
+		}
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var trackingOptOutListener = function() {
+		var elements = document.querySelectorAll('[data-lux-trackingoptout="checkbox"]');
+		for (var i = 0; i < elements.length; i++) {
+			var element = elements[i];
+			// check/uncheck checkbox with data-lux-trackingoptout="checkbox". Check if tracking is allowed.
+			element.checked = isOptOutStatusSet() === false;
+			element.addEventListener('change', function() {
+				if (isOptOutStatusSet()) {
+					removeTrackingOptOutStatus();
+				} else {
+					setTrackingOptOutStatus();
+				}
+			});
 		}
 	};
 
@@ -458,7 +478,7 @@ function LuxMain() {
 	 * @returns {boolean}
 	 */
 	var isLuxActivated = function() {
-		return getContainer() !== null;
+		return isOptOutStatusSet() === false && getContainer() !== null;
 	};
 
 	/**
@@ -572,6 +592,27 @@ function LuxMain() {
 			return filename.split('.').pop();
 		}
 		return '';
+	};
+
+	/**
+	 * @returns {Boolean} return true if trackingOptOut is set
+	 */
+	var isOptOutStatusSet = function () {
+		return getCookieByName('luxTrackingOptOut') === 'true';
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var setTrackingOptOutStatus = function() {
+		setCookie('luxTrackingOptOut', true);
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var removeTrackingOptOutStatus = function() {
+		setCookie('luxTrackingOptOut', false);
 	};
 
 	/**

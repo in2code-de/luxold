@@ -120,6 +120,13 @@ class FrontendController extends ActionController
     }
 
     /**
+     * @return void
+     */
+    public function trackingOptOutAction()
+    {
+    }
+
+    /**
      * Pass three parameters to slot. The first is the visitor to use this data. The second is the action name from
      * where the signal came from. The third is an array, which could be returned for passing an array as json to the
      * javascript of the visitor.
