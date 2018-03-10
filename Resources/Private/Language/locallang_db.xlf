@@ -524,6 +524,15 @@
 			<trans-unit id="trigger.scoring.label1">
 				<source>The minimum scoring of the lead is</source>
 			</trans-unit>
+			<trans-unit id="trigger.categoryscoring">
+				<source>When lead reaches a categoryscoring</source>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.scoring">
+				<source>The minimum scoring of the lead is</source>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.category">
+				<source>In category</source>
+			</trans-unit>
 			<trans-unit id="trigger.timeframe">
 				<source>On a defined time</source>
 			</trans-unit>
@@ -615,6 +624,19 @@
 			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
+			</trans-unit>
+
+			<trans-unit id="pi1.title">
+				<source>Lux Tracking Opt Out</source>
+			</trans-unit>
+			<trans-unit id="pi1.description">
+				<source>Offer your visitors an opt-out function from future tracking. Normally such a form is placed on the privacy or imprint page.</source>
+			</trans-unit>
+			<trans-unit id="pi1.label">
+				<source>Label for checkbox</source>
+			</trans-unit>
+			<trans-unit id="pi1.text">
+				<source>Add an explanation text</source>
 			</trans-unit>
 
 			<trans-unit id="datetime.weekday.now">

@@ -28,17 +28,17 @@ class SlackAction extends AbstractAction implements ActionInterface
     ];
 
     /**
-     * @return void
+     * @return bool
      */
-    public function doAction()
+    public function doAction(): bool
     {
-        $this->sendToSlack();
+        return $this->sendToSlack();
     }
 
     /**
-     * @return void
+     * @return bool
      */
-    protected function sendToSlack()
+    protected function sendToSlack(): bool
     {
         $resource = curl_init($this->getSettingsByPath('configuration.webhookUrl'));
         curl_setopt_array(
@@ -54,6 +54,7 @@ class SlackAction extends AbstractAction implements ActionInterface
         if ($result === false) {
             throw new \DomainException('Could not connect to Slack with given URL.', 1520368562);
         }
+        return $result !== false;
     }
 
     /**

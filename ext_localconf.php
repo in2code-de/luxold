@@ -19,6 +19,16 @@ call_user_func(
                 'Frontend' => 'dispatchRequest,pageRequest,fieldListeningRequest,email4LinkRequest,downloadRequest'
             ]
         );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2code.lux',
+            'Pi1',
+            [
+                'Frontend' => 'trackingOptOut'
+            ],
+            [
+                'Frontend' => ''
+            ]
+        );
 
         /**
          * Add page TSConfig

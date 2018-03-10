@@ -186,6 +186,7 @@ class VisitorRepository extends AbstractRepository
             foreach ($filter->getSearchterms() as $searchterm) {
                 $logicalOr[] = $query->like('email', '%' . $searchterm . '%');
                 $logicalOr[] = $query->like('ipAddress', '%' . $searchterm . '%');
+                $logicalOr[] = $query->like('idCookie', '%' . $searchterm . '%');
                 $logicalOr[] = $query->like('referrer', '%' . $searchterm . '%');
                 $logicalOr[] = $query->like('description', '%' . $searchterm . '%');
                 $logicalOr[] = $query->like('attributes.value', '%' . $searchterm . '%');

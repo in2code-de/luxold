@@ -9,9 +9,9 @@ class RedirectAction extends AbstractAction implements ActionInterface
 {
 
     /**
-     * @return void
+     * @return bool
      */
-    public function doAction()
+    public function doAction(): bool
     {
         $this->setTransmission(
             'redirect',
@@ -19,5 +19,6 @@ class RedirectAction extends AbstractAction implements ActionInterface
                 'uri' => $this->getConfigurationByKey('uri')
             ]
         );
+        return true;
     }
 }

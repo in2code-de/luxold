@@ -23,14 +23,16 @@ interface ActionInterface
     public function __construct(Workflow $workflow, Action $action, Visitor $visitor, string $controllerAction);
 
     /**
+     * Return true if action was performed
+     *
      * @return void
      */
     public function initialize();
 
     /**
-     * @return void
+     * @return bool
      */
-    public function doAction();
+    public function doAction(): bool;
 
     /**
      * @return void

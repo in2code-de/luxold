@@ -6,6 +6,8 @@ use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
+use In2code\Lux\Domain\Service\ConfigurationService;
+use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -22,7 +24,7 @@ class LogRepository extends AbstractRepository
     public function findInterestingLogs(FilterDto $filter)
     {
         $query = $this->createQuery();
-        $logicalAnd = [$query->greaterThan('status', Log::STATUS_DEFAULT)];
+        $logicalAnd = $this->interestingLogsLogicalAnd($query);
         $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
         $query->matching($query->logicalAnd($logicalAnd));
         $query->setLimit(10);
@@ -62,5 +64,21 @@ class LogRepository extends AbstractRepository
         $logicalAnd[] = $query->greaterThan('crdate', $filter->getStartTimeForFilter());
         $logicalAnd[] = $query->lessThan('crdate', $filter->getEndTimeForFilter());
         return $logicalAnd;
+    }
+
+    /**
+     * Get minimum status from TypoScript settings.backendview.analysis.activity.statusGreaterThen
+     *
+     * @param QueryInterface $query
+     * @return array
+     */
+    protected function interestingLogsLogicalAnd(QueryInterface $query): array
+    {
+        /** @var ConfigurationService $configurationService */
+        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $status = (int)$configurationService->getTypoScriptSettingsByPath(
+            'backendview.analysis.activity.statusGreaterThen'
+        );
+        return [$query->greaterThan('status', $status)];
     }
 }

@@ -28,9 +28,9 @@ class EmailAction extends AbstractAction implements ActionInterface
     ];
 
     /**
-     * @return void
+     * @return bool
      */
-    public function doAction()
+    public function doAction(): bool
     {
         /** @var MailMessage $message */
         $message = ObjectUtility::getObjectManager()->get(MailMessage::class);
@@ -41,6 +41,7 @@ class EmailAction extends AbstractAction implements ActionInterface
             ->setSubject($this->getConfigurationByKey('subject'))
             ->setBody($this->getBodytext(), 'text/plain')
             ->send();
+        return $message->isSent();
     }
 
     /**

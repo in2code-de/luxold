@@ -12,3 +12,18 @@ mod.web_list.table {
 
 # CK editor
 RTE.default.preset = lux
+
+# Add wizard icon in backend
+mod.wizards.newContentElement.wizardItems.plugins {
+    elements {
+        lux {
+            iconIdentifier = extension-lux
+            title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi1.title
+            description = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi1.description
+            tt_content_defValues {
+                CType = list
+                list_type = lux_pi1
+            }
+        }
+    }
+}

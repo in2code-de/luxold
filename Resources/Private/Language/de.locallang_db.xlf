@@ -708,6 +708,18 @@
 				<source>The minimum scoring of the lead is</source>
 				<target state="translated">Der Lead hat ein ein Scoring von mindestens</target>
 			</trans-unit>
+			<trans-unit id="trigger.categoryscoring">
+				<source>When lead reaches a categoryscoring</source>
+				<target state="translated">Bei Erreichen eines Kategorie-Scoring</target>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.scoring">
+				<source>The minimum scoring of the lead is</source>
+				<target state="translated">Der Lead hat ein ein Scoring von mindestens</target>
+			</trans-unit>
+			<trans-unit id="trigger.categoryscoring.category">
+				<source>In category</source>
+				<target state="translated">In der Kategorie</target>
+			</trans-unit>
 			<trans-unit id="trigger.timeframe">
 				<source>On a defined time</source>
 				<target state="translated">Bei einer bestimmten Zeit</target>
@@ -829,6 +841,23 @@
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
 				<target state="translated">Weiter</target>
+			</trans-unit>
+
+			<trans-unit id="pi1.title">
+				<source>Lux Tracking Opt Out</source>
+				<target state="translated">Lux Tracking Opt Out</target>
+			</trans-unit>
+			<trans-unit id="pi1.description">
+				<source>Offer your visitors an opt-out function from future tracking. Normally such a form is placed on the privacy or imprint page.</source>
+				<target state="translated">Bieten Sie Ihren Besuchen ein Opt-Out an, bei dem das Tracking künftig unterbunden wird. Üblicherweise wird ein solches Formular in der Datenschutzerklärung oder im Impressum angeboten.</target>
+			</trans-unit>
+			<trans-unit id="pi1.label">
+				<source>Label for checkbox</source>
+				<target state="translated">Checkbox Bezeichnung</target>
+			</trans-unit>
+			<trans-unit id="pi1.text">
+				<source>Add an explanation text</source>
+				<target state="translated">Erklärungstext hinzufügen</target>
 			</trans-unit>
 
 			<trans-unit id="datetime.weekday.now">

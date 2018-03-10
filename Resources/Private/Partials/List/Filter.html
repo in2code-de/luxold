@@ -92,9 +92,6 @@
 
             <div class="form-group">
                 <div class="input-group pull-right">
-                    <f:form.submit class="fa fa-download" name="export" id="download" value="csv" style="visibility:hidden;"/>
-                    <label class="btn btn-default fa fa-download" for="download" style="margin-right: 10px;" title="CSV Download"></label>
-
                     <f:if condition="{filter.set}">
                         <f:link.action class="btn btn-default" style="margin-right: 10px" action="list">
                             <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.reset">Reset</f:translate>
@@ -105,6 +102,9 @@
                             class="btn btn-primary"
                             value="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.list.filter.submit')}" />
                 </div>
+
+                <label class="btn btn-default fa fa-download" for="download" style="margin-right: 10px; position: absolute;" title="CSV Download"></label>
+                <f:form.submit class="fa fa-download" name="export" id="download" value="csv" style="visibility:hidden;"/>
             </div>
         </f:form>
     </div>
