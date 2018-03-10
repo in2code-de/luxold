@@ -108,6 +108,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.10.0     | 2018-03-10 | Task       | Some small improvements. Add a opt-out plugin.                                  |
 | 1.9.0      | 2018-03-08 | Task       | Some changes to see categoryscorings.                                           |
 | 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                |
 | 1.7.0      | 2018-03-07 | Feature    | Add identified trigger and slack action.                                        |
