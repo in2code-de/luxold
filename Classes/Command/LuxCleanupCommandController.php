@@ -2,22 +2,20 @@
 declare(strict_types=1);
 namespace In2code\Lux\Command;
 
-use In2code\Lux\Domain\Model\Attribute;
-use In2code\Lux\Domain\Model\Categoryscoring;
-use In2code\Lux\Domain\Model\Download;
-use In2code\Lux\Domain\Model\Ipinformation;
-use In2code\Lux\Domain\Model\Log;
-use In2code\Lux\Domain\Model\Pagevisit;
-use In2code\Lux\Domain\Model\Visitor;
+use Doctrine\DBAL\Schema\Visitor\Visitor;
 use In2code\Lux\Domain\Repository\VisitorRepository;
-use In2code\Lux\Utility\DatabaseUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
 /**
- * Class TaskCommandController
+ * Class LuxCleanupCommandController
  */
 class LuxCleanupCommandController extends CommandController
 {
+
+    /**
+     * @var VisitorRepository
+     */
+    protected $visitorRepository = null;
 
     /**
      * Remove all unknown visitors where the last update is older than a given timestamp
@@ -32,9 +30,10 @@ class LuxCleanupCommandController extends CommandController
     {
         $visitorRepository = $this->objectManager->get(VisitorRepository::class);
         $visitors = $visitorRepository->findByLastChangeUnknown($timestamp);
+        /** @var Visitor $visitor */
         foreach ($visitors as $visitor) {
-            $this->removeRelatedTableRowsByVisitorUid($visitor->getUid());
-            $this->removeVisitorByVisitorUid($visitor->getUid());
+            $this->visitorRepository->removeRelatedTableRowsByVisitorUid($visitor->getUid());
+            $this->visitorRepository->removeVisitorByVisitorUid($visitor->getUid());
         }
     }
 
@@ -51,9 +50,10 @@ class LuxCleanupCommandController extends CommandController
     {
         $visitorRepository = $this->objectManager->get(VisitorRepository::class);
         $visitors = $visitorRepository->findByLastChange($timestamp);
+        /** @var Visitor $visitor */
         foreach ($visitors as $visitor) {
-            $this->removeRelatedTableRowsByVisitorUid($visitor->getUid());
-            $this->removeVisitorByVisitorUid($visitor->getUid());
+            $this->visitorRepository->removeRelatedTableRowsByVisitorUid($visitor->getUid());
+            $this->visitorRepository->removeVisitorByVisitorUid($visitor->getUid());
         }
     }
 
@@ -68,37 +68,16 @@ class LuxCleanupCommandController extends CommandController
      */
     public function removeVisitorByUidCommand(int $visitorUid)
     {
-        $this->removeRelatedTableRowsByVisitorUid($visitorUid);
-        $this->removeVisitorByVisitorUid($visitorUid);
+        $this->visitorRepository->removeRelatedTableRowsByVisitorUid($visitorUid);
+        $this->visitorRepository->removeVisitorByVisitorUid($visitorUid);
     }
 
     /**
-     * @param int $visitorUid
+     * @param VisitorRepository $visitorRepository
      * @return void
      */
-    protected function removeVisitorByVisitorUid(int $visitorUid)
+    public function injectVisitorRepository(VisitorRepository $visitorRepository)
     {
-        $connection = DatabaseUtility::getConnectionForTable(Visitor::TABLE_NAME);
-        $connection->query('delete from ' . Visitor::TABLE_NAME . ' where uid=' . (int)$visitorUid);
-    }
-
-    /**
-     * @param int $visitorUid
-     * @return void
-     */
-    protected function removeRelatedTableRowsByVisitorUid(int $visitorUid)
-    {
-        $tables = [
-            Attribute::TABLE_NAME,
-            Pagevisit::TABLE_NAME,
-            Ipinformation::TABLE_NAME,
-            Download::TABLE_NAME,
-            Categoryscoring::TABLE_NAME,
-            Log::TABLE_NAME
-        ];
-        foreach ($tables as $table) {
-            $connection = DatabaseUtility::getConnectionForTable($table);
-            $connection->query('delete from ' . $table . ' where visitor=' . (int)$visitorUid);
-        }
+        $this->visitorRepository = $visitorRepository;
     }
 }

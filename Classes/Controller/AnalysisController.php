@@ -135,7 +135,7 @@ class AnalysisController extends ActionController
      * @param VisitorRepository $visitorRepository
      * @return void
      */
-    public function injectFormRepository(VisitorRepository $visitorRepository)
+    public function injectVisitorRepository(VisitorRepository $visitorRepository)
     {
         $this->visitorRepository = $visitorRepository;
     }
