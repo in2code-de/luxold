@@ -104,6 +104,15 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Todo: A/B Tests
 - Todo: SocialMedia (Twitter)
 
+### Privacy Features
+
+- Toogle IP anonymize function
+- Toggle IP information enrichment over ipapi.com
+- Toggle Tracking of Pagevisits
+- Toggle Tracking of Downloads
+- Toggle Field identification of any form
+- Toogle Email4link functionality
+
 ## Changelog
 
 | Version    | Date       | State      | Description                                                                     |

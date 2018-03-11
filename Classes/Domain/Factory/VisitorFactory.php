@@ -94,12 +94,28 @@ class VisitorFactory
     protected function enrichNewVisitorWithIpInformation(Visitor $visitor)
     {
         if (ConfigurationUtility::isIpLoggingDisabled() === false) {
-            $visitor->setIpAddress(IpUtility::getIpAddress());
             if (ConfigurationUtility::isIpInformationDisabled() === false) {
                 $ipInformationFactory = ObjectUtility::getObjectManager()->get(IpinformationFactory::class);
                 $objectStorage = $ipInformationFactory->getObjectStorageWithIpinformation();
                 $visitor->setIpinformations($objectStorage);
             }
+            $visitor->setIpAddress($this->getIpAddress());
         }
+    }
+
+    /**
+     * Decide if the IP-address must be anonymized or not
+     *
+     * @return string
+     */
+    protected function getIpAddress(): string
+    {
+        $ipAddress = IpUtility::getIpAddress();
+        if (ConfigurationUtility::isAnonymizeIpEnabled()) {
+            $parts = explode('.', $ipAddress);
+            $parts[end(array_keys($parts))] = '***';
+            $ipAddress = implode('.', $parts);
+        }
+        return $ipAddress;
     }
 }

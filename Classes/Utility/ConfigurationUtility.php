@@ -59,6 +59,15 @@ class ConfigurationUtility
     /**
      * @return bool
      */
+    public static function isAnonymizeIpEnabled(): bool
+    {
+        $extensionConfig = self::getExtensionConfiguration();
+        return $extensionConfig['anonymizeIp'] === '1';
+    }
+
+    /**
+     * @return bool
+     */
     public static function isIpInformationDisabled(): bool
     {
         $extensionConfig = self::getExtensionConfiguration();
