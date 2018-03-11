@@ -114,6 +114,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Toggle Tracking of Downloads
 - Toggle Field identification of any form
 - Toogle Email4link functionality
+- CommandController to anonymize records (for developing or for a presentation)
 
 ## Changelog
 
