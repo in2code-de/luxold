@@ -13,6 +13,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -92,6 +93,38 @@ class LeadController extends ActionController
     public function detailAction(Visitor $visitor)
     {
         $this->view->assign('visitor', $visitor);
+    }
+
+    /**
+     * Really remove visitor completely from db (not only deleted=1)
+     *
+     * @param Visitor $visitor
+     * @return void
+     * @throws StopActionException
+     * @throws UnsupportedRequestTypeException
+     */
+    public function removeAction(Visitor $visitor)
+    {
+        $this->visitorRepository->removeVisitorByVisitorUid($visitor->getUid());
+        $this->visitorRepository->removeRelatedTableRowsByVisitorUid($visitor->getUid());
+        $this->addFlashMessage('Visitor completely removed from database');
+        $this->redirect('list');
+    }
+
+    /**
+     * @param Visitor $visitor
+     * @return void
+     * @throws IllegalObjectTypeException
+     * @throws StopActionException
+     * @throws UnknownObjectException
+     * @throws UnsupportedRequestTypeException
+     */
+    public function deactivateAction(Visitor $visitor)
+    {
+        $visitor->setHidden(true);
+        $this->visitorRepository->update($visitor);
+        $this->addFlashMessage('Visitor will be ignored from listing');
+        $this->redirect('list');
     }
 
     /**

@@ -51,7 +51,7 @@ call_user_func(
                 '',
                 [
                     'Analysis' => 'dashboard,content,detailPage,detailDownload',
-                    'Lead' => 'list,detail,downloadCsv'
+                    'Lead' => 'list,detail,downloadCsv,remove,deactivate'
                 ],
                 [
                     'access' => 'user,group',
@@ -68,7 +68,7 @@ call_user_func(
                 'leads',
                 '',
                 [
-                    'Lead' => 'list,detail,downloadCsv',
+                    'Lead' => 'list,detail,downloadCsv,remove,deactivate',
                     'Analysis' => 'dashboard,content,detailPage,detailDownload',
                 ],
                 [

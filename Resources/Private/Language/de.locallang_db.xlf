@@ -532,6 +532,14 @@
 				<source>Pagevisits</source>
 				<target state="translated">Seitenaufrufe</target>
 			</trans-unit>
+			<trans-unit id="module.list.link.remove">
+				<source>Remove completely</source>
+				<target state="translated">Komplett entfernen</target>
+			</trans-unit>
+			<trans-unit id="module.list.link.deactivate">
+				<source>Ignore in future</source>
+				<target state="translated">Künftig ignorieren</target>
+			</trans-unit>
 
 			<trans-unit id="module.detail">
 				<source>Lead preview</source>
@@ -928,6 +936,10 @@
 			<trans-unit id="pleaseChoose">
 				<source>Please choose ...</source>
 				<target state="translated">Bitte wählen...</target>
+			</trans-unit>
+			<trans-unit id="areYouSure">
+				<source>Are you sure?</source>
+				<target state="translated">Sind Sie sicher?</target>
 			</trans-unit>
 			<trans-unit id="back">
 				<source>Back</source>

@@ -21,6 +21,22 @@ class VisitorRepository extends AbstractRepository
 {
 
     /**
+     * Find a visitor by it's cookie and deliver also hidden visitors
+     *
+     * @param string $idCookie
+     * @return Visitor|null
+     */
+    public function findOneAndAlsoHiddenByIdCookie(string $idCookie)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true)->setEnableFieldsToBeIgnored(['hidden']);
+        $query->matching($query->equals('idCookie', $idCookie));
+        /** @var Visitor $visitor */
+        $visitor = $query->execute()->getFirst();
+        return $visitor;
+    }
+
+    /**
      * @param FilterDto $filter
      * @return QueryResultInterface
      */
