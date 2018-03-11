@@ -106,6 +106,8 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 ### Privacy Features
 
+- There is a plugin which allows the visitor to opt from tracking
+- The doNotTrack header of the browser will be respected
 - Toogle IP anonymize function
 - Toggle IP information enrichment over ipapi.com
 - Toggle Tracking of Pagevisits

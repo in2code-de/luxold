@@ -475,10 +475,15 @@ function LuxMain() {
 	};
 
 	/**
+	 * Check if tracking is possible - when
+	 * - optOutStatus is not set (cookie)
+	 * - doNotTrack header ist not set
+	 * - container with important serverside information is available in DOM
+	 *
 	 * @returns {boolean}
 	 */
 	var isLuxActivated = function() {
-		return isOptOutStatusSet() === false && getContainer() !== null;
+		return isOptOutStatusSet() === false && navigator.doNotTrack !== '1' && getContainer() !== null;
 	};
 
 	/**
