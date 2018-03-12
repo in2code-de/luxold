@@ -95,15 +95,6 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Cleanup commands (to really erase data)
 - Service commands (calculate scoring for all leads)
 
-### Enterprise Features
-
-- Todo: Blacklist
-- Todo: Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
-- Todo: Kontakte (Import?)
-- Todo: API/Export
-- Todo: A/B Tests
-- Todo: SocialMedia (Twitter)
-
 ### Privacy Features
 
 - There is a plugin which allows the visitor to opt from tracking
@@ -115,6 +106,15 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Toggle Field identification of any form
 - Toogle Email4link functionality
 - CommandController to anonymize records (for developing or for a presentation)
+
+### Coming up Enterprise Features
+
+- Todo: Blacklisting
+- Todo: Newsletter tool (replace or extend direct_mail? New tool - usable without Lux?)
+- Todo: Contatct (Import?)
+- Todo: API (Im- and Export)
+- Todo: A/B Tests
+- Todo: SocialMedia Connection (Twitter)
 
 ## Changelog
 
