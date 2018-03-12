@@ -120,6 +120,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.11.0     | 2018-03-12 | Feature    | Some privace features. Some brush up. Add contextual content plugin.            |
 | 1.10.0     | 2018-03-10 | Task       | Some small improvements. Add a opt-out plugin.                                  |
 | 1.9.0      | 2018-03-08 | Task       | Some changes to see categoryscorings.                                           |
 | 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                |
