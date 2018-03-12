@@ -4,6 +4,7 @@ namespace In2code\Lux\Domain\Repository;
 
 use In2code\Lux\Domain\Model\Ipinformation;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use In2code\Lux\Utility\DatabaseUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -25,16 +26,17 @@ class IpinformationRepository extends AbstractRepository
      */
     public function findAllCountryCodesGrouped(FilterDto $filter): array
     {
-        $query = $this->createQuery();
-        $logicalAnd = [$query->equals('name', 'countryCode')];
-        $logicalAnd = $this->extendLogicalAndWithFilterConstraints($filter, $query, $logicalAnd);
-        $query->matching($query->logicalAnd($logicalAnd));
-        $ipinformations = $query->execute();
+        $connection = DatabaseUtility::getConnectionForTable(Ipinformation::TABLE_NAME);
+        $rows = $connection->query(
+            'select value from ' . Ipinformation::TABLE_NAME . ' where name = "countryCode"'
+            . ' and crdate > ' . $filter->getStartTimeForFilter()->getTimestamp()
+            . ' and tstamp < ' . $filter->getEndTimeForFilter()->getTimestamp() . ';'
+        )->fetchAll();
 
         $countryCodes = [];
         /** @var Ipinformation $ipinformation */
-        foreach ($ipinformations as $ipinformation) {
-            $countryCode = $ipinformation->getValue();
+        foreach ($rows as $row) {
+            $countryCode = $row['value'];
             if (!array_key_exists($countryCode, $countryCodes)) {
                 $countryCodes[$countryCode] = 1;
             } else {
