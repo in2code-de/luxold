@@ -4,6 +4,7 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Factory\VisitorFactory;
 use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Service\ContextualContentService;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
 use In2code\Lux\Domain\Tracker\AttributeTracker;
 use In2code\Lux\Domain\Tracker\DownloadTracker;
@@ -124,6 +125,27 @@ class FrontendController extends ActionController
      */
     public function trackingOptOutAction()
     {
+    }
+
+    /**
+     * @return void
+     */
+    public function contextualContentAction()
+    {
+        $this->view->assign('data', $this->configurationManager->getContentObject()->data);
+    }
+
+    /**
+     * @param int $contentUid
+     * @param string $idCookie
+     * @return string
+     */
+    public function contextualContentAjaxAction(int $contentUid, string $idCookie)
+    {
+        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
+        $visitor = $visitorFactory->getVisitor();
+        $ccService = $this->objectManager->get(ContextualContentService::class, $contentUid, $visitor);
+        return json_encode(['html' => $ccService->getContent(), 'uid' => $contentUid], JSON_HEX_QUOT | JSON_HEX_TAG);
     }
 
     /**

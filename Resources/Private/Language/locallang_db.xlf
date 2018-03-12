@@ -361,6 +361,9 @@
 			<trans-unit id="module.analysis.log.status.60">
 				<source>"lux started a workflow</source>
 			</trans-unit>
+			<trans-unit id="module.analysis.log.status.70">
+				<source>"lux showed a contextual content</source>
+			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 			</trans-unit>
@@ -643,6 +646,18 @@
 			</trans-unit>
 			<trans-unit id="pi1.text">
 				<source>Add an explanation text</source>
+			</trans-unit>
+			<trans-unit id="pi2.title">
+				<source>Lux Contextual Content</source>
+			</trans-unit>
+			<trans-unit id="pi2.description">
+				<source>Show fitting content based on the visitors category scoring.</source>
+			</trans-unit>
+			<trans-unit id="pi2.flexform.category">
+				<source>Choose a lux category.</source>
+			</trans-unit>
+			<trans-unit id="pi2.flexform.contentelements">
+				<source>Select one or more content elements that should be shown for this category.</source>
 			</trans-unit>
 
 			<trans-unit id="datetime.weekday.now">

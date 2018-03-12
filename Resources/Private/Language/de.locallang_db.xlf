@@ -480,6 +480,10 @@
 				<source>"lux started a workflow</source>
 				<target state="translated">lux hat einen Workflow ausgeführt</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.log.status.70">
+				<source>"lux showed a contextual content</source>
+				<target state="translated">lux hat einen passenden Seiteninhalt gezeigt</target>
+			</trans-unit>
 			<trans-unit id="module.analysis.map">
 				<source>Lead source</source>
 				<target state="translated">Lead Ursprung</target>
@@ -866,6 +870,22 @@
 			<trans-unit id="pi1.text">
 				<source>Add an explanation text</source>
 				<target state="translated">Erklärungstext hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="pi2.title">
+				<source>Lux Contextual Content</source>
+				<target state="translated">Lux Kontextabhängiger Content</target>
+			</trans-unit>
+			<trans-unit id="pi2.description">
+				<source>Show fitting content based on the visitors category scoring.</source>
+				<target state="translated">Zeige Seiteninhalte basierend auf dem Kategoriescoring des Besuchers.</target>
+			</trans-unit>
+			<trans-unit id="pi2.flexform.category">
+				<source>Choose a lux category.</source>
+				<target state="translated">Bitte eine lux Kategorie auswählen.</target>
+			</trans-unit>
+			<trans-unit id="pi2.flexform.contentelements">
+				<source>Select one or more content elements that should be shown for this category.</source>
+				<target state="translated">Ein oder mehrere Seiteninhalte für die Kategorie wählen.</target>
 			</trans-unit>
 
 			<trans-unit id="datetime.weekday.now">

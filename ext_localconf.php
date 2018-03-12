@@ -29,6 +29,16 @@ call_user_func(
                 'Frontend' => ''
             ]
         );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2code.lux',
+            'Pi2',
+            [
+                'Frontend' => 'contextualContent,contextualContentAjax'
+            ],
+            [
+                'Frontend' => ''
+            ]
+        );
 
         /**
          * Add page TSConfig

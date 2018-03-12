@@ -72,7 +72,8 @@ Ask for the visitors email-address when he/she wants to download an asset:
 ### Scoring
 
 - General scoring (with individual calculation)
-- Todo: Category Scoring
+- Category Scoring
+- Contextual content (based on category scoring)
 
 ### Workflow & User Experience
 
@@ -98,7 +99,6 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 - Todo: Blacklist
 - Todo: Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
-- Todo: Contextual content?
 - Todo: Kontakte (Import?)
 - Todo: API/Export
 - Todo: A/B Tests
