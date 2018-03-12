@@ -23,6 +23,7 @@ class Log extends AbstractEntity
     const STATUS_PAGEVISIT5 = 43;
     const STATUS_DOWNLOAD = 50;
     const STATUS_ACTION = 60;
+    const STATUS_CONTEXTUAL_CONTENT = 70;
 
     /**
      * @var \In2code\Lux\Domain\Model\Visitor
@@ -133,6 +134,14 @@ class Log extends AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getShownContentUid(): string
+    {
+        return $this->getPropertyByKey('shownContentUid');
+    }
+
+    /**
      * @param string $key
      * @return string
      */
@@ -141,7 +150,7 @@ class Log extends AbstractEntity
         $property = '';
         $properties = $this->getProperties();
         if (array_key_exists($key, $properties)) {
-            $property = $properties[$key];
+            $property = (string)$properties[$key];
         }
         return $property;
     }

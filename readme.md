@@ -72,7 +72,8 @@ Ask for the visitors email-address when he/she wants to download an asset:
 ### Scoring
 
 - General scoring (with individual calculation)
-- Todo: Category Scoring
+- Category Scoring
+- Contextual content (based on category scoring)
 
 ### Workflow & User Experience
 
@@ -94,20 +95,32 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Cleanup commands (to really erase data)
 - Service commands (calculate scoring for all leads)
 
-### Enterprise Features
+### Privacy Features
 
-- Todo: Blacklist
-- Todo: Newsletter tool (direct_mail ersetzen? Mit und ohne lux einsetzbar?)
-- Todo: Contextual content?
-- Todo: Kontakte (Import?)
-- Todo: API/Export
+- There is a plugin which allows the visitor to opt from tracking
+- The doNotTrack header of the browser will be respected
+- Toogle IP anonymize function
+- Toggle IP information enrichment over ipapi.com
+- Toggle Tracking of Pagevisits
+- Toggle Tracking of Downloads
+- Toggle Field identification of any form
+- Toogle Email4link functionality
+- CommandController to anonymize records (for developing or for a presentation)
+
+### Coming up Enterprise Features
+
+- Todo: Blacklisting
+- Todo: Newsletter tool (replace or extend direct_mail? New tool - usable without Lux?)
+- Todo: Contatct (Import?)
+- Todo: API (Im- and Export)
 - Todo: A/B Tests
-- Todo: SocialMedia (Twitter)
+- Todo: SocialMedia Connection (Twitter)
 
 ## Changelog
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.11.0     | 2018-03-12 | Feature    | Some privace features. Some brush up. Add contextual content plugin.            |
 | 1.10.0     | 2018-03-10 | Task       | Some small improvements. Add a opt-out plugin.                                  |
 | 1.9.0      | 2018-03-08 | Task       | Some changes to see categoryscorings.                                           |
 | 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                |

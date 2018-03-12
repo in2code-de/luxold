@@ -42,6 +42,7 @@ function LuxMain() {
 			addFieldListeners();
 			addEmail4LinkListeners();
 			addDownloadListener();
+			addContextualContentListener();
 		}
 	};
 
@@ -90,7 +91,7 @@ function LuxMain() {
 				'tx_lux_fe[idCookie]': getIdCookie(),
 				'tx_lux_fe[arguments][pageUid]': getPageUid(),
 				'tx_lux_fe[arguments][referrer]': getReferrer()
-			}, 'generalWorkflowActionCallback');
+			}, getRequestUri(), 'generalWorkflowActionCallback');
 		}
 	};
 
@@ -119,8 +120,8 @@ function LuxMain() {
 	 */
 	this.lightboxContentWorkflowAction = function(response) {
 		var contentElementUid = response['configuration']['contentElement'];
-		var uri = document.querySelector('[data-lux-lightboxuri]').getAttribute('data-lux-lightboxuri')
-			|| '/index.php?id=5&type=1520192598';
+		var uri = document.querySelector('[data-lux-contenturi]').getAttribute('data-lux-contenturi')
+			|| '/index.php?id=1&type=1520192598';
 		var html =
 			'<div><iframe src="' + uri + '&luxContent=' + parseInt(contentElementUid) + '" width="800" height="600">' +
 			'</iframe></div>';
@@ -185,11 +186,37 @@ function LuxMain() {
 							'tx_lux_fe[dispatchAction]': 'downloadRequest',
 							'tx_lux_fe[idCookie]': getIdCookie(),
 							'tx_lux_fe[arguments][href]': this.getAttribute('href')
-						}, null);
+						}, getRequestUri(), null);
 					});
 				}
 			}
 		}
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var addContextualContentListener = function() {
+		var elements = document.querySelectorAll('[data-lux-container-contextualContent]');
+		for (var i = 0; i < elements.length; i++) {
+			var element = elements[i];
+			var container = getContainer();
+			ajaxConnection({
+				'tx_lux_pi2[contentUid]': element.getAttribute('data-lux-container-contextualContent'),
+				'tx_lux_pi2[idCookie]': getIdCookie()
+			}, container.getAttribute('data-lux-contextualcontenturi'), 'addContextualContentListenerCallback');
+		}
+	};
+
+	/**
+	 * Callback and dispatcher function for all workflow actions
+	 *
+	 * @params {Json} response
+	 * @returns {void}
+	 */
+	this.addContextualContentListenerCallback = function(response) {
+		var container = document.querySelector('[data-lux-container-contextualContent="' + response.uid + '"]');
+		container.innerHTML = response.html;
 	};
 
 	/**
@@ -239,7 +266,7 @@ function LuxMain() {
 				'tx_lux_fe[arguments][email]': email,
 				'tx_lux_fe[arguments][sendEmail]': sendEmail === 'true',
 				'tx_lux_fe[arguments][href]': href
-			}, null);
+			}, getRequestUri(), null);
 
 			if (sendEmail === 'true') {
 				hideElement(that.lightboxInstance.element().querySelector('[data-lux-email4link="form"]'));
@@ -272,7 +299,7 @@ function LuxMain() {
 			'tx_lux_fe[idCookie]': getIdCookie(),
 			'tx_lux_fe[arguments][key]': key,
 			'tx_lux_fe[arguments][value]': value
-		}, null);
+		}, getRequestUri(), null);
 	};
 
 	/**
@@ -425,10 +452,11 @@ function LuxMain() {
 
 	/**
 	 * @params {object} parameters
+	 * @params {string} uri
+	 * @params {string} callback
 	 * @returns {void}
 	 */
-	var ajaxConnection = function(parameters, callback) {
-		var uri = getRequestUri();
+	var ajaxConnection = function(parameters, uri, callback) {
 		if (uri !== '') {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -475,10 +503,15 @@ function LuxMain() {
 	};
 
 	/**
+	 * Check if tracking is possible - when
+	 * - optOutStatus is not set (cookie)
+	 * - doNotTrack header ist not set
+	 * - container with important serverside information is available in DOM
+	 *
 	 * @returns {boolean}
 	 */
 	var isLuxActivated = function() {
-		return isOptOutStatusSet() === false && getContainer() !== null;
+		return isOptOutStatusSet() === false && navigator.doNotTrack !== '1' && getContainer() !== null;
 	};
 
 	/**

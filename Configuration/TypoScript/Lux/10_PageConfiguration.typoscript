@@ -21,7 +21,7 @@ page {
     1518815717 {
         wrap = <script id="lux_container"|></script>
 
-        # Uri to send AJAX page request to
+        # Uri to send tracking requests to
         10 = TEXT
         10 {
             noTrimWrap = | data-lux-requesturi="|"|
@@ -36,10 +36,22 @@ page {
         # Uri to render a lightbox with a single content element
         20 = TEXT
         20 {
-            noTrimWrap = | data-lux-lightboxuri="|"|
+            noTrimWrap = | data-lux-contenturi="|"|
             typolink {
                 parameter.data = TSFE:id
                 additionalParams = &type=1520192598
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
+
+        # Uri for contextual content
+        30 = TEXT
+        30 {
+            noTrimWrap = | data-lux-contextualcontenturi="|"|
+            typolink {
+                parameter.data = TSFE:id
+                additionalParams = &type=1520796480
                 returnLast = url
                 forceAbsoluteUrl = 1
             }
@@ -169,5 +181,34 @@ luxLightboxContentWorkflowAction {
         dontCheckPid = 1
         source.data = GP:luxContent
         source.intval = 1
+    }
+}
+
+
+
+# Typenum to render a single content element for contextual content
+luxContextualContentAjaxAction = PAGE
+luxContextualContentAjaxAction {
+    typeNum = 1520796480
+
+    config {
+        additionalHeaders.10.header = Content-Type: application/json
+        no_cache = 1
+        disableAllHeaderCode = 1
+        disablePrefixComment = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Lux
+        pluginName = Pi2
+        vendorName = In2code
+        controller = Frontend
+        action = contextualContentAjax
+        switchableControllerActions.Frontend.1 = contextualContentAjax
     }
 }

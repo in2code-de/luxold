@@ -2,7 +2,15 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use In2code\Lux\Domain\Model\Attribute;
+use In2code\Lux\Domain\Model\Categoryscoring;
+use In2code\Lux\Domain\Model\Download;
+use In2code\Lux\Domain\Model\Ipinformation;
+use In2code\Lux\Domain\Model\Log;
+use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
+use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Utility\DatabaseUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -11,6 +19,22 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  */
 class VisitorRepository extends AbstractRepository
 {
+
+    /**
+     * Find a visitor by it's cookie and deliver also hidden visitors
+     *
+     * @param string $idCookie
+     * @return Visitor|null
+     */
+    public function findOneAndAlsoHiddenByIdCookie(string $idCookie)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true)->setEnableFieldsToBeIgnored(['hidden']);
+        $query->matching($query->equals('idCookie', $idCookie));
+        /** @var Visitor $visitor */
+        $visitor = $query->execute()->getFirst();
+        return $visitor;
+    }
 
     /**
      * @param FilterDto $filter
@@ -166,6 +190,36 @@ class VisitorRepository extends AbstractRepository
         ];
         $query->matching($query->logicalAnd($logicalAnd));
         return $query->execute();
+    }
+
+    /**
+     * @param int $visitorUid
+     * @return void
+     */
+    public function removeVisitorByVisitorUid(int $visitorUid)
+    {
+        $connection = DatabaseUtility::getConnectionForTable(Visitor::TABLE_NAME);
+        $connection->query('delete from ' . Visitor::TABLE_NAME . ' where uid=' . (int)$visitorUid);
+    }
+
+    /**
+     * @param int $visitorUid
+     * @return void
+     */
+    public function removeRelatedTableRowsByVisitorUid(int $visitorUid)
+    {
+        $tables = [
+            Attribute::TABLE_NAME,
+            Pagevisit::TABLE_NAME,
+            Ipinformation::TABLE_NAME,
+            Download::TABLE_NAME,
+            Categoryscoring::TABLE_NAME,
+            Log::TABLE_NAME
+        ];
+        foreach ($tables as $table) {
+            $connection = DatabaseUtility::getConnectionForTable($table);
+            $connection->query('delete from ' . $table . ' where visitor=' . (int)$visitorUid);
+        }
     }
 
     /**

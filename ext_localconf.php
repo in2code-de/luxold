@@ -29,6 +29,16 @@ call_user_func(
                 'Frontend' => ''
             ]
         );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'In2code.lux',
+            'Pi2',
+            [
+                'Frontend' => 'contextualContent,contextualContentAjax'
+            ],
+            [
+                'Frontend' => ''
+            ]
+        );
 
         /**
          * Add page TSConfig
@@ -141,5 +151,7 @@ call_user_func(
             \In2code\Lux\Command\LuxCleanupCommandController::class;
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
             \In2code\Lux\Command\LuxServiceCommandController::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
+            \In2code\Lux\Command\LuxAnonymizeCommandController::class;
     }
 );

@@ -1,0 +1,79 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<main>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Lux</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.default>
+						<TCEforms>
+							<label>Default Content Element</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>tt_content</allowed>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+								<size>1</size>
+							</config>
+						</TCEforms>
+					</settings.default>
+					<settings.content type="array">
+						<title>LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi2.label</title>
+						<type>array</type>
+						<section>1</section>
+						<el>
+							<element>
+								<type>array</type>
+								<title>Content</title>
+								<el>
+									<category>
+										<TCEforms>
+											<label>LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi2.flexform.category</label>
+											<config>
+												<type>select</type>
+												<renderType>selectSingle</renderType>
+												<items type="array">
+
+												</items>
+												<size>1</size>
+												<minitems>1</minitems>
+												<maxitems>1</maxitems>
+												<foreign_table>sys_category</foreign_table>
+												<foreign_table_where>AND sys_category.deleted = 0 AND sys_category.hidden = 0 AND sys_category.lux_category = 1 order by sys_category.title</foreign_table_where>
+												<wizards>
+													<suggest>
+														<title>Add Category</title>
+														<type>suggest</type>
+													</suggest>
+												</wizards>
+											</config>
+										</TCEforms>
+									</category>
+									<contentElements>
+										<TCEforms>
+											<label>LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi2.flexform.contentelements</label>
+											<config>
+												<type>group</type>
+												<internal_type>db</internal_type>
+												<allowed>tt_content</allowed>
+												<minitems>0</minitems>
+												<maxitems>20</maxitems>
+												<size>10</size>
+											</config>
+										</TCEforms>
+									</contentElements>
+								</el>
+							</element>
+						</el>
+					</settings.content>
+				</el>
+			</ROOT>
+		</main>
+	</sheets>
+</T3DataStructure>

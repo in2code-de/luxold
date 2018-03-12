@@ -76,6 +76,24 @@ class LogService
 
     /**
      * @param Visitor $visitor
+     * @param int $shownContentUid
+     * @param int $containerContentUid
+     * @return void
+     */
+    public function logContextualContent(Visitor $visitor, int $shownContentUid, int $containerContentUid)
+    {
+        $this->log(
+            Log::STATUS_CONTEXTUAL_CONTENT,
+            $visitor,
+            [
+                'shownContentUid' => $shownContentUid,
+                'containerContentUid' => $containerContentUid
+            ]
+        );
+    }
+
+    /**
+     * @param Visitor $visitor
      * @param Workflow $workflow
      * @return void
      */

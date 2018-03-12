@@ -127,6 +127,11 @@ class Visitor extends AbstractEntity
     protected $description = '';
 
     /**
+     * @var bool
+     */
+    protected $hidden = false;
+
+    /**
      * Visitor constructor.
      */
     public function __construct()
@@ -808,6 +813,24 @@ class Visitor extends AbstractEntity
     public function setDescription(string $description)
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHidden(): bool
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param bool $hidden
+     * @return Visitor
+     */
+    public function setHidden(bool $hidden)
+    {
+        $this->hidden = $hidden;
         return $this;
     }
 
