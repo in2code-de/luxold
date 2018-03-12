@@ -1,12 +1,10 @@
 <div class="panel panel-default">
     <style type="text/css">
-        <f:for each="{countries}" as="country">
-            #{country} {
+        <f:for each="{lux:charts.getPercentageFromValue(countries:countries)}" key="countryCode" as="visitPercentage">
+            #{countryCode} {
+                <f:comment>Hey Fluid, listen to the following variable</f:comment>
                 fill: rgba(77, 231, 255, 1);
-                fill-opacity: 1;
-                stroke:white;
-                stroke-opacity: 1;
-                stroke-width:0.5;
+                filter: saturate({visitPercentage}%);
             }
         </f:for>
     </style>

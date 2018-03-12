@@ -13,6 +13,13 @@ class IpinformationRepository extends AbstractRepository
 {
 
     /**
+     * Get an array with number of visitors depending to the country where they came from
+     *  Example return value:
+     *  [
+     *      'de' => 234,
+     *      'at' => 45,
+     *      'ch' => 11
+     *  ]
      * @param FilterDto $filter
      * @return array
      */
@@ -28,10 +35,13 @@ class IpinformationRepository extends AbstractRepository
         /** @var Ipinformation $ipinformation */
         foreach ($ipinformations as $ipinformation) {
             $countryCode = $ipinformation->getValue();
-            if (!in_array($countryCode, $countryCodes)) {
-                $countryCodes[] = $countryCode;
+            if (!array_key_exists($countryCode, $countryCodes)) {
+                $countryCodes[$countryCode] = 1;
+            } else {
+                $countryCodes[$countryCode]++;
             }
         }
+        arsort($countryCodes);
         return $countryCodes;
     }
 
