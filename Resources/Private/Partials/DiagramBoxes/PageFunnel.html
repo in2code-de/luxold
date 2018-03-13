@@ -19,9 +19,9 @@
                             </div>
                         </f:for>
                         <f:if condition="{visitor.referrer}">
-                            <div class="timeline__item" title="abc">
+                            <div class="timeline__item">
                                 <div style="margin-top: 5px;">
-                                    {visitor.readableReferrer}
+                                    <a href="{visitor.referrer}" target="_blank">{visitor.readableReferrer}</a>
                                     <span class="badge pull-right" title="{f:format.date(date:visitor.crdate,format:'{f:translate(key:\'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:date\')}')}">{lux:format.readableDate(date:visitor.crdate)}</span>
                                 </div>
                             </div>

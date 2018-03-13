@@ -92,6 +92,11 @@ page {
 }
 
 
+# Disable analytics in Frontend if Backenduser is logged in (should prevent thousands of page visits while the editor reloads the FE again and again)
+[globalVar = TSFE:beUserLogin > 0]
+    page.1518815717 >
+[end]
+
 
 
 
