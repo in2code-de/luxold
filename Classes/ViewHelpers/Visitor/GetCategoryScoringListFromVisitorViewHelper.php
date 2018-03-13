@@ -32,7 +32,7 @@ class GetCategoryScoringListFromVisitorViewHelper extends AbstractViewHelper
         /** @var Categoryscoring $categoryscoring */
         foreach ($visitor->getCategoryscoringsSortedByScoring() as $categoryscoring) {
             $value = $categoryscoring->getScoring();
-            if ($this->arguments['property'] === 'title') {
+            if ($this->arguments['property'] === 'title' && $categoryscoring->getCategory() !== null) {
                 $value = $categoryscoring->getCategory()->getTitle();
             }
             $list[] = $value;
