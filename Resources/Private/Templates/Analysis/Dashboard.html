@@ -8,24 +8,12 @@
             </f:alias>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <f:render partial="Lead/Recurring" arguments="{_all}" />
-            <f:render partial="Lead/Identified" arguments="{_all}" />
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <f:render partial="Lead/Pagevisits" arguments="{_all}" />
-                    <f:render partial="Lead/HottestVisitors" arguments="{_all}" />
-                </div>
-                <div class="col-md-6">
-                    <f:alias map="{style:'height: 600px; overflow: hidden;'}">
-                        <f:render partial="DiagramBoxes/Log" arguments="{_all}" />
-                    </f:alias>
-                </div>
-            </div>
-        </div>
+    <div class="g-layout">
+        <f:render partial="Lead/Recurring" arguments="{_all}" />
+        <f:render partial="Lead/Identified" arguments="{_all}" />
+        <f:render partial="Lead/Pagevisits" arguments="{_all}" />
+        <f:render partial="Lead/HottestVisitors" arguments="{_all}" />
+        <f:render partial="DiagramBoxes/Log" arguments="{_all}" />
     </div>
     <div class="row">
         <div class="col-md-12">
