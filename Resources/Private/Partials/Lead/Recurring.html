@@ -8,7 +8,12 @@
     <div class="panel-body">
         <f:if condition="{numberOfUniqueSiteVisitors} || {numberOfRecurringSiteVisitors}">
             <f:then>
-                <canvas id="extension-lux-analysis-recurring" width="750" height="250" data-chart-data="{numberOfRecurringSiteVisitors},{numberOfUniqueSiteVisitors}" data-chart-labels="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.recurring.0')},{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.recurring.1')}"></canvas>
+                <canvas
+                        id="extension-lux-analysis-recurring"
+                        width="750"
+                        height="400"
+                        data-chart-data="{numberOfRecurringSiteVisitors},{numberOfUniqueSiteVisitors}"
+                        data-chart-labels="{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.recurring.0')},{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:module.analysis.recurring.1')}"></canvas>
                 <script>
 					require(['TYPO3/CMS/Lux/Vendor/Chart.min'], function (Chart) {
 						var container = document.getElementById('extension-lux-analysis-recurring');
