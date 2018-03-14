@@ -871,6 +871,10 @@
 				<source>Add an explanation text</source>
 				<target state="translated">Erklärungstext hinzufügen</target>
 			</trans-unit>
+			<trans-unit id="pi1.textDoNotTrack">
+				<source>Add an explanation text for "do not track" browser setting</source>
+				<target state="translated">Erklärungstext für die Browsereinstellung "do not track"</target>
+			</trans-unit>
 			<trans-unit id="pi2.title">
 				<source>Lux Contextual Content</source>
 				<target state="translated">Lux Kontextabhängiger Content</target>

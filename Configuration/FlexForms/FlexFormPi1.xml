@@ -35,6 +35,20 @@
 							<defaultExtras>richtext[]:rte_transform[mode=ts_css]</defaultExtras>
 						</TCEforms>
 					</settings.text>
+					<settings.textDoNotTrack>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi1.textDoNotTrack</label>
+							<config>
+								<type>text</type>
+								<default><![CDATA[<p>Die benutzerspezifische Erfassung ist bei Ihnen derzeit nicht aktiv, denn Ihr Browser hat uns über eine Einstellung mitgeteilt, dass Sie kein Tracking wünschen.</p>
+									<p>Um Erfassung wieder zu aktivieren, müssen Sie die sogenannte "Do Not Track"-Einstellung in Ihren Browsereinstellungen deaktivieren.</p>]]></default>
+								<enableRichtext>1</enableRichtext>
+								<richtextConfiguration>default</richtextConfiguration>
+							</config>
+							<defaultExtras>richtext[]:rte_transform[mode=ts_css]</defaultExtras>
+						</TCEforms>
+					</settings.textDoNotTrack>
 				</el>
 			</ROOT>
 		</main>
