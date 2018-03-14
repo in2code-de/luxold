@@ -44,6 +44,7 @@ function LuxMain() {
 			addDownloadListener();
 			addContextualContentListener();
 		}
+		doNotTrackListener();
 	};
 
 	/**
@@ -300,6 +301,22 @@ function LuxMain() {
 			'tx_lux_fe[arguments][key]': key,
 			'tx_lux_fe[arguments][value]': value
 		}, getRequestUri(), null);
+	};
+
+	/**
+	 * @returns {void}
+	 */
+	var doNotTrackListener = function() {
+		if (navigator.doNotTrack === '1') {
+			var text = document.querySelectorAll('[data-lux-container-optout="text"]');
+			for (var i = 0; i < text.length; i++) {
+				hideElement(text[i]);
+			}
+			var textDoNotTrack = document.querySelectorAll('[data-lux-container-optout="textDoNotTrack"]');
+			for (var j = 0; j < textDoNotTrack.length; j++) {
+				showElement(textDoNotTrack[j]);
+			}
+		}
 	};
 
 	/**

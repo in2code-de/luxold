@@ -647,6 +647,9 @@
 			<trans-unit id="pi1.text">
 				<source>Add an explanation text</source>
 			</trans-unit>
+			<trans-unit id="pi1.textDoNotTrack">
+				<source>Add an explanation text for "do not track" browser setting</source>
+			</trans-unit>
 			<trans-unit id="pi2.title">
 				<source>Lux Contextual Content</source>
 			</trans-unit>

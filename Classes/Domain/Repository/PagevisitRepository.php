@@ -52,10 +52,11 @@ class PagevisitRepository extends AbstractRepository
         $query->matching(
             $query->logicalAnd([
                 $query->greaterThan('crdate', $filter->getStartTimeForFilter()),
-                $query->lessThan('crdate', $filter->getEndTimeForFilter())
+                $query->lessThan('crdate', $filter->getEndTimeForFilter()),
+                $query->greaterThan('page.uid', 0)
             ])
         );
-        $query->setLimit(4);
+        $query->setLimit(5);
         return $query->execute();
     }
 

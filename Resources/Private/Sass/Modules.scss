@@ -2,6 +2,7 @@
 @import "Timeline";
 @import "Wizard";
 @import "WizardForm";
+@import "Grid";
 
 /**
  * General backend classes
@@ -31,6 +32,9 @@ label {
   background-color: $colorSoft;
 }
 .badge-primary {
+  background-color: $colorMain;
+}
+.alert-lux {
   background-color: $colorMain;
 }
 
