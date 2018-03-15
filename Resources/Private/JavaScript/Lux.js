@@ -524,11 +524,13 @@ function LuxMain() {
 	 * - optOutStatus is not set (cookie)
 	 * - doNotTrack header ist not set
 	 * - container with important serverside information is available in DOM
+	 * - data-lux-enable="1"
 	 *
 	 * @returns {boolean}
 	 */
 	var isLuxActivated = function() {
-		return isOptOutStatusSet() === false && navigator.doNotTrack !== '1' && getContainer() !== null;
+		return isOptOutStatusSet() === false && navigator.doNotTrack !== '1' && getContainer() !== null
+			&& getContainer().getAttribute('data-lux-enable') === '1';
 	};
 
 	/**
