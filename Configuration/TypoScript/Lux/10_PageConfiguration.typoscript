@@ -21,9 +21,16 @@ page {
     1518815717 {
         wrap = <script id="lux_container"|></script>
 
-        # Uri to send tracking requests to
+        # Enable lux in Frontend
         10 = TEXT
         10 {
+            noTrimWrap = | data-lux-enable="|"|
+            value = 1
+        }
+
+        # Uri to send tracking requests to
+        20 = TEXT
+        20 {
             noTrimWrap = | data-lux-requesturi="|"|
             typolink {
                 parameter.data = TSFE:id
@@ -34,8 +41,8 @@ page {
         }
 
         # Uri to render a lightbox with a single content element
-        20 = TEXT
-        20 {
+        30 = TEXT
+        30 {
             noTrimWrap = | data-lux-contenturi="|"|
             typolink {
                 parameter.data = TSFE:id
@@ -46,8 +53,8 @@ page {
         }
 
         # Uri for contextual content
-        30 = TEXT
-        30 {
+        40 = TEXT
+        40 {
             noTrimWrap = | data-lux-contextualcontenturi="|"|
             typolink {
                 parameter.data = TSFE:id
@@ -94,7 +101,7 @@ page {
 
 # Disable analytics in Frontend if Backenduser is logged in (should prevent thousands of page visits while the editor reloads the FE again and again)
 [globalVar = TSFE:beUserLogin > 0]
-    page.1518815717 >
+    page.1518815717.10.value = 0
 [end]
 
 
