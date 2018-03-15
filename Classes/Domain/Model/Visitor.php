@@ -722,14 +722,9 @@ class Visitor extends AbstractEntity
      */
     public function getLogs(): array
     {
-        $logs = $this->logs;
-        $logsArray = [];
-        /** @var Log $log */
-        foreach ($logs as $log) {
-            $logsArray[] = $log;
-        }
-        krsort($logsArray);
-        return $logsArray;
+        $logs = $this->logs->toArray();
+        krsort($logs);
+        return $logs;
     }
 
     /**
