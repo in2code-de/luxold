@@ -726,7 +726,7 @@ class Visitor extends AbstractEntity
         $logsArray = [];
         /** @var Log $log */
         foreach ($logs as $log) {
-            $logsArray[$log->getCrdate()->getTimestamp()] = $log;
+            $logsArray[] = $log;
         }
         krsort($logsArray);
         return $logsArray;
