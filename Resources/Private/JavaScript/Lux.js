@@ -40,10 +40,10 @@ function LuxMain() {
 			generateNewIdCookieIfNoCookieFound();
 			pageRequest();
 			addFieldListeners();
-			addEmail4LinkListeners();
 			addDownloadListener();
 			addContextualContentListener();
 		}
+		addEmail4LinkListeners();
 		doNotTrackListener();
 	};
 
