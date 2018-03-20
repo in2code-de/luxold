@@ -120,6 +120,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 | Version    | Date       | State      | Description                                                                     |
 | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
+| 1.13.2     | 2018-03-15 | Bugfix     | Small bugfixes.                                                                 |
 | 1.13.1     | 2018-03-15 | Bugfix     | Small bugfixes.                                                                 |
 | 1.13.0     | 2018-03-14 | Task       | Add css grid for dashboard. Small bugfixes.                                     |
 | 1.12.0     | 2018-03-13 | Feature    | Disable tracking if be-user is logged in. Small bugfixes.                       |
