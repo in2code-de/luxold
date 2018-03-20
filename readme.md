@@ -111,7 +111,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 - Todo: Blacklisting
 - Todo: Newsletter tool (replace or extend direct_mail? New tool - usable without Lux?)
-- Todo: Contatct (Import?)
+- Todo: Contacts (Import?)
 - Todo: API (Im- and Export)
 - Todo: A/B Tests
 - Todo: SocialMedia Connection (Twitter)
