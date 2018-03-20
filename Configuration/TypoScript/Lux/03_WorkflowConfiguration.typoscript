@@ -189,7 +189,11 @@ lib.lux.settings {
                 configuration {
                     # Add your webhook Url like https://hooks.slack.com/services/token
                     webhookUrl = https://hooks.slack.com/services/TOKENabcdefghi56789/67890p789/7890
+
+                    # Username for this webhook
                     username = lux
+
+                    # Set an emoji for all this publishings (can be empty, if you already set an image to your webhook in slack)
                     emoji = :fire:
                 }
             }

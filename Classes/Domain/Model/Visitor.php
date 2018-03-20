@@ -249,18 +249,13 @@ class Visitor extends AbstractEntity
      */
     public function getHottestCategoryscoring()
     {
-        $categoryscorings = $this->getCategoryscorings();
-        $scoring = [];
-        /** @var Categoryscoring $categoryscoring */
-        foreach ($categoryscorings as $categoryscoring) {
-            $scoring[$categoryscoring->getScoring()] = $categoryscoring;
+        $categoryscorings = $this->getCategoryscorings()->toArray();
+        uasort($categoryscorings, [$this, 'sortForHottestCategoryscoring']);
+        $firstCs = array_slice($categoryscorings, 0, 1);
+        if (!empty($firstCs[0])) {
+            return $firstCs[0];
         }
-        krsort($scoring);
-        $hottest = null;
-        if (end($scoring) !== false) {
-            $hottest = end($scoring);
-        }
-        return $hottest;
+        return null;
     }
 
     /**
@@ -979,5 +974,23 @@ class Visitor extends AbstractEntity
     {
         $referrerService = ObjectUtility::getObjectManager()->get(ReadableReferrerService::class, $this->getReferrer());
         return $referrerService->getReadableReferrer();
+    }
+
+    /**
+     * Sort all categoryscorings by scoring desc
+     *
+     * @param Categoryscoring $cs1
+     * @param Categoryscoring $cs2
+     * @return int
+     */
+    protected function sortForHottestCategoryscoring(Categoryscoring $cs1, Categoryscoring $cs2): int
+    {
+        $result = 0;
+        if ($cs1->getScoring() > $cs2->getScoring()) {
+            $result = -1;
+        } elseif ($cs1->getScoring() < $cs2->getScoring()) {
+            $result = 1;
+        }
+        return $result;
     }
 }

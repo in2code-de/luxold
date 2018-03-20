@@ -28,7 +28,12 @@ class ConfigurationService implements SingletonInterface
     public function getTypoScriptSettingsByPath(string $path, string $pluginName = 'Fe')
     {
         $typoScript = $this->getTypoScriptSettings($pluginName);
-        return ArrayUtility::getValueByPath($typoScript, $path, '.');
+        try {
+            return ArrayUtility::getValueByPath($typoScript, $path, '.');
+        } catch (\Exception $exception) {
+            unset($exception);
+        }
+        return '';
     }
 
     /**
