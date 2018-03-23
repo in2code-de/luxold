@@ -883,6 +883,10 @@
 				<source>Show fitting content based on the visitors category scoring.</source>
 				<target state="translated">Zeige Seiteninhalte basierend auf dem Kategoriescoring des Besuchers.</target>
 			</trans-unit>
+			<trans-unit id="pi2.flexform.default">
+				<source>Choose a default content element (Please select one and save aferwards. Then choose additional elements below).</source>
+				<target state="translated">Standard Seiteninhalt wählen (Bitte eines auswählen und danach speichern. Im Anschluss können unten weitere Elemente ausgewählt werden).</target>
+			</trans-unit>
 			<trans-unit id="pi2.flexform.category">
 				<source>Choose a lux category.</source>
 				<target state="translated">Bitte eine lux Kategorie auswählen.</target>

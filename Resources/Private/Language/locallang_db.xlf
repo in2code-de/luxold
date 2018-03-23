@@ -656,6 +656,9 @@
 			<trans-unit id="pi2.description">
 				<source>Show fitting content based on the visitors category scoring.</source>
 			</trans-unit>
+			<trans-unit id="pi2.flexform.default">
+				<source>Choose a default content element (Please select one and save aferwards. Then choose additional elements below).</source>
+			</trans-unit>
 			<trans-unit id="pi2.flexform.category">
 				<source>Choose a lux category.</source>
 			</trans-unit>

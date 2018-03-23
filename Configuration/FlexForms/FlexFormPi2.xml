@@ -12,7 +12,7 @@
 				<el>
 					<settings.default>
 						<TCEforms>
-							<label>Default Content Element</label>
+							<label>LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:pi2.flexform.default</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
