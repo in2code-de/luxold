@@ -356,7 +356,7 @@
 			</trans-unit>
 			<trans-unit id="readabledate.date">
 				<source>Y-m-d</source>
-				<target state="translated">m.d.Y</target>
+				<target state="translated">d.m.Y</target>
 			</trans-unit>
 			<trans-unit id="date">
 				<source>%Y-%m-%d, %H:%M</source>
