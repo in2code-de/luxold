@@ -32,9 +32,6 @@ CKEDITOR.dialog.add('luxEmail4LinkDialog', function(editor)
 						label: editor.lang.luxEmail4Link.dialogTitle,
 						validate: CKEDITOR.dialog.validate.notEmpty(editor.lang.luxEmail4Link.validationNotEmpty),
 						required: true,
-						setup: function(element) {
-							this.setValue(element.getText());
-						},
 						commit: function(data) {
 							data.title = this.getValue();
 						}
@@ -52,7 +49,6 @@ CKEDITOR.dialog.add('luxEmail4LinkDialog', function(editor)
 						type: 'checkbox',
 						id: 'sendEmail',
 						label: editor.lang.luxEmail4Link.dialogSendEmail,
-						'default': true,
 						commit: function(data) {
 							data.sendEmail = this.getValue();
 						}
@@ -80,7 +76,8 @@ CKEDITOR.dialog.add('luxEmail4LinkDialog', function(editor)
 			var parent = getParentElement('a', editor.getSelection().getStartElement());
 			this.setValueOf('general', 'title', parent.getAttribute('data-lux-email4link-title') || '');
 			this.setValueOf('general', 'text', parent.getAttribute('data-lux-email4link-text') || '');
-			this.setValueOf('general', 'sendEmail', parent.getAttribute('data-lux-email4link-sendEmail') || '');
+			var sendEmailStatus = parent.getAttribute('data-lux-email4link-sendEmail') || '';
+			this.setValueOf('general', 'sendEmail', sendEmailStatus === 'true');
 		}
 	};
 });
