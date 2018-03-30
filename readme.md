@@ -12,35 +12,35 @@ like showing relevant information at the right time.
 
 Example dashboard overview:
 
-<img src="Documentation/Screenshots/dashboard.png" width="800" />
+<img src="Documentation/Images/screenshot_dashboard.png" width="800" />
 
 Example leadlist:
 
-<img src="Documentation/Screenshots/list.png" width="800" />
+<img src="Documentation/Images/screenshot_list.png" width="800" />
 
 Show some details:
 
-<img src="Documentation/Screenshots/list2.png" width="800" />
+<img src="Documentation/Images/screenshot_list2.png" width="800" />
 
 Show relevant information in page view:
 
-<img src="Documentation/Screenshots/pageoverview.png" width="800" />
+<img src="Documentation/Images/screenshot_pageoverview.png" width="800" />
 
 Workflow - Define your own trigger(s) and combine them via AND or OR:
 
-<img src="Documentation/Screenshots/workflow_trigger.png" width="800" />
+<img src="Documentation/Images/screenshot_workflow_trigger.png" width="800" />
 
 Workflow - Do one or more Actions if a trigger is activated:
 
-<img src="Documentation/Screenshots/workflow_action.png" width="800" />
+<img src="Documentation/Images/screenshot_workflow_action.png" width="800" />
 
 Ask for the visitors email-address when he/she wants to download an asset:
 
-<img src="Documentation/Screenshots/email4link.png" width="800" />
+<img src="Documentation/Images/screenshot_email4link.png" width="800" />
 
 ... with a CK editor plugin:
 
-<img src="Documentation/Screenshots/email4link_ckeditor_plugin.png" width="800" />
+<img src="Documentation/Images/screenshot_email4link_ckeditor_plugin.png" width="800" />
 
 ## Documentation
 
