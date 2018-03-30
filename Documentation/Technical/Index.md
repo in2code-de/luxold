@@ -26,5 +26,6 @@ A second cookie can be added for an opt out with the name `luxTrackingOptOut`.
 
 ### [Installation](Installation/Index.md)
 ### [Analysis](Analysis/Index.md)
-### Identification
+### [Identification](Identification/Index.md)
 ### Workflows
+### [FAQ](FAQ/Index.md)
