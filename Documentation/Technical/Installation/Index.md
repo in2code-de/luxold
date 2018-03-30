@@ -32,6 +32,15 @@ Example composer.json file:
 }
 ```
 
-Note: You need a github user that has access to the private lux repository for an installation.
-Note: Lux itself will also load the php package [jlawrence/eos](https://packagist.org/packages/jlawrence/eos) for
+**Note:** You need a github user that has access to the private lux repository for an installation.
+
+**Note:** Lux itself will also load the php package [jlawrence/eos](https://packagist.org/packages/jlawrence/eos) for
 some scoring calculation magic.
+
+#### Add TypoScript
+
+If you have already activated lux in your TYPO3 instance, you can add the static TypoScript file *Main TypoScript (lux)*
+in your root template.
+
+If you want to see what kind of TypoScript will be included and how to overwrite some parts, look at
+[the Lux folder](../../../Configuration/TypoScript/Lux)
