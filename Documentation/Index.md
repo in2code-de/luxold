@@ -1,4 +1,4 @@
-<img align="left" src="../Resources/Public/Icons/lux.svg" width="100" />
+<img align="left" src="../Resources/Public/Icons/lux.svg" width="50" />
 
 # Living User eXperience - LUX - the Marketing Automation tool for TYPO3
 
