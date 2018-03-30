@@ -46,9 +46,22 @@ some scoring calculation magic.
 
 If you click on the settings symbol for extension lux, you can change some basic settings in lux extension.
 
-<img src="../../../Documentation/Images/documentation_installation_extensionmanager.png1" width="800" />
-<img src="../../../Documentation/Images/documentation_installation_extensionmanager.png2" width="800" />
-<img src="../../../Documentation/Images/documentation_installation_extensionmanager.png3" width="800" />
+<img src="../../../Documentation/Images/documentation_installation_extensionmanager1.png" width="800" />
+<img src="../../../Documentation/Images/documentation_installation_extensionmanager2.png" width="800" />
+<img src="../../../Documentation/Images/documentation_installation_extensionmanager3.png" width="800" />
+
+| Setting                                  | Description                                                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Basic: Scoring Calculation               | Define a calculation model for the basic lead scoring.<br>Available variables are - numberOfSiteVisits, numberOfPageVisits, downloads, lastVisitDaysAgo.<br>Note - you should run a commandController (e.g. every night) and calculate the scoring again, if you are using the variable "lastVisitDaysAgo".|
+| Basic: Add on pagevisit                  | Categoryscoring: Add this value to the categoryscoring if a lead visits a page of a lux-category        |
+| Basic: Add on download                   | Categoryscoring: Add this value to the categoryscoring if a lead downloads an asset of a lux-category   |
+| Module: Disable analysis module          | Toggle the backend module Analysis in general                                                           |
+| Module: Disable lead module              | Toggle the backend module Leads in general                                                              |
+| Module: Disable workflow module          | Toggle the backend module Workflows in general                                                          |
+| Advanced: Disable box with latest leads  | Toggle the box with latest lead visits in page module in general                                        |
+| Advanced: Disable ip logging             | Disable the logging of the visitors IP address                                                          |
+| Advanced: Anonymize IP                   | As an alternative to disableIpLogging, you can anonymize the visitors IP-address when saving. The last part of the IP will be anonymized with "***" |
+| Advanced: Disable ip-api.com information | Toggle information enrichment based on the visitors IP by ip-api.com                                    |
 
 #### Add TypoScript
 
