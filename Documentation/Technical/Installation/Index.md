@@ -2,13 +2,13 @@
 
 ### Installation
 
-#### Requirements
+#### 1. Requirements
 
 * TYPO3 8.7 or newer
-* TYPO3 should use the composer mode
+* TYPO3 must run in **composer mode**
 * PHP 7.0 - 7.2
 
-#### Installation via composer
+#### 2. Installation via composer
 
 Example composer.json file:
 
@@ -63,10 +63,19 @@ If you click on the settings symbol for extension lux, you can change some basic
 | Advanced: Anonymize IP                   | As an alternative to disableIpLogging, you can anonymize the visitors IP-address when saving. The last part of the IP will be anonymized with "***" |
 | Advanced: Disable ip-api.com information | Toggle information enrichment based on the visitors IP by ip-api.com                                    |
 
-#### Add TypoScript
+#### 3. Add TypoScript
 
 If you have already activated lux in your TYPO3 instance, you can add the static TypoScript file *Main TypoScript (lux)*
 in your root template. Most of the TypoScript configuration is used for frontend and for backend configuration.
 
 If you want to see what kind of TypoScript will be included and how to overwrite some parts, look at
 [the Lux folder](../../../Configuration/TypoScript/Lux)
+
+#### 4. Ready to go
+
+lux is now up and running. If you go into the frontend of your webpage and open the browser console, you should see
+an asynchronical request to every page request.
+
+<img src="../../../Documentation/Images/documentation_installation_browserrequest.png" width="800" />
+
+**Note:** Take care to be not logged in into your TYPO3-backend at the same time with the same browser
