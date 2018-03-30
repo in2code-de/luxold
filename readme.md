@@ -44,7 +44,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 ## Documentation
 
-Find a full documentation (technical, marketing and privacy) under [Documentation/Index.md]
+See the full [documentation](Documentation/Index.md) (technical, marketing and privacy)
 
 ## Features
 
