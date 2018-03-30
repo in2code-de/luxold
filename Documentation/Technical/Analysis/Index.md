@@ -49,5 +49,10 @@ plugin.tx_lux.settings {
 }
 ```
 
+Example page tracking request in browser console:
 <img src="../../../Documentation/Images/documentation_installation_browserrequest.png" width="800" />
-Example page tracking request in browser console.
+
+### Backend Module Analysis
+
+Now, if lux is up and running, you should see information in the Analysis Backend Module in the dashboard view:
+<img src="../../../Documentation/Images/screenshot_dashboard.png" width="800" />
