@@ -52,7 +52,34 @@ plugin.tx_lux.settings {
 Example page tracking request in browser console:
 <img src="../../../Documentation/Images/documentation_installation_browserrequest.png" width="800" />
 
+
+
 ### Backend Module Analysis
+
+#### Dashboard
 
 Now, if lux is up and running, you should see information in the Analysis Backend Module in the dashboard view:
 <img src="../../../Documentation/Images/screenshot_dashboard.png" width="800" />
+
+The dashboard view should give you a quick overview about the latest activities and some useful information:
+* How many recurring/unique leads
+* How many identified leads
+* The latest page visits
+* Hottest leads (orderings by scoring)
+* Activity log
+* A world map for a basic visitor analysis
+
+Clicking on a name/email/"anonymous" will open a detail page with some more information of the lead.
+
+**Note:** You can filter the dashboard view to leads from this or from previous month or from this year with the filter
+select at the top
+
+#### Content
+
+If you choose the content view (see top left to switch from dashboard to content), you will see the 100 most interesting
+pages and assets for your leads.
+
+<img src="../../../Documentation/Images/screenshot_analysis_content.png" width="800" />
+
+Clicking on an asset or a page will open a detail page to this item, where you can exactly see which lead was interested
+in this item.
