@@ -42,6 +42,10 @@ Ask for the visitors email-address when he/she wants to download an asset:
 
 <img src="Documentation/Screenshots/email4link_ckeditor_plugin.png" width="800" />
 
+## Documentation
+
+Find a full documentation (technical, marketing and privacy) under [Documentation/Index]
+
 ## Features
 
 ### Tracking
@@ -107,7 +111,7 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Toogle Email4link functionality
 - CommandController to anonymize records (for developing or for a presentation)
 
-### Coming up Enterprise Features
+### Possible Enterprise Features
 
 - Todo: Blacklisting
 - Todo: Newsletter tool (replace or extend direct_mail? New tool - usable without Lux?)
@@ -115,6 +119,11 @@ Ask for the visitors email-address when he/she wants to download an asset:
 - Todo: API (Im- and Export)
 - Todo: A/B Tests
 - Todo: SocialMedia Connection (Twitter)
+
+## Technical requirements
+
+lux needs minimum *TYPO3 8.7* as a modern basic together with *composer mode*. Every kind of form extension is supported
+for the identification feature (powermail, form, formhandler, felogin, etc...).
 
 ## Changelog
 
