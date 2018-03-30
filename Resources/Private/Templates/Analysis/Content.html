@@ -29,7 +29,7 @@
                                 <td>
                                     <f:for each="{page}" as="pageItem" iteration="iteration">
                                         <f:if condition="{iteration.isFirst}">
-                                            <span title="UID{pageItem.page.uid}">{pageItem.page.title}</span>
+                                            <span title="UID{pageItem.page}"><lux:page.getPropertyFromPageIdentifier pageIdentifier="{pageItem.page}" /></span>
                                         </f:if>
                                     </f:for>
                                 </td>
@@ -37,7 +37,7 @@
                                 <td>
                                     <f:for each="{page}" as="pageItem" iteration="iteration">
                                         <f:if condition="{iteration.isFirst}">
-                                            <f:link.action action="detailPage" arguments="{page:pageItem.page.uid}" class="btn btn-primary">Details</f:link.action>
+                                            <f:link.action action="detailPage" arguments="{page:pageItem.page}" class="btn btn-primary">Details</f:link.action>
                                         </f:if>
                                     </f:for>
                                 </td>
