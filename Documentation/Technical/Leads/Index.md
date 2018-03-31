@@ -2,12 +2,17 @@
 
 ### Backend Module Leads
 
+<img src="../../../Documentation/Images/screenshot_modules.png" />
+
 The backend module Leads show you all identified (and anonymous) leads.
 <img src="../../../Documentation/Images/documentation_leads_list.png" width="800" />
 
 See all your leads in a listview on the left side while you can see useful lead information on the right side
 (number of page visits and hottest leads). The left side itself is splitted into a filter area and the table-list-view
 below.
+
+
+
 
 #### Filter
 
@@ -24,6 +29,9 @@ below.
 Filter now: Let's filter the table with our properties
 Reset filter: Let's reset the table to original list view
 Download button: The download button let you download the lead table in format CSV
+
+
+
 
 #### Table
 
@@ -43,6 +51,9 @@ The table will show you your website leads.
 **Orderings:** Per default the orderings is identified leads first and after that sort by scoring. The orderings can
 be change if you are using a special filter.
 
+
+
+
 #### Detail Preview
 
 If you click in a table row, a small lead preview will be loaded via AJAX. Both diagrams on the right side will be
@@ -55,8 +66,11 @@ lost on the field (on blur).
 
 Clicking on *Show lead details* will open the detail page.
 
+
+
+
 #### Detail View
 
 The detail view will give you a couple of information of the chosen lead.
 
-<img src="../../../Documentation/Images/screenshot_detail.png.png" width="800" />
+<img src="../../../Documentation/Images/screenshot_detail.png" width="800" />
