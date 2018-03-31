@@ -71,6 +71,59 @@ Clicking on *Show lead details* will open the detail page.
 
 #### Detail View
 
-The detail view will give you a couple of information of the chosen lead.
+The detail view will give you a couple of information of the chosen lead. The view is splitted into 5 boxes:
+* Lead information
+* Lead scoring
+* Activity log
+* Conversion funnel / Page visits
+* Categoryscoring
+
+##### Lead information
+
+See all relevant lead information.
+
+It starts with the *Lead identification*. Depending on the information we have, this
+will show the email or the first- and lastname or simply "Anonymous".
+Beside this, you will see the general scoring and the hottest category scoring (if there is one). A click on the google
+icon will open a new tab with google and let you search for the lead.
+
+After the first line, there are information that came from field mapping, meta information (first and last
+visit) and information enriched by the visitors IP-address. The description field is also shown and can be used in the
+same way as described in *Detail Preview*.
 
 <img src="../../../Documentation/Images/screenshot_detail.png" width="800" />
+
+##### Lead scoring
+
+See the lead scoring of the lead in the last 6 weeks. That gives you the possibility to decide, how your nurturing
+workflows are running.
+
+**Note:** The scoring calculation can be done in the Extension Manager settings of the extension. If you are using
+the value *lastVisitDaysAgo*, you should use a CommandController to calculate the lead scoring one time a day.
+
+##### Activity log
+
+See the most interesting activities of this lead related to lux. You will see information like *Lead gets identified*,
+*Lead gets identified by email4link" or "Lead downloads an asset". Also every workflow that takes action on this lead
+is listed here.
+
+**Tipp:** Use your mousecursor for getting a date and time in a tooltip to every activity.
+
+##### Conversion funnel / Page visits
+
+See from which referrer your lead start to visit your website and follow page by page.
+
+##### Categoryscoring
+
+See a diagram with all available categoryscorings for this lead.
+
+**Note:** The calculation can be influenced by the Extension Manager settings of the extension.
+**Note:** See [Categoryscorings](../Categoryscorings/Index.md) how to use category scoring in lux.
+
+##### Interaction Buttons
+
+On the bottom of the detail view, you will find three buttons.
+
+* Go back: Browser will show the previous page
+* Ignore in future: This lead will be ignored from now on. This means, the lead is not visible in any view any more. This is helpful, if you identify a searchengine crawler (maybe with a high scoring).
+* Remove completely: This will remove all information about this lead from your system. Remove means that the records are really remove - not only a deleted=1!

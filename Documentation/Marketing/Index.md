@@ -22,3 +22,7 @@ simplifies the work with marketing automation tools in general.
 | Workflow                  | A workflow is a combination of one or more triggers and one or more actions to nurture your leads.     |
 | Workflow Trigger          | A trigger is a point of action this will cause an action. A known trigger could be e.g. *the second website visit*. |
 | Workflow Action           | An action will be executed if a trigger fits. A known action could be to open a lightbox for the visitor. |
+| Identified Lead           | An identified lead means, that we know his/her email address.                                          |
+| Lead identification       | This is a virtual field of the lead and is used in the lead backend module and on some other places of Lux. Depending on the information that we have, we show the email or the first- and lastname or simply "Anonymous" if the lead is still not identified. |
+| Cookie                    | A cookie is an individual value that is saved in the visitors browser.                                 |
+| DoNotTrack                | Browser support a *DoNotTrack* setting. This setting must be turned on from the user (it is not a default setting of the browser). If lux recognize this setting, all tracking functions are disabled. We will respect this privacy setting! |
