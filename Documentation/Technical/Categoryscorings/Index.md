@@ -10,7 +10,7 @@ different leads (see glossary at [Marketing Information](../../Marketing/Index.m
 You can simple define some lux-categories in your TYPO3. A lux-category is just a sys_category record in TYPO3.
 Don't forget to check the checkbox "lux-category".
 
-<img src="../../../Documentation/Images/documentation_categoryscorings_categories.png" width="500" />
+<img src="../../../Documentation/Images/documentation_categoryscorings_categories.png" width="800" />
 
 After you added some lux-categories to your system, you can mark pages and files with that categories.
 <img src="../../../Documentation/Images/documentation_categoryscorings_page.png" width="800" />
@@ -22,10 +22,10 @@ increase the value by 20 (a download is a larger action then a simple pagevisit 
 of course).
 
 If you want to change the factors, you can do this in the Extension Manager in the settings of lux (see part
-[Installation](../Installation/Index.md).
+[Installation](../Installation/Index.md)).
 
 #### Analysis
 
 Just open a lead detail-view. You will see all relevant information about category scorings to this lead.
 
-<img src="../../../Documentation/Images/documentation_categoryscorings_categories.png" width="800" />
+<img src="../../../Documentation/Images/documentation_categoryscorings_detail.png" width="800" />

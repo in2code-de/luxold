@@ -24,6 +24,8 @@ Lux will respect this settings in every case.
 Every visitor will get an unique cookie with name `luxId`. This id will be used for tracking and identification.
 A second cookie can be added for an opt out with the name `luxTrackingOptOut`.
 
+See more information in the chapters:
+
 ### [Installation](Installation/Index.md)
 ### [Analysis](Analysis/Index.md)
 ### [Identification](Identification/Index.md)

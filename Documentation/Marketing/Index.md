@@ -7,7 +7,8 @@ automation tool to get best results.
 
 ### Glossary
 
-First of all, let's define some terms in marketing automation and in Lux
+First of all, let's define some terms in marketing automation and in Lux. This will help you with this manual and
+simplifies the work with marketing automation tools in general.
 
 | Term                      | Description                                                                                            |
 | ------------------------- | ------------------------------------------------------------------------------------------------------ |
