@@ -32,6 +32,6 @@ See more information in the chapters:
 ### [Categoryscorings](Categoryscorings/Index.md)
 ### [Leads](Leads/Index.md)
 ### Workflows
-### Plugins
+### Plugins and Pageoverview
 ### CommandController
 ### [FAQ](FAQ/Index.md)

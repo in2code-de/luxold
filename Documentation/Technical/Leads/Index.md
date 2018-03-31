@@ -42,3 +42,21 @@ The table will show you your website leads.
 
 **Orderings:** Per default the orderings is identified leads first and after that sort by scoring. The orderings can
 be change if you are using a special filter.
+
+#### Detail Preview
+
+If you click in a table row, a small lead preview will be loaded via AJAX. Both diagrams on the right side will be
+replaced with a preview box and a scoring box.
+
+<img src="../../../Documentation/Images/documentation_leads_list_detail.png" width="800" />
+
+If you add a text into the textarea *Add an individual description*, this notice is saved automaticly if the focus gets
+lost on the field (on blur).
+
+Clicking on *Show lead details* will open the detail page.
+
+#### Detail View
+
+The detail view will give you a couple of information of the chosen lead.
+
+<img src="../../../Documentation/Images/screenshot_detail.png.png" width="800" />
