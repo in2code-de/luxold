@@ -8,8 +8,8 @@ workflow triggers or workflow actions.
 
 ### Introduction
 
-Lux is build with asynchronical technique and without the need of any USER_INT function to also use lux together with
-staticfilecache extension for **high performance**.
+Lux is build to use asynchronical techniques and without the need of any USER_INT function to also use lux together with
+staticfilecache extension for **high performance** on your TYPO3 websites.
 
 There is **no need to use a JS framework like jQuery** - Lux just uses vanilla JS - also for the lightbox implementation.
 
@@ -27,5 +27,9 @@ A second cookie can be added for an opt out with the name `luxTrackingOptOut`.
 ### [Installation](Installation/Index.md)
 ### [Analysis](Analysis/Index.md)
 ### [Identification](Identification/Index.md)
+### [Categoryscorings](Categoryscorings/Index.md)
+### [Leads](Leads/Index.md)
 ### Workflows
+### Plugins
+### CommandController
 ### [FAQ](FAQ/Index.md)
