@@ -75,6 +75,21 @@ Clicking on a name/email/"anonymous" will open a detail page with some more info
 **Note:** You can filter the dashboard view to leads from this or from previous month or from this year with the filter
 select at the top
 
+With a bit of TypoScript configuration it's possible to decide which activity status should be shown in activity log
+in dashboard view:
+```
+lib.lux.settings {
+    backendview {
+        analysis {
+            activity {
+                # Greater then 0 means to also have "lux identified a new lead", greater 1 means to not have this kind of messages
+                statusGreaterThen = 1
+            }
+        }
+    }
+}
+```
+
 #### Content
 
 If you choose the content view (see top left to switch from dashboard to content), you will see the 100 most interesting
