@@ -10,6 +10,10 @@ If you have activated pageoverview in Extension Manager settings of extension lu
 leads (Identified and Anonymous) of a page in page module.
 <img src="../../../Documentation/Images/documentation_pageoverview.png" width="800" />
 
+
+
+
+
 #### Plugins
 
 ##### Plugin 1: Opt out
@@ -27,3 +31,16 @@ You can simply add a Plugin Pi1 *trackingOptOut* to a page and add some content 
 
 <img src="../../../Documentation/Images/documentation_plugin_optout_backend.png" width="800" />
 
+
+
+
+##### Plugin 2: Contextual content
+
+Another possibility beside workflow actions to nurture leads is to use a contextual content plugin. If you add
+this to a page, you can define a default content element and to define one or more content elements per lux-category.
+An asynchronous request (AJAX of course for high performance website not a USER_INT) will show the most relevant
+content element - related to the category scoring of the current visitor.
+
+If you have added more then only one content element per category, the content element is selected per random.
+
+<img src="../../../Documentation/Images/documentation_plugin_contextualcontent.png" width="800" />

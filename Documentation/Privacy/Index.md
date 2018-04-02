@@ -1,12 +1,24 @@
 <img align="left" src="../../Resources/Public/Icons/lux.svg" width="50" />
 
+This part of the documentation gives you some information about privacy on websites in general.
+
 ## Privacy documenation
 
 First of all let your visitors know what kind of information you are collecting and why you are collection those
-information.
+information. The best place for this explanation is the privacy site (Datenschutzerklärung). This will follow the
+rules of GDPR (General Data Protection Regulation) / DSGVO (Datenschutzgrundverordnung).
 
-### Tracking Opt Out
+### User information
 
+Every visitor has the right to see every data that you've stored about him/her. In addition the right that all
+information must be removed.
+
+Beside a *CommandController* to remove leads and all there data, there is a *Remove completely* button in the detail
+view of a lead. Both will result in a complete remove of all data of the lead.
+
+### Tracking Opt-Out
+
+#### Opt-Out Plugin
 As known from Matomo (former known as Piwik) also Lux offers a Plugin fo an Opt-Out possibility for visitors.
 
 <img src="../Images/documentation_plugin_optout_frontend1.png" width="800" />
