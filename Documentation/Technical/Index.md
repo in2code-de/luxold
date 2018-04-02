@@ -29,9 +29,9 @@ See more information in the chapters:
 ### [Installation](Installation/Index.md)
 ### [Analysis](Analysis/Index.md)
 ### [Identification](Identification/Index.md)
-### [Scoring](Categoryscorings/Index.md)
+### [Scoring and Categoryscoring](Categoryscorings/Index.md)
 ### [Leads](Leads/Index.md)
-### Workflows
-### Plugins and Pageoverview
+### [Workflows](Workflows/Index.md)
+### [Plugins and Pageoverview](Plugins/Index.md)
 ### CommandController
 ### [FAQ](FAQ/Index.md)
