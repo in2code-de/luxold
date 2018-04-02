@@ -1,8 +1,9 @@
 <img align="left" src="../../../Resources/Public/Icons/lux.svg" width="50" />
 
-### Analysis
+### Tracking and Analysis
 
-This part of the documentation describes all configuration parts related to analysis and tracking of visitors.
+This part of the documentation describes all configuration parts related to analysis and tracking of visitors and will
+be automaticly loaded if you choose the main lux static template in the root template.
 
 #### TypoScript Configuration
 

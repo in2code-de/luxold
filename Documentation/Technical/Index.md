@@ -29,7 +29,7 @@ See more information in the chapters:
 ### [Installation](Installation/Index.md)
 ### [Analysis](Analysis/Index.md)
 ### [Identification](Identification/Index.md)
-### [Categoryscorings](Categoryscorings/Index.md)
+### [Scoring](Categoryscorings/Index.md)
 ### [Leads](Leads/Index.md)
 ### Workflows
 ### Plugins and Pageoverview

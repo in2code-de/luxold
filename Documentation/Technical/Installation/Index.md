@@ -2,6 +2,8 @@
 
 ### Installation
 
+This part of the documentation describes how to install lux to your TYPO3 instance.
+
 #### 1. Requirements
 
 * TYPO3 8.7 or newer

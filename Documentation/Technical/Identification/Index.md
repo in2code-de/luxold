@@ -18,7 +18,7 @@ And... emails are great because, you can:
 
 So, if email-addresses are great and we want to collect the email from our unknown leads - how can we do this? The
 answer is simple: We have to deal a bit with our visitors. Let them download an interesting asset (e.g. a whitepaper)
-but ask for their email address first. An other way would be to offer a callback-form where you offer to call the
+but ask for their email address first. Another way would be to offer a callback-form where you offer to call the
 visitor - also ask for the email address here. Is there a form, where the visitor can get access to a software?
 You guessed it, ask for the email address.
 
