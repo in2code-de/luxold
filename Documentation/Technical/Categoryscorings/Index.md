@@ -4,8 +4,11 @@
 
 This part of the documentation tells us a bit about scoring and categoryscoring and how to configure lux for that.
 
-While scoring reflect **how hot a lead is** in general, category scoring shows which product/service
+While scoring reflects **how hot a lead is** in general, category scoring shows which product/service
 is the right choice for different leads (see glossary at [Marketing Information](../../Marketing/Index.md)).
+
+
+
 
 #### Scoring
 
@@ -21,10 +24,12 @@ The default scoring calculation is stored in the Extension Manager settings of l
 **Note:** If you're using *lastVisitDaysAgo* you want to decrease scoring if the last page visit of the lead was a while
 ago. That means that you have to call a CommandController once a day (or night) for a calculation.
 
-The general scoring is visible on different views in Lux. Mostly beside the lead identification:
-<img src="../../../Documentation/Images/documentation_scoring.png" />
+The general scoring is visible on different views in Lux. Mostly beside the lead identification.
 The value in the grey badge reflects the general scoring. The value in the blue badge reflects the hottest category
-scoring.
+scoring:
+<img src="../../../Documentation/Images/documentation_scoring.png" />
+
+
 
 
 #### Categoryscoring
