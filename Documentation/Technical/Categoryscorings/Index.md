@@ -37,16 +37,16 @@ scoring:
 You know your business much better than us. So you have to think about, which categories reflect which part of your
 business in your TYPO3 installation.
 In our case, we could use a category for this product **lux** another for our product **Content Publisher**
-and probably a third for **carreer*x* to find new collegues who wants to help us with lux and TYPO3.
+and probably a third for **carreer** to find new collegues who wants to help us with lux and TYPO3.
 Of course a download or a page visit of an asset/page of a lux category should increase a category scoring.
 
-What can we do with the knowledge about leads and their category scoring? Lux is able to execute workflow actions (see
-[Workflow](../Workflows/Index.md)) based on category scoring or show contextual content (also based on category scoring
-- see ../Plugins/Index.md)).
+What can we do with the knowledge about leads and their category scoring? Lux is able to execute workflow actions
+(see [Workflow](../Workflows/Index.md)) based on category scoring or show contextual content
+(also based on category scoring - see [Plugins](../Plugins/Index.md)).
 
 ##### Configuration
 
-You can simple define some lux-categories in your TYPO3. A lux-category is just a sys_category record in TYPO3.
+You can simply define some lux-categories in your TYPO3. A lux-category is just a sys_category record in TYPO3.
 Don't forget to check the checkbox "lux-category".
 
 <img src="../../../Documentation/Images/documentation_categoryscorings_categories.png" width="800" />
