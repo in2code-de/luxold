@@ -29,7 +29,8 @@ After that you can choose next for step 2.
 
 #### 2 Trigger
 
-A trigger is an event that happens. You can choose one or more triggers (and combine them logical with AND or OR) that
+A trigger is a condition for a possible event or action.
+You can choose one or more triggers (and combine them logical with AND or OR) that
 should result in an action (see 3 Action).
 
 Choose a trigger and click on the **+** button. Now a new trigger configuration was added. Depending on the trigger that
@@ -286,3 +287,313 @@ lib.lux.settings {
 Of course we wanted to build a very flexible Marketing Automation tool that can be extended to your needs. So we don't
 know all the triggers and actions that you need. But we made it very easy for you to extend the existing list with your
 own triggers and actions.
+
+The following examples would require an additional extension and we call it *luxextension*.
+
+##### Add an individual trigger
+
+Let's say you want to add an individual trigger **If a frontend user adds a page**, you should register it via
+TypoScript first:
+
+```
+lib.lux.settings {
+
+   # All workflow settings
+   workflow {
+
+       triggers {
+
+           # Trigger if a frontend user enters a page
+           100 {
+               # Title to show in workflow backend module
+               title = LLL:EXT:luxextension/Resources/Private/Language/locallang_db.xlf:trigger.frontenduser
+
+               # Classname for implementation of the trigger itself
+               className = Vendor\Luxextension\Domain\Trigger\FrontendUserTrigger
+
+               # Templatefile for implementation of the form in workflow module
+               templateFile = EXT:luxextension/Resources/Private/Templates/Workflow/Trigger/FrontendUser.html
+
+               # Additional configuration
+               configuration {
+                   # If a frontenduser is registered in this fe_group
+                   group = 1
+               }
+           }
+       }
+   }
+}
+plugin.tx_lux_fe.settings < lib.lux.settings
+module.tx_lux.settings < lib.lux.settings
+```
+
+A template file will help you to ask the marketing editors for configuration. In our example the trigger should only
+work for a selected page. So we need an input field where the editor can add a PID and we name it *page*.
+
+EXT:luxextension/Resources/Private/Templates/Workflow/Trigger/FrontendUser.html:
+```
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {triggerSettings.title} Trigger title from TypoScript
+        {triggerSettings.description} Trigger description from TypoScript
+        {triggerSettings.className} Trigger className from TypoScript
+        {triggerSettings.templateFile} Trigger templateFile from TypoScript
+        {triggerSettings.configuration.foo} Trigger configuration from TypoScript
+    </f:comment>
+
+
+    <div class="row form-group lux-trigger lux-trigger-conjunction{trigger.conjunction}">
+        <div class="col-md-12">
+            <label for="trigger_{index}_page" class="lb-lg">
+                <f:translate key="LLL:EXT:luxextension/Resources/Private/Language/locallang_db.xlf:trigger.frontenduser.page">PID</f:translate>
+            </label>
+            <input
+               type="number"
+               name="tx_lux_lux_luxworkflow[trigger][{index}][configuration][page]"
+               class="form-control"
+               id="trigger_{index}_page"
+               placeholder="123"
+               value="{configuration.page}" />
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][className]" value="{triggerSettings.className}" />
+    <input type="hidden" name="tx_lux_lux_luxworkflow[trigger][{index}][conjunction]" value="{trigger.conjunction}" />
+</f:spaceless>
+```
+
+Two additional hiddenfields at the end will store the chosen conjunction and the className into database.
+
+Now it's time for some own PHP-magic in the class Vendor\Luxextension\Domain\Trigger\FrontendUserTrigger.
+EXT:luxextension/Classes/Domain/Trigger/FrontendUserTrigger.php:
+
+```
+<?php
+declare(strict_types=1);
+namespace Vendor\Luxextension\Domain\Trigger;
+
+use \In2code\Lux\Domain\Trigger\AbstractTrigger;
+use \In2code\Lux\Domain\Trigger\TriggerInterface;
+
+/**
+ * Class FrontendUserTrigger
+ */
+class FrontendUserTrigger extends AbstractTrigger implements TriggerInterface
+{
+
+    /**
+     * @return void
+     */
+    public function initialize()
+    {
+        if ((int)$this->getConfigurationByKey('page') === 0) {
+            throw new \Exception('No page configuration given', 1522680218);
+        }
+        if ($this->getSettingsByPath('group') === '') {
+            throw new \Exception('No fe_group uid given in TypoScript', 1522680425);
+        }
+    }
+
+    /**
+     * Check if
+     * - the current visitor enters the configured page
+     * - and if the visitor is logged in as fe_user
+     * - and if he/she is logged in in a given fe_group
+     *
+     * @return bool
+     */
+    public function isTriggered(): bool
+    {
+        if ((int)$GLOBALS['TSFE']->id === (int)$this->getConfigurationByKey('page')) {
+            $userGroupUid = (int)$this->getSettingsByPath('group');
+            $userGroupsFeLogin = explode(',', $GLOBALS['TSFE']->fe_user->user['usergroup']);
+            if (!empty($userGroupsFeLogin)) {
+                return in_array($userGroupUid, $userGroupsFeLogin);
+            }
+        }
+        return false;
+    }
+}
+
+```
+
+Your PHP trigger class must implement TriggerInterface and should extend the AbstractTrigger. Last class offers you
+useful methods (like getWorkflow(), getTrigger() and getVisitor(), getConfigurationByKey() or getSettingsByPath())
+to get helpful information.
+
+The method initialize() is called before isTriggered() and the method afterTrigger() at last.
+While you have to add a boolean method isTriggered() the others are optional.
+
+
+Last but not least, you should add a locallang file with the keys that you've used in TypoScript and in your Trigger
+HTML file.
+
+
+
+
+
+##### Add an individual action
+
+Let's say you want to add an individual action **Send lead values via CURL**, you should register it via
+TypoScript first:
+
+```
+lib.lux.settings {
+
+    # All workflow settings
+    workflow {
+
+        actions {
+
+            # Action to send some details via CURL to a thirdparty software
+            100 {
+                # Title to show in workflow backend module
+                title = LLL:EXT:luxextension/Resources/Private/Language/locallang_db.xlf:action.curl
+
+                # Classname for implementation of the action itself
+                className = Vendor\Luxextension\Domain\Action\CurlAction
+
+                # Templatefile for implementation of the form in workflow module
+                templateFile = EXT:luxextension/Resources/Private/Templates/Workflow/Action/Curl.html
+
+                # Additional configuration
+                configuration {
+                    uri = https://www.thirdpartycrm.org/api/
+                }
+            }
+    }
+}
+plugin.tx_lux_fe.settings < lib.lux.settings
+module.tx_lux.settings < lib.lux.settings
+```
+
+A template file will help you to ask the marketing editors for configuration. In our example we just ask for the URI
+to send the values to. Per default TypoScript configuration should work but the URI could be overwritten by
+a configuration from the marketing editor.
+So we need an input field where the editor can add a URI for overwriting and we name it *uri*.
+
+EXT:luxextension/Resources/Private/Templates/Workflow/Action/Curl.html:
+```
+<f:spaceless>
+    <f:comment>
+        Available variables:
+        {index} Index variable for fieldnames
+        {actionSettings.title} Action title from TypoScript
+        {actionSettings.description} Action description from TypoScript
+        {actionSettings.className} Action className from TypoScript
+        {actionSettings.templateFile} Action templateFile from TypoScript
+        {actionSettings.configuration.foo} Action configuration from TypoScript
+    </f:comment>
+
+    <div class="lux-action">
+        <h1><f:translate key="LLL:EXT:luxextension/Resources/Private/Language/locallang_db.xlf:action.curl" /></h1>
+
+        <div class="row form-group">
+            <div class="col-md-3">
+                <label for="trigger_{index}_recurring" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring">
+                        Recurring/Single
+                    </f:translate>
+                </label>
+                <select name="tx_lux_lux_luxworkflow[actions][{index}][configuration][recurring]" class="form-control" id="trigger_{index}_recurring">
+                    <option value="single"{f:if(condition:'{configuration.recurring} == "single"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.single')}</option>
+                    <option value="recurring"{f:if(condition:'{configuration.recurring} == "recurring"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.recurring')}</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <label for="action_{index}_uri" class="lb-lg">
+                    <f:translate key="LLL:EXT:luxextension/Resources/Private/Language/locallang_db.xlf:action.curl.uri">
+                        URI to send request to (optional)
+                    </f:translate>
+                </label>
+                <input
+                    type="text"
+                    name="tx_lux_lux_luxworkflow[actions][{index}][configuration][uri]"
+                    class="form-control"
+                    value="{configuration.uri}"
+                    id="action_{index}_uri" />
+                <span class="help-block">
+                     <f:translate key="LLL:EXT:luxextension/Resources/Private/Language/locallang_db.xlf:action.curl.uri.help">
+                        Any helptext for the marketing editors
+                     </f:translate>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="tx_lux_lux_luxworkflow[actions][{index}][className]" value="{actionSettings.className}" />
+</f:spaceless>
+```
+
+One additional hiddenfield at the end will store the chosen className into database.
+
+Now it's time for some own PHP-magic in the class Vendor\Luxextension\Domain\Action\CurlAction.
+EXT:luxextension/Classes/Domain/Action/CurlAction.php:
+
+```
+<?php
+declare(strict_types=1);
+namespace Vendor\Luxextension\Domain\Action;
+
+use \In2code\Lux\Domain\Action\AbstractAction;
+use \In2code\Lux\Domain\Action\ActionInterface;
+
+/**
+ * Class CurlAction
+ */
+class CurlAction extends AbstractAction implements ActionInterface
+{
+
+    /**
+     * @return bool
+     */
+    public function doAction(): bool
+    {
+        $uri = $this->getSettingsByPath('uri');
+        if ($this->getConfigurationByKey('uri') !== '') {
+            $uri = $this->getConfigurationByKey('uri');
+        }
+        return $this->sendToUri($uri);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function sendToUri(string $uri): bool
+    {
+        $resource = curl_init($uri);
+
+        $values = [
+            'email' => $this->getVisitor()->getEmail()
+        ];
+
+        curl_setopt_array(
+            $resource,
+            [
+                CURLOPT_POST => true,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+                CURLOPT_POSTFIELDS => json_encode($values),
+            ]
+        );
+        $result = curl_exec($resource);
+        if ($result === false) {
+            throw new \DomainException('Could not connect to given URI.', 1522680965);
+        }
+        return $result !== false;
+    }
+}
+```
+
+Your PHP action class must implement ActionInterface and should extend the ActionTrigger. Last class offers you
+useful methods (like getWorkflow(), getAction() and getVisitor(), getConfigurationByKey() or getSettingsByPath())
+to get helpful information.
+
+The method initialize() is called before doAction() and the method afterAction() at last.
+While you have to add a boolean method doAction() the others are optional.
+
+
+Last but not least, you should add a locallang file with the keys that you've used in TypoScript and in your Trigger
+HTML file.
