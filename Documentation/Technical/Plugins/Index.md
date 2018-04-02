@@ -37,10 +37,11 @@ You can simply add a Plugin Pi1 *trackingOptOut* to a page and add some content 
 ##### Plugin 2: Contextual content
 
 Another possibility beside workflow actions to nurture leads is to use a contextual content plugin. If you add
-this to a page, you can define a default content element and to define one or more content elements per lux-category.
+this to a page, you can define a default content element and you can define one or more content elements per
+lux-category.
 An asynchronous request (AJAX of course for high performance website not a USER_INT) will show the most relevant
 content element - related to the category scoring of the current visitor.
 
-If you have added more then only one content element per category, the content element is selected per random.
+If you have added more then only one content element per category, the content element is selected randomly.
 
 <img src="../../../Documentation/Images/documentation_plugin_contextualcontent.png" width="800" />
