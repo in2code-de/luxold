@@ -27,3 +27,43 @@ simplifies the work with marketing automation tools in general.
 | Cookie                    | A cookie is an individual value that is saved in the visitors browser.                                 |
 | DoNotTrack                | Browser support a *DoNotTrack* setting. This setting must be turned on from the user (it is not a default setting of the browser). If lux recognize this setting, all tracking functions are disabled. We will respect this privacy setting! |
 | Slack                     | Slack is a chat platform. Mainly used for team-communication and loved by developers. There is a *Publish to a slack channel* workflow action available in Lux. |
+
+
+
+### Identification
+
+This part of the documentation describes different possibilities to **identify your leads**.
+Identification means that you are able to know the person behind the lead.
+And this needs an unique identification-property from the lead.
+E.g. firstname would be - of course - not a good property because this is not unique.
+Marketing Automation tools are going to use the **email-address** as unique property of the user.
+And... emails are great because, you can:
+
+* identify the lead
+* see the firstname as part of the email address (mostly given in business cases)
+* see the lastname as part of the email address (mostly given in business cases)
+* see the company as part of the email address (mostly given in business cases)
+* having an url (company) where you can simply find more interesting stuff of your lead
+* send marketing relevant information in newsletters
+
+So, if email-addresses are great and we want to collect the email from our unknown leads - how can we do this? The
+answer is simple: We have to deal a bit with our visitors. Let them download an interesting asset (e.g. a whitepaper)
+but ask for their email address first. Another way would be to offer a callback-form where you offer to call the
+visitor - also ask for the email address here. Is there a form, where the visitor can get access to a software?
+You guessed it, ask for the email address.
+
+<img src="../Images/screenshot_email4link.png" width="800" />
+
+A good percentual value would be an identification rate of 1% of all your visitors.
+So check the Lux dashboard and decide to make more *deals* if the value is too low.
+
+See more technical details in documenation part [Identification](../Technical/Identification.md)
+
+
+
+### Lead nurturing
+
+Think about the customer livecycle and try to develop your leads. There are a few possibilities of nurturing like
+storytelling (tell your visitors a story to let them understand the problems they have and the solution you are
+offering), contextual content (show only relevant content for the needs of your visitors) or open a lightbox with a
+special offer if the lead visits your product the second or third time.

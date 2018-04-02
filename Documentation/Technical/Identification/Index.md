@@ -179,3 +179,15 @@ After that, you can change every link in the CK editor:
 
 All clicks in frontend will be catched now by JavaScript and opens a lightbox:
 <img src="../../../Documentation/Images/screenshot_email4link.png" width="800" />
+
+**Note:** If you want to also use the email4link feature in your HTML-Templates, you can simply add some data-attributes
+to your links.
+
+```
+<a
+    class="btn btn-primary"
+    href="/fileadmin/whitepaper.pdf"
+    data-lux-email4link-sendemail="true"
+    data-lux-email4link-text="Please give us your email-address, we're going to send you the asset."
+    data-lux-email4link-title="Receive document via email.">Download our whitepaper</a>
+```

@@ -34,7 +34,8 @@ Nutzungsdaten speichert. Wenn Sie alle Ihre Cookies löschen, hat dies zur Folge
 gelöscht wird. Das Opt-Out muss bei einem erneuten Besuch unserer Seite wieder aktiviert werden.
 ```
 
-We would recommend to place an Opt-Out Plugin also nerby this explanation (see [Plugins](../Technical/Plugins/Index.md).
+We would recommend to place an Opt-Out Plugin also nerby this explanation
+(see [Plugins](../Technical/Plugins/Index.md)).
 
 ### User information
 
