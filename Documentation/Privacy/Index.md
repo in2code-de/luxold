@@ -12,7 +12,7 @@ rules of GDPR (General Data Protection Regulation) / DSGVO (Datenschutzgrundvero
 
 ### Example part for your privacy page
 
-This could be an example for your German "Datenschutzerklärungsseite":
+This could be an example for your German "Datenschutzerklärungsseite". This is not a legal binding declaration.
 
 ```
 <h2>Verwendung des Marketing-Automation-Tools lux</h2>
