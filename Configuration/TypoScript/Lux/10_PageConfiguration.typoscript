@@ -185,14 +185,25 @@ luxLightboxContentWorkflowAction {
         xhtml_cleaning = 0
         admPanel = 0
         debug = 0
+        linkVars = L,type
     }
 
+    # Render single content element if &luxContent=anything
     10 = RECORDS
     10 {
         tables = tt_content
         dontCheckPid = 1
         source.data = GP:luxContent
         source.intval = 1
+        if.isTrue.data = GP:luxContent
+    }
+
+    # Render a page if no &luxContent given
+    20 = COA
+    20 {
+        10 < styles.content.get
+        10.select.where = colPos = 0
+        if.isFalse.data = GP:luxContent
     }
 }
 
