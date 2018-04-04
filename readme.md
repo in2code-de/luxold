@@ -129,6 +129,7 @@ for the identification feature (powermail, form, formhandler, felogin, etc...).
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.15.1     | 2018-04-04 | Bugfix     | Allow links in lightboxes now.                                                     |
 | 1.15.0     | 2018-04-04 | Task       | Add documentation, Dashboard: Show percentual values. Performance in content view. |
 | 1.14.0     | 2018-03-26 | Bugfix     | Small bugfixes (CKeditor Plugin, Dateformat)                                       |
 | 1.13.2     | 2018-03-18 | Bugfix     | Small bugfixes.                                                                    |
