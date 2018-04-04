@@ -127,25 +127,26 @@ for the identification feature (powermail, form, formhandler, felogin, etc...).
 
 ## Changelog
 
-| Version    | Date       | State      | Description                                                                     |
-| ---------- | ---------- | ---------- | ------------------------------------------------------------------------------- |
-| 1.14.0     | 2018-03-26 | Bugfix     | Small bugfixes (CKeditor Plugin, Dateformat)                                    |
-| 1.13.2     | 2018-03-18 | Bugfix     | Small bugfixes.                                                                 |
-| 1.13.1     | 2018-03-15 | Bugfix     | Small bugfixes.                                                                 |
-| 1.13.0     | 2018-03-14 | Task       | Add css grid for dashboard. Small bugfixes.                                     |
-| 1.12.0     | 2018-03-13 | Feature    | Disable tracking if be-user is logged in. Small bugfixes.                       |
-| 1.11.0     | 2018-03-12 | Feature    | Some privace features. Some brush up. Add contextual content plugin.            |
-| 1.10.0     | 2018-03-10 | Task       | Some small improvements. Add a opt-out plugin.                                  |
-| 1.9.0      | 2018-03-08 | Task       | Some changes to see categoryscorings.                                           |
-| 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                |
-| 1.7.0      | 2018-03-07 | Feature    | Add identified trigger and slack action.                                        |
-| 1.6.0      | 2018-03-06 | Task       | Add categoryscoring. Bugfix: Don't track downloads with email4link twice.       |
-| 1.5.1      | 2018-03-05 | Bugfix     | Prevent exception in backend.                                                   |
-| 1.5.0      | 2018-03-05 | Task       | Finish workflow modules with initial triggers/actions. Small bugfixes.          |
-| 1.4.0      | 2018-03-04 | Task       | Split backend modules, add content analysis, integrate nearly complete workflow |
-| 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                   |
-| 1.2.0      | 2018-03-01 | Task       | Some small fixes in backend analysis show identified and recurring.             |
-| 1.1.1      | 2018-02-27 | Bugfix     | Some small fixes in backend analysis and email4link functionality.              |
-| 1.1.0      | 2018-02-26 | Task       | Show more relevant information in detail view. Small fixes.                     |
-| 1.0.1      | 2018-02-26 | Bugfix     | Fix some smaller bugs that occurs with live data                                |
-| 1.0.0      | 2018-02-26 | Task       | Initial Release with a stable tracking, identification and analyses             |
+| Version    | Date       | State      | Description                                                                        |
+| ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.15.0     | 2018-04-04 | Task       | Add documentation, Dashboard: Show percentual values. Performance in content view. |
+| 1.14.0     | 2018-03-26 | Bugfix     | Small bugfixes (CKeditor Plugin, Dateformat)                                       |
+| 1.13.2     | 2018-03-18 | Bugfix     | Small bugfixes.                                                                    |
+| 1.13.1     | 2018-03-15 | Bugfix     | Small bugfixes.                                                                    |
+| 1.13.0     | 2018-03-14 | Task       | Add css grid for dashboard. Small bugfixes.                                        |
+| 1.12.0     | 2018-03-13 | Feature    | Disable tracking if be-user is logged in. Small bugfixes.                          |
+| 1.11.0     | 2018-03-12 | Feature    | Some privace features. Some brush up. Add contextual content plugin.               |
+| 1.10.0     | 2018-03-10 | Task       | Some small improvements. Add a opt-out plugin.                                     |
+| 1.9.0      | 2018-03-08 | Task       | Some changes to see categoryscorings.                                              |
+| 1.8.0      | 2018-03-07 | Feature    | Optical refactoring of pageoverview. Bugfix in category scoring.                   |
+| 1.7.0      | 2018-03-07 | Feature    | Add identified trigger and slack action.                                           |
+| 1.6.0      | 2018-03-06 | Task       | Add categoryscoring. Bugfix: Don't track downloads with email4link twice.          |
+| 1.5.1      | 2018-03-05 | Bugfix     | Prevent exception in backend.                                                      |
+| 1.5.0      | 2018-03-05 | Task       | Finish workflow modules with initial triggers/actions. Small bugfixes.             |
+| 1.4.0      | 2018-03-04 | Task       | Split backend modules, add content analysis, integrate nearly complete workflow    |
+| 1.3.0      | 2018-03-02 | Task       | Don't show full download path in frontend with email4download                      |
+| 1.2.0      | 2018-03-01 | Task       | Some small fixes in backend analysis show identified and recurring.                |
+| 1.1.1      | 2018-02-27 | Bugfix     | Some small fixes in backend analysis and email4link functionality.                 |
+| 1.1.0      | 2018-02-26 | Task       | Show more relevant information in detail view. Small fixes.                        |
+| 1.0.1      | 2018-02-26 | Bugfix     | Fix some smaller bugs that occurs with live data                                   |
+| 1.0.0      | 2018-02-26 | Task       | Initial Release with a stable tracking, identification and analyses                |
