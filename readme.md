@@ -55,7 +55,7 @@ See the full [documentation](Documentation/Index.md) (technical, marketing and p
 - Pagefunnel
 - First and last visit
 - Store attributes from any form on the website
-- Enricht information via IP: Country, Region, Company
+- Enrich information via IP: Country, Region, Company
 - Track any asset download
 
 ### Identification
