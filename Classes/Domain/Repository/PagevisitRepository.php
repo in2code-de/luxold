@@ -31,14 +31,8 @@ class PagevisitRepository extends AbstractRepository
                 $query->greaterThan('page.uid', 0),
             ])
         );
-        $pages = $query->execute();
-        $result = [];
-        /** @var Pagevisit $page */
-        foreach ($pages as $page) {
-            $result[$page->getPage()->getUid()][] = $page;
-        }
-        array_multisort(array_map('count', $result), SORT_DESC, $result);
-        $result = array_slice($result, 0, 100);
+        $pages = $query->execute(true);
+        $result = $this->combineAndCutPages($pages);
         return $result;
     }
 
@@ -172,5 +166,20 @@ class PagevisitRepository extends AbstractRepository
         $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         $query->setLimit(100);
         return $query->execute();
+    }
+
+    /**
+     * @param $pages
+     * @return array
+     */
+    protected function combineAndCutPages($pages): array
+    {
+        $result = [];
+        foreach ($pages as $pageProperties) {
+            $result[$pageProperties['page']][] = $pageProperties;
+        }
+        array_multisort(array_map('count', $result), SORT_DESC, $result);
+        $result = array_slice($result, 0, 100);
+        return $result;
     }
 }
