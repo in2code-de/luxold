@@ -13,7 +13,7 @@
         <h1><f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack" /></h1>
 
         <div class="row form-group">
-            <div class="col-md-12">
+            <div class="col-md-3">
                 <label for="trigger_{index}_recurring" class="lb-lg">
                     <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring">
                         Recurring/Single
@@ -24,6 +24,18 @@
                     <option value="recurring"{f:if(condition:'{configuration.recurring} == "recurring"',then:' selected="selected"')}>{f:translate(key:'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.label.recurring.recurring')}</option>
                 </select>
             </div>
+            <div class="col-md-9">
+                <label for="trigger_{index}_configuration" class="lb-lg">
+                    <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack.configuration">
+                        Configuration
+                    </f:translate>
+                </label>
+                <select name="tx_lux_lux_luxworkflow[actions][{index}][configuration][configuration]" class="form-control" id="trigger_{index}_configuration">
+                    <f:for each="{actionSettings.configuration}" key="key" as="config">
+                        <option value="{key}"{f:if(condition:'{configuration.configuration} == {key}',then:' selected="selected"')}>{config.name}</option>
+                    </f:for>
+                </select>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -32,7 +44,12 @@
                         Bodytext
                     </f:translate>
                 </label>
-                <textarea name="tx_lux_lux_luxworkflow[actions][{index}][configuration][text]" cols="50" rows="10" class="form-control" id="action_{index}_text">{configuration.text}</textarea>
+                <textarea
+                        name="tx_lux_lux_luxworkflow[actions][{index}][configuration][text]"
+                        cols="50"
+                        rows="10"
+                        class="form-control"
+                        id="action_{index}_text">{configuration.text}</textarea>
                 <span class="help-block">
                      <f:translate key="LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:action.slack.text.help" />
                 </span>
