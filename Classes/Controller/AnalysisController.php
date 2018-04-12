@@ -58,8 +58,8 @@ class AnalysisController extends ActionController
     public function dashboardAction(FilterDto $filter)
     {
         $this->view->assignMultiple([
-            'hottestVisitors' => $this->visitorRepository->findByHottestScorings($filter),
             'filter' => $filter,
+            'hottestVisitors' => $this->visitorRepository->findByHottestScorings($filter),
             'numberOfUniqueSiteVisitors' => $this->visitorRepository->findByUniqueSiteVisits($filter)->count(),
             'numberOfRecurringSiteVisitors' => $this->visitorRepository->findByRecurringSiteVisits($filter)->count(),
             'numberOfIdentifiedVisitors' => $this->visitorRepository->findIdentified($filter)->count(),
@@ -86,6 +86,7 @@ class AnalysisController extends ActionController
     public function contentAction(FilterDto $filter)
     {
         $this->view->assignMultiple([
+            'filter' => $filter,
             'pages' => $this->pagevisitsRepository->findCombinedByPageIdentifier($filter),
             'downloads' => $this->downloadRepository->findCombinedByHref($filter),
             'numberOfVisitorsByDay' => $this->pagevisitsRepository->getNumberOfVisitorsByDay(),
