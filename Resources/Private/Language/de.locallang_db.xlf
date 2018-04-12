@@ -488,6 +488,46 @@
 				<source>Lead source</source>
 				<target state="translated">Lead Ursprung</target>
 			</trans-unit>
+			<trans-unit id="module.analysis.detailpage">
+				<source>Page visits</source>
+				<target state="translated">Seitenbesuche</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detailpage.title">
+				<source>Page title</source>
+				<target state="translated">Seitentitel</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detailpage.lead">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detailpage.company">
+				<source>Company</source>
+				<target state="translated">Firma</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detailpage.time">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detaildownloads">
+				<source>Downloads</source>
+				<target state="translated">Downloads</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detaildownloads.title">
+				<source>File</source>
+				<target state="translated">Datei</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detaildownloads.lead">
+				<source>Lead</source>
+				<target state="translated">Lead</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detaildownloads.company">
+				<source>Company</source>
+				<target state="translated">Firma</target>
+			</trans-unit>
+			<trans-unit id="module.analysis.detaildownloads.time">
+				<source>Time</source>
+				<target state="translated">Zeitpunkt</target>
+			</trans-unit>
 			<trans-unit id="module.list.pagevisits">
 				<source>Pagevisits</source>
 				<target state="translated">Seitenaufrufe</target>
