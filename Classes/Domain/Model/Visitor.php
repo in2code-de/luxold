@@ -884,7 +884,11 @@ class Visitor extends AbstractEntity
      */
     public function getCompany(): string
     {
-        return $this->getPropertyFromAttributes('company');
+        $company = $this->getPropertyFromAttributes('company');
+        if (empty($company)) {
+            $company = $this->getPropertyFromIpinformations('isp');
+        }
+        return $company;
     }
 
     /**
