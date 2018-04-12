@@ -45,6 +45,7 @@ Possible triggers by default are:
 * When lead enters a page of a given category
 * On a defined time
 * If a lead gets identified
+* If lead company given
 
 After that you can choose next for step 3 or previous for step 1 again.
 
@@ -183,6 +184,23 @@ lib.lux.settings {
 
                 # Templatefile for implementation of the form in workflow module
                 templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/Identified.html
+
+                # Additional configuration
+                configuration {
+                    # Any configuration - available as array in Template File and Trigger class for some own magic
+                }
+            }
+
+            # Trigger if company is known from lead (e.g. from IP-Information)
+            7 {
+                # Title to show in workflow backend module
+                title = LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:trigger.company
+
+                # Classname for implementation of the trigger itself
+                className = In2code\Lux\Domain\Trigger\CompanyTrigger
+
+                # Templatefile for implementation of the form in workflow module
+                templateFile = EXT:lux/Resources/Private/Templates/Workflow/Trigger/Company.html
 
                 # Additional configuration
                 configuration {

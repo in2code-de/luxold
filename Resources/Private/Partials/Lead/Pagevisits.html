@@ -16,6 +16,7 @@
                                 </span>
                                 Page <strong title="UID{pagevisit.page.uid}">{pagevisit.page.title}</strong> visited from<br />
                                 <span title="UID{pagevisit.visitor.uid}"><f:link.action action="detail" controller="Lead" arguments="{visitor:pagevisit.visitor}">{pagevisit.visitor.fullName}</f:link.action></span>
+                                <f:if condition="{pagevisit.visitor.company}">({pagevisit.visitor.company})</f:if>
                             </li>
                         </f:if>
                     </f:for>

@@ -3,10 +3,13 @@ declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
 use In2code\Lux\Domain\Repository\CategoryscoringRepository;
+use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Domain\Service\ReadableReferrerService;
 use In2code\Lux\Domain\Service\ScoringService;
+use In2code\Lux\Utility\FileUtility;
 use In2code\Lux\Utility\LocalizationUtility;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
@@ -884,7 +887,14 @@ class Visitor extends AbstractEntity
      */
     public function getCompany(): string
     {
-        return $this->getPropertyFromAttributes('company');
+        $company = $this->getPropertyFromAttributes('company');
+        if (empty($company)) {
+            $company = $this->getPropertyFromIpinformations('isp');
+            if ($this->isTelecomProvider($company)) {
+                $company = '';
+            }
+        }
+        return $company;
     }
 
     /**
@@ -992,5 +1002,16 @@ class Visitor extends AbstractEntity
             $result = 1;
         }
         return $result;
+    }
+
+    /**
+     * @param string $company
+     * @return bool
+     */
+    protected function isTelecomProvider(string $company): bool
+    {
+        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $tpFileList = $configurationService->getTypoScriptSettingsByPath('general.telecommunicationProviderList');
+        return FileUtility::isStringInFile($company, GeneralUtility::getFileAbsFileName($tpFileList));
     }
 }

@@ -1,0 +1,155 @@
+ACONET
+Afrihost
+Amazon.com
+ANTIK Telecom s.r.o
+ARTOS a.s.
+AT&T U-verse
+Automattic
+Beijing Baidu Netcom Science and Technology Co.
+Beijing Qihu Technology Company Limited
+Bell Canada
+BH Telecom d.d. Sarajevo
+Bisping & Bisping GmbH & Co KG
+BITel Gesellschaft fuer Telekommunikation mbH
+bn:t Blatzheim Networks Telecom GmbH
+Bredband2 AB
+Bremen Briteline GmbH
+CAT Telecom public company Ltd
+China Mobile Guangdong
+China Telecom
+China Telecom Guangdong
+China Unicom Beijing
+China Unicom Liaoning
+"Choopa, LLC"
+Cogent Communications
+COLT Technology Services Group Limited
+Cox Communications
+CyrusOne LLC
+Deutsche Glasfaser Business GmbH
+Deutsche Telekom AG
+Deutsche Telekom Business
+Digital Energy Technologies Chile SpA
+ecotel communication ag
+Envia Tel GmbH
+europroNET Bosnia d.o.o.
+EWE-Tel GmbH
+Facebook
+Fiber Grid Inc
+Free SAS
+Frontier Communications
+Global Layer B.V.
+Globalways AG
+Google
+Google Cloud
+HeLi NET Telekommunikation GmbH & Co. KG
+HETZNER
+Hetzner Online GmbH
+Host Europe GmbH
+Host1Plus
+Hutchison Drei Austria GmbH
+IPHH Internet Port Hamburg GmbH
+IPVanish
+Ishan's Network
+JimmyNet s.r.o.
+Joyent
+JSC ER-Telecom Holding
+Kabel BW
+Kabelfernsehen Muenchen ServiCenter GmbH & Co.KG
+kabelplus GmbH
+KDVZ Citkomm
+Kom4tel GmbH
+Komro
+komro GmbH
+Komsa Group Network
+lagis Internet Service Provider GmbH
+Leaseweb Deutschland GmbH
+LeaseWeb Netherlands B.V.
+Leaseweb USA
+Limestone Networks
+"Linode, LLC"
+LIWEST Kabelmedien GmbH
+LueneCom Kommunikationsloesungen GmbH
+LWLcom GmbH
+M & A Leasing Limited
+M247 Ltd
+Madnet d.o.o.
+MDlink online service center GmbH
+Medianet Group Srl
+mhs internet AG
+Microsoft Corporation
+MK Netzdienste GmbH & Co. KG
+Mtel
+NBP
+Neofonie GmbH
+Netalis SAS
+NetCologne GmbH
+NetCom BW GmbH
+NETHINKS GmbH
+Netia SA
+netplusFR SA
+Netwire Internet Solutions Pvt
+NTS workspace AG
+O2 Deutschland
+OMG.de GmbH
+ONLINE SAS
+OOO NI
+Optimate-Server
+Orange
+Orange Polska
+Orange Swiatlowod
+OVH SAS
+Pakistan Telecommuication company limited
+Play
+Plus.line AG
+PT. Core Mediatech
+QITS Quality Information Technology Services GmbH
+R-KOM Regensburger Telekommunikationsgesellschaft
+RelAix Networks GmbH
+REWE Systems GmbH
+Rogers Cable
+Rostelecom
+S-IT Informationstechnologie Betreiber GmbH & Co.
+Salt Mobile SA
+sasag Kabelkommunikation AG
+"ShenZhen Sunrise Technology Co.,Ltd."
+SK Broadband
+Skynet Belgium
+Starnet Servicii SRL
+Sunrise Communications AG
+Swisscom
+SWU TeleNet GmbH
+T-Mobile Austria GmbH
+T-Systems International GmbH
+Tajik Academician Research and Educational Network
+Telcom Networks Limited
+Tele Columbus AG
+Tele2 Business AB
+Telecom Italia
+Telecom Italia Business
+Telecomunikatsiina Companiya Ltd
+Telekom Austria
+TelemaxX Telekommunikation GmbH
+Telenor Norge AS
+TeleRadioCompany Studio TV-9 Beregsasom Ltd.
+Telfort B.V.
+Telmex
+TOPNET
+Turksat Uydu-Net Internet
+Unitymedia
+UPC Austria
+UPC Schweiz
+UPC Schweiz GmbH
+Verizon Deutschland GmbH
+Versatel Deutschland
+Video-Broadcast GmbH
+Vodafone Albania Sh.A.
+Vodafone D2 GmbH
+Vodafone DSL
+Vodafone GmbH
+Vodafone Kabel Deutschland
+Vodafone Ono
+Vodafone-Libertel NV
+wilhelm.tel
+Wojciech Jerzy Winkel trading as Tempus Telecom
+Xs4all Internet BV
+YANDEX LLC

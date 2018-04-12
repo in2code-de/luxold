@@ -1,0 +1,6 @@
+lib.lux.settings {
+    general {
+        # Path to a simple csv with general telecom providers (to not show them as company in lead list)
+        telecommunicationProviderList = EXT:lux/Resources/Private/Static/TelecommunicationProviders.txt
+    }
+}
