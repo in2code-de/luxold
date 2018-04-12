@@ -204,14 +204,21 @@ lib.lux.settings {
 
                 # Additional configuration
                 configuration {
-                    # Add your webhook Url like https://hooks.slack.com/services/token
-                    webhookUrl = https://hooks.slack.com/services/TOKENabcdefghi56789/67890p789/7890
 
-                    # Username for this webhook
-                    username = lux
+                    # Define multiple configurations - one per slack channels or slack domain
+                    1 {
+                        # Add a name for a selection in workflow backend module
+                        name = Slack Channel "Sales"
 
-                    # Set an emoji for all this publishings (can be empty, if you already set an image to your webhook in slack)
-                    emoji = :fire:
+                        # Add your webhook Url like https://hooks.slack.com/services/token
+                        webhookUrl = https://hooks.slack.com/services/TOKENabcdefghi123456/789123456/7891
+
+                        # Username for this webhook
+                        username = lux
+
+                        # Set an emoji for all this publishings (can be empty, if you already set an image to your webhook in slack)
+                        emoji = :fire:
+                    }
                 }
             }
         }

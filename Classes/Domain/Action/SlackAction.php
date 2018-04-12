@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 namespace In2code\Lux\Domain\Action;
 
 use In2code\Lux\Utility\ObjectUtility;
@@ -40,7 +39,7 @@ class SlackAction extends AbstractAction implements ActionInterface
      */
     protected function sendToSlack(): bool
     {
-        $resource = curl_init($this->getSettingsByPath('configuration.webhookUrl'));
+        $resource = curl_init($this->getActionSettingsByKey('webhookUrl'));
         curl_setopt_array(
             $resource,
             [
@@ -64,10 +63,10 @@ class SlackAction extends AbstractAction implements ActionInterface
     {
         $message = [
             'text' => $this->getText(),
-            'username' => $this->getSettingsByPath('configuration.username')
+            'username' => $this->getActionSettingsByKey('username')
         ];
-        if ($this->getSettingsByPath('configuration.emoji') !== '') {
-            $message['icon_emoji'] = $this->getSettingsByPath('configuration.emoji');
+        if ($this->getActionSettingsByKey('emoji') !== '') {
+            $message['icon_emoji'] = $this->getActionSettingsByKey('emoji');
         }
         return $message;
     }
@@ -81,6 +80,29 @@ class SlackAction extends AbstractAction implements ActionInterface
             'visitor' => $this->getVisitor(),
             'workflow' => $this->getWorkflow()
         ]);
-        return $standaloneView->render();
+        $text = $standaloneView->render();
+        if (empty($text)) {
+            throw new \DomainException('No text stored that can be published to slack', 1523559116);
+        }
+        return $text;
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getActionSettingsByKey(string $key): string
+    {
+        $setting = '';
+        $configurationKey = $this->getConfigurationByKey('configuration');
+        if (is_numeric($configurationKey)) {
+            $settings = $this->getSettingsByPath('configuration.' . $configurationKey);
+            if (is_array($settings) && array_key_exists($key, $settings)) {
+                $setting = $settings[$key];
+            }
+        } else {
+            throw new \DomainException('Key is no number. Possible TS misconfiguration', 1523558913);
+        }
+        return $setting;
     }
 }
