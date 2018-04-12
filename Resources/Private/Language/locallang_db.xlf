@@ -605,6 +605,12 @@
 			<trans-unit id="trigger.identified.message">
 				<source>Nothing to do here. This action listen if a lead gets identified.</source>
 			</trans-unit>
+			<trans-unit id="trigger.company">
+				<source>If lead company given</source>
+			</trans-unit>
+			<trans-unit id="trigger.company.message">
+				<source>Nothing to do here. This triggers listens if a company to a lead is known (e.g. from IP-address).</source>
+			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
 				<source>Single / Recurring</source>

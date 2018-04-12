@@ -816,6 +816,14 @@
 				<source>Nothing to do here. This action listen if a lead gets identified.</source>
 				<target state="translated">Keine Einstellung notwendig. Diese Aktion reagiert sobald ein Lead identifiziert wurde.</target>
 			</trans-unit>
+			<trans-unit id="trigger.company">
+				<source>If lead company given</source>
+				<target state="translated">Sobald eine Firma eines Leads bekannt ist</target>
+			</trans-unit>
+			<trans-unit id="trigger.company.message">
+				<source>Nothing to do here. This triggers listens if a company to a lead is known (e.g. from IP-address).</source>
+				<target state="translated">Keine Einstellung notwendig. Dieser Trigger achtet darauf, ob eine Firma zu dem Lead bekannt ist (z.B. über die IP-Adresse).</target>
+			</trans-unit>
 
 			<trans-unit id="action.label.recurring">
 				<source>Single / Recurring</source>
