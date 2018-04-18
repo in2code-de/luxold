@@ -3,6 +3,7 @@ Afrihost
 Amazon.com
 ANTIK Telecom s.r.o
 ARTOS a.s.
+Atria Convergence Technologies Pvt. Ltd.
 AT&T U-verse
 Automattic
 Beijing Baidu Netcom Science and Technology Co.
@@ -14,6 +15,7 @@ BITel Gesellschaft fuer Telekommunikation mbH
 bn:t Blatzheim Networks Telecom GmbH
 Bredband2 AB
 Bremen Briteline GmbH
+BT
 CAT Telecom public company Ltd
 China Mobile Guangdong
 China Telecom
@@ -24,11 +26,13 @@ China Unicom Liaoning
 Cogent Communications
 COLT Technology Services Group Limited
 Cox Communications
+Cyber Smart Solutions S.R.L
 CyrusOne LLC
 Deutsche Glasfaser Business GmbH
 Deutsche Telekom AG
 Deutsche Telekom Business
 Digital Energy Technologies Chile SpA
+DSI GmbH Daten Service Informationssysteme
 ecotel communication ag
 Envia Tel GmbH
 europroNET Bosnia d.o.o.
@@ -47,6 +51,7 @@ Hetzner Online GmbH
 Host Europe GmbH
 Host1Plus
 Hutchison Drei Austria GmbH
+Init7 (Switzerland) Ltd.
 IPHH Internet Port Hamburg GmbH
 IPVanish
 Ishan's Network
@@ -118,6 +123,7 @@ Starnet Servicii SRL
 Sunrise Communications AG
 Swisscom
 SWU TeleNet GmbH
+SysEleven GmbH
 T-Mobile Austria GmbH
 T-Systems International GmbH
 Tajik Academician Research and Educational Network
@@ -127,7 +133,9 @@ Tele2 Business AB
 Telecom Italia
 Telecom Italia Business
 Telecomunikatsiina Companiya Ltd
+Telefonica de Espana
 Telekom Austria
+Telekommunikation Mittleres Ruhrgebiet GmbH
 TelemaxX Telekommunikation GmbH
 Telenor Norge AS
 TeleRadioCompany Studio TV-9 Beregsasom Ltd.
