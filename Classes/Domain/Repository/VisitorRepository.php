@@ -50,7 +50,7 @@ class VisitorRepository extends AbstractRepository
     }
 
     /**
-     * Find 5 hottest visitors
+     * Find a small couple of hottest visitors
      *
      * @param FilterDto $filter
      * @return QueryResultInterface
