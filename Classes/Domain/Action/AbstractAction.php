@@ -16,7 +16,7 @@ abstract class AbstractAction implements ActionInterface
 {
 
     /**
-     * Define and overwrite conrollter action on which your action should listen. Per default actions are only called
+     * Define and overwrite controller action on which your action should listen. Per default actions are only called
      * from pageRequestAction. In some cases (e.g. let's send an email on identification) it could be helpful to
      * also add another controller action as entry point.
      * Possible actions are:
