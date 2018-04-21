@@ -36,7 +36,7 @@ class SendAssetEmail4LinkService
     public function __construct(Visitor $visitor)
     {
         $this->visitor = $visitor;
-        $this->configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $this->configurationService = ObjectUtility::getConfigurationService();
     }
 
     /**

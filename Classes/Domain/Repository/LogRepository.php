@@ -75,7 +75,7 @@ class LogRepository extends AbstractRepository
     protected function interestingLogsLogicalAnd(QueryInterface $query): array
     {
         /** @var ConfigurationService $configurationService */
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $configurationService = ObjectUtility::getConfigurationService();
         $status = (int)$configurationService->getTypoScriptSettingsByPath(
             'backendview.analysis.activity.statusGreaterThen'
         );

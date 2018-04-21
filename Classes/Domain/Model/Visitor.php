@@ -1010,7 +1010,7 @@ class Visitor extends AbstractEntity
      */
     protected function isTelecomProvider(string $company): bool
     {
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $configurationService = ObjectUtility::getConfigurationService();
         $tpFileList = $configurationService->getTypoScriptSettingsByPath('general.telecommunicationProviderList');
         return FileUtility::isStringInFile($company, GeneralUtility::getFileAbsFileName($tpFileList));
     }

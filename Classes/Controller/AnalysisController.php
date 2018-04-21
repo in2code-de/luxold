@@ -9,6 +9,7 @@ use In2code\Lux\Domain\Repository\IpinformationRepository;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
+use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
 
@@ -128,7 +129,7 @@ class AnalysisController extends ActionController
             $this->request->getArgument('filter');
         } catch (\Exception $exception) {
             unset($exception);
-            $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));
+            $this->request->setArgument('filter', ObjectUtility::getFilterDto());
         }
     }
 
