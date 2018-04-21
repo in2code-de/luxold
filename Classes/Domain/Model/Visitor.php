@@ -378,6 +378,8 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * Get pagevisits of a visitor and sort it descending (last visit at first)
+     *
      * @return array
      */
     public function getPagevisits(): array
@@ -408,6 +410,35 @@ class Visitor extends AbstractEntity
         }
         krsort($pagevisitsArray);
         return $pagevisitsArray;
+    }
+
+    /**
+     * Get last page visit
+     *
+     * @return Pagevisit|null
+     */
+    public function getPagevisitLast()
+    {
+        $pagevisits = $this->getPagevisits();
+        foreach ($pagevisits as $pagevisit) {
+            return $pagevisit;
+        }
+        return null;
+    }
+
+    /**
+     * Get first page visit
+     *
+     * @return Pagevisit|null
+     */
+    public function getPagevisitFirst()
+    {
+        $pagevisits = $this->getPagevisits();
+        ksort($pagevisits);
+        foreach ($pagevisits as $pagevisit) {
+            return $pagevisit;
+        }
+        return null;
     }
 
     /**
@@ -1010,7 +1041,7 @@ class Visitor extends AbstractEntity
      */
     protected function isTelecomProvider(string $company): bool
     {
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $configurationService = ObjectUtility::getConfigurationService();
         $tpFileList = $configurationService->getTypoScriptSettingsByPath('general.telecommunicationProviderList');
         return FileUtility::isStringInFile($company, GeneralUtility::getFileAbsFileName($tpFileList));
     }

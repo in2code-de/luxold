@@ -57,8 +57,6 @@ class ActionService
      */
     protected function getAllActions(): array
     {
-        /** @var ConfigurationService $configurationService */
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
-        return $configurationService->getTypoScriptSettingsByPath('workflow.actions');
+        return ObjectUtility::getConfigurationService()->getTypoScriptSettingsByPath('workflow.actions');
     }
 }

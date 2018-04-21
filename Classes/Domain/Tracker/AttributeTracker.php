@@ -139,7 +139,7 @@ class AttributeTracker
      */
     protected function isEnabledIdentification(): bool
     {
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $configurationService = ObjectUtility::getConfigurationService();
         $settings = $configurationService->getTypoScriptSettings();
         return !empty($settings['identification']['_enable']) && $settings['identification']['_enable'] === '1';
     }

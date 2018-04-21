@@ -8,13 +8,17 @@ use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class FilterDto is a filter class with show only results from the current year per default
+ * Class FilterDto is a filter class that helps filtering visitors by given parameters. Per default, get visitors
+ * from the current year.
  */
 class FilterDto
 {
     const PERIOD_THISYEAR = 0;
     const PERIOD_THISMONTH = 1;
     const PERIOD_LASTMONTH = 2;
+    const IDENTIFIED_ALL = -1;
+    const IDENTIFIED_UNKNOWN = 0;
+    const IDENTIFIED_IDENTIFIED = 1;
 
     /**
      * @var string
@@ -52,6 +56,11 @@ class FilterDto
      * @var int
      */
     protected $timePeriod = self::PERIOD_THISYEAR;
+
+    /**
+     * @var int
+     */
+    protected $identified = self::IDENTIFIED_ALL;
 
     /**
      * @return string
@@ -164,6 +173,39 @@ class FilterDto
     public function setTimePeriod(int $timePeriod)
     {
         $this->timePeriod = $timePeriod;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdentified(): int
+    {
+        return $this->identified;
+    }
+
+    /**
+     * @param int $identified
+     * @return FilterDto
+     */
+    public function setIdentified(int $identified)
+    {
+        $this->identified = $identified;
+        return $this;
+    }
+
+    /**
+     * Set a timeTo and timeFrom if there is a timeframe given in seconds. E.g. 60 means a starttime 60s ago to now.
+     *
+     * @param int $seconds
+     * @return FilterDto
+     */
+    public function setTimeFrame(int $seconds)
+    {
+        $timeFrom = new \DateTime($seconds . ' seconds ago');
+        $this->setTimeFrom($timeFrom->format('c'));
+        $timeTo = new \DateTime();
+        $this->setTimeTo($timeTo->format('c'));
         return $this;
     }
 

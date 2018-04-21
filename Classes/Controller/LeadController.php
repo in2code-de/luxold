@@ -181,7 +181,7 @@ class LeadController extends ActionController
             $filter = $this->request->getArgument('filter');
         } catch (\Exception $exception) {
             unset($exception);
-            $this->request->setArgument('filter', $this->objectManager->get(FilterDto::class));
+            $this->request->setArgument('filter', ObjectUtility::getFilterDto());
         }
         if (array_key_exists('categoryScoring', $filter)
             && (is_array($filter['categoryScoring']) || $filter['categoryScoring'] === '')) {

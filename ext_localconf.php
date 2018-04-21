@@ -148,10 +148,12 @@ call_user_func(
          * CommandControllers
          */
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
+            \In2code\Lux\Command\LuxAnonymizeCommandController::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
             \In2code\Lux\Command\LuxCleanupCommandController::class;
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
             \In2code\Lux\Command\LuxServiceCommandController::class;
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
-            \In2code\Lux\Command\LuxAnonymizeCommandController::class;
+            \In2code\Lux\Command\LuxLeadCommandController::class;
     }
 );

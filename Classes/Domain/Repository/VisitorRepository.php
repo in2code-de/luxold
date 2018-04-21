@@ -50,7 +50,24 @@ class VisitorRepository extends AbstractRepository
     }
 
     /**
-     * Find 5 hottest visitors
+     * @param FilterDto $filter
+     * @return array
+     */
+    public function findAllWithKnownCompanies(FilterDto $filter): array
+    {
+        $visitors = $this->findAllWithIdentifiedFirst($filter);
+        $visitorsWithCompanies = [];
+        /** @var Visitor $visitor */
+        foreach ($visitors as $visitor) {
+            if ($visitor->getCompany() !== '') {
+                $visitorsWithCompanies[] = $visitor;
+            }
+        }
+        return $visitorsWithCompanies;
+    }
+
+    /**
+     * Find a small couple of hottest visitors
      *
      * @param FilterDto $filter
      * @return QueryResultInterface
@@ -246,6 +263,9 @@ class VisitorRepository extends AbstractRepository
                 $logicalOr[] = $query->like('attributes.value', '%' . $searchterm . '%');
             }
             $logicalAnd[] = $query->logicalOr($logicalOr);
+        }
+        if ($filter->getIdentified() > FilterDto::IDENTIFIED_ALL) {
+            $query->equals('identified', $filter->getIdentified() === FilterDto::IDENTIFIED_IDENTIFIED);
         }
         if ($filter->getPid() !== '') {
             $logicalAnd[] = $query->equals('pagevisits.page.uid', (int)$filter->getPid());

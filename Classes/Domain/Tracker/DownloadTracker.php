@@ -89,7 +89,7 @@ class DownloadTracker
      */
     protected function isEnabledDownloadTracking(): bool
     {
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
+        $configurationService = ObjectUtility::getConfigurationService();
         $settings = $configurationService->getTypoScriptSettings();
         return !empty($settings['tracking']['assetDownloads']['_enable'])
             && $settings['tracking']['assetDownloads']['_enable'] === '1';

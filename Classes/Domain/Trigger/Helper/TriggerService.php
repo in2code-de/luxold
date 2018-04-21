@@ -57,8 +57,6 @@ class TriggerService
      */
     protected function getAllTriggers(): array
     {
-        /** @var ConfigurationService $configurationService */
-        $configurationService = ObjectUtility::getObjectManager()->get(ConfigurationService::class);
-        return $configurationService->getTypoScriptSettingsByPath('workflow.triggers');
+        return ObjectUtility::getConfigurationService()->getTypoScriptSettingsByPath('workflow.triggers');
     }
 }
