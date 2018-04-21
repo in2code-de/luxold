@@ -944,6 +944,11 @@
 				<target state="translated">Ein oder mehrere Seiteninhalte für die Kategorie wählen.</target>
 			</trans-unit>
 
+			<trans-unit id="commandcontrollers.summarymail.title">
+				<source>This is your personal lead summary mail</source>
+				<target state="translated">Ihre persönliche Lead Zusammenfassung</target>
+			</trans-unit>
+
 			<trans-unit id="datetime.weekday.now">
 				<source>Now</source>
 				<target state="translated">Heute</target>

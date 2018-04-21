@@ -702,6 +702,10 @@
 				<source>Select one or more content elements that should be shown for this category.</source>
 			</trans-unit>
 
+			<trans-unit id="commandcontrollers.summarymail.title">
+				<source>This is your lead summary mail</source>
+			</trans-unit>
+
 			<trans-unit id="datetime.weekday.now">
 				<source>Now</source>
 			</trans-unit>
