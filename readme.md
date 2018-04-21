@@ -96,7 +96,9 @@ See the full [documentation](Documentation/Index.md) (technical, marketing and p
 
 ### CommandControllers & Scheduler
 
+- Anonymize leads (for presentations or local development)
 - Cleanup commands (to really erase data)
+- Lead commands to get a summary mail with last activities
 - Service commands (calculate scoring for all leads)
 
 ### Privacy Features
