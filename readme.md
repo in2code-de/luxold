@@ -131,6 +131,7 @@ for the identification feature (powermail, form, formhandler, felogin, etc...).
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.19.0     | 2018-04-24 | Task       | Documentation update. Telecommunication provider list update.                      |
 | 1.18.0     | 2018-04-21 | Feature    | Introduce summary-mails in command controller.                                     |
 | 1.17.0     | 2018-04-12 | Feature    | Publish to multiple slack channels now.                                            |
 | 1.16.1     | 2018-04-12 | Bugfix     | Fix for chrome select boxes in workflow module, fix filter select in content view. |
