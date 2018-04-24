@@ -94,7 +94,11 @@ class AnonymizeService
         'https://www.google.com',
         'https://typo3.org',
         'https://www.in2code.de',
-        ''
+        'https://www.bing.com',
+        'https://www.forum.net',
+        '',
+        '',
+        '',
     ];
 
     /**
@@ -102,7 +106,84 @@ class AnonymizeService
      */
     protected $descriptions = [
         'This lead is a good lead because of...',
-        ''
+        '',
+        '',
+        '',
+        '',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $ipinformations = [
+        'isp' => [
+            'Company A',
+            'Company B',
+            'Company C',
+            'Univerity A',
+            'Univerity B',
+            'Univerity C',
+            'Verein e.V.',
+            'Stiftung ABC'
+        ],
+        'org' => [
+            'Company A',
+            'Company B',
+            'Company C',
+            'Univerity A',
+            'Univerity B',
+            'Univerity C',
+            'Verein e.V.',
+            'Stiftung ABC'
+        ],
+        'city' => [
+            'Nürnberg',
+            'München',
+            'Berlin',
+            'Köln',
+            'Frankfurt am Main',
+            'London',
+            'Paris',
+            'Bukarest',
+            'Hamburg',
+            'Bordeaux'
+        ],
+        'country' => [
+            'Germany',
+            'Germany',
+            'Germany',
+            'Germany',
+            'Germany',
+            'Germany',
+            'Germany',
+            'France',
+            'Great Britain',
+            'Egypt',
+        ],
+        'countryCode' => [
+            'DE',
+            'DE',
+            'DE',
+            'DE',
+            'DE',
+            'DE',
+            'NL',
+            'FR',
+            'AT',
+            'IT',
+            'US',
+            'RU',
+        ],
+        'lon' => [
+            '12.3301',
+            '9.9116',
+            '12.1026'
+        ],
+        'lat' => [
+            '51.2187',
+            '53.566',
+            '47.8391',
+        ]
     ];
 
     /**
@@ -187,12 +268,6 @@ class AnonymizeService
      */
     protected function anonymizeIpinformation()
     {
-        /** @var Connection $connection */
-        $connection = DatabaseUtility::getConnectionForTable(Ipinformation::TABLE_NAME);
-        $connection->query(
-            'delete from ' . Ipinformation::TABLE_NAME . ' where name not in ("org","country","city")'
-        )->execute();
-
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Ipinformation::TABLE_NAME, true);
         $rows = $queryBuilder
@@ -201,16 +276,7 @@ class AnonymizeService
             ->execute()
             ->fetchAll();
         foreach ($rows as $row) {
-            $value = StringUtility::getRandomString(8);
-            if ($row['name'] === 'city') {
-                $value = 'Rosenheim';
-            }
-            if ($row['name'] === 'country') {
-                $value = 'Germany';
-            }
-            if ($row['name'] === 'org') {
-                $value = 'Telekom Ltd.';
-            }
+            $value = $this->getRandomIpinformation($row['name']);
             /** @var Connection $connection */
             $connection = DatabaseUtility::getConnectionForTable(Ipinformation::TABLE_NAME);
             $connection->query(
@@ -230,6 +296,20 @@ class AnonymizeService
             $query .= $field . '="' . $value . '",';
         }
         return rtrim($query, ',');
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getRandomIpinformation(string $key): string
+    {
+        $value = StringUtility::getRandomString(8);
+        if (array_key_exists($key, $this->ipinformations)) {
+            $subkey = rand(0, count($this->ipinformations[$key]) - 1);
+            $value = $this->ipinformations[$key][$subkey];
+        }
+        return $value;
     }
 
     /**

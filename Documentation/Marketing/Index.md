@@ -67,3 +67,35 @@ Think about the customer livecycle and try to develop your leads. There are a fe
 storytelling (tell your visitors a story to let them understand the problems they have and the solution you are
 offering), contextual content (show only relevant content for the needs of your visitors) or open a lightbox with a
 special offer if the lead visits your product the second or third time.
+
+
+
+### Cold calling - tipps and tricks
+
+#### Understanding the diagrams
+
+When is the **perfect time for a cold call**? Lux will help you to show the relevant information you or yours sales
+need.
+In the following example you will see the scoring of a potential new customer. There are two visible peaks in the
+diagram. Every peak reflects a perfect time for a cold call because this is the time when the lead shows activity on
+your website and this means - he/she is interested in your company, your products or your service.
+The visible drop in the diagram reflects a time when the visitor is too busy or maybe not interested any more. So don't
+miss the perfect time.
+<img src="../Images/documentation_marketing_scoringdiagram.png" width="800" />
+
+The categoryscoring diagram shows you in which product the lead is interested in. So this will help you to offer your
+potential customer the right product.
+<img src="../Images/documentation_marketing_scoringcategory.png" width="800" />
+
+#### Getting informed
+
+##### Via Email
+You can set up a lead summary mail (e.g. frequently every monday) with the last visitors and there companies.
+This means, you don't have to log in into TYPO3 and see the important information in your mail client (e.g. Outlook).
+<img src="../Images/screenshot_summarymail.png" width="800" />
+
+#### Via internal chat
+If you're using an internal tool like slack for your team-communication, you can set up an own workflow to get
+informed if there is an interesting lead on your website. Even if it is not identified it's possible to see relevant
+information like the companyname or the location.
+<img src="../Images/documentation_marketing_slack.png" width="800" />
