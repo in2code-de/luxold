@@ -11,6 +11,8 @@ use In2code\Lux\Domain\Repository\PagevisitRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
 
 /**
@@ -46,6 +48,7 @@ class AnalysisController extends ActionController
 
     /**
      * @return void
+     * @throws InvalidArgumentNameException
      */
     public function initializeDashboardAction()
     {
@@ -53,8 +56,9 @@ class AnalysisController extends ActionController
     }
 
     /**
-     * @param FilterDto|null $filter
+     * @param FilterDto $filter
      * @return void
+     * @throws InvalidQueryException
      */
     public function dashboardAction(FilterDto $filter)
     {
@@ -74,6 +78,7 @@ class AnalysisController extends ActionController
 
     /**
      * @return void
+     * @throws InvalidArgumentNameException
      */
     public function initializeContentAction()
     {
@@ -122,6 +127,7 @@ class AnalysisController extends ActionController
      * Always set a default FilterDto even if there are no filter params
      *
      * @return void
+     * @throws InvalidArgumentNameException
      */
     protected function setFilterDto()
     {
