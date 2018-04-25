@@ -4,6 +4,7 @@ namespace In2code\Lux\Controller;
 
 use In2code\Lux\Domain\Factory\VisitorFactory;
 use In2code\Lux\Domain\Model\Visitor;
+use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Domain\Service\ContextualContentService;
 use In2code\Lux\Domain\Service\SendAssetEmail4LinkService;
 use In2code\Lux\Domain\Tracker\AttributeTracker;
@@ -144,8 +145,8 @@ class FrontendController extends ActionController
      */
     public function contextualContentAjaxAction(int $contentUid, string $idCookie)
     {
-        $visitorFactory = $this->objectManager->get(VisitorFactory::class, $idCookie);
-        $visitor = $visitorFactory->getVisitor();
+        $visitorRepository = $this->objectManager->get(VisitorRepository::class);
+        $visitor = $visitorRepository->findOneAndAlsoBlacklistedByIdCookie($idCookie);
         $ccService = $this->objectManager->get(ContextualContentService::class, $contentUid, $visitor);
         return json_encode(['html' => $ccService->getContent(), 'uid' => $contentUid], JSON_HEX_QUOT | JSON_HEX_TAG);
     }

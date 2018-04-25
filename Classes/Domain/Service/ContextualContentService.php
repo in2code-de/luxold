@@ -37,9 +37,9 @@ class ContextualContentService
      * ContextualContentService constructor.
      *
      * @param int $contentUid
-     * @param Visitor $visitor
+     * @param Visitor|null $visitor Can be null - in this case the default CE should be rendered
      */
-    public function __construct(int $contentUid, Visitor $visitor)
+    public function __construct(int $contentUid, $visitor)
     {
         $this->contentUid = $contentUid;
         $this->visitor = $visitor;
@@ -51,9 +51,11 @@ class ContextualContentService
     public function getContent(): string
     {
         $contentUid = $this->getBestFittingContentUidFromFlexForm();
-        /** @var LogService $logService */
-        $logService = ObjectUtility::getObjectManager()->get(LogService::class);
-        $logService->logContextualContent($this->visitor, $contentUid, $this->contentUid);
+        if ($this->visitor !== null) {
+            /** @var LogService $logService */
+            $logService = ObjectUtility::getObjectManager()->get(LogService::class);
+            $logService->logContextualContent($this->visitor, $contentUid, $this->contentUid);
+        }
         return $this->renderContentElement($contentUid);
     }
 
@@ -64,12 +66,14 @@ class ContextualContentService
     {
         $settings = $this->getFlexFormSettings();
         $contentUid = $settings['default'];
-        foreach ($this->visitor->getCategoryscoringsSortedByScoring() as $categoryscoring) {
-            if ($this->isCategoryDefinedInFlexForm($categoryscoring->getCategory())) {
-                $categorySettings = $this->getCategorySettingsForCategory($categoryscoring->getCategory());
-                $contentUids = GeneralUtility::trimExplode(',', $categorySettings['contentElements'], true);
-                $contentUid = $contentUids[rand(0, count($contentUids) - 1)];
-                break;
+        if ($this->visitor !== null) {
+            foreach ($this->visitor->getCategoryscoringsSortedByScoring() as $categoryscoring) {
+                if ($this->isCategoryDefinedInFlexForm($categoryscoring->getCategory())) {
+                    $categorySettings = $this->getCategorySettingsForCategory($categoryscoring->getCategory());
+                    $contentUids = GeneralUtility::trimExplode(',', $categorySettings['contentElements'], true);
+                    $contentUid = $contentUids[rand(0, count($contentUids) - 1)];
+                    break;
+                }
             }
         }
         return (int)$contentUid;
