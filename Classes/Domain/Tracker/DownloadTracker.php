@@ -53,7 +53,7 @@ class DownloadTracker
      */
     public function addDownload(string $href)
     {
-        if (!empty($href) && $this->isEnabledDownloadTracking()) {
+        if ($this->isDownloadAddingEnabled($href)) {
             $download = $this->getAndPersistNewDownload($href);
             $this->visitor->addDownload($download);
             $download->setVisitor($this->visitor);
@@ -85,9 +85,18 @@ class DownloadTracker
     }
 
     /**
+     * @param string $href
      * @return bool
      */
-    protected function isEnabledDownloadTracking(): bool
+    protected function isDownloadAddingEnabled(string $href): bool
+    {
+        return !empty($href) && $this->visitor->isNotBlacklisted() && $this->isEnabledDownloadTrackingInSettings();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isEnabledDownloadTrackingInSettings(): bool
     {
         $configurationService = ObjectUtility::getConfigurationService();
         $settings = $configurationService->getTypoScriptSettings();

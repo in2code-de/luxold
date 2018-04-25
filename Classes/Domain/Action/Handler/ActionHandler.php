@@ -32,14 +32,16 @@ class ActionHandler
     public function startActions(Visitor $visitor, string $controllerAction, array $actionArray): array
     {
         unset($actionArray);
-        /** @var TriggerHandler $triggerHandler */
-        $triggerHandler = ObjectUtility::getObjectManager()->get(TriggerHandler::class);
-        /** @var WorkflowRepository $workflowRepository */
-        $workflowRepository = ObjectUtility::getObjectManager()->get(WorkflowRepository::class);
-        $workflows = $workflowRepository->findAll();
-        foreach ($workflows as $workflow) {
-            if ($triggerHandler->isRelevantTrigger($visitor, $workflow)) {
-                $this->setActionsForWorkflow($workflow, $visitor, $controllerAction);
+        if ($visitor->isNotBlacklisted()) {
+            /** @var TriggerHandler $triggerHandler */
+            $triggerHandler = ObjectUtility::getObjectManager()->get(TriggerHandler::class);
+            /** @var WorkflowRepository $workflowRepository */
+            $workflowRepository = ObjectUtility::getObjectManager()->get(WorkflowRepository::class);
+            $workflows = $workflowRepository->findAll();
+            foreach ($workflows as $workflow) {
+                if ($triggerHandler->isRelevantTrigger($visitor, $workflow)) {
+                    $this->setActionsForWorkflow($workflow, $visitor, $controllerAction);
+                }
             }
         }
         return [$visitor, $controllerAction, $this->actions];

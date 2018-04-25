@@ -11,6 +11,7 @@ use In2code\Lux\Domain\Tracker\DownloadTracker;
 use In2code\Lux\Domain\Tracker\PageTracker;
 use In2code\Lux\Signal\SignalTrait;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 
 /**
@@ -24,6 +25,7 @@ class FrontendController extends ActionController
      * Check for allowed actions
      *
      * @return void
+     * @throws NoSuchArgumentException
      */
     public function initializeDispatchRequestAction()
     {

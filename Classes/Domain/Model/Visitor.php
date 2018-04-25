@@ -850,6 +850,14 @@ class Visitor extends AbstractEntity
     }
 
     /**
+     * @return bool
+     */
+    public function isNotBlacklisted(): bool
+    {
+        return !$this->isBlacklisted();
+    }
+
+    /**
      * @param bool $blacklisted
      * @return Visitor
      */
