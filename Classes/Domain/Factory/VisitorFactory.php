@@ -69,7 +69,7 @@ class VisitorFactory
      */
     protected function getVisitorFromDatabase()
     {
-        return $this->visitorRepository->findOneAndAlsoHiddenByIdCookie($this->idCookie);
+        return $this->visitorRepository->findOneAndAlsoBlacklistedByIdCookie($this->idCookie);
     }
 
     /**

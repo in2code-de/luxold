@@ -44,8 +44,12 @@
 				<target state="translated">Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
-				<source>Is identified lead?</source>
+				<source>Is lead identified?</source>
 				<target state="translated">Lead bereits identifiziert?</target>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.blacklisted">
+				<source>Is lead blacklisted?</source>
+				<target state="translated">Lead blacklisted?</target>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.visits">
 				<source>Number of visits</source>
@@ -581,8 +585,8 @@
 				<target state="translated">Komplett entfernen</target>
 			</trans-unit>
 			<trans-unit id="module.list.link.deactivate">
-				<source>Ignore in future</source>
-				<target state="translated">Künftig ignorieren</target>
+				<source>Blacklist</source>
+				<target state="translated">Blacklist</target>
 			</trans-unit>
 
 			<trans-unit id="module.detail">

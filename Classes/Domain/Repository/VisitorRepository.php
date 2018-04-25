@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Categoryscoring;
 use In2code\Lux\Domain\Model\Download;
@@ -11,6 +12,7 @@ use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Utility\DatabaseUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -21,15 +23,15 @@ class VisitorRepository extends AbstractRepository
 {
 
     /**
-     * Find a visitor by it's cookie and deliver also hidden visitors
+     * Find a visitor by it's cookie and deliver also blacklisted visitors
      *
      * @param string $idCookie
      * @return Visitor|null
      */
-    public function findOneAndAlsoHiddenByIdCookie(string $idCookie)
+    public function findOneAndAlsoBlacklistedByIdCookie(string $idCookie)
     {
         $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true)->setEnableFieldsToBeIgnored(['hidden']);
+        $query->getQuerySettings()->setIgnoreEnableFields(true)->setEnableFieldsToBeIgnored(['blacklisted']);
         $query->matching($query->equals('idCookie', $idCookie));
         /** @var Visitor $visitor */
         $visitor = $query->execute()->getFirst();
@@ -39,6 +41,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findAllWithIdentifiedFirst(FilterDto $filter): QueryResultInterface
     {
@@ -52,6 +55,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return array
+     * @throws InvalidQueryException
      */
     public function findAllWithKnownCompanies(FilterDto $filter): array
     {
@@ -71,6 +75,7 @@ class VisitorRepository extends AbstractRepository
      *
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByHottestScorings(FilterDto $filter): QueryResultInterface
     {
@@ -115,6 +120,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByUniqueSiteVisits(FilterDto $filter): QueryResultInterface
     {
@@ -128,6 +134,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByRecurringSiteVisits(FilterDto $filter): QueryResultInterface
     {
@@ -141,6 +148,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findIdentified(FilterDto $filter): QueryResultInterface
     {
@@ -154,6 +162,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findUnknown(FilterDto $filter): QueryResultInterface
     {
@@ -167,6 +176,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findIdentifiedByMostVisits(FilterDto $filter): QueryResultInterface
     {
@@ -184,6 +194,7 @@ class VisitorRepository extends AbstractRepository
      *
      * @param int $timestamp
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByLastChange(int $timestamp): QueryResultInterface
     {
@@ -197,6 +208,7 @@ class VisitorRepository extends AbstractRepository
      *
      * @param int $timestamp
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByLastChangeUnknown(int $timestamp): QueryResultInterface
     {
@@ -212,6 +224,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param int $visitorUid
      * @return void
+     * @throws DBALException
      */
     public function removeVisitorByVisitorUid(int $visitorUid)
     {
@@ -222,6 +235,7 @@ class VisitorRepository extends AbstractRepository
     /**
      * @param int $visitorUid
      * @return void
+     * @throws DBALException
      */
     public function removeRelatedTableRowsByVisitorUid(int $visitorUid)
     {
@@ -244,6 +258,7 @@ class VisitorRepository extends AbstractRepository
      * @param QueryInterface $query
      * @param array $logicalAnd
      * @return array
+     * @throws InvalidQueryException
      */
     protected function extendLogicalAndWithFilterConstraints(
         FilterDto $filter,

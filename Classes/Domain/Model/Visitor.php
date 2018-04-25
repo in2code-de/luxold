@@ -132,7 +132,7 @@ class Visitor extends AbstractEntity
     /**
      * @var bool
      */
-    protected $hidden = false;
+    protected $blacklisted = false;
 
     /**
      * Visitor constructor.
@@ -843,18 +843,18 @@ class Visitor extends AbstractEntity
     /**
      * @return bool
      */
-    public function isHidden(): bool
+    public function isBlacklisted(): bool
     {
-        return $this->hidden;
+        return $this->blacklisted;
     }
 
     /**
-     * @param bool $hidden
+     * @param bool $blacklisted
      * @return Visitor
      */
-    public function setHidden(bool $hidden)
+    public function setBlacklisted(bool $blacklisted)
     {
-        $this->hidden = $hidden;
+        $this->blacklisted = $blacklisted;
         return $this;
     }
 
