@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\CategoryRepository;
@@ -105,7 +106,7 @@ class LeadController extends ActionController
      * @return void
      * @throws StopActionException
      * @throws UnsupportedRequestTypeException
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     public function removeAction(Visitor $visitor)
     {
@@ -122,10 +123,11 @@ class LeadController extends ActionController
      * @throws StopActionException
      * @throws UnknownObjectException
      * @throws UnsupportedRequestTypeException
+     * @throws DBALException
      */
     public function deactivateAction(Visitor $visitor)
     {
-        $visitor->setBlacklisted(true);
+        $visitor->setBlacklistedStatus();
         $this->visitorRepository->update($visitor);
         $this->addFlashMessage('Visitor is blacklisted now');
         $this->redirect('list');

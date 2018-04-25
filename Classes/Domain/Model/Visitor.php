@@ -2,8 +2,9 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Model;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Repository\CategoryscoringRepository;
-use In2code\Lux\Domain\Service\ConfigurationService;
+use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Domain\Service\ReadableReferrerService;
 use In2code\Lux\Domain\Service\ScoringService;
 use In2code\Lux\Utility\FileUtility;
@@ -856,6 +857,39 @@ class Visitor extends AbstractEntity
     {
         $this->blacklisted = $blacklisted;
         return $this;
+    }
+
+    /**
+     * Set blacklisted flag and remove all related records to this visitor.
+     * In addition clean all other visitor properties.
+     *
+     * @return void
+     * @throws DBALException
+     */
+    public function setBlacklistedStatus()
+    {
+        $this->setScoring(0);
+        $this->setEmail('');
+        $this->setIdentified(false);
+        $this->setVisits(0);
+        $this->setReferrer('');
+        $this->setUserAgent('');
+        $this->setIpAddress('');
+
+        $this->categoryscorings = null;
+        $this->pagevisits = null;
+        $this->attributes = null;
+        $this->ipinformations = null;
+        $this->downloads = null;
+        $this->logs = null;
+
+        /** @var VisitorRepository $visitorRepository */
+        $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
+        $visitorRepository->removeRelatedTableRowsByVisitorUid($this->getUid());
+
+        $now = new \DateTime();
+        $this->setDescription('Blacklisted (' . $now->format('Y-m-d H:i:s') . ')');
+        $this->setBlacklisted(true);
     }
 
     /**
