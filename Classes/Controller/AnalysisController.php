@@ -135,7 +135,7 @@ class AnalysisController extends ActionController
             $this->request->getArgument('filter');
         } catch (\Exception $exception) {
             unset($exception);
-            $this->request->setArgument('filter', ObjectUtility::getFilterDto());
+            $this->request->setArgument('filter', ObjectUtility::getFilterDto(FilterDto::PERIOD_THISYEAR));
         }
     }
 

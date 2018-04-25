@@ -33,12 +33,13 @@ class ObjectUtility
     }
 
     /**
+     * @param int $period
      * @return FilterDto
      */
-    public static function getFilterDto(): FilterDto
+    public static function getFilterDto(int $period = FilterDto::PERIOD_ALL): FilterDto
     {
         /** @var FilterDto $filterDto */
-        $filterDto = self::getObjectManager()->get(FilterDto::class);
+        $filterDto = self::getObjectManager()->get(FilterDto::class, $period);
         return $filterDto;
     }
 }
