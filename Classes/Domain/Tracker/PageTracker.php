@@ -72,7 +72,7 @@ class PageTracker
      */
     protected function isTrackingActivated(Visitor $visitor, int $pageUid): bool
     {
-        return $pageUid > 0 && $visitor->isBlacklisted() && $this->isTrackingActivatedInSettings();
+        return $pageUid > 0 && $visitor->isNotBlacklisted() && $this->isTrackingActivatedInSettings();
     }
 
     /**
