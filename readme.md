@@ -1,4 +1,4 @@
-![LUX](Resources/Public/Icons/lux.svg "LUX")
+![LUX](Resources/Public/Icons/lux.svg "LUX"){:height="36px" width="36px"}
 
 # Living User eXperience - LUX - the Marketing Automation tool for TYPO3
 
