@@ -1,4 +1,4 @@
-<img align="left" src="Resources/Public/Icons/lux.svg" width="100" />
+![LUX](Resources/Public/Icons/lux.svg "LUX")
 
 # Living User eXperience - LUX - the Marketing Automation tool for TYPO3
 
@@ -12,7 +12,7 @@ like showing relevant information at the right time.
 
 Example dashboard overview:
 
-<img src="Documentation/Images/screenshot_dashboard.png" width="800" />
+![Dashboard](Documentation/Images/screenshot_dashboard.png "Dashboard")
 
 Example leadlist:
 
