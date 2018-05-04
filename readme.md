@@ -1,4 +1,4 @@
-![LUX](Resources/Public/Icons/lux.svg "LUX"){:height="36px" width="36px"}
+![LUX](Resources/Public/Icons/lux.svg "LUX")
 
 # Living User eXperience - LUX - the Marketing Automation tool for TYPO3
 
@@ -8,39 +8,41 @@ LUX is an enterprise software solution to fill the gap between your TYPO3-websit
 tool. LUX will track, identify, analyse your leads and give the visitors some improved user experience for your website
 like showing relevant information at the right time.
 
+\newpage 
+
 ## Screenshots
 
-Example dashboard overview:
+Example dashboard overview:\
+\
+![Example dashboard overview](Documentation/Images/screenshot_dashboard.png "Dashboard")
 
-![Dashboard](Documentation/Images/screenshot_dashboard.png "Dashboard")
+Example leadlist:\
+\
+![Leadlist](Documentation/Images/screenshot_list.png "Leadlist")
 
-Example leadlist:
+Show some details:\
+\
+![Some Details](Documentation/Images/screenshot_list2.png "Some details")
 
-<img src="Documentation/Images/screenshot_list.png" width="800" />
+Show relevant information in page view:\
+\
+![Relevant information in page view](Documentation/Images/screenshot_pageoverview.png "Page Overview")
 
-Show some details:
+Workflow - Define your own trigger(s) and combine them via AND or OR:\
+\
+![Workflow trigger](Documentation/Images/screenshot_workflow_trigger.png "Workflow Trigger")
 
-<img src="Documentation/Images/screenshot_list2.png" width="800" />
+Workflow - Do one or more Actions if a trigger is activated:\
+\
+![Workflow action](Documentation/Images/screenshot_workflow_action.png "Workflow action")
 
-Show relevant information in page view:
+Ask for the visitors email-address when he/she wants to download an asset:\
+\
+![Email 4 Link](Documentation/Images/screenshot_email4link.png "E-Mail for Link")
 
-<img src="Documentation/Images/screenshot_pageoverview.png" width="800" />
-
-Workflow - Define your own trigger(s) and combine them via AND or OR:
-
-<img src="Documentation/Images/screenshot_workflow_trigger.png" width="800" />
-
-Workflow - Do one or more Actions if a trigger is activated:
-
-<img src="Documentation/Images/screenshot_workflow_action.png" width="800" />
-
-Ask for the visitors email-address when he/she wants to download an asset:
-
-<img src="Documentation/Images/screenshot_email4link.png" width="800" />
-
-... with a CK editor plugin:
-
-<img src="Documentation/Images/screenshot_email4link_ckeditor_plugin.png" width="800" />
+... with a CK editor plugin:\
+\
+![Email for Link with CKEditor](Documentation/Images/screenshot_email4link_ckeditor_plugin.png "with CKeditor")
 
 ## Documentation
 
