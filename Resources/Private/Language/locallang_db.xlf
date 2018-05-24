@@ -671,7 +671,7 @@
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.privacy">
-				<source>I accept the terms and conditions of the privacy policy - see page</source>
+				<source>I accept the terms and conditions of the privacy policy - see</source>
 			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
