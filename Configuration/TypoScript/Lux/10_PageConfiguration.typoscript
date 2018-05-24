@@ -95,7 +95,16 @@ page {
 
     # HTML-markup for email4link lightbox form
     1518545003 = FLUIDTEMPLATE
-    1518545003.file = EXT:lux/Resources/Private/Templates/Frontend/Email4Link.html
+    1518545003 {
+        file = EXT:lux/Resources/Private/Templates/Frontend/Email4Link.html
+        settings {
+            # Add or remove a checkbox with a privacy notice
+            addPrivacyLink = 1
+
+            # Pid of the privacy page (to create a link to it)
+            pidPrivacyPage = {$plugin.tx_lux.settings.pidPrivacyPage}
+        }
+    }
 }
 
 
