@@ -133,6 +133,7 @@ for the identification feature (powermail, form, formhandler, felogin, etc...).
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.20.0     | 2018-05-24 | Feature    | Bugfixes, Privacy checkbox in email4link, Manual blacklisting.                     |
 | 1.19.0     | 2018-04-24 | Task       | Documentation update. Telecommunication provider list update.                      |
 | 1.18.0     | 2018-04-21 | Feature    | Introduce summary-mails in command controller.                                     |
 | 1.17.0     | 2018-04-12 | Feature    | Publish to multiple slack channels now.                                            |
