@@ -670,8 +670,14 @@
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.privacy">
+				<source>I accept the terms and conditions of the privacy policy - see page</source>
+			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
+			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.success">
+				<source>Email successfully sent. Please check your mailbox.</source>
 			</trans-unit>
 
 			<trans-unit id="pi1.title">

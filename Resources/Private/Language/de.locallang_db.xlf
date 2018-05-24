@@ -902,9 +902,17 @@
 				<source>Email</source>
 				<target state="translated">E-Mail</target>
 			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.privacy">
+				<source>I accept the terms and conditions of the privacy policy - see page</source>
+				<target state="translated">Ich habe die Datenschutzerklärung gelesen und akzeptiert - siehe Seite</target>
+			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
 				<target state="translated">Weiter</target>
+			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.success">
+				<source>Email successfully sent. Please check your mailbox.</source>
+				<target state="translated">E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.</target>
 			</trans-unit>
 
 			<trans-unit id="pi1.title">
