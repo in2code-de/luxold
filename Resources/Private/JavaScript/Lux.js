@@ -239,7 +239,7 @@ function LuxMain() {
 			html = html.replace('###TEXT###', text);
 			html = html.replace('###HREF###', getFilenameFromHref(href));
 			that.lightboxInstance = basicLightbox.create(html);
-			that.lightboxInstance.element().querySelector('[data-lux-email4link="submit"]').addEventListener('click', function(event) {
+			that.lightboxInstance.element().querySelector('[data-lux-email4link="form"]').addEventListener('submit', function(event) {
 				email4LinkLightboxSubmitListener(this, event, link);
 			});
 			that.lightboxInstance.show();
