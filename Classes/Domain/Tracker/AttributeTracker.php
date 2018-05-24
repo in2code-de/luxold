@@ -6,10 +6,11 @@ use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\AttributeRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
-use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Domain\Service\VisitorMergeService;
 use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 
 /**
  * Class AttributeTracker to add an attribute key/value pair to a visitor
@@ -63,10 +64,12 @@ class AttributeTracker
      * @param string $key
      * @param string $value
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     public function addAttribute(string $key, string $value)
     {
-        if (!empty($value) && $this->isEnabledIdentification()) {
+        if ($this->isAttributeAddingEnabled($value)) {
             $attribute = $this->getAndUpdateAttributeFromDatabase($key, $value);
             if ($attribute === null) {
                 $attribute = $this->createNewAttribute($key, $value);
@@ -92,7 +95,9 @@ class AttributeTracker
      *
      * @param string $key
      * @param string $value
-     * @return Attribute|null
+     * @return Attribute|null|object
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     protected function getAndUpdateAttributeFromDatabase(string $key, string $value)
     {
@@ -112,6 +117,7 @@ class AttributeTracker
      */
     protected function createNewAttribute(string $key, string $value): Attribute
     {
+        /** @var Attribute $attribute */
         $attribute = ObjectUtility::getObjectManager()->get(Attribute::class);
         $attribute->setName($key);
         $attribute->setValue($value);
@@ -135,9 +141,18 @@ class AttributeTracker
     }
 
     /**
+     * @param string $value
      * @return bool
      */
-    protected function isEnabledIdentification(): bool
+    protected function isAttributeAddingEnabled(string $value): bool
+    {
+        return !empty($value) && $this->visitor->isNotBlacklisted() && $this->isEnabledIdentificationInSettings();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isEnabledIdentificationInSettings(): bool
     {
         $configurationService = ObjectUtility::getConfigurationService();
         $settings = $configurationService->getTypoScriptSettings();

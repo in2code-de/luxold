@@ -45,11 +45,13 @@ class SendAssetEmail4LinkService
      */
     public function sendMail(string $href)
     {
-        if ($this->isActivatedAndAllowed($href)) {
-            $this->send($href);
-            $this->signalDispatch(__CLASS__, 'email4linkSendEmail', [$this->visitor, $href]);
-        } else {
-            $this->signalDispatch(__CLASS__, 'email4linkSendEmailFailed', [$this->visitor, $href]);
+        if ($this->visitor->isNotBlacklisted()) {
+            if ($this->isActivatedAndAllowed($href)) {
+                $this->send($href);
+                $this->signalDispatch(__CLASS__, 'email4linkSendEmail', [$this->visitor, $href]);
+            } else {
+                $this->signalDispatch(__CLASS__, 'email4linkSendEmailFailed', [$this->visitor, $href]);
+            }
         }
     }
 

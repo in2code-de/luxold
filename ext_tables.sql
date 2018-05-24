@@ -10,6 +10,7 @@ CREATE TABLE tx_lux_domain_model_visitor (
 	logs int(11) DEFAULT '0' NOT NULL,
 
 	identified tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	blacklisted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	email varchar(255) DEFAULT '' NOT NULL,
 	id_cookie varchar(255) DEFAULT '' NOT NULL,
 	ip_address varchar(255) DEFAULT '' NOT NULL,

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\CategoryRepository;
@@ -15,6 +16,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
@@ -52,6 +54,7 @@ class LeadController extends ActionController
      * @param string $export
      * @return void
      * @throws StopActionException
+     * @throws InvalidQueryException
      */
     public function listAction(FilterDto $filter, string $export = '')
     {
@@ -71,6 +74,7 @@ class LeadController extends ActionController
     /**
      * @param FilterDto $filter
      * @return void
+     * @throws InvalidQueryException
      */
     public function downloadCsvAction(FilterDto $filter)
     {
@@ -102,6 +106,7 @@ class LeadController extends ActionController
      * @return void
      * @throws StopActionException
      * @throws UnsupportedRequestTypeException
+     * @throws DBALException
      */
     public function removeAction(Visitor $visitor)
     {
@@ -118,12 +123,13 @@ class LeadController extends ActionController
      * @throws StopActionException
      * @throws UnknownObjectException
      * @throws UnsupportedRequestTypeException
+     * @throws DBALException
      */
     public function deactivateAction(Visitor $visitor)
     {
-        $visitor->setHidden(true);
+        $visitor->setBlacklistedStatus();
         $this->visitorRepository->update($visitor);
-        $this->addFlashMessage('Visitor will be ignored from listing');
+        $this->addFlashMessage('Visitor is blacklisted now');
         $this->redirect('list');
     }
 
@@ -173,6 +179,7 @@ class LeadController extends ActionController
      * avoid propertymapping exceptions
      *
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
      */
     protected function setFilterDto()
     {

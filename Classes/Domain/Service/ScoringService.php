@@ -51,11 +51,13 @@ class ScoringService
      */
     public function calculateAndSetScoring(Visitor $visitor)
     {
-        $scoring = $this->calculateScoring($visitor);
-        $visitor->setScoring($scoring);
-        $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
-        $visitorRepository->update($visitor);
-        $visitorRepository->persistAll();
+        if ($visitor->isNotBlacklisted()) {
+            $scoring = $this->calculateScoring($visitor);
+            $visitor->setScoring($scoring);
+            $visitorRepository = ObjectUtility::getObjectManager()->get(VisitorRepository::class);
+            $visitorRepository->update($visitor);
+            $visitorRepository->persistAll();
+        }
     }
 
     /**
@@ -64,15 +66,18 @@ class ScoringService
      */
     public function calculateScoring(Visitor $visitor): int
     {
-        $variables = [
-            'numberOfSiteVisits' => $this->getNumberOfSiteVisits($visitor),
-            'numberOfPageVisits' => $this->getNumberOfVisits($visitor),
-            'lastVisitDaysAgo' => $this->getNumberOfDaysSinceLastVisit($visitor),
-            'downloads' => $this->getNumberOfDownloads($visitor)
-        ];
-        $scoring = (int)Parser::solve($this->getCalculation(), $variables);
-        if ($scoring < 0) {
-            $scoring = 0;
+        $scoring = 0;
+        if ($visitor->isNotBlacklisted()) {
+            $variables = [
+                'numberOfSiteVisits' => $this->getNumberOfSiteVisits($visitor),
+                'numberOfPageVisits' => $this->getNumberOfVisits($visitor),
+                'lastVisitDaysAgo' => $this->getNumberOfDaysSinceLastVisit($visitor),
+                'downloads' => $this->getNumberOfDownloads($visitor)
+            ];
+            $scoring = (int)Parser::solve($this->getCalculation(), $variables);
+            if ($scoring < 0) {
+                $scoring = 0;
+            }
         }
         return $scoring;
     }

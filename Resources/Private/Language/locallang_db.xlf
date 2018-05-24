@@ -34,7 +34,10 @@
 				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.identified">
-				<source>Is identified lead?</source>
+				<source>Is lead identified?</source>
+			</trans-unit>
+			<trans-unit id="tx_lux_domain_model_visitor.blacklisted">
+				<source>Is lead blacklisted?</source>
 			</trans-unit>
 			<trans-unit id="tx_lux_domain_model_visitor.visits">
 				<source>Number of visits</source>
@@ -437,7 +440,7 @@
 				<source>Remove completely</source>
 			</trans-unit>
 			<trans-unit id="module.list.link.deactivate">
-				<source>Ignore in future</source>
+				<source>Blacklist</source>
 			</trans-unit>
 
 			<trans-unit id="module.detail">
@@ -667,8 +670,14 @@
 			<trans-unit id="frontend.email4link.lightbox.email">
 				<source>Email</source>
 			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.privacy">
+				<source>I accept the terms and conditions of the privacy policy - see page</source>
+			</trans-unit>
 			<trans-unit id="frontend.email4link.lightbox.submit">
 				<source>Submit</source>
+			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.success">
+				<source>Email successfully sent. Please check your mailbox.</source>
 			</trans-unit>
 
 			<trans-unit id="pi1.title">

@@ -7,9 +7,10 @@ use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\PageRepository;
 use In2code\Lux\Domain\Repository\VisitorRepository;
-use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Signal\SignalTrait;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 
 /**
  * Class PageTracker
@@ -35,10 +36,12 @@ class PageTracker
      * @param Visitor $visitor
      * @param int $pageUid
      * @return void
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     public function trackPage(Visitor $visitor, int $pageUid)
     {
-        if ($pageUid > 0 && $this->shouldTrackPagevisits()) {
+        if ($this->isTrackingActivated($visitor, $pageUid)) {
             $visitor->addPagevisit($this->getPageVisit($pageUid));
             $visitor->setVisits($visitor->getNumberOfUniquePagevisits());
             $this->visitorRepository->update($visitor);
@@ -53,6 +56,7 @@ class PageTracker
      */
     protected function getPageVisit(int $pageUid): Pagevisit
     {
+        /** @var Pagevisit $pageVisit */
         $pageVisit = ObjectUtility::getObjectManager()->get(Pagevisit::class);
         $pageRepository = ObjectUtility::getObjectManager()->get(PageRepository::class);
         /** @var Page $page */
@@ -62,11 +66,21 @@ class PageTracker
     }
 
     /**
+     * @param Visitor $visitor
+     * @param int $pageUid
+     * @return bool
+     */
+    protected function isTrackingActivated(Visitor $visitor, int $pageUid): bool
+    {
+        return $pageUid > 0 && $visitor->isNotBlacklisted() && $this->isTrackingActivatedInSettings();
+    }
+
+    /**
      * Check if tracking of pagevisits is turned on via TypoScript
      *
      * @return bool
      */
-    protected function shouldTrackPagevisits(): bool
+    protected function isTrackingActivatedInSettings(): bool
     {
         $configurationService = ObjectUtility::getConfigurationService();
         $settings = $configurationService->getTypoScriptSettings();

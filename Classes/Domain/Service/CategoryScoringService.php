@@ -26,10 +26,12 @@ class CategoryScoringService
      */
     public function calculateAndSetScoring(Visitor $visitor, string $actionMethodName)
     {
-        if ($actionMethodName === 'pageRequestAction') {
-            $this->calculateCategoryScoringForPageRequest($visitor);
-        } elseif ($actionMethodName === 'downloadRequestAction') {
-            $this->calculateCategoryScoringForDownload($visitor);
+        if ($visitor->isNotBlacklisted()) {
+            if ($actionMethodName === 'pageRequestAction') {
+                $this->calculateCategoryScoringForPageRequest($visitor);
+            } elseif ($actionMethodName === 'downloadRequestAction') {
+                $this->calculateCategoryScoringForDownload($visitor);
+            }
         }
     }
 

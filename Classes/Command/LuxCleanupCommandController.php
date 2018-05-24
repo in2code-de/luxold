@@ -2,7 +2,8 @@
 declare(strict_types=1);
 namespace In2code\Lux\Command;
 
-use Doctrine\DBAL\Schema\Visitor\Visitor;
+use Doctrine\DBAL\DBALException;
+use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Repository\VisitorRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
@@ -25,6 +26,7 @@ class LuxCleanupCommandController extends CommandController
      *
      * @param int $timestamp
      * @return void
+     * @throws DBALException
      */
     public function removeUnknownVisitorsByAgeCommand(int $timestamp)
     {
@@ -45,6 +47,7 @@ class LuxCleanupCommandController extends CommandController
      *
      * @param int $timestamp
      * @return void
+     * @throws DBALException
      */
     public function removeVisitorsByAgeCommand(int $timestamp)
     {
@@ -65,6 +68,7 @@ class LuxCleanupCommandController extends CommandController
      *
      * @param int $visitorUid
      * @return void
+     * @throws DBALException
      */
     public function removeVisitorByUidCommand(int $visitorUid)
     {

@@ -15,7 +15,7 @@ return [
         'default_sortby' => 'ORDER BY tstamp DESC',
         'delete' => 'deleted',
         'enablecolumns' => [
-            'disabled' => 'hidden',
+            'disabled' => 'blacklisted',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
@@ -25,14 +25,14 @@ return [
     ],
     'interface' => [
         'showRecordFieldList' =>
-            'scoring,categoryscorings,identified,visits,email,id_cookie,crdate,tstamp,attributes,' .
+            'scoring,categoryscorings,identified,blacklisted,visits,email,id_cookie,crdate,tstamp,attributes,' .
             'pagevisits,downloads,referrer,user_agent,ip_address,ipinformations,logs,description',
     ],
     'types' => [
         '1' => [
             'showitem' =>
-                'scoring,categoryscorings,--palette--;Lead;identified,--palette--;Lead;mail,--palette--;Lead;visits,' .
-                'attributes,--palette--;Lead;referrer,' .
+                '--palette--;Lead;scoring,categoryscorings,--palette--;Lead;visits,--palette--;Lead;mail,' .
+                '--palette--;Lead;time,attributes,--palette--;Lead;referrer,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
                 'tx_lux_domain_model_visitor.tab.enrichments,ip_address,ipinformations,' .
                 '--div--;LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' .
@@ -46,13 +46,16 @@ return [
         ],
     ],
     'palettes' => [
-        'identified' => [
-            'showitem' => 'identified,visits'
+        'scoring' => [
+            'showitem' => 'scoring,identified'
+        ],
+        'visits' => [
+            'showitem' => 'blacklisted,visits'
         ],
         'mail' => [
             'showitem' => 'email,id_cookie'
         ],
-        'visits' => [
+        'time' => [
             'showitem' => 'crdate,tstamp'
         ],
         'referrer' => [
@@ -186,6 +189,16 @@ return [
         'identified' => [
             'exclude' => true,
             'label' => 'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.identified',
+            'config' => [
+                'type' => 'check',
+                'readOnly' => true,
+                'default' => 0
+            ]
+        ],
+        'blacklisted' => [
+            'exclude' => true,
+            'label' =>
+                'LLL:EXT:lux/Resources/Private/Language/locallang_db.xlf:' . Visitor::TABLE_NAME . '.blacklisted',
             'config' => [
                 'type' => 'check',
                 'readOnly' => true,

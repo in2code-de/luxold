@@ -13,9 +13,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class FilterDto
 {
-    const PERIOD_THISYEAR = 0;
-    const PERIOD_THISMONTH = 1;
-    const PERIOD_LASTMONTH = 2;
+    const PERIOD_ALL = 0;
+    const PERIOD_THISYEAR = 1;
+    const PERIOD_THISMONTH = 2;
+    const PERIOD_LASTMONTH = 3;
     const IDENTIFIED_ALL = -1;
     const IDENTIFIED_UNKNOWN = 0;
     const IDENTIFIED_IDENTIFIED = 1;
@@ -55,12 +56,22 @@ class FilterDto
     /**
      * @var int
      */
-    protected $timePeriod = self::PERIOD_THISYEAR;
+    protected $timePeriod = self::PERIOD_ALL;
 
     /**
      * @var int
      */
     protected $identified = self::IDENTIFIED_ALL;
+
+    /**
+     * FilterDto constructor.
+     *
+     * @param int $timePeriod
+     */
+    public function __construct(int $timePeriod = self::PERIOD_ALL)
+    {
+        $this->setTimePeriod($timePeriod);
+    }
 
     /**
      * @return string
@@ -300,10 +311,13 @@ class FilterDto
     protected function getStartTimeFromTimePeriod(): \DateTime
     {
         $time = new \DateTime();
+        if ($this->getTimePeriod() === self::PERIOD_ALL) {
+            $time = new \DateTime();
+            $time->setTimestamp(0);
+        }
         if ($this->getTimePeriod() === self::PERIOD_THISYEAR) {
             $time = new \DateTime();
-            $time->setDate((int)$time->format('Y'), 1, 1);
-            $time->setTime(0, 0, 0);
+            $time->setDate((int)$time->format('Y'), 1, 1)->setTime(0, 0, 0);
         }
         if ($this->getTimePeriod() === self::PERIOD_THISMONTH) {
             $time = new \DateTime('first day of this month');
