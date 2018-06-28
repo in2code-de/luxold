@@ -8,6 +8,7 @@ use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Repository\LogRepository;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
 /**
  * Class AbstractAction
@@ -126,6 +127,7 @@ abstract class AbstractAction implements ActionInterface
      * if workflow was already performed and configuration for recurring is turned to "single".
      *
      * @return bool
+     * @throws InvalidQueryException
      */
     public function shouldPerform(): bool
     {

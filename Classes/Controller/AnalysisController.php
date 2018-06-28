@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Controller;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Repository\DownloadRepository;
@@ -59,6 +60,7 @@ class AnalysisController extends ActionController
      * @param FilterDto $filter
      * @return void
      * @throws InvalidQueryException
+     * @throws DBALException
      */
     public function dashboardAction(FilterDto $filter)
     {
@@ -88,6 +90,7 @@ class AnalysisController extends ActionController
     /**
      * @param FilterDto $filter
      * @return void
+     * @throws InvalidQueryException
      */
     public function contentAction(FilterDto $filter)
     {

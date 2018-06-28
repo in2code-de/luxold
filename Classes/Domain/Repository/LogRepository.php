@@ -8,6 +8,7 @@ use In2code\Lux\Domain\Model\Visitor;
 use In2code\Lux\Domain\Model\Workflow;
 use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -35,6 +36,7 @@ class LogRepository extends AbstractRepository
      * @param Visitor $visitor
      * @param Workflow $workflow
      * @return Log|null
+     * @throws InvalidQueryException
      */
     public function findOneByVisitorAndWorkflow(Visitor $visitor, Workflow $workflow)
     {
@@ -55,6 +57,7 @@ class LogRepository extends AbstractRepository
      * @param QueryInterface $query
      * @param array $logicalAnd
      * @return array
+     * @throws InvalidQueryException
      */
     protected function extendLogicalAndWithFilterConstraints(
         FilterDto $filter,
@@ -71,6 +74,7 @@ class LogRepository extends AbstractRepository
      *
      * @param QueryInterface $query
      * @return array
+     * @throws InvalidQueryException
      */
     protected function interestingLogsLogicalAnd(QueryInterface $query): array
     {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace In2code\Lux\Utility;
 
 /**
@@ -26,6 +27,6 @@ class FileUtility
      */
     public static function isStringInFile(string $value, string $filename): bool
     {
-        return exec('grep ' . escapeshellarg($value) . ' ' . $filename);
+        return exec('grep ' . escapeshellarg($value) . ' ' . $filename) !== '';
     }
 }

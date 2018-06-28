@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
-
 namespace In2code\Lux\Domain\Service;
 
-use In2code\Lux\Domain\Model\Action;
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Log;
 use In2code\Lux\Domain\Model\Visitor;

@@ -10,6 +10,7 @@ use In2code\Lux\Domain\Repository\VisitorRepository;
 use In2code\Lux\Utility\ConfigurationUtility;
 use In2code\Lux\Utility\ObjectUtility;
 use jlawrence\eos\Parser;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
 /**
  * Class ScoringService to calculate a scoring to a visitor
@@ -48,6 +49,7 @@ class ScoringService
     /**
      * @param Visitor $visitor
      * @return void
+     * @throws InvalidQueryException
      */
     public function calculateAndSetScoring(Visitor $visitor)
     {
@@ -63,6 +65,7 @@ class ScoringService
     /**
      * @param Visitor $visitor
      * @return int Integer value 0 or higher
+     * @throws InvalidQueryException
      */
     public function calculateScoring(Visitor $visitor): int
     {
@@ -85,6 +88,7 @@ class ScoringService
     /**
      * @param Visitor $visitor
      * @return int
+     * @throws InvalidQueryException
      */
     protected function getNumberOfSiteVisits(Visitor $visitor): int
     {
@@ -116,6 +120,7 @@ class ScoringService
     /**
      * @param Visitor $visitor
      * @return int
+     * @throws InvalidQueryException
      */
     protected function getNumberOfVisits(Visitor $visitor): int
     {
@@ -157,6 +162,7 @@ class ScoringService
     /**
      * @param Visitor $visitor
      * @return int
+     * @throws InvalidQueryException
      */
     protected function getNumberOfDownloads(Visitor $visitor): int
     {

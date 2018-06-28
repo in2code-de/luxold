@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Trigger\Helper;
 
-use In2code\Lux\Domain\Service\ConfigurationService;
 use In2code\Lux\Utility\LocalizationUtility;
 use In2code\Lux\Utility\ObjectUtility;
 

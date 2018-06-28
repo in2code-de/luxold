@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Service;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Categoryscoring;
 use In2code\Lux\Domain\Model\Download;
@@ -61,6 +62,7 @@ class VisitorMergeService
 
     /**
      * @return void
+     * @throws DBALException
      * @throws IllegalObjectTypeException
      * @throws UnknownObjectException
      */
@@ -90,6 +92,7 @@ class VisitorMergeService
      *
      * @param Visitor $newVisitor
      * @return void
+     * @throws DBALException
      */
     protected function mergePagevisits(Visitor $newVisitor)
     {
@@ -105,6 +108,7 @@ class VisitorMergeService
      *
      * @param Visitor $newVisitor
      * @return void
+     * @throws DBALException
      */
     protected function mergeLogs(Visitor $newVisitor)
     {
@@ -122,6 +126,7 @@ class VisitorMergeService
      * @return void
      * @throws IllegalObjectTypeException
      * @throws UnknownObjectException
+     * @throws DBALException
      */
     protected function mergeCategoryscorings(Visitor $newVisitor)
     {
@@ -150,6 +155,7 @@ class VisitorMergeService
      *
      * @param Visitor $newVisitor
      * @return void
+     * @throws DBALException
      */
     protected function mergeDownloads(Visitor $newVisitor)
     {
@@ -167,6 +173,7 @@ class VisitorMergeService
      * @return void
      * @throws IllegalObjectTypeException
      * @throws UnknownObjectException
+     * @throws DBALException
      */
     protected function mergeAttributes(Visitor $newVisitor)
     {
@@ -203,6 +210,7 @@ class VisitorMergeService
     /**
      * @param Visitor $newVisitor
      * @return void
+     * @throws DBALException
      */
     protected function deleteVisitor(Visitor $newVisitor)
     {
