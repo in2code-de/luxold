@@ -5,6 +5,7 @@ namespace In2code\Lux\Domain\Repository;
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -19,6 +20,7 @@ class DownloadRepository extends AbstractRepository
      *
      * @param FilterDto $filter
      * @return array
+     * @throws InvalidQueryException
      */
     public function findCombinedByHref(FilterDto $filter): array
     {
@@ -48,6 +50,7 @@ class DownloadRepository extends AbstractRepository
      * @param Visitor $visitor
      * @param \DateTime $time
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByVisitorAndTime(Visitor $visitor, \DateTime $time): QueryResultInterface
     {
@@ -68,6 +71,7 @@ class DownloadRepository extends AbstractRepository
      *          [numberOfDownloadsToday,numberOfDownloadsYesterday,...]
      *
      * @return array
+     * @throws InvalidQueryException
      */
     public function getNumberOfDownloadsByDay(): array
     {
