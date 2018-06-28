@@ -2,6 +2,7 @@ ACONET
 Afrihost
 Amazon.com
 ANTIK Telecom s.r.o
+Artfiles New Media GmbH
 ARTOS a.s.
 Atria Convergence Technologies Pvt. Ltd.
 AT&T U-verse
@@ -25,10 +26,14 @@ China Unicom Liaoning
 "Choopa, LLC"
 Cogent Communications
 COLT Technology Services Group Limited
+Company T-Systems Multimedia Solutions GmbH
+Company Tata Teleservices ISP
 Cox Communications
 Cyber Smart Solutions S.R.L
+Cyberlink AG
 CyrusOne LLC
 Deutsche Glasfaser Business GmbH
+Deutsche Glasfaser Wholesale
 Deutsche Telekom AG
 Deutsche Telekom Business
 Digital Energy Technologies Chile SpA
@@ -95,6 +100,7 @@ NETHINKS GmbH
 Netia SA
 netplusFR SA
 Netwire Internet Solutions Pvt
+Next Layer Telekommunikationsdienstleistungs- und
 NTS workspace AG
 O2 Deutschland
 OMG.de GmbH
@@ -129,6 +135,8 @@ Swisscom
 SWU TeleNet GmbH
 SysEleven GmbH
 T-Mobile Austria GmbH
+T-mobile Polska
+T-Systems Multimedia Solutions GmbH
 T-Systems International GmbH
 Tajik Academician Research and Educational Network
 Telcom Networks Limited
