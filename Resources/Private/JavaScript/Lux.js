@@ -259,7 +259,7 @@ function LuxMain() {
 		var href = link.getAttribute('href');
 		var sendEmail = link.getAttribute('data-lux-email4link-sendemail') || 'false';
 		var email = that.lightboxInstance.element().querySelector('[data-lux-email4link="email"]').value;
-		if (validateEmail(email)) {
+		if (isEmailAddress(email) && isAllowedEmailAddress(email)) {
 			addWaitClassToBodyTag();
 			ajaxConnection({
 				'tx_lux_fe[dispatchAction]': 'email4LinkRequest',
@@ -285,6 +285,8 @@ function LuxMain() {
 					removeWaitClassToBodyTag();
 				}, 500);
 			}
+		} else {
+			showElement(that.lightboxInstance.element().querySelector('[data-lux-email4link="errorEmailAddress"]'));
 		}
 	};
 
@@ -589,9 +591,33 @@ function LuxMain() {
 	 * @param email
 	 * @returns {boolean}
 	 */
-	var validateEmail = function(email) {
+	var isEmailAddress = function(email) {
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(email);
+	};
+
+	/**
+	 * Test if given email address is not in blacklist.
+	 * Normally checks if domain is in file Resources/Public/Static/DisallowedMailProviders.txt
+	 *
+	 * @param {string} email
+	 * @returns {boolean}
+	 */
+	var isAllowedEmailAddress = function(email) {
+		var uri = document.querySelector('[data-lux-disallowedmailprovidersuri]')
+			.getAttribute('data-lux-disallowedmailprovidersuri');
+		var read = new XMLHttpRequest();
+		read.open('GET', uri, false);
+		read.send();
+		return inArray(getDomainFromEmailAddress(email), read.responseText.split("\n")) === false;
+	};
+
+	/**
+	 * @param {string} email
+	 * @returns {string}
+	 */
+	var getDomainFromEmailAddress = function(email) {
+		return email.split('@')[1].toLowerCase();
 	};
 
 	/**
