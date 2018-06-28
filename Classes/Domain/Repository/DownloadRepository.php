@@ -31,11 +31,11 @@ class DownloadRepository extends AbstractRepository
                 $query->lessThan('crdate', $filter->getEndTimeForFilter())
             ])
         );
-        $assets = $query->execute();
+        $assets = $query->execute(true);
         $result = [];
         /** @var Download $asset */
         foreach ($assets as $asset) {
-            $result[$asset->getHref()][] = $asset;
+            $result[$asset['href']][] = $asset;
         }
         array_multisort(array_map('count', $result), SORT_DESC, $result);
         $result = array_slice($result, 0, 100);
