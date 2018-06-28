@@ -265,7 +265,6 @@ class VisitorRepository extends AbstractRepository
         QueryInterface $query,
         array $logicalAnd
     ): array {
-        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump([$filter->getStartTimeForFilter(), $filter->getEndTimeForFilter()], 'in2code: ' . __CLASS__ . ':' . __LINE__);die('die: ' . __CLASS__ . ':' . __LINE__);
         $logicalAnd[] = $query->greaterThan('pagevisits.crdate', $filter->getStartTimeForFilter());
         $logicalAnd[] = $query->lessThan('pagevisits.crdate', $filter->getEndTimeForFilter());
         if ($filter->getSearchterms() !== []) {

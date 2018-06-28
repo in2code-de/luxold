@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Service;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Query\QueryBuilder;
 use In2code\Lux\Domain\Model\Attribute;
 use In2code\Lux\Domain\Model\Ipinformation;
@@ -198,6 +199,7 @@ class AnonymizeService
 
     /**
      * @return void
+     * @throws DBALException
      */
     protected function anonymizeIdentifiedVisitors()
     {
@@ -228,6 +230,7 @@ class AnonymizeService
 
     /**
      * @return void
+     * @throws DBALException
      */
     protected function anonymizeAttributes()
     {
@@ -265,6 +268,7 @@ class AnonymizeService
 
     /**
      * @return void
+     * @throws DBALException
      */
     protected function anonymizeIpinformation()
     {

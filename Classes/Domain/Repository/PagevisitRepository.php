@@ -6,6 +6,7 @@ use In2code\Lux\Domain\Model\Page;
 use In2code\Lux\Domain\Model\Pagevisit;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -20,6 +21,7 @@ class PagevisitRepository extends AbstractRepository
      *
      * @param FilterDto $filter
      * @return array
+     * @throws InvalidQueryException
      */
     public function findCombinedByPageIdentifier(FilterDto $filter): array
     {
@@ -39,6 +41,7 @@ class PagevisitRepository extends AbstractRepository
     /**
      * @param FilterDto $filter
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findLatestPagevisits(FilterDto $filter): QueryResultInterface
     {
@@ -61,6 +64,7 @@ class PagevisitRepository extends AbstractRepository
      *          [numberVisitorsToday,numberVisitorsYesterday,...]
      *
      * @return array
+     * @throws InvalidQueryException
      */
     public function getNumberOfVisitorsByDay(): array
     {
@@ -120,6 +124,7 @@ class PagevisitRepository extends AbstractRepository
      * @param Visitor $visitor
      * @param \DateTime $time
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByVisitorAndTime(Visitor $visitor, \DateTime $time): QueryResultInterface
     {
@@ -140,6 +145,7 @@ class PagevisitRepository extends AbstractRepository
      * @param Visitor $visitor
      * @param \DateTime $time
      * @return Pagevisit|null
+     * @throws InvalidQueryException
      */
     public function findLastByVisitorAndTime(Visitor $visitor, \DateTime $time)
     {

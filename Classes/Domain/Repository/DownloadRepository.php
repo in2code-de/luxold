@@ -5,6 +5,7 @@ namespace In2code\Lux\Domain\Repository;
 use In2code\Lux\Domain\Model\Download;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Domain\Model\Visitor;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -19,6 +20,7 @@ class DownloadRepository extends AbstractRepository
      *
      * @param FilterDto $filter
      * @return array
+     * @throws InvalidQueryException
      */
     public function findCombinedByHref(FilterDto $filter): array
     {
@@ -29,11 +31,11 @@ class DownloadRepository extends AbstractRepository
                 $query->lessThan('crdate', $filter->getEndTimeForFilter())
             ])
         );
-        $assets = $query->execute();
+        $assets = $query->execute(true);
         $result = [];
         /** @var Download $asset */
         foreach ($assets as $asset) {
-            $result[$asset->getHref()][] = $asset;
+            $result[$asset['href']][] = $asset;
         }
         array_multisort(array_map('count', $result), SORT_DESC, $result);
         $result = array_slice($result, 0, 100);
@@ -48,6 +50,7 @@ class DownloadRepository extends AbstractRepository
      * @param Visitor $visitor
      * @param \DateTime $time
      * @return QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findByVisitorAndTime(Visitor $visitor, \DateTime $time): QueryResultInterface
     {
@@ -68,6 +71,7 @@ class DownloadRepository extends AbstractRepository
      *          [numberOfDownloadsToday,numberOfDownloadsYesterday,...]
      *
      * @return array
+     * @throws InvalidQueryException
      */
     public function getNumberOfDownloadsByDay(): array
     {

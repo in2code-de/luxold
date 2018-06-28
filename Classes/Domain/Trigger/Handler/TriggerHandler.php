@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 namespace In2code\Lux\Domain\Trigger\Handler;
 
 use In2code\Lux\Domain\Model\Trigger;

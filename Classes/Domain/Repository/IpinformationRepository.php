@@ -2,9 +2,11 @@
 declare(strict_types=1);
 namespace In2code\Lux\Domain\Repository;
 
+use Doctrine\DBAL\DBALException;
 use In2code\Lux\Domain\Model\Ipinformation;
 use In2code\Lux\Domain\Model\Transfer\FilterDto;
 use In2code\Lux\Utility\DatabaseUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -21,8 +23,10 @@ class IpinformationRepository extends AbstractRepository
      *      'at' => 45,
      *      'ch' => 11
      *  ]
+     *
      * @param FilterDto $filter
      * @return array
+     * @throws DBALException
      */
     public function findAllCountryCodesGrouped(FilterDto $filter): array
     {
@@ -52,6 +56,7 @@ class IpinformationRepository extends AbstractRepository
      * @param QueryInterface $query
      * @param array $logicalAnd
      * @return array
+     * @throws InvalidQueryException
      */
     protected function extendLogicalAndWithFilterConstraints(
         FilterDto $filter,

@@ -8,6 +8,7 @@ use In2code\Lux\Domain\Service\SendSummaryService;
 use In2code\Lux\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
 /**
  * Class LuxLeadCommandController
@@ -31,6 +32,7 @@ class LuxLeadCommandController extends CommandController
      * @param int $identified Send only identified leads, see FilterDto::IDENTIFIED_ status
      * @param int $minimumScoring Send only leads with a minimum scoring of this value.
      * @return void
+     * @throws InvalidQueryException
      */
     public function sendSummaryCommand(
         string $emails,
@@ -71,6 +73,7 @@ class LuxLeadCommandController extends CommandController
      * @param int $identified Send only identified leads, see FilterDto::IDENTIFIED_ status
      * @param int $luxCategory Send only leads that have a scoring in this category.
      * @return void
+     * @throws InvalidQueryException
      */
     public function sendSummaryOfLuxCategoryCommand(
         string $emails,
@@ -112,6 +115,7 @@ class LuxLeadCommandController extends CommandController
      * @param int $minimumScoring Send only leads with a minimum scoring of this value.
      * @param int $luxCategory Send only leads that have a scoring in this category (0 disables this feature).
      * @return void
+     * @throws InvalidQueryException
      */
     public function sendSummaryOfKnownCompaniesCommand(
         string $emails,
