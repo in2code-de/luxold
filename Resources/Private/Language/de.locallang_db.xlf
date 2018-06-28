@@ -914,6 +914,10 @@
 				<source>Email successfully sent. Please check your mailbox.</source>
 				<target state="translated">E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.</target>
 			</trans-unit>
+			<trans-unit id="frontend.email4link.lightbox.emailerror">
+				<source>Error in given email address.</source>
+				<target state="translated">Ungültige E-Mail-Adresse eingetragen.</target>
+			</trans-unit>
 
 			<trans-unit id="pi1.title">
 				<source>Lux Tracking Opt Out</source>
