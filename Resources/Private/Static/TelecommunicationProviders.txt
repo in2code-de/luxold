@@ -32,6 +32,7 @@ Cox Communications
 Cyber Smart Solutions S.R.L
 Cyberlink AG
 CyrusOne LLC
+Daten- und Telekommunikations GmbH Dessau
 Deutsche Glasfaser Business GmbH
 Deutsche Glasfaser Wholesale
 Deutsche Telekom AG
@@ -91,6 +92,7 @@ mhs internet AG
 Microsoft Corporation
 MK Netzdienste GmbH & Co. KG
 Mtel
+myLoc managed IT AG
 NBP
 Neofonie GmbH
 Netalis SAS
@@ -126,6 +128,7 @@ Rostelecom
 S-IT Informationstechnologie Betreiber GmbH & Co.
 Salt Mobile SA
 sasag Kabelkommunikation AG
+ScanPlus GmbH
 "ShenZhen Sunrise Technology Co.,Ltd."
 SK Broadband
 Skynet Belgium
@@ -155,13 +158,16 @@ Telfort B.V.
 Telmex
 TOPNET
 Turksat Uydu-Net Internet
+TWL-Kom GmbH
 Unitymedia
 UPC Austria
 UPC Schweiz
 UPC Schweiz GmbH
 Verizon Deutschland GmbH
+Vectra Broadband
 Versatel Deutschland
 Video-Broadcast GmbH
+vitroconnect GmbH
 Vodafone Albania Sh.A.
 Vodafone D2 GmbH
 Vodafone DSL
