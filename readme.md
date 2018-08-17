@@ -133,6 +133,7 @@ for the identification feature (powermail, form, formhandler, felogin, etc...).
 
 | Version    | Date       | State      | Description                                                                        |
 | ---------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
+| 1.23.0     | 2018-08-17 | Task       | Update disallowed mail provider and telecommunication list                         |
 | 1.22.0     | 2018-07-23 | Task       | Update disallowed mail provider list                                               |
 | 1.21.1     | 2018-06-28 | Task       | Code cleanup, update telecommunication provider list, performance improvement      |
 | 1.21.0     | 2018-06-28 | Task       | Add blacklist function for onetime-email-accounts in email4link functionality      |
