@@ -26,6 +26,7 @@ China Unicom Liaoning
 "Choopa, LLC"
 Cogent Communications
 COLT Technology Services Group Limited
+Comcast Cable
 Company T-Systems Multimedia Solutions GmbH
 Company Tata Teleservices ISP
 Cox Communications
@@ -125,6 +126,7 @@ RelAix Networks GmbH
 REWE Systems GmbH
 Rogers Cable
 Rostelecom
+RSM Connect
 S-IT Informationstechnologie Betreiber GmbH & Co.
 Salt Mobile SA
 sasag Kabelkommunikation AG
