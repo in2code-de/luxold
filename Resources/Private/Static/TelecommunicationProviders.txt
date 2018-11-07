@@ -1,5 +1,6 @@
 ACONET
 Afrihost
+AGENDA komunikacijski in informacijski inzeniring
 Amazon.com
 ANTIK Telecom s.r.o
 Artfiles New Media GmbH
@@ -11,6 +12,7 @@ Beijing Baidu Netcom Science and Technology Co.
 Beijing Qihu Technology Company Limited
 Bell Canada
 BH Telecom d.d. Sarajevo
+Bharti Broadband
 Bisping & Bisping GmbH & Co KG
 BITel Gesellschaft fuer Telekommunikation mbH
 bn:t Blatzheim Networks Telecom GmbH
@@ -26,6 +28,7 @@ China Unicom Liaoning
 "Choopa, LLC"
 Cogent Communications
 COLT Technology Services Group Limited
+Comcast Cable
 Company T-Systems Multimedia Solutions GmbH
 Company Tata Teleservices ISP
 Cox Communications
@@ -38,6 +41,7 @@ Deutsche Glasfaser Wholesale
 Deutsche Telekom AG
 Deutsche Telekom Business
 Digital Energy Technologies Chile SpA
+DOKOM Gesellschaft fuer Telekommunikation mbH
 DSI GmbH Daten Service Informationssysteme
 ecotel communication ag
 Envia Tel GmbH
@@ -51,6 +55,7 @@ Global Layer B.V.
 Globalways AG
 Google
 Google Cloud
+Google Proxy
 HeLi NET Telekommunikation GmbH & Co. KG
 Herzo Media GmbH & Co. KG
 HETZNER
@@ -58,6 +63,7 @@ Hetzner Online GmbH
 Host Europe GmbH
 Host1Plus
 Hutchison Drei Austria GmbH
+IBH IT-Service GmbH
 Init7 (Switzerland) Ltd.
 IPHH Internet Port Hamburg GmbH
 IPVanish
@@ -77,6 +83,7 @@ lagis Internet Service Provider GmbH
 Leaseweb Deutschland GmbH
 LeaseWeb Netherlands B.V.
 Leaseweb USA
+LEW TelNet GmbH
 Limestone Networks
 "Linode, LLC"
 LIWEST Kabelmedien GmbH
@@ -100,8 +107,10 @@ NetCologne GmbH
 NetCom BW GmbH
 NETHINKS GmbH
 Netia SA
+netlogix GmbH & Co. KG
 netplusFR SA
 Netwire Internet Solutions Pvt
+Nexinto GmbH
 Next Layer Telekommunikationsdienstleistungs- und
 NTS workspace AG
 O2 Deutschland
@@ -125,6 +134,7 @@ RelAix Networks GmbH
 REWE Systems GmbH
 Rogers Cable
 Rostelecom
+RSM Connect
 S-IT Informationstechnologie Betreiber GmbH & Co.
 Salt Mobile SA
 sasag Kabelkommunikation AG
@@ -149,12 +159,14 @@ Telecom Italia
 Telecom Italia Business
 Telecomunikatsiina Companiya Ltd
 Telefonica de Espana
+Telefonica International Wholesale Services II
 Telekom Austria
 Telekommunikation Mittleres Ruhrgebiet GmbH
 TelemaxX Telekommunikation GmbH
 Telenor Norge AS
 TeleRadioCompany Studio TV-9 Beregsasom Ltd.
 Telfort B.V.
+Telia Company
 Telmex
 TOPNET
 Turksat Uydu-Net Internet
@@ -167,6 +179,7 @@ Verizon Deutschland GmbH
 Vectra Broadband
 Versatel Deutschland
 Video-Broadcast GmbH
+VISTEC Internet Service GmbH
 vitroconnect GmbH
 Vodafone Albania Sh.A.
 Vodafone D2 GmbH
@@ -179,3 +192,4 @@ wilhelm.tel
 Wojciech Jerzy Winkel trading as Tempus Telecom
 Xs4all Internet BV
 YANDEX LLC
+Zscaler
