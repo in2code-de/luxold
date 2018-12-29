@@ -1,8 +1,10 @@
+1&1 Versatel Deutschland GmbH
 ACONET
 Afrihost
 AGENDA komunikacijski in informacijski inzeniring
 Amazon.com
 ANTIK Telecom s.r.o
+ARCOR-IP
 Artfiles New Media GmbH
 ARTOS a.s.
 Atria Convergence Technologies Pvt. Ltd.
@@ -26,6 +28,7 @@ China Telecom Guangdong
 China Unicom Beijing
 China Unicom Liaoning
 "Choopa, LLC"
+CLARANET
 Cogent Communications
 COLT Technology Services Group Limited
 Comcast Cable
@@ -43,6 +46,7 @@ Deutsche Telekom Business
 Digital Energy Technologies Chile SpA
 DOKOM Gesellschaft fuer Telekommunikation mbH
 DSI GmbH Daten Service Informationssysteme
+DTAG European region
 ecotel communication ag
 Envia Tel GmbH
 europroNET Bosnia d.o.o.
@@ -68,16 +72,20 @@ Init7 (Switzerland) Ltd.
 IPHH Internet Port Hamburg GmbH
 IPVanish
 Ishan's Network
+ITERGO
 JimmyNet s.r.o.
 Joyent
 JSC ER-Telecom Holding
+KabelBW
 Kabel BW
+Kabeldeutschland
 Kabelfernsehen Muenchen ServiCenter GmbH & Co.KG
 kabelplus GmbH
 KDVZ Citkomm
 Kom4tel GmbH
 Komro
 komro GmbH
+Komro GmbH
 Komsa Group Network
 lagis Internet Service Provider GmbH
 Leaseweb Deutschland GmbH
@@ -98,6 +106,7 @@ Medianet Group Srl
 mhs internet AG
 Microsoft Corporation
 MK Netzdienste GmbH & Co. KG
+MNET
 Mtel
 myLoc managed IT AG
 NBP
@@ -121,6 +130,7 @@ Optimate-Server
 Orange
 Orange Polska
 Orange Swiatlowod
+Orion Telekom ISP IP network
 OVH SAS
 Pakistan Telecommuication company limited
 Play
@@ -132,12 +142,14 @@ Quickline
 R-KOM Regensburger Telekommunikationsgesellschaft
 RelAix Networks GmbH
 REWE Systems GmbH
+RDSNET
 Rogers Cable
 Rostelecom
 RSM Connect
 S-IT Informationstechnologie Betreiber GmbH & Co.
 Salt Mobile SA
 sasag Kabelkommunikation AG
+Serbia Broadband
 ScanPlus GmbH
 "ShenZhen Sunrise Technology Co.,Ltd."
 SK Broadband
@@ -178,6 +190,7 @@ UPC Schweiz GmbH
 Verizon Deutschland GmbH
 Vectra Broadband
 Versatel Deutschland
+VF-Network
 Video-Broadcast GmbH
 VISTEC Internet Service GmbH
 vitroconnect GmbH
